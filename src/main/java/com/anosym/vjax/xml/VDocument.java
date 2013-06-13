@@ -233,18 +233,32 @@ public class VDocument {
   }
 
   public static VDocument parseDocument(InputStream inn) {
+    return parseDocument(inn, false);
+  }
+
+  /**
+   * if this document is an html, it may not be well formed, and therefore, it needs to be cleaned
+   * first.
+   *
+   * @param inn
+   * @param isHtml
+   * @return
+   */
+  public static VDocument parseDocument(InputStream inn, boolean isHtml) {
     try {
       VDocument doc = new VDocument();
-      //we do not know what type of document we are handling, so we do some cleaning first.
-      HtmlCleaner htmlCleaner = new HtmlCleaner();
-      CleanerProperties cp = htmlCleaner.getProperties();
-      TagNode node = htmlCleaner
-              .clean(inn);
-      ByteArrayOutputStream out = new ByteArrayOutputStream();
-      new SimpleXmlSerializer(cp).writeToStream(node, out);
-      byte[] buffer = out.toByteArray();
-      ByteArrayInputStream inn_ = new ByteArrayInputStream(buffer);
-      doc.parse(inn_);
+      if (isHtml) {
+        //we do not know what type of document we are handling, so we do some cleaning first.
+        HtmlCleaner htmlCleaner = new HtmlCleaner();
+        CleanerProperties cp = htmlCleaner.getProperties();
+        TagNode node = htmlCleaner
+                .clean(inn);
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        new SimpleXmlSerializer(cp).writeToStream(node, out);
+        byte[] buffer = out.toByteArray();
+        inn = new ByteArrayInputStream(buffer);
+      }
+      doc.parse(inn);
       return doc;
     } catch (IOException ex) {
       throw new RuntimeException(ex);

@@ -52,6 +52,7 @@ import com.anosym.vjax.util.VAttributeKeyNormalizer;
 import com.anosym.vjax.util.VConditional;
 import com.anosym.vjax.util.VMarkupGenerator;
 import com.anosym.vjax.xml.VAttribute;
+import com.anosym.vjax.xml.VContent;
 import com.anosym.vjax.xml.VDocument;
 import com.anosym.vjax.xml.VElement;
 import com.anosym.vjax.xml.VNamespace;
@@ -1190,7 +1191,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
       HexBinaryAdapter adapter = new HexBinaryAdapter();
       byte[] data = out.toByteArray();
       String content = adapter.marshal(data);
-      elem.setContent(content);
+      elem.addChild(new VContent(content));
     } catch (Exception ex) {
       if (ex instanceof VXMLBindingException) {
         throw (VXMLBindingException) ex;
@@ -1319,7 +1320,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
         //add the converter
         addAttribute(elem, new VAttribute(VMarshallerConstants.CONVERTER_ATTRIBUTE, conClass.getName()));
         String value = vcon.convert(o);
-        elem.setContent(value);
+        elem.addChild(new VContent(value));
         return;
       }
       boolean isInner = isInner(o.getClass());
@@ -1366,7 +1367,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
       }
       if (clazz.isPrimitive()) {
         addAttribute(elem, new VAttribute(VMarshallerConstants.PRIMITIVE_ATTRIBUTE, clazz.isPrimitive() + ""));
-        elem.setContent(o.toString());
+        elem.addChild(new VContent(o.toString()));
       } else if (clazz.isEnum()) {
         addAttribute(elem, new VAttribute(VMarshallerConstants.ENUM_ATTRIBUTE, clazz.isEnum() + ""));
         Method[] mts = clazz.getDeclaredMethods();
@@ -1377,30 +1378,30 @@ public final class VMarshaller<T> implements java.io.Serializable {
         VElement en = new VElement(enumMarkup, elem);
         // Enum values are constants by default
         addAttribute(en, new VAttribute(VMarshallerConstants.CONSTANT_ATTRIBUTE, "true"));
-        en.setContent(((Enum) o).name());
+        en.addChild(new VContent(((Enum) o).name()));
         if (!mms.isEmpty()) {
           this.marshallProperties(elem, o, namespace, generator);
         }
       } else if (o instanceof Number) {
-        elem.setContent(o.toString());
+        elem.addChild(new VContent(o.toString()));
       } else if (o instanceof Character) {
-        elem.setContent(o.toString());
+        elem.addChild(new VContent(o.toString()));
       } else if (o instanceof Boolean) {
-        elem.setContent(o.toString());
+        elem.addChild(new VContent(o.toString()));
       } else if (o instanceof String) {
         String ss = (String) o;
         if (!ss.isEmpty()) {
-          elem.setContent(o.toString());
+          elem.addChild(new VContent(o.toString()));
         }
       } else if (o instanceof Calendar) {
         String iso = VDateConverter.ISOString((Calendar) o);
-        elem.setContent(iso);
+        elem.addChild(new VContent(iso));
         elem.addAttribute(new VAttribute(VMarshallerConstants.CONVERTER_ATTRIBUTE, VCalendarConverter.class.getName()));
       } else if (o instanceof Date) {
         Calendar c = Calendar.getInstance();
         c.setTime((Date) o);
         String iso = VDateConverter.ISOString(c);
-        elem.setContent(iso);
+        elem.addChild(new VContent(iso));
         elem.addAttribute(new VAttribute(VMarshallerConstants.CONVERTER_ATTRIBUTE, VDateConverter.class.getName()));
       } else if (clazz.isArray()) {
         doMarshallArray(elem, o, clazz, namespace, elementParam1);
@@ -1409,7 +1410,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
         try {
           Collection c = (Collection) o;
           addAttribute(elem, new VAttribute(VMarshallerConstants.COLLECTION_ATTRIBUTE, "true"));
-          VElement _elem_ = null;
+          VElement _elem_;
           //reassign the element here if we are not to wrap elements in the COLLECTION_ELEMENT_MARKUP
           if (!wrapCollectionElements) {
             _elem_ = elem;
@@ -1954,7 +1955,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
       if (cData != null) {
         value = "<![CDATA[" + value + "]]>";
       }
-      elem.setContent(value);
+      elem.addChild(new VContent(value));
     }
     return true;
   }
@@ -1994,7 +1995,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
       if (getterMethods.isEmpty()) {
         //be sure it is not a collection or map
         if (!(o instanceof Collection) && !(o instanceof Map)) {
-          elem.setContent(o.toString());
+          elem.addChild(new VContent(o.toString()));
           return;
         }
       }
@@ -2204,7 +2205,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
             //add the converter
             addAttribute(fe, new VAttribute(VMarshallerConstants.CONVERTER_ATTRIBUTE, conClass.getName()));
             String value = vcon.convert(o1);
-            fe.setContent(value);
+            fe.addChild(new VContent(value));
             continue;
           }
           //at this point, we need to check if we are working with binary data

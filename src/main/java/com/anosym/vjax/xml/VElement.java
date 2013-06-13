@@ -399,10 +399,25 @@ public class VElement implements Cloneable, Serializable {
     }
   }
 
+  /**
+   * Element content was taken as normal text, but now it is taken as normal Element of type
+   * VContent
+   *
+   * @return
+   * @deprecated
+   */
+  @Deprecated
   public String getContent() {
     return content;
   }
 
+  /**
+   * We deprecate this method in order to ensure consistency
+   *
+   * @param content
+   * @deprecated
+   */
+  @Deprecated
   public void setContent(String content) {
     if (content != null && content.trim().isEmpty()) {
       int debug = 0;
@@ -779,7 +794,7 @@ public class VElement implements Cloneable, Serializable {
       //replace all new lines with tab, otherwise we will have very bad omen.
       String tab_ = gTab(tab);
       cont = cont.replaceAll("\n", tab_ + "\n");
-      return cont;
+      return escape(cont);
     }
     //write comments if we have
     if (element.comment != null) {
@@ -863,8 +878,10 @@ public class VElement implements Cloneable, Serializable {
           VElement elem = element.children.get(indx);
           str += toString(elem, tab + 1);
         }
-        str += "\n";
-        str += VElement.gTab(tab);
+        if (!(element.childrenCount() == 1 && element.getChildren().get(0) instanceof VContent)) {
+          str += "\n";
+          str += VElement.gTab(tab);
+        }
       }
       str += "</";
       if (nm != null && nm.isElementFormDefault()) {

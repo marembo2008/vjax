@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.flemax.vjax.annotation;
+package com.anosym.vjax.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
