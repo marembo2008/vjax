@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<ArrayList class="java.util.ArrayList" ref-id="1700083941">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/Serializable.xml"/>
+   <implements interface="java.io.Serializable"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Cloneable.xml"/>
+   <implements interface="java.lang.Cloneable"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/RandomAccess.xml"/>
+   <implements interface="java.util.RandomAccess"/>
+   <implements interface="java.util.List"/>
+   <extends class="java.util.AbstractList"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/AbstractList.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/ListIterator.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Iterator.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectOutputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassNotFoundException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectInputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/ArrayList.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/List.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Collection.xml"/>
+   <constructors>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.util.Collection"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public"/>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="int"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <serialVersionUID type="long" visibility="private" final="true" static="true"/>
+      <elementData type="java.lang.Object[]" visibility="private" transient="true"/>
+      <size type="int" visibility="private"/>
+      <MAX_ARRAY_SIZE type="int" visibility="private" final="true" static="true"/>
+   </fields>
+   <methods>
+      <add return-type="void" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </add>
+      <add return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </add>
+      <remove return-type="java.lang.Object" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </remove>
+      <remove return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </remove>
+      <get return-type="java.lang.Object" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </get>
+      <clone return-type="java.lang.Object" visibility="public"/>
+      <indexOf return-type="int" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </indexOf>
+      <clear return-type="void" visibility="public" overrides="true"/>
+      <isEmpty return-type="boolean" visibility="public" overrides="true"/>
+      <lastIndexOf return-type="int" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </lastIndexOf>
+      <contains return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </contains>
+      <size return-type="int" visibility="public" overrides="true"/>
+      <subList return-type="java.util.List" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </subList>
+      <toArray return-type="[Ljava.lang.Object;" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object[]"/>
+         </parameters>
+      </toArray>
+      <toArray return-type="[Ljava.lang.Object;" visibility="public" overrides="true"/>
+      <access_200 escapeSequence="6:$" return-type="[Ljava.lang.Object;" static="true">
+         <parameters>
+            <parameter parameter-type="java.util.ArrayList"/>
+         </parameters>
+      </access_200>
+      <readObject return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.io.ObjectInputStream"/>
+         </parameters>
+         <throws>
+            <throwable type="java.io.IOException"/>
+            <throwable type="java.lang.ClassNotFoundException"/>
+         </throws>
+      </readObject>
+      <writeObject return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.io.ObjectOutputStream"/>
+         </parameters>
+         <throws>
+            <throwable type="java.io.IOException"/>
+         </throws>
+      </writeObject>
+      <addAll return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.util.Collection"/>
+         </parameters>
+      </addAll>
+      <addAll return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.util.Collection"/>
+         </parameters>
+      </addAll>
+      <access_100 escapeSequence="6:$" return-type="int" static="true">
+         <parameters>
+            <parameter parameter-type="java.util.ArrayList"/>
+         </parameters>
+      </access_100>
+      <iterator return-type="java.util.Iterator" visibility="public" overrides="true"/>
+      <set return-type="java.lang.Object" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </set>
+      <ensureCapacityInternal return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </ensureCapacityInternal>
+      <ensureCapacity return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </ensureCapacity>
+      <trimToSize return-type="void" visibility="public"/>
+      <elementData return-type="java.lang.Object">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </elementData>
+      <grow return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </grow>
+      <hugeCapacity return-type="int" visibility="private" static="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </hugeCapacity>
+      <removeAll return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.util.Collection"/>
+         </parameters>
+      </removeAll>
+      <retainAll return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.util.Collection"/>
+         </parameters>
+      </retainAll>
+      <removeRange return-type="void" visibility="protected">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </removeRange>
+      <listIterator return-type="java.util.ListIterator" visibility="public" overrides="true"/>
+      <listIterator return-type="java.util.ListIterator" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </listIterator>
+      <rangeCheckForAdd return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </rangeCheckForAdd>
+      <outOfBoundsMsg return-type="java.lang.String" visibility="private">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </outOfBoundsMsg>
+      <fastRemove return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </fastRemove>
+      <rangeCheck return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </rangeCheck>
+      <batchRemove return-type="boolean" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.util.Collection"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </batchRemove>
+      <subListRangeCheck return-type="void" static="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </subListRangeCheck>
+   </methods>
+</ArrayList>
