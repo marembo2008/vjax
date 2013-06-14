@@ -13,6 +13,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -130,7 +131,7 @@ public class VClassMarshaller {
           for (Class ex : excepts) {
             addDocumentInclude(ex);
             VElement exElem = new VElement("throwable", elExcepts);
-            exElem.addAttribute(new VAttribute(VMarshallerConstants.THROWS_ATTRIBUTE, ex.getName()));
+            exElem.addAttribute(new VAttribute(VMarshallerConstants.TYPE_ATTRIBUTE, ex.getName()));
           }
         }
         //handle modifiers
@@ -324,7 +325,7 @@ public class VClassMarshaller {
   }
 
   public static void main(String[] args) {
-    VDocument doc = new VClassMarshaller().doMarshallClass(VMarshaller.class);
+    VDocument doc = new VClassMarshaller().doMarshallClass(ArrayList.class);
     doc.writeDocument();
     System.out.println(doc.toXmlString());
   }
