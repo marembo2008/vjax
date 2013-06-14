@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Readable class="java.lang.Readable" ref-id="1772162946" interface="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/CharBuffer.xml"/>
+   <methods>
+      <read return-type="int" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.nio.CharBuffer"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </read>
+   </methods>
+</Readable>

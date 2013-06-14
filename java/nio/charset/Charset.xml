@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Charset class="java.nio.charset.Charset" ref-id="996286438" abstract="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Comparable.xml"/>
+   <implements interface="java.lang.Comparable"/>
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/charset/CharsetEncoder.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/charset/CharsetDecoder.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Locale.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/SortedMap.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/ByteBuffer.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/CharBuffer.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Map.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Iterator.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Set.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/charset/Charset.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ThreadLocal.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/charset/spi/CharsetProvider.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <constructors>
+      <constructor visibility="protected">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="[Ljava.lang.String;"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <bugLevel type="java.lang.String" visibility="private" volatile="true" static-final="true"/>
+      <standardProvider type="java.nio.charset.spi.CharsetProvider" visibility="private" static-final="true"/>
+      <cache1 type="[Ljava.lang.Object;" visibility="private" volatile="true" static-final="true"/>
+      <cache2 type="[Ljava.lang.Object;" visibility="private" volatile="true" static-final="true"/>
+      <gate type="java.lang.ThreadLocal" visibility="private" static-final="true"/>
+      <extendedProviderLock type="java.lang.Object" visibility="private" static-final="true"/>
+      <extendedProviderProbed type="boolean" visibility="private" static-final="true"/>
+      <extendedProvider type="java.nio.charset.spi.CharsetProvider" visibility="private" static-final="true"/>
+      <defaultCharset type="java.nio.charset.Charset" visibility="private" volatile="true" static-final="true"/>
+      <name type="java.lang.String" visibility="private" final="true"/>
+      <aliases type="[Ljava.lang.String;" visibility="private" final="true"/>
+      <aliasSet type="java.util.Set" visibility="private"/>
+   </fields>
+   <methods>
+      <name return-type="java.lang.String" visibility="public" final="true"/>
+      <put return-type="void" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.util.Iterator"/>
+            <parameter parameter-type="java.util.Map"/>
+         </parameters>
+      </put>
+      <forName return-type="java.nio.charset.Charset" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </forName>
+      <cache return-type="void" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.nio.charset.Charset"/>
+         </parameters>
+      </cache>
+      <equals return-type="boolean" visibility="public" final="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </equals>
+      <toString return-type="java.lang.String" visibility="public" final="true" overrides="true"/>
+      <hashCode return-type="int" visibility="public" final="true" overrides="true"/>
+      <compareTo return-type="int" visibility="public" volatile="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </compareTo>
+      <compareTo return-type="int" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="java.nio.charset.Charset"/>
+         </parameters>
+      </compareTo>
+      <contains return-type="boolean" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.nio.charset.Charset"/>
+         </parameters>
+      </contains>
+      <decode return-type="java.nio.CharBuffer" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="java.nio.ByteBuffer"/>
+         </parameters>
+      </decode>
+      <encode return-type="java.nio.ByteBuffer" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="java.nio.CharBuffer"/>
+         </parameters>
+      </encode>
+      <encode return-type="java.nio.ByteBuffer" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </encode>
+      <checkName return-type="void" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </checkName>
+      <access_000 escapeSequence="6:$" return-type="java.util.Iterator" static-final="true"/>
+      <isRegistered return-type="boolean" visibility="public" final="true"/>
+      <access_200 escapeSequence="6:$" return-type="java.nio.charset.spi.CharsetProvider" static-final="true"/>
+      <access_300 escapeSequence="6:$" return-type="void" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.util.Iterator"/>
+            <parameter parameter-type="java.util.Map"/>
+         </parameters>
+      </access_300>
+      <access_102 escapeSequence="6:$" return-type="java.nio.charset.spi.CharsetProvider" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.nio.charset.spi.CharsetProvider"/>
+         </parameters>
+      </access_102>
+      <lookup return-type="java.nio.charset.Charset" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </lookup>
+      <defaultCharset return-type="java.nio.charset.Charset" visibility="public" static-final="true"/>
+      <aliases return-type="java.util.Set" visibility="public" final="true"/>
+      <atBugLevel return-type="boolean" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </atBugLevel>
+      <providers return-type="java.util.Iterator" visibility="private" static-final="true"/>
+      <lookupViaProviders return-type="java.nio.charset.Charset" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </lookupViaProviders>
+      <probeExtendedProvider return-type="void" visibility="private" static-final="true"/>
+      <lookupExtendedCharset return-type="java.nio.charset.Charset" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </lookupExtendedCharset>
+      <lookup2 return-type="java.nio.charset.Charset" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </lookup2>
+      <isSupported return-type="boolean" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </isSupported>
+      <availableCharsets return-type="java.util.SortedMap" visibility="public" static-final="true"/>
+      <displayName return-type="java.lang.String" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.util.Locale"/>
+         </parameters>
+      </displayName>
+      <displayName return-type="java.lang.String" visibility="public"/>
+      <newDecoder return-type="java.nio.charset.CharsetDecoder" visibility="public" abstract="true"/>
+      <newEncoder return-type="java.nio.charset.CharsetEncoder" visibility="public" abstract="true"/>
+      <canEncode return-type="boolean" visibility="public"/>
+   </methods>
+</Charset>

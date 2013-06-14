@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<ReplaceTable class="java.io.ObjectOutputStream$ReplaceTable" ref-id="946079307">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectOutputStream$HandleTable.xml"/>
+   <constructors>
+      <constructor>
+         <parameters>
+            <parameter type="int"/>
+            <parameter type="float"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <htab type="java.io.ObjectOutputStream$HandleTable" visibility="private" final="true"/>
+      <reps type="[Ljava.lang.Object;" visibility="private"/>
+   </fields>
+   <methods>
+      <clear return-type="void"/>
+      <size return-type="int"/>
+      <lookup return-type="java.lang.Object">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </lookup>
+      <grow return-type="void" visibility="private"/>
+      <assign return-type="void">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </assign>
+   </methods>
+</ReplaceTable>

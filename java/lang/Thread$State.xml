@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<State class="java.lang.Thread$State" ref-id="1180739452">
+   <extends class="java.lang.Enum"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Enum.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Thread$State.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <constructors>
+      <constructor visibility="private">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="int"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <NEW type="java.lang.Thread$State" visibility="public" final="true" static-final="true"/>
+      <RUNNABLE type="java.lang.Thread$State" visibility="public" final="true" static-final="true"/>
+      <BLOCKED type="java.lang.Thread$State" visibility="public" final="true" static-final="true"/>
+      <WAITING type="java.lang.Thread$State" visibility="public" final="true" static-final="true"/>
+      <TIMED_WAITING type="java.lang.Thread$State" visibility="public" final="true" static-final="true"/>
+      <TERMINATED type="java.lang.Thread$State" visibility="public" final="true" static-final="true"/>
+      <_VALUES escapeSequence="0:$" type="[Ljava.lang.Thread$State;" visibility="private" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <values return-type="[Ljava.lang.Thread$State;" visibility="public" static-final="true"/>
+      <valueOf return-type="java.lang.Thread$State" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </valueOf>
+   </methods>
+</State>

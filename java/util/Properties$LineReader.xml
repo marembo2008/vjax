@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<LineReader class="java.util.Properties$LineReader" ref-id="407906873">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/Reader.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/InputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Properties.xml"/>
+   <constructors>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.util.Properties"/>
+            <parameter type="java.io.InputStream"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.util.Properties"/>
+            <parameter type="java.io.Reader"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <inByteBuf type="[B"/>
+      <inCharBuf type="[C"/>
+      <lineBuf type="[C"/>
+      <inLimit type="int"/>
+      <inOff type="int"/>
+      <inStream type="java.io.InputStream"/>
+      <reader type="java.io.Reader"/>
+      <this_0 escapeSequence="4:$" type="java.util.Properties" final="true"/>
+   </fields>
+   <methods>
+      <readLine return-type="int">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </readLine>
+   </methods>
+</LineReader>

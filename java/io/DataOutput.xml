@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<DataOutput class="java.io.DataOutput" ref-id="115784579" interface="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <methods>
+      <write return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="[B"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </write>
+      <write return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="[B"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </write>
+      <write return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </write>
+      <writeInt return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </writeInt>
+      <writeBytes return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </writeBytes>
+      <writeChar return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </writeChar>
+      <writeUTF return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </writeUTF>
+      <writeFloat return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="float"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </writeFloat>
+      <writeBoolean return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </writeBoolean>
+      <writeByte return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </writeByte>
+      <writeShort return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </writeShort>
+      <writeLong return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </writeLong>
+      <writeDouble return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="double"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </writeDouble>
+      <writeChars return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </writeChars>
+   </methods>
+</DataOutput>

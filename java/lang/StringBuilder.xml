@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<StringBuilder class="java.lang.StringBuilder" ref-id="711428292">
+   <implements interface="java.lang.CharSequence"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/Serializable.xml"/>
+   <implements interface="java.io.Serializable"/>
+   <extends class="java.lang.AbstractStringBuilder"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectOutputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassNotFoundException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectInputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/StringBuilder.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/StringBuffer.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Appendable.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/AbstractStringBuilder.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/CharSequence.xml"/>
+   <constructors>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.CharSequence"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="int"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public"/>
+   </constructors>
+   <fields>
+      <serialVersionUID type="long" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <toString return-type="java.lang.String" visibility="public" overrides="true"/>
+      <append return-type="java.lang.AbstractStringBuilder" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+      </append>
+      <append return-type="java.lang.AbstractStringBuilder" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </append>
+      <append return-type="java.lang.AbstractStringBuilder" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="char"/>
+         </parameters>
+      </append>
+      <append return-type="java.lang.AbstractStringBuilder" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </append>
+      <append return-type="java.lang.AbstractStringBuilder" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.CharSequence"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </append>
+      <append return-type="java.lang.Appendable" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.CharSequence"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </append>
+      <append return-type="java.lang.AbstractStringBuilder" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="double"/>
+         </parameters>
+      </append>
+      <append return-type="java.lang.AbstractStringBuilder" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="float"/>
+         </parameters>
+      </append>
+      <append return-type="java.lang.AbstractStringBuilder" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.StringBuffer"/>
+         </parameters>
+      </append>
+      <append return-type="java.lang.AbstractStringBuilder" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </append>
+      <append return-type="java.lang.AbstractStringBuilder" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </append>
+      <append return-type="java.lang.Appendable" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="char"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </append>
+      <append return-type="java.lang.AbstractStringBuilder" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="[C"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </append>
+      <append return-type="java.lang.AbstractStringBuilder" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="[C"/>
+         </parameters>
+      </append>
+      <append return-type="java.lang.Appendable" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.CharSequence"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </append>
+      <append return-type="java.lang.AbstractStringBuilder" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.CharSequence"/>
+         </parameters>
+      </append>
+      <append return-type="java.lang.StringBuilder" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.StringBuilder"/>
+         </parameters>
+      </append>
+      <append return-type="java.lang.StringBuilder" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="[C"/>
+         </parameters>
+      </append>
+      <append return-type="java.lang.StringBuilder" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="[C"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </append>
+      <append return-type="java.lang.StringBuilder" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </append>
+      <append return-type="java.lang.StringBuilder" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.StringBuffer"/>
+         </parameters>
+      </append>
+      <append return-type="java.lang.StringBuilder" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.CharSequence"/>
+         </parameters>
+      </append>
+      <append return-type="java.lang.StringBuilder" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.CharSequence"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </append>
+      <append return-type="java.lang.StringBuilder" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="float"/>
+         </parameters>
+      </append>
+      <append return-type="java.lang.StringBuilder" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </append>
+      <append return-type="java.lang.StringBuilder" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </append>
+      <append return-type="java.lang.StringBuilder" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="double"/>
+         </parameters>
+      </append>
+      <append return-type="java.lang.StringBuilder" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="char"/>
+         </parameters>
+      </append>
+      <append return-type="java.lang.StringBuilder" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </append>
+      <append return-type="java.lang.StringBuilder" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+      </append>
+      <indexOf return-type="int" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </indexOf>
+      <indexOf return-type="int" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </indexOf>
+      <codePointAt return-type="int" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </codePointAt>
+      <codePointBefore return-type="int" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </codePointBefore>
+      <length return-type="int" visibility="public" volatile="true" overrides="true"/>
+      <charAt return-type="char" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </charAt>
+      <codePointCount return-type="int" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </codePointCount>
+      <offsetByCodePoints return-type="int" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </offsetByCodePoints>
+      <getChars return-type="void" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="[C"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </getChars>
+      <lastIndexOf return-type="int" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </lastIndexOf>
+      <lastIndexOf return-type="int" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </lastIndexOf>
+      <substring return-type="java.lang.String" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </substring>
+      <substring return-type="java.lang.String" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </substring>
+      <subSequence return-type="java.lang.CharSequence" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </subSequence>
+      <replace return-type="java.lang.StringBuilder" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </replace>
+      <replace return-type="java.lang.AbstractStringBuilder" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </replace>
+      <readObject return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.io.ObjectInputStream"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+            <throwable throws="java.lang.ClassNotFoundException"/>
+         </throws>
+      </readObject>
+      <writeObject return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.io.ObjectOutputStream"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </writeObject>
+      <capacity return-type="int" visibility="public" volatile="true" overrides="true"/>
+      <ensureCapacity return-type="void" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </ensureCapacity>
+      <trimToSize return-type="void" visibility="public" volatile="true" overrides="true"/>
+      <setLength return-type="void" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </setLength>
+      <setCharAt return-type="void" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="char"/>
+         </parameters>
+      </setCharAt>
+      <appendCodePoint return-type="java.lang.StringBuilder" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </appendCodePoint>
+      <appendCodePoint return-type="java.lang.AbstractStringBuilder" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </appendCodePoint>
+      <delete return-type="java.lang.StringBuilder" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </delete>
+      <delete return-type="java.lang.AbstractStringBuilder" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </delete>
+      <deleteCharAt return-type="java.lang.StringBuilder" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </deleteCharAt>
+      <deleteCharAt return-type="java.lang.AbstractStringBuilder" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </deleteCharAt>
+      <insert return-type="java.lang.StringBuilder" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="char"/>
+         </parameters>
+      </insert>
+      <insert return-type="java.lang.StringBuilder" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </insert>
+      <insert return-type="java.lang.StringBuilder" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="[C"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </insert>
+      <insert return-type="java.lang.StringBuilder" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </insert>
+      <insert return-type="java.lang.AbstractStringBuilder" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="long"/>
+         </parameters>
+      </insert>
+      <insert return-type="java.lang.StringBuilder" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="long"/>
+         </parameters>
+      </insert>
+      <insert return-type="java.lang.StringBuilder" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </insert>
+      <insert return-type="java.lang.StringBuilder" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="[C"/>
+         </parameters>
+      </insert>
+      <insert return-type="java.lang.StringBuilder" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.CharSequence"/>
+         </parameters>
+      </insert>
+      <insert return-type="java.lang.StringBuilder" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.CharSequence"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </insert>
+      <insert return-type="java.lang.StringBuilder" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </insert>
+      <insert return-type="java.lang.AbstractStringBuilder" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.CharSequence"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </insert>
+      <insert return-type="java.lang.AbstractStringBuilder" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </insert>
+      <insert return-type="java.lang.AbstractStringBuilder" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="char"/>
+         </parameters>
+      </insert>
+      <insert return-type="java.lang.AbstractStringBuilder" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </insert>
+      <insert return-type="java.lang.AbstractStringBuilder" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </insert>
+      <insert return-type="java.lang.AbstractStringBuilder" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </insert>
+      <insert return-type="java.lang.AbstractStringBuilder" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="[C"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </insert>
+      <insert return-type="java.lang.AbstractStringBuilder" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.CharSequence"/>
+         </parameters>
+      </insert>
+      <insert return-type="java.lang.StringBuilder" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="float"/>
+         </parameters>
+      </insert>
+      <insert return-type="java.lang.StringBuilder" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="double"/>
+         </parameters>
+      </insert>
+      <insert return-type="java.lang.AbstractStringBuilder" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="[C"/>
+         </parameters>
+      </insert>
+      <insert return-type="java.lang.AbstractStringBuilder" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="float"/>
+         </parameters>
+      </insert>
+      <insert return-type="java.lang.AbstractStringBuilder" visibility="public" volatile="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="double"/>
+         </parameters>
+      </insert>
+      <reverse return-type="java.lang.StringBuilder" visibility="public" overrides="true"/>
+      <reverse return-type="java.lang.AbstractStringBuilder" visibility="public" volatile="true" overrides="true"/>
+   </methods>
+</StringBuilder>

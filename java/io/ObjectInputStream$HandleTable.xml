@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<HandleTable class="java.io.ObjectInputStream$HandleTable" ref-id="939017463">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassNotFoundException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectInputStream$HandleTable$HandleList.xml"/>
+   <constructors>
+      <constructor>
+         <parameters>
+            <parameter type="int"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <STATUS_OK type="byte" visibility="private" final="true" static-final="true"/>
+      <STATUS_UNKNOWN type="byte" visibility="private" final="true" static-final="true"/>
+      <STATUS_EXCEPTION type="byte" visibility="private" final="true" static-final="true"/>
+      <status type="[B"/>
+      <entries type="[Ljava.lang.Object;"/>
+      <deps type="[Ljava.io.ObjectInputStream$HandleTable$HandleList;"/>
+      <lowDep type="int"/>
+      <size type="int"/>
+   </fields>
+   <methods>
+      <clear return-type="void"/>
+      <size return-type="int"/>
+      <grow return-type="void" visibility="private"/>
+      <markDependency return-type="void">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </markDependency>
+      <lookupException return-type="java.lang.ClassNotFoundException">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </lookupException>
+      <setObject return-type="void">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </setObject>
+      <lookupObject return-type="java.lang.Object">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </lookupObject>
+      <assign return-type="int">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </assign>
+      <markException return-type="void">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.ClassNotFoundException"/>
+         </parameters>
+      </markException>
+      <finish return-type="void">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </finish>
+   </methods>
+</HandleTable>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Member class="java.lang.reflect.Member" ref-id="191923603" interface="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Class.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <fields>
+      <PUBLIC type="int" visibility="public" final="true" static-final="true"/>
+      <DECLARED type="int" visibility="public" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <getModifiers return-type="int" visibility="public" abstract="true"/>
+      <getName return-type="java.lang.String" visibility="public" abstract="true"/>
+      <isSynthetic return-type="boolean" visibility="public" abstract="true"/>
+      <getDeclaringClass return-type="java.lang.Class" visibility="public" abstract="true"/>
+   </methods>
+</Member>

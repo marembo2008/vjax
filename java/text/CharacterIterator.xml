@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CharacterIterator class="java.text.CharacterIterator" ref-id="1228257582" interface="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Cloneable.xml"/>
+   <implements interface="java.lang.Cloneable"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <fields>
+      <DONE type="char" visibility="public" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <clone return-type="java.lang.Object" visibility="public" abstract="true"/>
+      <first return-type="char" visibility="public" abstract="true"/>
+      <next return-type="char" visibility="public" abstract="true"/>
+      <current return-type="char" visibility="public" abstract="true"/>
+      <last return-type="char" visibility="public" abstract="true"/>
+      <previous return-type="char" visibility="public" abstract="true"/>
+      <getIndex return-type="int" visibility="public" abstract="true"/>
+      <getEndIndex return-type="int" visibility="public" abstract="true"/>
+      <getBeginIndex return-type="int" visibility="public" abstract="true"/>
+      <setIndex return-type="char" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </setIndex>
+   </methods>
+</CharacterIterator>

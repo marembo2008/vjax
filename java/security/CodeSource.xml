@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeSource class="java.security.CodeSource" ref-id="496255865">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/Serializable.xml"/>
+   <implements interface="java.io.Serializable"/>
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/security/CodeSource.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectOutputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassNotFoundException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectInputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/security/cert/CertificateFactory.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/net/SocketPermission.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/security/CodeSigner.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/net/URL.xml"/>
+   <constructors>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.net.URL"/>
+            <parameter type="[Ljava.security.cert.Certificate;"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.net.URL"/>
+            <parameter type="[Ljava.security.CodeSigner;"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <serialVersionUID type="long" visibility="private" final="true" static-final="true"/>
+      <location type="java.net.URL" visibility="private"/>
+      <signers type="[Ljava.security.CodeSigner;" visibility="private" transient="true"/>
+      <certs type="[Ljava.security.cert.Certificate;" visibility="private" transient="true"/>
+      <sp type="java.net.SocketPermission" visibility="private" transient="true"/>
+      <factory type="java.security.cert.CertificateFactory" visibility="private" transient="true"/>
+   </fields>
+   <methods>
+      <equals return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </equals>
+      <toString return-type="java.lang.String" visibility="public" overrides="true"/>
+      <hashCode return-type="int" visibility="public" overrides="true"/>
+      <getLocation return-type="java.net.URL" visibility="public" final="true"/>
+      <getCertificates return-type="[Ljava.security.cert.Certificate;" visibility="public" final="true"/>
+      <readObject return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.io.ObjectInputStream"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+            <throwable throws="java.lang.ClassNotFoundException"/>
+         </throws>
+      </readObject>
+      <writeObject return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.io.ObjectOutputStream"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </writeObject>
+      <implies return-type="boolean" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.security.CodeSource"/>
+         </parameters>
+      </implies>
+      <getCodeSigners return-type="[Ljava.security.CodeSigner;" visibility="public" final="true"/>
+      <matchCerts return-type="boolean" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.security.CodeSource"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </matchCerts>
+      <matchLocation return-type="boolean" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.security.CodeSource"/>
+         </parameters>
+      </matchLocation>
+      <convertCertArrayToSignerArray return-type="[Ljava.security.CodeSigner;" visibility="private">
+         <parameters>
+            <parameter parameter-type="[Ljava.security.cert.Certificate;"/>
+         </parameters>
+      </convertCertArrayToSignerArray>
+   </methods>
+</CodeSource>

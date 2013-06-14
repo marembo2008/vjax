@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<NotActiveException class="java.io.NotActiveException" ref-id="1116940434">
+   <extends class="java.io.ObjectStreamException"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectStreamException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <constructors>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public"/>
+   </constructors>
+   <fields>
+      <serialVersionUID type="long" visibility="private" final="true" static-final="true"/>
+   </fields>
+</NotActiveException>

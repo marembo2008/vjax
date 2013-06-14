@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Watchable class="java.nio.file.Watchable" ref-id="2142150658" interface="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/file/WatchEvent$Modifier.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/file/WatchEvent$Kind.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/file/WatchService.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/file/WatchKey.xml"/>
+   <methods>
+      <register return-type="java.nio.file.WatchKey" visibility="public" transient="true" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.nio.file.WatchService"/>
+            <parameter parameter-type="[Ljava.nio.file.WatchEvent$Kind;"/>
+            <parameter parameter-type="[Ljava.nio.file.WatchEvent$Modifier;"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </register>
+      <register return-type="java.nio.file.WatchKey" visibility="public" transient="true" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.nio.file.WatchService"/>
+            <parameter parameter-type="[Ljava.nio.file.WatchEvent$Kind;"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </register>
+   </methods>
+</Watchable>

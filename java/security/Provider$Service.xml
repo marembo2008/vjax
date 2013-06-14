@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Service class="java.security.Provider$Service" ref-id="278378469">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/security/Key.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Exception.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Class.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/security/NoSuchAlgorithmException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/security/Provider$Service.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Boolean.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ref/Reference.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Map.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/List.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/security/Provider.xml"/>
+   <constructors>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.security.Provider"/>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.util.List"/>
+            <parameter type="java.util.Map"/>
+         </parameters>
+      </constructor>
+      <constructor>
+         <parameters>
+            <parameter type="java.security.Provider"/>
+            <parameter type="java.security.Provider$1"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="private">
+         <parameters>
+            <parameter type="java.security.Provider"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <type type="java.lang.String" visibility="private"/>
+      <algorithm type="java.lang.String" visibility="private"/>
+      <className type="java.lang.String" visibility="private"/>
+      <provider type="java.security.Provider" visibility="private" final="true"/>
+      <aliases type="java.util.List" visibility="private"/>
+      <attributes type="java.util.Map" visibility="private"/>
+      <classRef type="java.lang.ref.Reference" visibility="private" volatile="true"/>
+      <hasKeyAttributes type="java.lang.Boolean" visibility="private" volatile="true"/>
+      <supportedFormats type="[Ljava.lang.String;" visibility="private"/>
+      <supportedClasses type="[Ljava.lang.Class;" visibility="private"/>
+      <registered type="boolean" visibility="private"/>
+      <CLASS0 type="[Ljava.lang.Class;" visibility="private" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <toString return-type="java.lang.String" visibility="public" overrides="true"/>
+      <access_000 escapeSequence="6:$" return-type="boolean" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.security.Provider$Service"/>
+         </parameters>
+      </access_000>
+      <newInstance return-type="java.lang.Object" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.security.NoSuchAlgorithmException"/>
+         </throws>
+      </newInstance>
+      <access_302 escapeSequence="6:$" return-type="java.lang.String" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.security.Provider$Service"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </access_302>
+      <access_500 escapeSequence="6:$" return-type="void" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.security.Provider$Service"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </access_500>
+      <getType return-type="java.lang.String" visibility="public" final="true"/>
+      <isValid return-type="boolean" visibility="private"/>
+      <getClassName return-type="java.lang.String" visibility="public" final="true"/>
+      <access_700 escapeSequence="6:$" return-type="java.util.List" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.security.Provider$Service"/>
+         </parameters>
+      </access_700>
+      <access_800 escapeSequence="6:$" return-type="java.util.Map" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.security.Provider$Service"/>
+         </parameters>
+      </access_800>
+      <getAttribute return-type="java.lang.String" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getAttribute>
+      <addAttribute return-type="void">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </addAttribute>
+      <getAlgorithm return-type="java.lang.String" visibility="public" final="true"/>
+      <access_602 escapeSequence="6:$" return-type="java.lang.String" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.security.Provider$Service"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </access_602>
+      <getProvider return-type="java.security.Provider" visibility="public" final="true"/>
+      <access_402 escapeSequence="6:$" return-type="java.lang.String" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.security.Provider$Service"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </access_402>
+      <hasKeyAttributes return-type="boolean" visibility="private"/>
+      <addAlias return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </addAlias>
+      <getAliases return-type="java.util.List" visibility="private" final="true"/>
+      <getImplClass return-type="java.lang.Class" visibility="private">
+         <throws>
+            <throwable throws="java.security.NoSuchAlgorithmException"/>
+         </throws>
+      </getImplClass>
+      <newInstanceGeneric return-type="java.lang.Object" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.Exception"/>
+         </throws>
+      </newInstanceGeneric>
+      <supportsParameter return-type="boolean" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </supportsParameter>
+      <getKeyClass return-type="java.lang.Class" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getKeyClass>
+      <supportsKeyFormat return-type="boolean" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.security.Key"/>
+         </parameters>
+      </supportsKeyFormat>
+      <supportsKeyClass return-type="boolean" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.security.Key"/>
+         </parameters>
+      </supportsKeyClass>
+   </methods>
+</Service>

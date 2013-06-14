@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Executor class="java.util.concurrent.Executor" ref-id="428193571" interface="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Runnable.xml"/>
+   <methods>
+      <execute return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Runnable"/>
+         </parameters>
+      </execute>
+   </methods>
+</Executor>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Entry class="java.util.HashMap$Entry" ref-id="219218250">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Map$Entry.xml"/>
+   <implements interface="java.util.Map$Entry"/>
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/HashMap.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/HashMap$Entry.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <constructors>
+      <constructor>
+         <parameters>
+            <parameter type="int"/>
+            <parameter type="java.lang.Object"/>
+            <parameter type="java.lang.Object"/>
+            <parameter type="java.util.HashMap$Entry"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <key type="java.lang.Object" final="true"/>
+      <value type="java.lang.Object"/>
+      <next type="java.util.HashMap$Entry"/>
+      <hash type="int"/>
+   </fields>
+   <methods>
+      <equals return-type="boolean" visibility="public" final="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </equals>
+      <toString return-type="java.lang.String" visibility="public" final="true" overrides="true"/>
+      <hashCode return-type="int" visibility="public" final="true" overrides="true"/>
+      <getValue return-type="java.lang.Object" visibility="public" final="true"/>
+      <getKey return-type="java.lang.Object" visibility="public" final="true"/>
+      <recordAccess return-type="void">
+         <parameters>
+            <parameter parameter-type="java.util.HashMap"/>
+         </parameters>
+      </recordAccess>
+      <recordRemoval return-type="void">
+         <parameters>
+            <parameter parameter-type="java.util.HashMap"/>
+         </parameters>
+      </recordRemoval>
+      <setValue return-type="java.lang.Object" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </setValue>
+   </methods>
+</Entry>

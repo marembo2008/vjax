@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Number class="java.lang.Number" ref-id="117006483" abstract="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/Serializable.xml"/>
+   <implements interface="java.io.Serializable"/>
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <constructors>
+      <constructor visibility="public"/>
+   </constructors>
+   <fields>
+      <serialVersionUID type="long" visibility="private" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <byteValue return-type="byte" visibility="public"/>
+      <shortValue return-type="short" visibility="public"/>
+      <intValue return-type="int" visibility="public" abstract="true"/>
+      <longValue return-type="long" visibility="public" abstract="true"/>
+      <floatValue return-type="float" visibility="public" abstract="true"/>
+      <doubleValue return-type="double" visibility="public" abstract="true"/>
+   </methods>
+</Number>

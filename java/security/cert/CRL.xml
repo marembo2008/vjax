@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CRL class="java.security.cert.CRL" ref-id="566083409" abstract="true">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/security/cert/Certificate.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <constructors>
+      <constructor visibility="protected">
+         <parameters>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <type type="java.lang.String" visibility="private"/>
+   </fields>
+   <methods>
+      <toString return-type="java.lang.String" visibility="public" abstract="true" overrides="true"/>
+      <getType return-type="java.lang.String" visibility="public" final="true"/>
+      <isRevoked return-type="boolean" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.security.cert.Certificate"/>
+         </parameters>
+      </isRevoked>
+   </methods>
+</CRL>

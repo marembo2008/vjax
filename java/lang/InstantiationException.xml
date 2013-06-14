@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<InstantiationException class="java.lang.InstantiationException" ref-id="1325491461">
+   <extends class="java.lang.ReflectiveOperationException"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ReflectiveOperationException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <constructors>
+      <constructor visibility="public"/>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <serialVersionUID type="long" visibility="private" final="true" static-final="true"/>
+   </fields>
+</InstantiationException>

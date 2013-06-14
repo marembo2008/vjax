@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<NullMode class="com.anosym.vjax.annotations.WhenNull$NullMode" ref-id="378613520">
+   <extends class="java.lang.Enum"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Enum.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="com/anosym/vjax/annotations/WhenNull$NullMode.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <constructors>
+      <constructor visibility="private">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="int"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <IGNORE type="com.anosym.vjax.annotations.WhenNull$NullMode" visibility="public" final="true" static="true"/>
+      <MARSHALL_NULL type="com.anosym.vjax.annotations.WhenNull$NullMode" visibility="public" final="true" static="true"/>
+      <MARSHALL_NULL_PROPERTY type="com.anosym.vjax.annotations.WhenNull$NullMode" visibility="public" final="true" static="true"/>
+      <_VALUES escapeSequence="0:$" type="com.anosym.vjax.annotations.WhenNull$NullMode[]" visibility="private" final="true" static="true"/>
+   </fields>
+   <methods>
+      <values return-type="[Lcom.anosym.vjax.annotations.WhenNull$NullMode;" visibility="public" static="true"/>
+      <valueOf return-type="com.anosym.vjax.annotations.WhenNull$NullMode" visibility="public" static="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </valueOf>
+   </methods>
+</NullMode>

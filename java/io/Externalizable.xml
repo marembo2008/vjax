@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Externalizable class="java.io.Externalizable" ref-id="1300481952" interface="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/Serializable.xml"/>
+   <implements interface="java.io.Serializable"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectOutput.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassNotFoundException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectInput.xml"/>
+   <methods>
+      <readExternal return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.io.ObjectInput"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+            <throwable throws="java.lang.ClassNotFoundException"/>
+         </throws>
+      </readExternal>
+      <writeExternal return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.io.ObjectOutput"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </writeExternal>
+   </methods>
+</Externalizable>

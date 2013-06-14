@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<FilterInputStream class="java.io.FilterInputStream" ref-id="1625098514">
+   <extends class="java.io.InputStream"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/InputStream.xml"/>
+   <constructors>
+      <constructor visibility="protected">
+         <parameters>
+            <parameter type="java.io.InputStream"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <in type="java.io.InputStream" visibility="protected" volatile="true"/>
+   </fields>
+   <methods>
+      <close return-type="void" visibility="public" overrides="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </close>
+      <mark return-type="void" visibility="public" synchronized="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </mark>
+      <reset return-type="void" visibility="public" synchronized="true" overrides="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </reset>
+      <read return-type="int" visibility="public" overrides="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </read>
+      <read return-type="int" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="[B"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </read>
+      <read return-type="int" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="[B"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </read>
+      <skip return-type="long" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </skip>
+      <available return-type="int" visibility="public" overrides="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </available>
+      <markSupported return-type="boolean" visibility="public" overrides="true"/>
+   </methods>
+</FilterInputStream>

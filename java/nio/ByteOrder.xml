@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<ByteOrder class="java.nio.ByteOrder" ref-id="702584475">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/ByteOrder.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <constructors>
+      <constructor visibility="private">
+         <parameters>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <name type="java.lang.String" visibility="private"/>
+      <BIG_ENDIAN type="java.nio.ByteOrder" visibility="public" final="true" static-final="true"/>
+      <LITTLE_ENDIAN type="java.nio.ByteOrder" visibility="public" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <toString return-type="java.lang.String" visibility="public" overrides="true"/>
+      <nativeOrder return-type="java.nio.ByteOrder" visibility="public" static-final="true"/>
+   </methods>
+</ByteOrder>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Cache class="java.util.Locale$Cache" ref-id="52137585">
+   <extends class="sun.util.locale.LocaleObjectCache"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Locale$LocaleKey.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Locale.xml"/>
+   <constructors>
+      <constructor>
+         <parameters>
+            <parameter type="java.util.Locale$1"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="private"/>
+   </constructors>
+   <methods>
+      <createObject return-type="java.util.Locale" visibility="protected">
+         <parameters>
+            <parameter parameter-type="java.util.Locale$LocaleKey"/>
+         </parameters>
+      </createObject>
+      <createObject return-type="java.lang.Object" visibility="protected" volatile="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </createObject>
+   </methods>
+</Cache>

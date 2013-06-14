@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Throwable class="java.lang.Throwable" ref-id="247835561">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/Serializable.xml"/>
+   <implements interface="java.io.Serializable"/>
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectOutputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassNotFoundException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectInputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Set.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/PrintStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/PrintWriter.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Throwable$PrintStreamOrWriter.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/List.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/StackTraceElement.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Throwable.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <constructors>
+      <constructor visibility="protected">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.Throwable"/>
+            <parameter type="boolean"/>
+            <parameter type="boolean"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.Throwable"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.Throwable"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public"/>
+   </constructors>
+   <fields>
+      <serialVersionUID type="long" visibility="private" final="true" static-final="true"/>
+      <detailMessage type="java.lang.String" visibility="private"/>
+      <UNASSIGNED_STACK type="[Ljava.lang.StackTraceElement;" visibility="private" final="true" static-final="true"/>
+      <cause type="java.lang.Throwable" visibility="private"/>
+      <stackTrace type="[Ljava.lang.StackTraceElement;" visibility="private"/>
+      <SUPPRESSED_SENTINEL type="java.util.List" visibility="private" final="true" static-final="true"/>
+      <suppressedExceptions type="java.util.List" visibility="private"/>
+      <NULL_CAUSE_MESSAGE type="java.lang.String" visibility="private" final="true" static-final="true"/>
+      <SELF_SUPPRESSION_MESSAGE type="java.lang.String" visibility="private" final="true" static-final="true"/>
+      <CAUSE_CAPTION type="java.lang.String" visibility="private" final="true" static-final="true"/>
+      <SUPPRESSED_CAPTION type="java.lang.String" visibility="private" final="true" static-final="true"/>
+      <EMPTY_THROWABLE_ARRAY type="[Ljava.lang.Throwable;" visibility="private" final="true" static-final="true"/>
+      <_assertionsDisabled escapeSequence="0:$" type="boolean" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <printStackTrace return-type="void" visibility="public"/>
+      <printStackTrace return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.Throwable$PrintStreamOrWriter"/>
+         </parameters>
+      </printStackTrace>
+      <printStackTrace return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.io.PrintWriter"/>
+         </parameters>
+      </printStackTrace>
+      <printStackTrace return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.io.PrintStream"/>
+         </parameters>
+      </printStackTrace>
+      <fillInStackTrace return-type="java.lang.Throwable" visibility="public" synchronized="true"/>
+      <fillInStackTrace return-type="java.lang.Throwable" visibility="private" native="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </fillInStackTrace>
+      <getCause return-type="java.lang.Throwable" visibility="public" synchronized="true"/>
+      <initCause return-type="java.lang.Throwable" visibility="public" synchronized="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Throwable"/>
+         </parameters>
+      </initCause>
+      <toString return-type="java.lang.String" visibility="public" overrides="true"/>
+      <getMessage return-type="java.lang.String" visibility="public"/>
+      <getLocalizedMessage return-type="java.lang.String" visibility="public"/>
+      <printEnclosedStackTrace return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.Throwable$PrintStreamOrWriter"/>
+            <parameter parameter-type="[Ljava.lang.StackTraceElement;"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.util.Set"/>
+         </parameters>
+      </printEnclosedStackTrace>
+      <getStackTrace return-type="[Ljava.lang.StackTraceElement;" visibility="public"/>
+      <getOurStackTrace return-type="[Ljava.lang.StackTraceElement;" visibility="private" synchronized="true"/>
+      <setStackTrace return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="[Ljava.lang.StackTraceElement;"/>
+         </parameters>
+      </setStackTrace>
+      <getStackTraceDepth return-type="int" native="true"/>
+      <getStackTraceElement return-type="java.lang.StackTraceElement" native="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </getStackTraceElement>
+      <readObject return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.io.ObjectInputStream"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+            <throwable throws="java.lang.ClassNotFoundException"/>
+         </throws>
+      </readObject>
+      <writeObject return-type="void" visibility="private" synchronized="true">
+         <parameters>
+            <parameter parameter-type="java.io.ObjectOutputStream"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </writeObject>
+      <addSuppressed return-type="void" visibility="public" final="true" synchronized="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Throwable"/>
+         </parameters>
+      </addSuppressed>
+      <getSuppressed return-type="[Ljava.lang.Throwable;" visibility="public" final="true" synchronized="true"/>
+   </methods>
+</Throwable>

@@ -286,8 +286,16 @@ public class VDocument {
   public void writeDocument() {
     FileOutputStream out = null;
     try {
+      if (documentName.exists() && documentName.length() > 0) {
+        return;
+      }
       out = new FileOutputStream(documentName);
       out.write(this.toXmlString().getBytes());
+      out.close();
+      //if the includes file do not exist, write them too
+      for (VDocument include : this.includes) {
+        include.writeDocument();
+      }
     } catch (IOException ex) {
       throw new RuntimeException(ex);
     } finally {
@@ -310,7 +318,7 @@ public class VDocument {
     VNamespace namespace = VNamespace.XINCLUDE_NAMESPACE;
     VElement elem = new VElement("include");
     elem.addNamespace(namespace);
-    elem.addAttribute(new VAttribute("href", doc.documentName.getAbsolutePath()));
+    elem.addAttribute(new VAttribute("href", doc.documentName.getPath()));
     rootElement.addChildAsFirst(elem);
   }
 

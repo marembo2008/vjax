@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<URLConnection class="java.net.URLConnection" ref-id="488378268" abstract="true">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassNotFoundException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/IllegalAccessException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/InstantiationException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/net/UnknownServiceException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/net/ContentHandler.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/OutputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Map.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/security/Permission.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/InputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Hashtable.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/net/ContentHandlerFactory.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/net/FileNameMap.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/net/URL.xml"/>
+   <constructors>
+      <constructor visibility="protected">
+         <parameters>
+            <parameter type="java.net.URL"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <url type="java.net.URL" visibility="protected"/>
+      <doInput type="boolean" visibility="protected"/>
+      <doOutput type="boolean" visibility="protected"/>
+      <defaultAllowUserInteraction type="boolean" visibility="private" static-final="true"/>
+      <allowUserInteraction type="boolean" visibility="protected"/>
+      <defaultUseCaches type="boolean" visibility="private" static-final="true"/>
+      <useCaches type="boolean" visibility="protected"/>
+      <ifModifiedSince type="long" visibility="protected"/>
+      <connected type="boolean" visibility="protected"/>
+      <connectTimeout type="int" visibility="private"/>
+      <readTimeout type="int" visibility="private"/>
+      <requests type="sun.net.www.MessageHeader" visibility="private"/>
+      <fileNameMap type="java.net.FileNameMap" visibility="private" static-final="true"/>
+      <fileNameMapLoaded type="boolean" visibility="private" static-final="true"/>
+      <factory type="java.net.ContentHandlerFactory" static-final="true"/>
+      <handlers type="java.util.Hashtable" visibility="private" static-final="true"/>
+      <contentClassPrefix type="java.lang.String" visibility="private" final="true" static-final="true"/>
+      <contentPathProp type="java.lang.String" visibility="private" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <toString return-type="java.lang.String" visibility="public" overrides="true"/>
+      <access_000 escapeSequence="6:$" return-type="java.net.FileNameMap" static-final="true"/>
+      <getURL return-type="java.net.URL" visibility="public"/>
+      <readBytes return-type="int" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="[I"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.io.InputStream"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </readBytes>
+      <getInputStream return-type="java.io.InputStream" visibility="public">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </getInputStream>
+      <getPermission return-type="java.security.Permission" visibility="public">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </getPermission>
+      <getContent return-type="java.lang.Object" visibility="public">
+         <parameters>
+            <parameter parameter-type="[Ljava.lang.Class;"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </getContent>
+      <getContent return-type="java.lang.Object" visibility="public">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </getContent>
+      <connect return-type="void" visibility="public" abstract="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </connect>
+      <setRequestProperty return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </setRequestProperty>
+      <getDate return-type="long" visibility="public"/>
+      <getContentLength return-type="int" visibility="public"/>
+      <getHeaderField return-type="java.lang.String" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getHeaderField>
+      <getHeaderField return-type="java.lang.String" visibility="public">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </getHeaderField>
+      <getContentLengthLong return-type="long" visibility="public"/>
+      <getHeaderFieldKey return-type="java.lang.String" visibility="public">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </getHeaderFieldKey>
+      <getLastModified return-type="long" visibility="public"/>
+      <getFileNameMap return-type="java.net.FileNameMap" visibility="public" static-final="true" synchronized="true"/>
+      <getDefaultRequestProperty return-type="java.lang.String" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getDefaultRequestProperty>
+      <addRequestProperty return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </addRequestProperty>
+      <getRequestProperty return-type="java.lang.String" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getRequestProperty>
+      <getRequestProperties return-type="java.util.Map" visibility="public"/>
+      <getContentType return-type="java.lang.String" visibility="public"/>
+      <guessContentTypeFromStream return-type="java.lang.String" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.io.InputStream"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </guessContentTypeFromStream>
+      <guessContentTypeFromName return-type="java.lang.String" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </guessContentTypeFromName>
+      <setFileNameMap return-type="void" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.net.FileNameMap"/>
+         </parameters>
+      </setFileNameMap>
+      <setConnectTimeout return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </setConnectTimeout>
+      <getConnectTimeout return-type="int" visibility="public"/>
+      <setReadTimeout return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </setReadTimeout>
+      <getReadTimeout return-type="int" visibility="public"/>
+      <getContentEncoding return-type="java.lang.String" visibility="public"/>
+      <getExpiration return-type="long" visibility="public"/>
+      <getHeaderFields return-type="java.util.Map" visibility="public"/>
+      <getHeaderFieldInt return-type="int" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </getHeaderFieldInt>
+      <getHeaderFieldLong return-type="long" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="long"/>
+         </parameters>
+      </getHeaderFieldLong>
+      <getHeaderFieldDate return-type="long" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="long"/>
+         </parameters>
+      </getHeaderFieldDate>
+      <getOutputStream return-type="java.io.OutputStream" visibility="public">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </getOutputStream>
+      <setDoInput return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </setDoInput>
+      <getDoInput return-type="boolean" visibility="public"/>
+      <setDoOutput return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </setDoOutput>
+      <getDoOutput return-type="boolean" visibility="public"/>
+      <setAllowUserInteraction return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </setAllowUserInteraction>
+      <getAllowUserInteraction return-type="boolean" visibility="public"/>
+      <setDefaultAllowUserInteraction return-type="void" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </setDefaultAllowUserInteraction>
+      <getDefaultAllowUserInteraction return-type="boolean" visibility="public" static-final="true"/>
+      <setUseCaches return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </setUseCaches>
+      <getUseCaches return-type="boolean" visibility="public"/>
+      <setIfModifiedSince return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+      </setIfModifiedSince>
+      <getIfModifiedSince return-type="long" visibility="public"/>
+      <getDefaultUseCaches return-type="boolean" visibility="public"/>
+      <setDefaultUseCaches return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </setDefaultUseCaches>
+      <setDefaultRequestProperty return-type="void" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </setDefaultRequestProperty>
+      <setContentHandlerFactory return-type="void" visibility="public" static-final="true" synchronized="true">
+         <parameters>
+            <parameter parameter-type="java.net.ContentHandlerFactory"/>
+         </parameters>
+      </setContentHandlerFactory>
+      <getContentHandler return-type="java.net.ContentHandler" synchronized="true">
+         <throws>
+            <throwable throws="java.net.UnknownServiceException"/>
+         </throws>
+      </getContentHandler>
+      <stripOffParameters return-type="java.lang.String" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </stripOffParameters>
+      <lookupContentHandlerClassFor return-type="java.net.ContentHandler" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.InstantiationException"/>
+            <throwable throws="java.lang.IllegalAccessException"/>
+            <throwable throws="java.lang.ClassNotFoundException"/>
+         </throws>
+      </lookupContentHandlerClassFor>
+      <typeToPackageName return-type="java.lang.String" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </typeToPackageName>
+      <getContentHandlerPkgPrefixes return-type="java.lang.String" visibility="private"/>
+      <checkfpx return-type="boolean" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.io.InputStream"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </checkfpx>
+      <skipForward return-type="long" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.io.InputStream"/>
+            <parameter parameter-type="long"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </skipForward>
+   </methods>
+</URLConnection>

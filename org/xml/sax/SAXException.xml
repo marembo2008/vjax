@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<SAXException class="org.xml.sax.SAXException" ref-id="592040486">
+   <extends class="java.lang.Exception"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Throwable.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Exception.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <constructors>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.Exception"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.Exception"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public"/>
+   </constructors>
+   <fields>
+      <exception type="java.lang.Exception" visibility="private"/>
+      <serialVersionUID type="long" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <getCause return-type="java.lang.Throwable" visibility="public" overrides="true"/>
+      <toString return-type="java.lang.String" visibility="public" overrides="true"/>
+      <getMessage return-type="java.lang.String" visibility="public" overrides="true"/>
+      <getException return-type="java.lang.Exception" visibility="public"/>
+   </methods>
+</SAXException>

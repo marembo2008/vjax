@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<EnclosingMethodInfo class="java.lang.Class$EnclosingMethodInfo" ref-id="508839021">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Class.xml"/>
+   <constructors>
+      <constructor visibility="private">
+         <parameters>
+            <parameter type="[Ljava.lang.Object;"/>
+         </parameters>
+      </constructor>
+      <constructor>
+         <parameters>
+            <parameter type="[Ljava.lang.Object;"/>
+            <parameter type="java.lang.Class$1"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <enclosingClass type="java.lang.Class" visibility="private"/>
+      <name type="java.lang.String" visibility="private"/>
+      <descriptor type="java.lang.String" visibility="private"/>
+      <_assertionsDisabled escapeSequence="0:$" type="boolean" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <getName return-type="java.lang.String"/>
+      <getEnclosingClass return-type="java.lang.Class"/>
+      <isMethod return-type="boolean"/>
+      <getDescriptor return-type="java.lang.String"/>
+      <isConstructor return-type="boolean"/>
+      <isPartial return-type="boolean"/>
+   </methods>
+</EnclosingMethodInfo>

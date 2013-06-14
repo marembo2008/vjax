@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Long class="java.lang.Long" ref-id="362917156">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Comparable.xml"/>
+   <implements interface="java.lang.Comparable"/>
+   <extends class="java.lang.Number"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Number.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Long.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Class.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/NumberFormatException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <constructors>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="long"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable type="java.lang.NumberFormatException"/>
+         </throws>
+      </constructor>
+   </constructors>
+   <fields>
+      <MIN_VALUE type="long" visibility="public" final="true" static-final="true"/>
+      <MAX_VALUE type="long" visibility="public" final="true" static-final="true"/>
+      <TYPE type="java.lang.Class" visibility="public" final="true" static-final="true"/>
+      <value type="long" visibility="private" final="true"/>
+      <SIZE type="int" visibility="public" final="true" static-final="true"/>
+      <serialVersionUID type="long" visibility="private" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <numberOfLeadingZeros return-type="int" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+      </numberOfLeadingZeros>
+      <numberOfTrailingZeros return-type="int" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+      </numberOfTrailingZeros>
+      <bitCount return-type="int" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+      </bitCount>
+      <equals return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </equals>
+      <toString return-type="java.lang.String" visibility="public" overrides="true"/>
+      <toString return-type="java.lang.String" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </toString>
+      <toString return-type="java.lang.String" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+      </toString>
+      <hashCode return-type="int" visibility="public" overrides="true"/>
+      <reverseBytes return-type="long" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+      </reverseBytes>
+      <compareTo return-type="int" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Long"/>
+         </parameters>
+      </compareTo>
+      <compareTo return-type="int" visibility="public" volatile="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </compareTo>
+      <getLong return-type="java.lang.Long" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getLong>
+      <getLong return-type="java.lang.Long" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.Long"/>
+         </parameters>
+      </getLong>
+      <getLong return-type="java.lang.Long" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="long"/>
+         </parameters>
+      </getLong>
+      <byteValue return-type="byte" visibility="public" overrides="true"/>
+      <shortValue return-type="short" visibility="public" overrides="true"/>
+      <intValue return-type="int" visibility="public" overrides="true"/>
+      <longValue return-type="long" visibility="public" overrides="true"/>
+      <floatValue return-type="float" visibility="public" overrides="true"/>
+      <doubleValue return-type="double" visibility="public" overrides="true"/>
+      <valueOf return-type="java.lang.Long" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+      </valueOf>
+      <valueOf return-type="java.lang.Long" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.NumberFormatException"/>
+         </throws>
+      </valueOf>
+      <valueOf return-type="java.lang.Long" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.NumberFormatException"/>
+         </throws>
+      </valueOf>
+      <toHexString return-type="java.lang.String" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+      </toHexString>
+      <getChars return-type="void" static-final="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="[C"/>
+         </parameters>
+      </getChars>
+      <decode return-type="java.lang.Long" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.NumberFormatException"/>
+         </throws>
+      </decode>
+      <compare return-type="int" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+            <parameter parameter-type="long"/>
+         </parameters>
+      </compare>
+      <reverse return-type="long" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+      </reverse>
+      <stringSize return-type="int" static-final="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+      </stringSize>
+      <toOctalString return-type="java.lang.String" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+      </toOctalString>
+      <toBinaryString return-type="java.lang.String" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+      </toBinaryString>
+      <toUnsignedString return-type="java.lang.String" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </toUnsignedString>
+      <highestOneBit return-type="long" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+      </highestOneBit>
+      <lowestOneBit return-type="long" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+      </lowestOneBit>
+      <rotateLeft return-type="long" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </rotateLeft>
+      <rotateRight return-type="long" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </rotateRight>
+      <signum return-type="int" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+      </signum>
+      <parseLong return-type="long" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.NumberFormatException"/>
+         </throws>
+      </parseLong>
+      <parseLong return-type="long" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.NumberFormatException"/>
+         </throws>
+      </parseLong>
+   </methods>
+</Long>

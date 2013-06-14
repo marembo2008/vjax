@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Version class="java.lang.ClassValue$Version" ref-id="1136315517">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassValue$Entry.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassValue.xml"/>
+   <constructors>
+      <constructor>
+         <parameters>
+            <parameter type="java.lang.ClassValue"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <classValue type="java.lang.ClassValue" visibility="private" final="true"/>
+      <promise type="java.lang.ClassValue$Entry" visibility="private" final="true"/>
+   </fields>
+   <methods>
+      <classValue return-type="java.lang.ClassValue"/>
+      <promise return-type="java.lang.ClassValue$Entry"/>
+      <isLive return-type="boolean"/>
+   </methods>
+</Version>

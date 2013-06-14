@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Exception class="java.lang.Exception" ref-id="922503511">
+   <extends class="java.lang.Throwable"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Throwable.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <constructors>
+      <constructor visibility="protected">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.Throwable"/>
+            <parameter type="boolean"/>
+            <parameter type="boolean"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.Throwable"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.Throwable"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public"/>
+   </constructors>
+   <fields>
+      <serialVersionUID type="long" final="true" static-final="true"/>
+   </fields>
+</Exception>

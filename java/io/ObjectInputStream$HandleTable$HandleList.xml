@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<HandleList class="java.io.ObjectInputStream$HandleTable$HandleList" ref-id="238000127">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <constructors>
+      <constructor visibility="public"/>
+   </constructors>
+   <fields>
+      <list type="[I" visibility="private"/>
+      <size type="int" visibility="private"/>
+   </fields>
+   <methods>
+      <add return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </add>
+      <get return-type="int" visibility="public">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </get>
+      <size return-type="int" visibility="public"/>
+   </methods>
+</HandleList>

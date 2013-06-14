@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<ByteChannel class="java.nio.channels.ByteChannel" ref-id="733901309" interface="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/channels/WritableByteChannel.xml"/>
+   <implements interface="java.nio.channels.WritableByteChannel"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/channels/ReadableByteChannel.xml"/>
+   <implements interface="java.nio.channels.ReadableByteChannel"/>
+</ByteChannel>

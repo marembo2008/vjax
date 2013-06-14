@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Writer class="java.io.Writer" ref-id="1193472379" abstract="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/Flushable.xml"/>
+   <implements interface="java.io.Flushable"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/Closeable.xml"/>
+   <implements interface="java.io.Closeable"/>
+   <implements interface="java.lang.Appendable"/>
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Appendable.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/CharSequence.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/Writer.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <constructors>
+      <constructor visibility="protected"/>
+      <constructor visibility="protected">
+         <parameters>
+            <parameter type="java.lang.Object"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <writeBuffer type="[C" visibility="private"/>
+      <writeBufferSize type="int" visibility="private" final="true"/>
+      <lock type="java.lang.Object" visibility="protected"/>
+   </fields>
+   <methods>
+      <append return-type="java.io.Writer" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.CharSequence"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </append>
+      <append return-type="java.io.Writer" visibility="public">
+         <parameters>
+            <parameter parameter-type="char"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </append>
+      <append return-type="java.io.Writer" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.CharSequence"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </append>
+      <append return-type="java.lang.Appendable" visibility="public" volatile="true">
+         <parameters>
+            <parameter parameter-type="char"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </append>
+      <append return-type="java.lang.Appendable" visibility="public" volatile="true">
+         <parameters>
+            <parameter parameter-type="java.lang.CharSequence"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </append>
+      <append return-type="java.lang.Appendable" visibility="public" volatile="true">
+         <parameters>
+            <parameter parameter-type="java.lang.CharSequence"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </append>
+      <write return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="[C"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </write>
+      <write return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="[C"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </write>
+      <write return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </write>
+      <write return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </write>
+      <write return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </write>
+      <flush return-type="void" visibility="public" abstract="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </flush>
+      <close return-type="void" visibility="public" abstract="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </close>
+   </methods>
+</Writer>

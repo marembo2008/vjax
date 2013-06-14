@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<AbstractMap class="java.util.AbstractMap" ref-id="2116124104" abstract="true">
+   <implements interface="java.util.Map"/>
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Map.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/CloneNotSupportedException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Collection.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Set.xml"/>
+   <constructors>
+      <constructor visibility="protected"/>
+   </constructors>
+   <fields>
+      <keySet type="java.util.Set" transient="true" volatile="true"/>
+      <values type="java.util.Collection" transient="true" volatile="true"/>
+   </fields>
+   <methods>
+      <remove return-type="java.lang.Object" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </remove>
+      <get return-type="java.lang.Object" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </get>
+      <put return-type="java.lang.Object" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </put>
+      <equals return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </equals>
+      <toString return-type="java.lang.String" visibility="public" overrides="true"/>
+      <values return-type="java.util.Collection" visibility="public"/>
+      <hashCode return-type="int" visibility="public" overrides="true"/>
+      <clone return-type="java.lang.Object" visibility="protected">
+         <throws>
+            <throwable throws="java.lang.CloneNotSupportedException"/>
+         </throws>
+      </clone>
+      <clear return-type="void" visibility="public"/>
+      <isEmpty return-type="boolean" visibility="public"/>
+      <size return-type="int" visibility="public"/>
+      <access_000 escapeSequence="6:$" return-type="boolean" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </access_000>
+      <entrySet return-type="java.util.Set" visibility="public" abstract="true"/>
+      <putAll return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.util.Map"/>
+         </parameters>
+      </putAll>
+      <keySet return-type="java.util.Set" visibility="public"/>
+      <containsValue return-type="boolean" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </containsValue>
+      <containsKey return-type="boolean" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </containsKey>
+      <eq return-type="boolean" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </eq>
+   </methods>
+</AbstractMap>

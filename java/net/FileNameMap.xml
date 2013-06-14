@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<FileNameMap class="java.net.FileNameMap" ref-id="100385565" interface="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <methods>
+      <getContentTypeFor return-type="java.lang.String" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getContentTypeFor>
+   </methods>
+</FileNameMap>

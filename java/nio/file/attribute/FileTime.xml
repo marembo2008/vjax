@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<FileTime class="java.nio.file.attribute.FileTime" ref-id="911373190">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Comparable.xml"/>
+   <implements interface="java.lang.Comparable"/>
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/file/attribute/FileTime.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/file/attribute/FileTime$DaysAndNanos.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/concurrent/TimeUnit.xml"/>
+   <constructors>
+      <constructor visibility="private">
+         <parameters>
+            <parameter type="long"/>
+            <parameter type="java.util.concurrent.TimeUnit"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <value type="long" visibility="private" final="true"/>
+      <unit type="java.util.concurrent.TimeUnit" visibility="private" final="true"/>
+      <valueAsString type="java.lang.String" visibility="private"/>
+      <daysAndNanos type="java.nio.file.attribute.FileTime$DaysAndNanos" visibility="private"/>
+   </fields>
+   <methods>
+      <equals return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </equals>
+      <toString return-type="java.lang.String" visibility="public" overrides="true"/>
+      <hashCode return-type="int" visibility="public" overrides="true"/>
+      <compareTo return-type="int" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.nio.file.attribute.FileTime"/>
+         </parameters>
+      </compareTo>
+      <compareTo return-type="int" visibility="public" volatile="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </compareTo>
+      <to return-type="long" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.util.concurrent.TimeUnit"/>
+         </parameters>
+      </to>
+      <from return-type="java.nio.file.attribute.FileTime" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+            <parameter parameter-type="java.util.concurrent.TimeUnit"/>
+         </parameters>
+      </from>
+      <toMillis return-type="long" visibility="public"/>
+      <asDaysAndNanos return-type="java.nio.file.attribute.FileTime$DaysAndNanos" visibility="private"/>
+      <fromMillis return-type="java.nio.file.attribute.FileTime" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+      </fromMillis>
+   </methods>
+</FileTime>

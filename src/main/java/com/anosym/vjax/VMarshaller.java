@@ -1228,11 +1228,268 @@ public final class VMarshaller<T> implements java.io.Serializable {
     return null;
   }
 
+  private T checkAlias(VElement elem, Class<?> clazz, Method m, T o) throws Exception {
+    //check if we are aliased
+    Alias alias = clazz != null ? clazz.getAnnotation(Alias.class) : m.getAnnotation(Alias.class);
+    if (alias != null) {
+      Class aliasClass = alias.alias();
+      if (!VAlias.class.isAssignableFrom(aliasClass)) {
+        throw new VXMLBindingException("Invalid Alias assignment on class: " + aliasClass);
+      }
+      VAlias<T, Object> valias = (VAlias<T, Object>) aliasClass.newInstance();
+      o = (T) valias.getAlias(o);
+      clazz = o.getClass();
+      //add alias data
+      elem.addAttribute(new VAttribute(VMarshallerConstants.ALIAS_ATTRIBUTE, clazz.getName()));
+      elem.addAttribute(new VAttribute(VMarshallerConstants.ALIAS_CLASS_ATTRIBUTE, aliasClass.getName()));
+    }
+
+    return o;
+  }
+
+  /**
+   * Returns true if this object has been successfully converted
+   *
+   * @param elem
+   * @param clazz
+   * @param o
+   * @return
+   * @throws Exception
+   */
+  private boolean checkConverter(VElement elem, Class<?> clazz, Method m, T o) throws Exception {
+    //check if we have a converter
+    Converter con = clazz != null ? clazz.getAnnotation(Converter.class) : m.getAnnotation(Converter.class);
+    if (con != null) {
+      Class conClass = con.converter();
+      if (!VConverter.class.isAssignableFrom(conClass)) {
+        throw new VXMLBindingException("Invalid Converter assignment on class: " + conClass);
+      }
+      VConverter vcon = (VConverter) conClass.newInstance();
+      if (!vcon.isConvertCapable(o.getClass())) {
+        throw new VXMLBindingException("Invalid Converter Specified for class type: " + o.getClass());
+      }
+      //add the converter
+      addAttribute(elem, new VAttribute(VMarshallerConstants.CONVERTER_ATTRIBUTE, conClass.getName()));
+      String value = vcon.convert(o);
+      elem.addChild(new VContent(value));
+      return true;
+    }
+    return false;
+  }
+
+  private VMarkupGenerator<T> checkDynamicMarkup(VElement elem, Class<?> clazz, T o) throws Exception {
+    //find the markup generator if any
+    DynamicMarkup markup = clazz.getAnnotation(DynamicMarkup.class);
+    VMarkupGenerator<T> generator = null;
+    if (markup != null) {
+      Class gClass = markup.markupGenerator();
+      generator = (VMarkupGenerator) gClass.newInstance();
+      String dMarkup = generator.markup(o);
+      elem.setMarkup(dMarkup);
+    } else {
+      //check if markup is available
+      Markup mk = clazz.getAnnotation(Markup.class);
+      if (mk != null) {
+        //for a class, we ignore the property thing
+        elem.setMarkup(mk.name());
+      }
+    }
+    return generator;
+  }
+
+  private boolean checkSerializable(VElement elem, Class<?> clazz, Method m, T o) throws Exception {
+    //at this point, we need to check if we are working with binary data
+    Serialized bin = (Serialized) (clazz != null ? clazz.getAnnotation(Serialized.class) : m.getAnnotation(Serialized.class));
+    if (bin != null) {
+      addAttribute(elem, new VAttribute(VMarshallerConstants.SERIALIZED_ATTRIBUTE, "true"));
+      //marshall as binary and  then return
+      doMarshallSerializable(elem, o);
+      return true; //we have finished with the marshalling at this point
+    }
+    return false;
+  }
+
+  private boolean checkCircularReference(VElement elem, Class<?> clazz, T o) throws Exception {
+    boolean isInner = isInner(o.getClass());
+    int refid = System.identityHashCode(o);
+    //we cannot create a reference to primitive types, String and Enums. It does not make sense
+    if (idMapping.containsKey(refid) && !isInner && !(o instanceof String) && !o.getClass().isEnum()) {
+      addAttribute(elem, new VAttribute(VMarshallerConstants.OBJECT_CIRCULAR_REFERENCE_ATTRIBUTE, refid + ""));
+      return true;
+    } else {
+      //add the id
+      addAttribute(elem, new VAttribute(VMarshallerConstants.OBJECT_REFERENCE_ID_ATTRIBUTE, "" + System.identityHashCode(o)));
+      idMapping.put(refid, o);
+    }
+    return false;
+  }
+
+  private boolean checkInner(VElement elem, Class<?> clazz, T o, VNamespace[] namespace, String elementParam1) throws Exception {
+    //is this an inner class
+    boolean isInner = isInner(o.getClass());
+    if (isInner) {
+      //since this might
+      try {
+        Field ff = o.getClass().getDeclaredField("this$0");
+        ff.setAccessible(true);
+        Object ref = ff.get(o);
+        int id = System.identityHashCode(ref);
+        //find the object
+        Object refObj = idMapping.get(id);
+        if (refObj == null) {
+          //decode it
+          VElement _this = new VElement(VMarshallerConstants.OUTER_CLASS_REFERENCE_ELEMENT_MARKUP, elem);
+          addAttribute(_this, new VAttribute(VMarshallerConstants.CLASS_ATTRIBUTE, ref.getClass().getName()));
+          doMarshall(_this, (T) ref, namespace, elementParam1, null, null, null, false, false, null);
+        }
+        addAttribute(elem, new VAttribute(VMarshallerConstants.OUTER_CLASS_REFERENCE_ATTRIBUTE, id + ""));
+        addAttribute(elem, new VAttribute(VMarshallerConstants.INNER_CLASS_ATTRIBUTE, "true"));
+      } catch (Exception ex) {
+        throw new VXMLBindingException(ex);
+      }
+    }
+    return true;
+  }
+
+  private boolean checkEnum(VElement elem, Class<?> clazz, T o, VNamespace[] namespace, VMarkupGenerator<T> generator) throws Exception {
+    addAttribute(elem, new VAttribute(VMarshallerConstants.ENUM_ATTRIBUTE, clazz.isEnum() + ""));
+    Method[] mts = clazz.getDeclaredMethods();
+    List<Method> mms = new ArrayList<Method>(Arrays.asList(mts));
+    normalizeMethods(mms, false, clazz);
+    EnumMarkup em = clazz.getAnnotation(EnumMarkup.class);
+    String enumMarkup = (em != null) ? em.value() : VMarshallerConstants.ENUM_VALUE_ELEMENT;
+    VElement en = new VElement(enumMarkup, elem);
+    // Enum values are constants by default
+    addAttribute(en, new VAttribute(VMarshallerConstants.CONSTANT_ATTRIBUTE, "true"));
+    en.addChild(new VContent(((Enum) o).name()));
+    if (!mms.isEmpty()) {
+      this.marshallProperties(elem, o, namespace, generator);
+    }
+    return true;
+  }
+
+  private boolean checkCollection(VElement elem, T o, VNamespace[] namespace,
+          String elementParam1, String elementParam2, Class<?> elementClass1,
+          boolean onCollectionOrMapEmpty, boolean wrapCollectionElements, Annotation[] annotations) throws Exception {
+    Collection c = (Collection) o;
+    addAttribute(elem, new VAttribute(VMarshallerConstants.COLLECTION_ATTRIBUTE, "true"));
+    VElement _elem_;
+    //reassign the element here if we are not to wrap elements in the COLLECTION_ELEMENT_MARKUP
+    if (!wrapCollectionElements) {
+      _elem_ = elem;
+    } else {
+      _elem_ = new VElement(VMarshallerConstants.COLLECTION_ELEMENT_MARKUP, elem);
+    }
+    if (c.isEmpty()) {
+      if (onCollectionOrMapEmpty) {
+        //elemparam1 name of element
+        String elemName = VMarshallerConstants.ELEMENT_ELEMENT_MARKUP;
+        if (elementParam1 != null) {
+          elemName = elementParam1;
+        }
+        VElement fe = new VElement(elemName);
+        //elementClass1 for collection generic class
+        addAttribute(fe, new VAttribute(VMarshallerConstants.COLLECTION_EMPTY_MARKUP, elementParam2));
+        _elem_.addChild(fe);
+        marshallNullProperties(fe, namespace, elementClass1, null);
+        addAttribute(fe, new VAttribute(VMarshallerConstants.CLASS_ATTRIBUTE, elementParam2));
+      }
+    } else {
+      //check if we are supposed to ignore collections here, and add the children to the parent
+      AsCollection ac = getAnnotation(annotations, AsCollection.class);
+      if (ac != null && !ac.value()) {
+        //then we are not supposed to add the collection element.
+        //At this point, the collection element had been added to the parent.
+        //Remove it
+        VElement parent = _elem_.getParent();
+        parent.removeChild(_elem_);
+        _elem_ = parent;
+      }
+      for (Object o1 : c) {
+        String elemName;
+        if (elementParam1 != null && !elementParam1.isEmpty()) {
+          elemName = elementParam1;
+        } else {
+          //use the o1 class name
+          String name = o1.getClass().getSimpleName();
+          elemName = name.toLowerCase().charAt(0) + name.substring(1);
+        }
+        VElement fe = new VElement(elemName);
+        _elem_.addChild(fe);
+        addAttribute(fe, new VAttribute(VMarshallerConstants.CLASS_ATTRIBUTE, o1.getClass().getName()));
+        doMarshall(fe, (T) o1, namespace, null, null, null, null, false, false, null);
+      }
+    }
+    return true;
+  }
+
+  private boolean checkMap(VElement elem, T o, VNamespace namespace[], String elementParam1,
+          String elementParam2, Class<?> elementClass1, Class<?> elementClass2,
+          boolean onCollectionOrMapEmpty, boolean wrapCollectionElements, Annotation[] annotations) throws Exception {
+    //is it a map
+    Map m = (Map) o;
+    //then we need to save this as map-entry pairs
+    addAttribute(elem, new VAttribute(VMarshallerConstants.MAP_ATTRIBUTE, "true"));
+    if (m.isEmpty()) {
+      if (onCollectionOrMapEmpty) {
+        VElement ee = new VElement(VMarshallerConstants.MAP_ENTRY_ELEMENT_MARKUP, elem);
+        VElement kElem = new VElement((elementParam1 != null && elementParam2 != null) ? elementParam1 : VMarshallerConstants.KEY_ATTRIBUTE);
+        VElement vElem = new VElement((elementParam1 != null && elementParam2 != null) ? elementParam2 : VMarshallerConstants.VALUE_ATTRIBUTE);
+        //elementClass1 for key class
+        addAttribute(ee, new VAttribute(VMarshallerConstants.MAP_EMPTY_MARKUP, elementParam2));
+        marshallNullProperties(kElem, namespace, elementClass1, null);
+        marshallNullProperties(vElem, namespace, elementClass2, null);
+        ee.addChild(kElem);
+        ee.addChild(vElem);
+      }
+    } else {
+      //has the map been specified as attributes
+      AsAttribute attrs = getAnnotation(annotations, AsAttribute.class);
+      if (attrs != null) {
+        //remove this from parent
+        VElement parent = elem.getParent();
+        parent.removeChild(elem);
+        elem = parent;
+        VConverter keyConverter = (VConverter) (attrs.keyConverter() != VConverter.class ? attrs.keyConverter().newInstance() : null);
+        VConverter valueConverter = (VConverter) (attrs.valueConverter() != VConverter.class ? attrs.valueConverter().newInstance() : null);
+        for (Object k : m.keySet()) {
+          Object v = m.get(k);
+          if (v != null) {
+            String atName = keyConverter != null ? keyConverter.convert(k) : k.toString();
+            String atValue = valueConverter != null ? valueConverter.convert(v) : v.toString();
+            elem.addAttribute(new VAttribute(atName, atValue));
+          }
+        }
+        /**
+         * We return at this point because we have done everything that needs to be done.
+         */
+        return true;
+      } else {
+        for (Object k : m.keySet()) {
+          Object v = m.get(k);
+          VElement ee = new VElement(VMarshallerConstants.MAP_ENTRY_ELEMENT_MARKUP);
+          VElement kElem = new VElement((elementParam1 != null && elementParam2 != null) ? elementParam1 : VMarshallerConstants.KEY_ATTRIBUTE);
+          addAttribute(kElem, new VAttribute(VMarshallerConstants.CLASS_ATTRIBUTE, k.getClass().getName()));
+          addAttribute(kElem, new VAttribute(VMarshallerConstants.KEY_ATTRIBUTE, "true"));
+          VElement vElem = new VElement((elementParam1 != null && elementParam2 != null) ? elementParam2 : VMarshallerConstants.VALUE_ATTRIBUTE);
+          addAttribute(vElem, new VAttribute(VMarshallerConstants.CLASS_ATTRIBUTE, v.getClass().getName()));
+          addAttribute(vElem, new VAttribute(VMarshallerConstants.VALUE_ATTRIBUTE, "true"));
+          ee.addChild(kElem);
+          ee.addChild(vElem);
+          elem.addChild(ee);
+          doMarshall(kElem, (T) k, namespace, null, null, null, null, false, false, null);
+          doMarshall(vElem, (T) v, namespace, null, null, null, null, false, false, null);
+        }
+      }
+    }
+    return false;
+  }
+
   private void doMarshall(VElement elem, T o, VNamespace namespace[], String elementParam1,
           String elementParam2, Class<?> elementClass1, Class<?> elementClass2,
           boolean onCollectionOrMapEmpty, boolean wrapCollectionElements, Annotation[] annotations) throws VXMLBindingException {
     //check if the element has a namespace attributes
-    Namespace _ns = o.getClass().getAnnotation(Namespace.class);
+    Namespace _ns = getAnnotation(o.getClass(), Namespace.class);
     if (_ns != null) {
       //then we override the current namespace
       namespace = new VNamespace[]{new VNamespace(_ns.prefix(), _ns.uri())};
@@ -1270,118 +1527,29 @@ public final class VMarshaller<T> implements java.io.Serializable {
       if (d != null) {
         addAttribute(elem, new VAttribute(VMarshallerConstants.DISPLAYABLE_ATTRIBUTE, "" + d.value()));
       }
-      //find the markup generator if any
-      DynamicMarkup markup = clazz.getAnnotation(DynamicMarkup.class);
-      VMarkupGenerator<T> generator = null;
-      if (markup != null) {
-        Class gClass = markup.markupGenerator();
-        generator = (VMarkupGenerator) gClass.newInstance();
-        String dMarkup = generator.markup(o);
-        elem.setMarkup(dMarkup);
-      } else {
-        //check if markup is available
-        Markup mk = clazz.getAnnotation(Markup.class);
-        if (mk != null) {
-          //for a class, we ignore the property thing
-          elem.setMarkup(mk.name());
-        }
-      }
+      VMarkupGenerator<T> generator = checkDynamicMarkup(elem, clazz, o);
       //does this class have comments
       Comment cm = (Comment) clazz.getAnnotation(Comment.class);
       if (cm != null) {
         //get the comment
         elem.setComment(cm.value());
       }
-      //check if we are aliased
-      Alias alias = clazz.getAnnotation(Alias.class);
-      if (alias != null) {
-        Class aliasClass = alias.alias();
-        if (!VAlias.class.isAssignableFrom(aliasClass)) {
-          throw new VXMLBindingException("Invalid Alias assignment on class: " + aliasClass);
-        }
-        VAlias<T, Object> valias = (VAlias<T, Object>) aliasClass.newInstance();
-        o = (T) valias.getAlias(o);
-        clazz = o.getClass();
-        //add alias data
-        elem.addAttribute(new VAttribute(VMarshallerConstants.ALIAS_ATTRIBUTE, clazz.getName()));
-        elem.addAttribute(new VAttribute(VMarshallerConstants.ALIAS_CLASS_ATTRIBUTE, aliasClass.getName()));
-      }
-      //check if we have a converter
-      Converter con = clazz.getAnnotation(Converter.class);
-      if (con != null) {
-        Class conClass = con.converter();
-        if (!VConverter.class.isAssignableFrom(conClass)) {
-          throw new VXMLBindingException("Invalid Converter assignment on class: " + conClass);
-        }
-        VConverter vcon = (VConverter) conClass.newInstance();
-        if (!vcon.isConvertCapable(o.getClass())) {
-          throw new VXMLBindingException("Invalid Converter Specified for class type: " + o.getClass());
-        }
-        //add the converter
-        addAttribute(elem, new VAttribute(VMarshallerConstants.CONVERTER_ATTRIBUTE, conClass.getName()));
-        String value = vcon.convert(o);
-        elem.addChild(new VContent(value));
+      o = checkAlias(elem, clazz, null, o);
+      if (checkConverter(elem, clazz, null, o)) {
         return;
       }
-      boolean isInner = isInner(o.getClass());
-      int refid = System.identityHashCode(o);
-      //we cannot create a reference to primitive types, String and Enums. It does not make sense
-      if (idMapping.containsKey(refid) && !isInner && !(o instanceof String) && !o.getClass().isEnum()) {
-        addAttribute(elem, new VAttribute(VMarshallerConstants.OBJECT_CIRCULAR_REFERENCE_ATTRIBUTE, refid + ""));
+      if (checkSerializable(elem, clazz, null, o)) {
         return;
-      } else {
-        //add the id
-        addAttribute(elem, new VAttribute(VMarshallerConstants.OBJECT_REFERENCE_ID_ATTRIBUTE, "" + System.identityHashCode(o)));
-        idMapping.put(refid, o);
       }
-
-      //at this point, we need to check if we are working with binary data
-      Serialized bin = (Serialized) clazz.getAnnotation(Serialized.class);
-      if (bin != null) {
-        addAttribute(elem, new VAttribute(VMarshallerConstants.SERIALIZED_ATTRIBUTE, "true"));
-        //marshall as binary and  then return
-        doMarshallSerializable(elem, o);
-        return; //we have finished with the marshalling at this point
+      if (checkCircularReference(elem, clazz, o)) {
+        return;
       }
-      //is this an inner class
-      if (isInner) {
-        //since this might
-        try {
-          Field ff = o.getClass().getDeclaredField("this$0");
-          ff.setAccessible(true);
-          Object ref = ff.get(o);
-          int id = System.identityHashCode(ref);
-          //find the object
-          Object refObj = idMapping.get(id);
-          if (refObj == null) {
-            //decode it
-            VElement _this = new VElement(VMarshallerConstants.OUTER_CLASS_REFERENCE_ELEMENT_MARKUP, elem);
-            addAttribute(_this, new VAttribute(VMarshallerConstants.CLASS_ATTRIBUTE, ref.getClass().getName()));
-            doMarshall(_this, (T) ref, namespace, elementParam1, null, null, null, false, false, null);
-          }
-          addAttribute(elem, new VAttribute(VMarshallerConstants.OUTER_CLASS_REFERENCE_ATTRIBUTE, id + ""));
-          addAttribute(elem, new VAttribute(VMarshallerConstants.INNER_CLASS_ATTRIBUTE, "true"));
-        } catch (Exception ex) {
-          throw new VXMLBindingException(ex);
-        }
-      }
+      checkInner(elem, clazz, o, namespace, elementParam1);
       if (clazz.isPrimitive()) {
         addAttribute(elem, new VAttribute(VMarshallerConstants.PRIMITIVE_ATTRIBUTE, clazz.isPrimitive() + ""));
         elem.addChild(new VContent(o.toString()));
       } else if (clazz.isEnum()) {
-        addAttribute(elem, new VAttribute(VMarshallerConstants.ENUM_ATTRIBUTE, clazz.isEnum() + ""));
-        Method[] mts = clazz.getDeclaredMethods();
-        List<Method> mms = new ArrayList<Method>(Arrays.asList(mts));
-        normalizeMethods(mms, false, clazz);
-        EnumMarkup em = clazz.getAnnotation(EnumMarkup.class);
-        String enumMarkup = (em != null) ? em.value() : VMarshallerConstants.ENUM_VALUE_ELEMENT;
-        VElement en = new VElement(enumMarkup, elem);
-        // Enum values are constants by default
-        addAttribute(en, new VAttribute(VMarshallerConstants.CONSTANT_ATTRIBUTE, "true"));
-        en.addChild(new VContent(((Enum) o).name()));
-        if (!mms.isEmpty()) {
-          this.marshallProperties(elem, o, namespace, generator);
-        }
+        checkEnum(elem, clazz, o, namespace, generator);
       } else if (o instanceof Number) {
         elem.addChild(new VContent(o.toString()));
       } else if (o instanceof Character) {
@@ -1406,123 +1574,14 @@ public final class VMarshaller<T> implements java.io.Serializable {
       } else if (clazz.isArray()) {
         doMarshallArray(elem, o, clazz, namespace, elementParam1);
       } else {
-        //determine if we are working with generic collections
-        try {
-          Collection c = (Collection) o;
-          addAttribute(elem, new VAttribute(VMarshallerConstants.COLLECTION_ATTRIBUTE, "true"));
-          VElement _elem_;
-          //reassign the element here if we are not to wrap elements in the COLLECTION_ELEMENT_MARKUP
-          if (!wrapCollectionElements) {
-            _elem_ = elem;
-          } else {
-            _elem_ = new VElement(VMarshallerConstants.COLLECTION_ELEMENT_MARKUP, elem);
+        if (Collection.class.isAssignableFrom(o.getClass())) {
+          //determine if we are working with generic collections
+          checkCollection(elem, o, namespace, elementParam1, elementParam2, elementClass1, onCollectionOrMapEmpty, wrapCollectionElements, annotations);
+        } else if (Map.class.isAssignableFrom(o.getClass())) {
+          if (checkMap(elem, o, namespace, elementParam1, elementParam2, elementClass1, elementClass2,
+                  onCollectionOrMapEmpty, wrapCollectionElements, annotations)) {
+            return;
           }
-          if (c.isEmpty()) {
-            if (onCollectionOrMapEmpty) {
-              //elemparam1 name of element
-              String elemName = VMarshallerConstants.ELEMENT_ELEMENT_MARKUP;
-              if (elementParam1 != null) {
-                elemName = elementParam1;
-              }
-              VElement fe = new VElement(elemName);
-              //elementClass1 for collection generic class
-              addAttribute(fe, new VAttribute(VMarshallerConstants.COLLECTION_EMPTY_MARKUP, elementParam2));
-              _elem_.addChild(fe);
-              marshallNullProperties(fe, namespace, elementClass1, null);
-              addAttribute(fe, new VAttribute(VMarshallerConstants.CLASS_ATTRIBUTE, elementParam2));
-            }
-          } else {
-            //check if we are supposed to ignore collections here, and add the children to the parent
-            AsCollection ac = getAnnotation(annotations, AsCollection.class);
-            if (ac != null && !ac.value()) {
-              //then we are not supposed to add the collection element.
-              //At this point, the collection element had been added to the parent.
-              //Remove it
-              VElement parent = _elem_.getParent();
-              parent.removeChild(_elem_);
-              _elem_ = parent;
-            }
-            for (Object o1 : c) {
-              String elemName;
-              if (elementParam1 != null && !elementParam1.isEmpty()) {
-                elemName = elementParam1;
-              } else {
-                //use the o1 class name
-                String name = o1.getClass().getSimpleName();
-                elemName = name.toLowerCase().charAt(0) + name.substring(1);
-              }
-              VElement fe = new VElement(elemName);
-              _elem_.addChild(fe);
-              addAttribute(fe, new VAttribute(VMarshallerConstants.CLASS_ATTRIBUTE, o1.getClass().getName()));
-              doMarshall(fe, (T) o1, namespace, null, null, null, null, false, false, null);
-            }
-          }
-        } catch (Exception e) {
-        }
-        //is it a map
-        try {
-          if (o instanceof Map) {
-            Map m = (Map) o;
-            //then we need to save this as map-entry pairs
-            addAttribute(elem, new VAttribute(VMarshallerConstants.MAP_ATTRIBUTE, "true"));
-            if (m.isEmpty()) {
-              if (onCollectionOrMapEmpty) {
-                VElement ee = new VElement(VMarshallerConstants.MAP_ENTRY_ELEMENT_MARKUP, elem);
-                VElement kElem = new VElement((elementParam1 != null && elementParam2 != null) ? elementParam1 : VMarshallerConstants.KEY_ATTRIBUTE);
-                VElement vElem = new VElement((elementParam1 != null && elementParam2 != null) ? elementParam2 : VMarshallerConstants.VALUE_ATTRIBUTE);
-                //elementClass1 for key class
-                addAttribute(ee, new VAttribute(VMarshallerConstants.MAP_EMPTY_MARKUP, elementParam2));
-                marshallNullProperties(kElem, namespace, elementClass1, null);
-                marshallNullProperties(vElem, namespace, elementClass2, null);
-                ee.addChild(kElem);
-                ee.addChild(vElem);
-              }
-            } else {
-              //has the map been specified as attributes
-              AsAttribute attrs = getAnnotation(annotations, AsAttribute.class);
-              if (attrs != null) {
-                //remove this from parent
-                VElement parent = elem.getParent();
-                parent.removeChild(elem);
-                elem = parent;
-                VConverter keyConverter = (VConverter) (attrs.keyConverter() != VConverter.class ? attrs.keyConverter().newInstance() : null);
-                VConverter valueConverter = (VConverter) (attrs.valueConverter() != VConverter.class ? attrs.valueConverter().newInstance() : null);
-                for (Object k : m.keySet()) {
-                  Object v = m.get(k);
-                  if (v != null) {
-                    String atName = keyConverter != null ? keyConverter.convert(k) : k.toString();
-                    String atValue = valueConverter != null ? valueConverter.convert(v) : v.toString();
-                    elem.addAttribute(new VAttribute(atName, atValue));
-                  }
-                }
-                /**
-                 * We return at this point because we have done everything that needs to be done.
-                 */
-                return;
-              } else {
-                for (Object k : m.keySet()) {
-                  Object v = m.get(k);
-                  VElement ee = new VElement(VMarshallerConstants.MAP_ENTRY_ELEMENT_MARKUP);
-                  VElement kElem = new VElement((elementParam1 != null && elementParam2 != null) ? elementParam1 : VMarshallerConstants.KEY_ATTRIBUTE);
-                  addAttribute(kElem, new VAttribute(VMarshallerConstants.CLASS_ATTRIBUTE, k.getClass().getName()));
-                  addAttribute(kElem, new VAttribute(VMarshallerConstants.KEY_ATTRIBUTE, "true"));
-                  VElement vElem = new VElement((elementParam1 != null && elementParam2 != null) ? elementParam2 : VMarshallerConstants.VALUE_ATTRIBUTE);
-                  addAttribute(vElem, new VAttribute(VMarshallerConstants.CLASS_ATTRIBUTE, v.getClass().getName()));
-                  addAttribute(vElem, new VAttribute(VMarshallerConstants.VALUE_ATTRIBUTE, "true"));
-                  ee.addChild(kElem);
-                  ee.addChild(vElem);
-                  elem.addChild(ee);
-                  doMarshall(kElem, (T) k, namespace, null, null, null, null, false, false, null);
-                  doMarshall(vElem, (T) v, namespace, null, null, null, null, false, false, null);
-                }
-              }
-            }
-          }
-        } catch (Exception e) {
-          if (e instanceof VXMLBindingException) {
-            throw (VXMLBindingException) e;
-          }
-          throw new VXMLBindingException(e);
         }
         //we may have collections with properties
         //we have reached here, we marchall the properties
@@ -2043,16 +2102,75 @@ public final class VMarshaller<T> implements java.io.Serializable {
     }
   }
 
+  private boolean checkCondition(Method m, Condition classCondition, T o1) throws Exception {
+    if (classCondition != null) {
+      Class condClass = classCondition.condition();
+      VConditional<T> vCond = (VConditional<T>) condClass.getConstructor(new Class[]{}).newInstance(new Object[]{});
+      if (!vCond.accept((T) o1)) {
+        return true;
+      }
+    } else {
+      //check if it is to be marshalled
+      //does it have a conditional annotation?
+      Condition cond = m.getAnnotation(Condition.class);
+      if (cond != null) {
+        Class condClass = cond.condition();
+        VConditional<T> vCond = (VConditional<T>) condClass.getConstructor(new Class[]{}).newInstance(new Object[]{});
+        if (!vCond.accept((T) o1)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  private boolean checkInitializer(VElement elem, Method m, T o1) {
+    //is it an inializer element
+    Initializer init = m.getAnnotation(Initializer.class);
+    if (init != null) {
+      //get the attribute for initialization
+      VAttribute initAttr = elem.getAttribute(VMarshallerConstants.INITIALIZERS_ATTRIBUTE);
+      if (initAttr == null) {
+        initAttr = new VAttribute(VMarshallerConstants.INITIALIZERS_ATTRIBUTE, "[" + System.identityHashCode(o1) + "]");
+        addAttribute(elem, initAttr);
+      } else {
+        String value = initAttr.getValue();
+        value = value.substring(1, value.length() - 1);
+        int index = init.index();
+        String inits[] = value.split(",");
+        if (index >= inits.length) {
+          inits = Arrays.copyOf(inits, inits.length + 1);
+          inits[inits.length - 1] = System.identityHashCode(o1) + "";
+        } else {
+          //we find the right index
+          String[] lower = Arrays.copyOfRange(inits, 0, index);
+          String[] upper = Arrays.copyOfRange(inits, index, inits.length);
+          if (lower.length == 0) {
+            lower = new String[]{System.identityHashCode(o1) + ""};
+            index++;
+          }
+          //merge them together
+          inits = new String[lower.length + upper.length];
+          System.arraycopy(lower, 0, inits, 0, lower.length);
+          System.arraycopy(upper, 0, inits, index, upper.length);
+        }
+        value = Arrays.toString(inits);
+        initAttr.setValue(value);
+      }
+    }
+    return true;
+  }
+
   private void marshallProperty(VElement elem, T o, VNamespace namespace[],
           VMarkupGenerator<T> generator, String mName, Method m, Condition classCondition) throws VXMLBindingException {
     try {
       m.setAccessible(true);
       //is this method iterable
       com.anosym.vjax.annotations.Iterable it = m.getAnnotation(com.anosym.vjax.annotations.Iterable.class);
-      Object o1 = null;
+      T o1 = null;
       do {
         try {
-          o1 = m.invoke(o, new Object[]{});
+          o1 = (T) m.invoke(o, new Object[]{});
         } catch (Exception ee) {
           if (it != null && it.throwsException()) {
             break;
@@ -2061,23 +2179,8 @@ public final class VMarshaller<T> implements java.io.Serializable {
           }
         }
         if (o1 != null) {
-          if (classCondition != null) {
-            Class condClass = classCondition.condition();
-            VConditional<T> vCond = (VConditional<T>) condClass.getConstructor(new Class[]{}).newInstance(new Object[]{});
-            if (!vCond.accept((T) o1)) {
-              continue;
-            }
-          } else {
-            //check if it is to be marshalled
-            //does it have a conditional annotation?
-            Condition cond = m.getAnnotation(Condition.class);
-            if (cond != null) {
-              Class condClass = cond.condition();
-              VConditional<T> vCond = (VConditional<T>) condClass.getConstructor(new Class[]{}).newInstance(new Object[]{});
-              if (!vCond.accept((T) o1)) {
-                continue;
-              }
-            }
+          if (checkCondition(m, classCondition, o)) {
+            continue;
           }
           VElement fe = new VElement(mName);
           //do we have specific attributes to be added to this element
@@ -2179,77 +2282,19 @@ public final class VMarshaller<T> implements java.io.Serializable {
             }
           }
           //check if we are aliased
-          Alias alias = m.getAnnotation(Alias.class);
-          if (alias != null) {
-            Class aliasClass = alias.alias();
-            if (!VAlias.class.isAssignableFrom(aliasClass)) {
-              throw new VXMLBindingException("Invalid Alias assignment on method: " + m.getName());
-            }
-            VAlias<T, Object> valias = (VAlias<T, Object>) aliasClass.newInstance();
-            o1 = valias.getAlias((T) o1);
-            //add alias data
-            addAttribute(fe, new VAttribute(VMarshallerConstants.ALIAS_ATTRIBUTE, o1.getClass().getName()));
-            addAttribute(fe, new VAttribute(VMarshallerConstants.ALIAS_CLASS_ATTRIBUTE, aliasClass.getName()));
-          }
-          //do we have a converter
-          Converter con = m.getAnnotation(Converter.class);
-          if (con != null) {
-            Class conClass = con.converter();
-            if (!VConverter.class.isAssignableFrom(conClass)) {
-              throw new VXMLBindingException("Invalid Converter assignment on method: " + conClass);
-            }
-            VConverter vcon = (VConverter) conClass.newInstance();
-            if (!vcon.isConvertCapable(o1.getClass())) {
-              throw new VXMLBindingException("Invalid Converter Specified for class type: " + o1.getClass());
-            }
-            //add the converter
-            addAttribute(fe, new VAttribute(VMarshallerConstants.CONVERTER_ATTRIBUTE, conClass.getName()));
-            String value = vcon.convert(o1);
-            fe.addChild(new VContent(value));
+          o1 = checkAlias(elem, null, m, o1);
+          if (checkConverter(elem, null, m, o1)) {
             continue;
           }
-          //at this point, we need to check if we are working with binary data
-          Serialized bin = m.getAnnotation(Serialized.class);
-          if (bin != null) {
-            //marshall as binary and  then return
-            addAttribute(fe, new VAttribute(VMarshallerConstants.SERIALIZED_ATTRIBUTE, "true"));
-            doMarshallSerializable(fe, (T) o1);
-            return; //we have finished with the marshalling at this point
+          if (checkSerializable(elem, null, m, o1)) {
+            continue;
           }
-          //is it an inializer element
-          Initializer init = m.getAnnotation(Initializer.class);
-          if (init != null) {
-            //get the attribute for initialization
-            VAttribute initAttr = elem.getAttribute(VMarshallerConstants.INITIALIZERS_ATTRIBUTE);
-            if (initAttr == null) {
-              initAttr = new VAttribute(VMarshallerConstants.INITIALIZERS_ATTRIBUTE, "[" + System.identityHashCode(o1) + "]");
-              addAttribute(elem, initAttr);
-            } else {
-              String value = initAttr.getValue();
-              value = value.substring(1, value.length() - 1);
-              int index = init.index();
-              String inits[] = value.split(",");
-              if (index >= inits.length) {
-                inits = Arrays.copyOf(inits, inits.length + 1);
-                inits[inits.length - 1] = System.identityHashCode(o1) + "";
-              } else {
-                //we find the right index
-                String[] lower = Arrays.copyOfRange(inits, 0, index);
-                String[] upper = Arrays.copyOfRange(inits, index, inits.length);
-                if (lower.length == 0) {
-                  lower = new String[]{System.identityHashCode(o1) + ""};
-                  index++;
-                }
-                //merge them together
-                inits = new String[lower.length + upper.length];
-                System.arraycopy(lower, 0, inits, 0, lower.length);
-                System.arraycopy(upper, 0, inits, index, upper.length);
-              }
-              value = Arrays.toString(inits);
-              initAttr.setValue(value);
-            }
-          }
+          checkInitializer(elem, m, o1);
           //supply the collectionelement value if it exist
+          /**
+           * TODO(marembo) We need to refactor this code and stop supplying the CollectionElement in
+           * parameter method, rather we need to supply the annotation in the anootations array.
+           */
           CollectionElement colElement = m.getAnnotation(CollectionElement.class);
           String elementParam1 = null;
           String elementParam2 = null;
@@ -2266,7 +2311,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
           }
           //supply WhenEmpty properties
           WhenEmpty empty = m.getAnnotation(WhenEmpty.class);
-          if (o1 instanceof Collection) {
+          if (Collection.class.isAssignableFrom(o1.getClass())) {
             if (empty != null && ((Collection) o1).isEmpty()) {
               if (empty.marshall()) {
                 if (empty.marshallType()) {
@@ -2284,7 +2329,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
             } else {
               doMarshall(fe, (T) o1, namespace, elementParam1, elementParam2, null, null, false, false, m.getAnnotations());
             }
-          } else if (o1 instanceof Map) {
+          } else if (Map.class.isAssignableFrom(o1.getClass())) {
             if (empty != null && ((Map) o1).isEmpty()) {
               if (empty.marshall()) {
                 if (empty.marshallType()) {

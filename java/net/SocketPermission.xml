@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<SocketPermission class="java.net.SocketPermission" ref-id="160217957">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/Serializable.xml"/>
+   <implements interface="java.io.Serializable"/>
+   <extends class="java.security.Permission"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/net/UnknownHostException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Exception.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/net/SocketPermission.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/security/PermissionCollection.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/security/Permission.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectOutputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassNotFoundException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectInputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <constructors>
+      <constructor>
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="int"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <serialVersionUID type="long" visibility="private" final="true" static-final="true"/>
+      <CONNECT type="int" visibility="private" final="true" static-final="true"/>
+      <LISTEN type="int" visibility="private" final="true" static-final="true"/>
+      <ACCEPT type="int" visibility="private" final="true" static-final="true"/>
+      <RESOLVE type="int" visibility="private" final="true" static-final="true"/>
+      <NONE type="int" visibility="private" final="true" static-final="true"/>
+      <ALL type="int" visibility="private" final="true" static-final="true"/>
+      <PORT_MIN type="int" visibility="private" final="true" static-final="true"/>
+      <PORT_MAX type="int" visibility="private" final="true" static-final="true"/>
+      <PRIV_PORT_MAX type="int" visibility="private" final="true" static-final="true"/>
+      <mask type="int" visibility="private" transient="true"/>
+      <actions type="java.lang.String" visibility="private"/>
+      <hostname type="java.lang.String" visibility="private" transient="true"/>
+      <cname type="java.lang.String" visibility="private" transient="true"/>
+      <addresses type="[Ljava.net.InetAddress;" visibility="private" transient="true"/>
+      <wildcard type="boolean" visibility="private" transient="true"/>
+      <init_with_ip type="boolean" visibility="private" transient="true"/>
+      <invalid type="boolean" visibility="private" transient="true"/>
+      <portrange type="[I" visibility="private" transient="true"/>
+      <defaultDeny type="boolean" visibility="private" transient="true"/>
+      <untrusted type="boolean" visibility="private" transient="true"/>
+      <trusted type="boolean" visibility="private" transient="true"/>
+      <trustNameService type="boolean" visibility="private" static-final="true"/>
+      <debug type="sun.security.util.Debug" visibility="private" static-final="true"/>
+      <debugInit type="boolean" visibility="private" static-final="true"/>
+      <cdomain type="java.lang.String" visibility="private" transient="true"/>
+      <hdomain type="java.lang.String" visibility="private" transient="true"/>
+   </fields>
+   <methods>
+      <equals return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </equals>
+      <hashCode return-type="int" visibility="public" overrides="true"/>
+      <match return-type="boolean" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </match>
+      <init return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </init>
+      <readObject return-type="void" visibility="private" synchronized="true">
+         <parameters>
+            <parameter parameter-type="java.io.ObjectInputStream"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+            <throwable throws="java.lang.ClassNotFoundException"/>
+         </throws>
+      </readObject>
+      <writeObject return-type="void" visibility="private" synchronized="true">
+         <parameters>
+            <parameter parameter-type="java.io.ObjectOutputStream"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </writeObject>
+      <implies return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.security.Permission"/>
+         </parameters>
+      </implies>
+      <getActions return-type="java.lang.String" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </getActions>
+      <getActions return-type="java.lang.String" visibility="public" overrides="true"/>
+      <getDebug return-type="sun.security.util.Debug" visibility="private" static-final="true" synchronized="true"/>
+      <newPermissionCollection return-type="java.security.PermissionCollection" visibility="public" overrides="true"/>
+      <getHost return-type="java.lang.String" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getHost>
+      <impliesIgnoreMask return-type="boolean">
+         <parameters>
+            <parameter parameter-type="java.net.SocketPermission"/>
+         </parameters>
+      </impliesIgnoreMask>
+      <getMask return-type="int" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getMask>
+      <getMask return-type="int"/>
+      <setDeny return-type="void" visibility="private"/>
+      <parsePort return-type="[I" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.Exception"/>
+         </throws>
+      </parsePort>
+      <isUntrusted return-type="boolean" visibility="private">
+         <throws>
+            <throwable throws="java.net.UnknownHostException"/>
+         </throws>
+      </isUntrusted>
+      <getCanonName return-type="void">
+         <throws>
+            <throwable throws="java.net.UnknownHostException"/>
+         </throws>
+      </getCanonName>
+      <authorized return-type="boolean" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="[B"/>
+         </parameters>
+      </authorized>
+      <authorizedIPv4 return-type="boolean" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="[B"/>
+         </parameters>
+      </authorizedIPv4>
+      <authorizedIPv6 return-type="boolean" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="[B"/>
+         </parameters>
+      </authorizedIPv6>
+      <getIP return-type="void">
+         <throws>
+            <throwable throws="java.net.UnknownHostException"/>
+         </throws>
+      </getIP>
+      <compareHostnames return-type="boolean" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.net.SocketPermission"/>
+         </parameters>
+      </compareHostnames>
+   </methods>
+</SocketPermission>

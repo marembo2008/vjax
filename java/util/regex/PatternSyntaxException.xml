@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<PatternSyntaxException class="java.util.regex.PatternSyntaxException" ref-id="1362592231">
+   <extends class="java.lang.IllegalArgumentException"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/IllegalArgumentException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <constructors>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+            <parameter type="int"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <serialVersionUID type="long" visibility="private" final="true" static-final="true"/>
+      <desc type="java.lang.String" visibility="private" final="true"/>
+      <pattern type="java.lang.String" visibility="private" final="true"/>
+      <index type="int" visibility="private" final="true"/>
+      <nl type="java.lang.String" visibility="private" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <getMessage return-type="java.lang.String" visibility="public" overrides="true"/>
+      <getIndex return-type="int" visibility="public"/>
+      <getDescription return-type="java.lang.String" visibility="public"/>
+      <getPattern return-type="java.lang.String" visibility="public"/>
+   </methods>
+</PatternSyntaxException>

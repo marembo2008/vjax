@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<ContentHandler class="org.xml.sax.ContentHandler" ref-id="1811685677" interface="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="org/xml/sax/Attributes.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="org/xml/sax/SAXException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="org/xml/sax/Locator.xml"/>
+   <methods>
+      <setDocumentLocator return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="org.xml.sax.Locator"/>
+         </parameters>
+      </setDocumentLocator>
+      <startDocument return-type="void" visibility="public" abstract="true">
+         <throws>
+            <throwable throws="org.xml.sax.SAXException"/>
+         </throws>
+      </startDocument>
+      <endDocument return-type="void" visibility="public" abstract="true">
+         <throws>
+            <throwable throws="org.xml.sax.SAXException"/>
+         </throws>
+      </endDocument>
+      <startPrefixMapping return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="org.xml.sax.SAXException"/>
+         </throws>
+      </startPrefixMapping>
+      <endPrefixMapping return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="org.xml.sax.SAXException"/>
+         </throws>
+      </endPrefixMapping>
+      <startElement return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="org.xml.sax.Attributes"/>
+         </parameters>
+         <throws>
+            <throwable throws="org.xml.sax.SAXException"/>
+         </throws>
+      </startElement>
+      <endElement return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="org.xml.sax.SAXException"/>
+         </throws>
+      </endElement>
+      <characters return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="[C"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="org.xml.sax.SAXException"/>
+         </throws>
+      </characters>
+      <ignorableWhitespace return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="[C"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="org.xml.sax.SAXException"/>
+         </throws>
+      </ignorableWhitespace>
+      <processingInstruction return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="org.xml.sax.SAXException"/>
+         </throws>
+      </processingInstruction>
+      <skippedEntity return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="org.xml.sax.SAXException"/>
+         </throws>
+      </skippedEntity>
+   </methods>
+</ContentHandler>

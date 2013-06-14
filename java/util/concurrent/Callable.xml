@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Callable class="java.util.concurrent.Callable" ref-id="1668870834" interface="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Exception.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <methods>
+      <call return-type="java.lang.Object" visibility="public" abstract="true">
+         <throws>
+            <throwable throws="java.lang.Exception"/>
+         </throws>
+      </call>
+   </methods>
+</Callable>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Dictionary class="java.util.Dictionary" ref-id="1078847704" abstract="true">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Enumeration.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <constructors>
+      <constructor visibility="public"/>
+   </constructors>
+   <methods>
+      <remove return-type="java.lang.Object" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </remove>
+      <get return-type="java.lang.Object" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </get>
+      <put return-type="java.lang.Object" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </put>
+      <isEmpty return-type="boolean" visibility="public" abstract="true"/>
+      <size return-type="int" visibility="public" abstract="true"/>
+      <elements return-type="java.util.Enumeration" visibility="public" abstract="true"/>
+      <keys return-type="java.util.Enumeration" visibility="public" abstract="true"/>
+   </methods>
+</Dictionary>

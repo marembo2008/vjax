@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<NumberFormatException class="java.lang.NumberFormatException" ref-id="1774683505">
+   <extends class="java.lang.IllegalArgumentException"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/IllegalArgumentException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/NumberFormatException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <constructors>
+      <constructor visibility="public"/>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <serialVersionUID type="long" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <forInputString return-type="java.lang.NumberFormatException" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </forInputString>
+   </methods>
+</NumberFormatException>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Inet4Address class="java.net.Inet4Address" ref-id="1710464178">
+   <extends class="java.net.InetAddress"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/net/InetAddress.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectStreamException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <constructors>
+      <constructor>
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="int"/>
+         </parameters>
+      </constructor>
+      <constructor>
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="[B"/>
+         </parameters>
+      </constructor>
+      <constructor/>
+   </constructors>
+   <fields>
+      <INADDRSZ type="int" final="true" static-final="true"/>
+      <serialVersionUID type="long" visibility="private" final="true" static-final="true"/>
+      <loopback type="int" visibility="private" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <equals return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </equals>
+      <hashCode return-type="int" visibility="public" overrides="true"/>
+      <getAddress return-type="[B" visibility="public" overrides="true"/>
+      <init return-type="void" visibility="private" static-final="true" native="true"/>
+      <writeReplace return-type="java.lang.Object" visibility="private">
+         <throws>
+            <throwable throws="java.io.ObjectStreamException"/>
+         </throws>
+      </writeReplace>
+      <getHostAddress return-type="java.lang.String" visibility="public" overrides="true"/>
+      <isMulticastAddress return-type="boolean" visibility="public" overrides="true"/>
+      <isAnyLocalAddress return-type="boolean" visibility="public" overrides="true"/>
+      <isLoopbackAddress return-type="boolean" visibility="public" overrides="true"/>
+      <isLinkLocalAddress return-type="boolean" visibility="public" overrides="true"/>
+      <isSiteLocalAddress return-type="boolean" visibility="public" overrides="true"/>
+      <isMCGlobal return-type="boolean" visibility="public" overrides="true"/>
+      <isMCNodeLocal return-type="boolean" visibility="public" overrides="true"/>
+      <isMCLinkLocal return-type="boolean" visibility="public" overrides="true"/>
+      <isMCSiteLocal return-type="boolean" visibility="public" overrides="true"/>
+      <isMCOrgLocal return-type="boolean" visibility="public" overrides="true"/>
+      <numericToTextFormat return-type="java.lang.String" static-final="true">
+         <parameters>
+            <parameter parameter-type="[B"/>
+         </parameters>
+      </numericToTextFormat>
+   </methods>
+</Inet4Address>

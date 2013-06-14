@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Attributes class="org.xml.sax.Attributes" ref-id="1639034051" interface="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <methods>
+      <getLength return-type="int" visibility="public" abstract="true"/>
+      <getValue return-type="java.lang.String" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </getValue>
+      <getValue return-type="java.lang.String" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getValue>
+      <getValue return-type="java.lang.String" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getValue>
+      <getType return-type="java.lang.String" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getType>
+      <getType return-type="java.lang.String" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getType>
+      <getType return-type="java.lang.String" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </getType>
+      <getIndex return-type="int" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getIndex>
+      <getIndex return-type="int" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getIndex>
+      <getLocalName return-type="java.lang.String" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </getLocalName>
+      <getQName return-type="java.lang.String" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </getQName>
+      <getURI return-type="java.lang.String" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </getURI>
+   </methods>
+</Attributes>

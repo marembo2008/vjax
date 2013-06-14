@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<ObjectInput class="java.io.ObjectInput" ref-id="111608098" interface="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/AutoCloseable.xml"/>
+   <implements interface="java.lang.AutoCloseable"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/DataInput.xml"/>
+   <implements interface="java.io.DataInput"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassNotFoundException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <methods>
+      <readObject return-type="java.lang.Object" visibility="public" abstract="true">
+         <throws>
+            <throwable throws="java.lang.ClassNotFoundException"/>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </readObject>
+      <close return-type="void" visibility="public" abstract="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </close>
+      <read return-type="int" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="[B"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </read>
+      <read return-type="int" visibility="public" abstract="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </read>
+      <read return-type="int" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="[B"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </read>
+      <skip return-type="long" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </skip>
+      <available return-type="int" visibility="public" abstract="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </available>
+   </methods>
+</ObjectInput>

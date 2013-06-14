@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<TreeInfo class="java.util.regex.Pattern$TreeInfo" ref-id="1203129835">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <constructors>
+      <constructor/>
+   </constructors>
+   <fields>
+      <minLength type="int"/>
+      <maxLength type="int"/>
+      <maxValid type="boolean"/>
+      <deterministic type="boolean"/>
+   </fields>
+   <methods>
+      <reset return-type="void"/>
+   </methods>
+</TreeInfo>

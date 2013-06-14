@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<PrintStreamOrWriter class="java.lang.Throwable$PrintStreamOrWriter" ref-id="1970814259" abstract="true">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <constructors>
+      <constructor>
+         <parameters>
+            <parameter type="java.lang.Throwable$1"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="private"/>
+   </constructors>
+   <methods>
+      <println return-type="void" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </println>
+      <lock return-type="java.lang.Object" abstract="true"/>
+   </methods>
+</PrintStreamOrWriter>

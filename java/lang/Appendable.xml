@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Appendable class="java.lang.Appendable" ref-id="2104263823" interface="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/CharSequence.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Appendable.xml"/>
+   <methods>
+      <append return-type="java.lang.Appendable" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.CharSequence"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </append>
+      <append return-type="java.lang.Appendable" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.CharSequence"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </append>
+      <append return-type="java.lang.Appendable" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="char"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </append>
+   </methods>
+</Appendable>

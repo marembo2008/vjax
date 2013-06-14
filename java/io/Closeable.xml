@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Closeable class="java.io.Closeable" ref-id="1832061684" interface="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/AutoCloseable.xml"/>
+   <implements interface="java.lang.AutoCloseable"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <methods>
+      <close return-type="void" visibility="public" abstract="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </close>
+   </methods>
+</Closeable>

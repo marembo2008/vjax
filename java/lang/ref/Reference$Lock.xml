@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Lock class="java.lang.ref.Reference$Lock" ref-id="776278108">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <constructors>
+      <constructor visibility="private"/>
+      <constructor>
+         <parameters>
+            <parameter type="java.lang.ref.Reference$1"/>
+         </parameters>
+      </constructor>
+   </constructors>
+</Lock>

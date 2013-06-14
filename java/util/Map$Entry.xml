@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Entry class="java.util.Map$Entry" ref-id="227817694" interface="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <methods>
+      <equals return-type="boolean" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </equals>
+      <hashCode return-type="int" visibility="public" abstract="true"/>
+      <getValue return-type="java.lang.Object" visibility="public" abstract="true"/>
+      <getKey return-type="java.lang.Object" visibility="public" abstract="true"/>
+      <setValue return-type="java.lang.Object" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </setValue>
+   </methods>
+</Entry>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<FieldReflector class="java.io.ObjectStreamClass$FieldReflector" ref-id="312792492">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <constructors>
+      <constructor>
+         <parameters>
+            <parameter type="[Ljava.io.ObjectStreamField;"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <unsafe type="sun.misc.Unsafe" visibility="private" final="true" static-final="true"/>
+      <fields type="[Ljava.io.ObjectStreamField;" visibility="private" final="true"/>
+      <numPrimFields type="int" visibility="private" final="true"/>
+      <readKeys type="[J" visibility="private" final="true"/>
+      <writeKeys type="[J" visibility="private" final="true"/>
+      <offsets type="[I" visibility="private" final="true"/>
+      <typeCodes type="[C" visibility="private" final="true"/>
+      <types type="[Ljava.lang.Class;" visibility="private" final="true"/>
+   </fields>
+   <methods>
+      <getFields return-type="[Ljava.io.ObjectStreamField;"/>
+      <setPrimFieldValues return-type="void">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="[B"/>
+         </parameters>
+      </setPrimFieldValues>
+      <setObjFieldValues return-type="void">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="[Ljava.lang.Object;"/>
+         </parameters>
+      </setObjFieldValues>
+      <getPrimFieldValues return-type="void">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="[B"/>
+         </parameters>
+      </getPrimFieldValues>
+      <getObjFieldValues return-type="void">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="[Ljava.lang.Object;"/>
+         </parameters>
+      </getObjFieldValues>
+   </methods>
+</FieldReflector>

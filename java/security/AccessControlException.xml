@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<AccessControlException class="java.security.AccessControlException" ref-id="327922685">
+   <extends class="java.lang.SecurityException"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/SecurityException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/security/Permission.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <constructors>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.security.Permission"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <serialVersionUID type="long" visibility="private" final="true" static-final="true"/>
+      <perm type="java.security.Permission" visibility="private"/>
+   </fields>
+   <methods>
+      <getPermission return-type="java.security.Permission" visibility="public"/>
+   </methods>
+</AccessControlException>

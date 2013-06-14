@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<ClassValue class="java.lang.ClassValue" ref-id="482821448" abstract="true">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassValue$ClassValueMap.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassValue$Entry.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Class.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassValue$Version.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassValue$Identity.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/concurrent/atomic/AtomicInteger.xml"/>
+   <constructors>
+      <constructor visibility="protected"/>
+   </constructors>
+   <fields>
+      <EMPTY_CACHE type="[Ljava.lang.ClassValue$Entry;" visibility="private" final="true" static-final="true"/>
+      <hashCodeForCache type="int" final="true"/>
+      <nextHashCode type="java.util.concurrent.atomic.AtomicInteger" visibility="private" final="true" static-final="true"/>
+      <HASH_INCREMENT type="int" visibility="private" final="true" static-final="true"/>
+      <HASH_MASK type="int" final="true" static-final="true"/>
+      <identity type="java.lang.ClassValue$Identity" final="true"/>
+      <version type="java.lang.ClassValue$Version" visibility="private" volatile="true"/>
+      <CRITICAL_SECTION type="java.lang.Object" visibility="private" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <remove return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Class"/>
+         </parameters>
+      </remove>
+      <get return-type="java.lang.Object" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Class"/>
+         </parameters>
+      </get>
+      <put return-type="void">
+         <parameters>
+            <parameter parameter-type="java.lang.Class"/>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </put>
+      <match return-type="boolean">
+         <parameters>
+            <parameter parameter-type="java.lang.ClassValue$Entry"/>
+         </parameters>
+      </match>
+      <getMap return-type="java.lang.ClassValue$ClassValueMap" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Class"/>
+         </parameters>
+      </getMap>
+      <version return-type="java.lang.ClassValue$Version"/>
+      <bumpVersion return-type="void"/>
+      <makeEntry return-type="java.lang.ClassValue$Entry" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.ClassValue$Version"/>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </makeEntry>
+      <castEntry return-type="java.lang.ClassValue$Entry">
+         <parameters>
+            <parameter parameter-type="java.lang.ClassValue$Entry"/>
+         </parameters>
+      </castEntry>
+      <computeValue return-type="java.lang.Object" visibility="protected" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Class"/>
+         </parameters>
+      </computeValue>
+      <getCacheCarefully return-type="[Ljava.lang.ClassValue$Entry;" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Class"/>
+         </parameters>
+      </getCacheCarefully>
+      <getFromBackup return-type="java.lang.Object" visibility="private">
+         <parameters>
+            <parameter parameter-type="[Ljava.lang.ClassValue$Entry;"/>
+            <parameter parameter-type="java.lang.Class"/>
+         </parameters>
+      </getFromBackup>
+      <getFromHashMap return-type="java.lang.Object" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.Class"/>
+         </parameters>
+      </getFromHashMap>
+      <initializeMap return-type="java.lang.ClassValue$ClassValueMap" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Class"/>
+         </parameters>
+      </initializeMap>
+   </methods>
+</ClassValue>

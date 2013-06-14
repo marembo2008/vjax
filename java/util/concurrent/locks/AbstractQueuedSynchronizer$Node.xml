@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Node class="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node" ref-id="311892468">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/NullPointerException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/concurrent/locks/AbstractQueuedSynchronizer$Node.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Thread.xml"/>
+   <constructors>
+      <constructor/>
+   </constructors>
+   <fields>
+      <SHARED type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node" final="true" static-final="true"/>
+      <EXCLUSIVE type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node" final="true" static-final="true"/>
+      <CANCELLED type="int" final="true" static-final="true"/>
+      <SIGNAL type="int" final="true" static-final="true"/>
+      <CONDITION type="int" final="true" static-final="true"/>
+      <PROPAGATE type="int" final="true" static-final="true"/>
+      <waitStatus type="int" volatile="true"/>
+      <prev type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node" volatile="true"/>
+      <next type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node" volatile="true"/>
+      <thread type="java.lang.Thread" volatile="true"/>
+      <nextWaiter type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node"/>
+   </fields>
+   <methods>
+      <isShared return-type="boolean" final="true"/>
+      <predecessor return-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node" final="true">
+         <throws>
+            <throwable throws="java.lang.NullPointerException"/>
+         </throws>
+      </predecessor>
+   </methods>
+</Node>

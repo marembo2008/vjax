@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Permission class="java.security.Permission" ref-id="1414869722" abstract="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/Serializable.xml"/>
+   <implements interface="java.io.Serializable"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/security/Guard.xml"/>
+   <implements interface="java.security.Guard"/>
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/SecurityException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/security/PermissionCollection.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/security/Permission.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <constructors>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <serialVersionUID type="long" visibility="private" final="true" static-final="true"/>
+      <name type="java.lang.String" visibility="private"/>
+   </fields>
+   <methods>
+      <equals return-type="boolean" visibility="public" abstract="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </equals>
+      <toString return-type="java.lang.String" visibility="public" overrides="true"/>
+      <hashCode return-type="int" visibility="public" abstract="true" overrides="true"/>
+      <getName return-type="java.lang.String" visibility="public" final="true"/>
+      <implies return-type="boolean" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.security.Permission"/>
+         </parameters>
+      </implies>
+      <getActions return-type="java.lang.String" visibility="public" abstract="true"/>
+      <newPermissionCollection return-type="java.security.PermissionCollection" visibility="public"/>
+      <checkGuard return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.SecurityException"/>
+         </throws>
+      </checkGuard>
+   </methods>
+</Permission>

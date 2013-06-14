@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Annotation class="java.lang.annotation.Annotation" ref-id="487325405" interface="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Class.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <methods>
+      <equals return-type="boolean" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </equals>
+      <toString return-type="java.lang.String" visibility="public" abstract="true"/>
+      <hashCode return-type="int" visibility="public" abstract="true"/>
+      <annotationType return-type="java.lang.Class" visibility="public" abstract="true"/>
+   </methods>
+</Annotation>

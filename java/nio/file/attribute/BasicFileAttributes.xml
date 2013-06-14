@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<BasicFileAttributes class="java.nio.file.attribute.BasicFileAttributes" ref-id="308647186" interface="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/file/attribute/FileTime.xml"/>
+   <methods>
+      <size return-type="long" visibility="public" abstract="true"/>
+      <isDirectory return-type="boolean" visibility="public" abstract="true"/>
+      <creationTime return-type="java.nio.file.attribute.FileTime" visibility="public" abstract="true"/>
+      <isOther return-type="boolean" visibility="public" abstract="true"/>
+      <fileKey return-type="java.lang.Object" visibility="public" abstract="true"/>
+      <lastModifiedTime return-type="java.nio.file.attribute.FileTime" visibility="public" abstract="true"/>
+      <lastAccessTime return-type="java.nio.file.attribute.FileTime" visibility="public" abstract="true"/>
+      <isRegularFile return-type="boolean" visibility="public" abstract="true"/>
+      <isSymbolicLink return-type="boolean" visibility="public" abstract="true"/>
+   </methods>
+</BasicFileAttributes>

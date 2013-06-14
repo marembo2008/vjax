@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<ThreadLocal class="java.lang.ThreadLocal" ref-id="1432088637">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Thread.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ThreadLocal$ThreadLocalMap.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ThreadLocal.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/concurrent/atomic/AtomicInteger.xml"/>
+   <constructors>
+      <constructor visibility="public"/>
+   </constructors>
+   <fields>
+      <threadLocalHashCode type="int" visibility="private" final="true"/>
+      <nextHashCode type="java.util.concurrent.atomic.AtomicInteger" visibility="private" static-final="true"/>
+      <HASH_INCREMENT type="int" visibility="private" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <remove return-type="void" visibility="public"/>
+      <get return-type="java.lang.Object" visibility="public"/>
+      <access_400 escapeSequence="6:$" return-type="int" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.ThreadLocal"/>
+         </parameters>
+      </access_400>
+      <createInheritedMap return-type="java.lang.ThreadLocal$ThreadLocalMap" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.ThreadLocal$ThreadLocalMap"/>
+         </parameters>
+      </createInheritedMap>
+      <set return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </set>
+      <nextHashCode return-type="int" visibility="private" static-final="true"/>
+      <initialValue return-type="java.lang.Object" visibility="protected"/>
+      <setInitialValue return-type="java.lang.Object" visibility="private"/>
+      <getMap return-type="java.lang.ThreadLocal$ThreadLocalMap">
+         <parameters>
+            <parameter parameter-type="java.lang.Thread"/>
+         </parameters>
+      </getMap>
+      <createMap return-type="void">
+         <parameters>
+            <parameter parameter-type="java.lang.Thread"/>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </createMap>
+      <childValue return-type="java.lang.Object">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </childValue>
+   </methods>
+</ThreadLocal>

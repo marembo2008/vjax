@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<AtomicInteger class="java.util.concurrent.atomic.AtomicInteger" ref-id="875527422">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/Serializable.xml"/>
+   <implements interface="java.io.Serializable"/>
+   <extends class="java.lang.Number"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Number.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <constructors>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="int"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public"/>
+   </constructors>
+   <fields>
+      <serialVersionUID type="long" visibility="private" final="true" static-final="true"/>
+      <unsafe type="sun.misc.Unsafe" visibility="private" final="true" static-final="true"/>
+      <valueOffset type="long" visibility="private" final="true" static-final="true"/>
+      <value type="int" visibility="private" volatile="true"/>
+   </fields>
+   <methods>
+      <get return-type="int" visibility="public" final="true"/>
+      <toString return-type="java.lang.String" visibility="public" overrides="true"/>
+      <intValue return-type="int" visibility="public" overrides="true"/>
+      <longValue return-type="long" visibility="public" overrides="true"/>
+      <floatValue return-type="float" visibility="public" overrides="true"/>
+      <doubleValue return-type="double" visibility="public" overrides="true"/>
+      <set return-type="void" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </set>
+      <lazySet return-type="void" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </lazySet>
+      <compareAndSet return-type="boolean" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </compareAndSet>
+      <getAndAdd return-type="int" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </getAndAdd>
+      <getAndSet return-type="int" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </getAndSet>
+      <weakCompareAndSet return-type="boolean" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </weakCompareAndSet>
+      <getAndIncrement return-type="int" visibility="public" final="true"/>
+      <getAndDecrement return-type="int" visibility="public" final="true"/>
+      <incrementAndGet return-type="int" visibility="public" final="true"/>
+      <decrementAndGet return-type="int" visibility="public" final="true"/>
+      <addAndGet return-type="int" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </addAndGet>
+   </methods>
+</AtomicInteger>

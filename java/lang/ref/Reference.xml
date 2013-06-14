@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Reference class="java.lang.ref.Reference" ref-id="2047738990" abstract="true">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ref/Reference$Lock.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ref/Reference.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ref/ReferenceQueue.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <constructors>
+      <constructor>
+         <parameters>
+            <parameter type="java.lang.Object"/>
+            <parameter type="java.lang.ref.ReferenceQueue"/>
+         </parameters>
+      </constructor>
+      <constructor>
+         <parameters>
+            <parameter type="java.lang.Object"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <referent type="java.lang.Object" visibility="private"/>
+      <queue type="java.lang.ref.ReferenceQueue"/>
+      <next type="java.lang.ref.Reference"/>
+      <discovered type="java.lang.ref.Reference" visibility="private" transient="true"/>
+      <lock type="java.lang.ref.Reference$Lock" visibility="private" static-final="true"/>
+      <pending type="java.lang.ref.Reference" visibility="private" static-final="true"/>
+   </fields>
+   <methods>
+      <get return-type="java.lang.Object" visibility="public"/>
+      <clear return-type="void" visibility="public"/>
+      <access_200 escapeSequence="6:$" return-type="java.lang.ref.Reference" static-final="true"/>
+      <access_100 escapeSequence="6:$" return-type="java.lang.ref.Reference$Lock" static-final="true"/>
+      <access_202 escapeSequence="6:$" return-type="java.lang.ref.Reference" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.ref.Reference"/>
+         </parameters>
+      </access_202>
+      <isEnqueued return-type="boolean" visibility="public"/>
+      <enqueue return-type="boolean" visibility="public"/>
+   </methods>
+</Reference>

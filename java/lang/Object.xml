@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Object class="java.lang.Object" ref-id="477264022">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/CloneNotSupportedException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Class.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/InterruptedException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Throwable.xml"/>
+   <constructors>
+      <constructor visibility="public"/>
+   </constructors>
+   <methods>
+      <finalize return-type="void" visibility="protected">
+         <throws>
+            <throwable throws="java.lang.Throwable"/>
+         </throws>
+      </finalize>
+      <wait return-type="void" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.InterruptedException"/>
+         </throws>
+      </wait>
+      <wait return-type="void" visibility="public" final="true" native="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.InterruptedException"/>
+         </throws>
+      </wait>
+      <wait return-type="void" visibility="public" final="true">
+         <throws>
+            <throwable throws="java.lang.InterruptedException"/>
+         </throws>
+      </wait>
+      <equals return-type="boolean" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </equals>
+      <toString return-type="java.lang.String" visibility="public"/>
+      <hashCode return-type="int" visibility="public" native="true"/>
+      <getClass return-type="java.lang.Class" visibility="public" final="true" native="true"/>
+      <clone return-type="java.lang.Object" visibility="protected" native="true">
+         <throws>
+            <throwable throws="java.lang.CloneNotSupportedException"/>
+         </throws>
+      </clone>
+      <registerNatives return-type="void" visibility="private" static-final="true" native="true"/>
+      <notify return-type="void" visibility="public" final="true" native="true"/>
+      <notifyAll return-type="void" visibility="public" final="true" native="true"/>
+   </methods>
+</Object>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Deque class="java.util.Deque" ref-id="769287496" interface="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Queue.xml"/>
+   <implements interface="java.util.Queue"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Iterator.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <methods>
+      <add return-type="boolean" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </add>
+      <remove return-type="java.lang.Object" visibility="public" abstract="true"/>
+      <remove return-type="boolean" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </remove>
+      <contains return-type="boolean" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </contains>
+      <size return-type="int" visibility="public" abstract="true"/>
+      <push return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </push>
+      <pop return-type="java.lang.Object" visibility="public" abstract="true"/>
+      <iterator return-type="java.util.Iterator" visibility="public" abstract="true"/>
+      <poll return-type="java.lang.Object" visibility="public" abstract="true"/>
+      <element return-type="java.lang.Object" visibility="public" abstract="true"/>
+      <peek return-type="java.lang.Object" visibility="public" abstract="true"/>
+      <addFirst return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </addFirst>
+      <addLast return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </addLast>
+      <offerFirst return-type="boolean" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </offerFirst>
+      <offerLast return-type="boolean" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </offerLast>
+      <removeFirst return-type="java.lang.Object" visibility="public" abstract="true"/>
+      <removeLast return-type="java.lang.Object" visibility="public" abstract="true"/>
+      <pollFirst return-type="java.lang.Object" visibility="public" abstract="true"/>
+      <pollLast return-type="java.lang.Object" visibility="public" abstract="true"/>
+      <getFirst return-type="java.lang.Object" visibility="public" abstract="true"/>
+      <getLast return-type="java.lang.Object" visibility="public" abstract="true"/>
+      <peekFirst return-type="java.lang.Object" visibility="public" abstract="true"/>
+      <peekLast return-type="java.lang.Object" visibility="public" abstract="true"/>
+      <removeFirstOccurrence return-type="boolean" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </removeFirstOccurrence>
+      <removeLastOccurrence return-type="boolean" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </removeLastOccurrence>
+      <offer return-type="boolean" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </offer>
+      <descendingIterator return-type="java.util.Iterator" visibility="public" abstract="true"/>
+   </methods>
+</Deque>

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<FileChannel class="java.nio.channels.FileChannel" ref-id="1646411778" abstract="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/channels/ScatteringByteChannel.xml"/>
+   <implements interface="java.nio.channels.ScatteringByteChannel"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/channels/GatheringByteChannel.xml"/>
+   <implements interface="java.nio.channels.GatheringByteChannel"/>
+   <implements interface="java.nio.channels.SeekableByteChannel"/>
+   <extends class="java.nio.channels.spi.AbstractInterruptibleChannel"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/channels/spi/AbstractInterruptibleChannel.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/channels/ReadableByteChannel.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/channels/WritableByteChannel.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Set.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/file/Path.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/ByteBuffer.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/channels/SeekableByteChannel.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/channels/FileChannel.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/channels/FileChannel$MapMode.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/MappedByteBuffer.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/channels/FileLock.xml"/>
+   <constructors>
+      <constructor visibility="protected"/>
+   </constructors>
+   <fields>
+      <NO_ATTRIBUTES type="[Ljava.nio.file.attribute.FileAttribute;" visibility="private" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <lock return-type="java.nio.channels.FileLock" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+            <parameter parameter-type="long"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </lock>
+      <lock return-type="java.nio.channels.FileLock" visibility="public" final="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </lock>
+      <size return-type="long" visibility="public" abstract="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </size>
+      <map return-type="java.nio.MappedByteBuffer" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.nio.channels.FileChannel$MapMode"/>
+            <parameter parameter-type="long"/>
+            <parameter parameter-type="long"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </map>
+      <position return-type="java.nio.channels.FileChannel" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </position>
+      <position return-type="long" visibility="public" abstract="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </position>
+      <position return-type="java.nio.channels.SeekableByteChannel" visibility="public" volatile="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </position>
+      <write return-type="int" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.nio.ByteBuffer"/>
+            <parameter parameter-type="long"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </write>
+      <write return-type="int" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.nio.ByteBuffer"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </write>
+      <write return-type="long" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="[Ljava.nio.ByteBuffer;"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </write>
+      <write return-type="long" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="[Ljava.nio.ByteBuffer;"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </write>
+      <truncate return-type="java.nio.channels.SeekableByteChannel" visibility="public" volatile="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </truncate>
+      <truncate return-type="java.nio.channels.FileChannel" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </truncate>
+      <open return-type="java.nio.channels.FileChannel" visibility="public" transient="true" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.nio.file.Path"/>
+            <parameter parameter-type="[Ljava.nio.file.OpenOption;"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </open>
+      <open return-type="java.nio.channels.FileChannel" visibility="public" transient="true" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.nio.file.Path"/>
+            <parameter parameter-type="java.util.Set"/>
+            <parameter parameter-type="[Ljava.nio.file.attribute.FileAttribute;"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </open>
+      <read return-type="int" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.nio.ByteBuffer"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </read>
+      <read return-type="long" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="[Ljava.nio.ByteBuffer;"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </read>
+      <read return-type="long" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="[Ljava.nio.ByteBuffer;"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </read>
+      <read return-type="int" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.nio.ByteBuffer"/>
+            <parameter parameter-type="long"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </read>
+      <tryLock return-type="java.nio.channels.FileLock" visibility="public" final="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </tryLock>
+      <tryLock return-type="java.nio.channels.FileLock" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+            <parameter parameter-type="long"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </tryLock>
+      <force return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </force>
+      <transferTo return-type="long" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+            <parameter parameter-type="long"/>
+            <parameter parameter-type="java.nio.channels.WritableByteChannel"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </transferTo>
+      <transferFrom return-type="long" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.nio.channels.ReadableByteChannel"/>
+            <parameter parameter-type="long"/>
+            <parameter parameter-type="long"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </transferFrom>
+   </methods>
+</FileChannel>

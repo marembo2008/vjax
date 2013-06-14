@@ -44,7 +44,7 @@ public final class VMarshallerConstants {
   public static final String FINAL_ATTRIBUTE = "final";
   public static final String TRANSIENT_ATTRIBUTE = "transient";
   public static final String VOLATILE_ATTRIBUTE = "volatile";
-  public static final String STATIC_ATTRIBUTE = "static-final";
+  public static final String STATIC_ATTRIBUTE = "static";
   public static final String NATIVE_ATTRIBUTE = "native";
   public static final String STRICT_ATTRIBUTE = "strict";
   public static final String SYNCHRONIZED_ATTRIBUTE = "synchronized";

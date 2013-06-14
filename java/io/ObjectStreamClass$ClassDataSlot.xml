@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<ClassDataSlot class="java.io.ObjectStreamClass$ClassDataSlot" ref-id="1171385804">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectStreamClass.xml"/>
+   <constructors>
+      <constructor>
+         <parameters>
+            <parameter type="java.io.ObjectStreamClass"/>
+            <parameter type="boolean"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <desc type="java.io.ObjectStreamClass" final="true"/>
+      <hasData type="boolean" final="true"/>
+   </fields>
+</ClassDataSlot>

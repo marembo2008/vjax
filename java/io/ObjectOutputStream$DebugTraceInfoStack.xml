@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<DebugTraceInfoStack class="java.io.ObjectOutputStream$DebugTraceInfoStack" ref-id="869161153">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/List.xml"/>
+   <constructors>
+      <constructor/>
+   </constructors>
+   <fields>
+      <stack type="java.util.List" visibility="private" final="true"/>
+   </fields>
+   <methods>
+      <toString return-type="java.lang.String" visibility="public" overrides="true"/>
+      <clear return-type="void"/>
+      <push return-type="void">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </push>
+      <pop return-type="void"/>
+   </methods>
+</DebugTraceInfoStack>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Queue class="java.util.Queue" ref-id="1563390332" interface="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Collection.xml"/>
+   <implements interface="java.util.Collection"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <methods>
+      <add return-type="boolean" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </add>
+      <remove return-type="java.lang.Object" visibility="public" abstract="true"/>
+      <poll return-type="java.lang.Object" visibility="public" abstract="true"/>
+      <element return-type="java.lang.Object" visibility="public" abstract="true"/>
+      <peek return-type="java.lang.Object" visibility="public" abstract="true"/>
+      <offer return-type="boolean" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </offer>
+   </methods>
+</Queue>

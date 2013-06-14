@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Iterator class="java.util.Iterator" ref-id="524996209" interface="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <methods>
+      <remove return-type="void" visibility="public" abstract="true"/>
+      <next return-type="java.lang.Object" visibility="public" abstract="true"/>
+      <hasNext return-type="boolean" visibility="public" abstract="true"/>
+   </methods>
+</Iterator>

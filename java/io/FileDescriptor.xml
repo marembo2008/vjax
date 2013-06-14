@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<FileDescriptor class="java.io.FileDescriptor" ref-id="328348073">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/SyncFailedException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/FileDescriptor.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/concurrent/atomic/AtomicInteger.xml"/>
+   <constructors>
+      <constructor visibility="public"/>
+      <constructor visibility="private">
+         <parameters>
+            <parameter type="int"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <fd type="int" visibility="private"/>
+      <useCount type="java.util.concurrent.atomic.AtomicInteger" visibility="private"/>
+      <in type="java.io.FileDescriptor" visibility="public" final="true" static-final="true"/>
+      <out type="java.io.FileDescriptor" visibility="public" final="true" static-final="true"/>
+      <err type="java.io.FileDescriptor" visibility="public" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <access_000 escapeSequence="6:$" return-type="int" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.io.FileDescriptor"/>
+         </parameters>
+      </access_000>
+      <access_002 escapeSequence="6:$" return-type="int" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.io.FileDescriptor"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </access_002>
+      <initIDs return-type="void" visibility="private" static-final="true" native="true"/>
+      <incrementAndGetUseCount return-type="int"/>
+      <decrementAndGetUseCount return-type="int"/>
+      <valid return-type="boolean" visibility="public"/>
+      <sync return-type="void" visibility="public" native="true">
+         <throws>
+            <throwable throws="java.io.SyncFailedException"/>
+         </throws>
+      </sync>
+   </methods>
+</FileDescriptor>

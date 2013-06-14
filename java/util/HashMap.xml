@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<HashMap class="java.util.HashMap" ref-id="198947115">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/Serializable.xml"/>
+   <implements interface="java.io.Serializable"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Cloneable.xml"/>
+   <implements interface="java.lang.Cloneable"/>
+   <implements interface="java.util.Map"/>
+   <extends class="java.util.AbstractMap"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/AbstractMap.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Iterator.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectOutputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassNotFoundException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectInputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Collection.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Set.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/HashMap$Entry.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Map.xml"/>
+   <constructors>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.util.Map"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public"/>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="int"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="int"/>
+            <parameter type="float"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <DEFAULT_INITIAL_CAPACITY type="int" final="true" static-final="true"/>
+      <MAXIMUM_CAPACITY type="int" final="true" static-final="true"/>
+      <DEFAULT_LOAD_FACTOR type="float" final="true" static-final="true"/>
+      <table type="[Ljava.util.HashMap$Entry;" transient="true"/>
+      <size type="int" transient="true"/>
+      <threshold type="int"/>
+      <loadFactor type="float" final="true"/>
+      <modCount type="int" transient="true"/>
+      <ALTERNATIVE_HASHING_THRESHOLD_DEFAULT type="int" final="true" static-final="true"/>
+      <useAltHashing type="boolean" transient="true"/>
+      <hashSeed type="int" final="true" transient="true"/>
+      <entrySet type="java.util.Set" visibility="private" transient="true"/>
+      <serialVersionUID type="long" visibility="private" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <remove return-type="java.lang.Object" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </remove>
+      <get return-type="java.lang.Object" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </get>
+      <put return-type="java.lang.Object" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </put>
+      <hash return-type="int" final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </hash>
+      <values return-type="java.util.Collection" visibility="public" overrides="true"/>
+      <clone return-type="java.lang.Object" visibility="public"/>
+      <clear return-type="void" visibility="public" overrides="true"/>
+      <isEmpty return-type="boolean" visibility="public" overrides="true"/>
+      <size return-type="int" visibility="public" overrides="true"/>
+      <init return-type="void"/>
+      <readObject return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.io.ObjectInputStream"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+            <throwable throws="java.lang.ClassNotFoundException"/>
+         </throws>
+      </readObject>
+      <writeObject return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.io.ObjectOutputStream"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </writeObject>
+      <entrySet return-type="java.util.Set" visibility="public" overrides="true"/>
+      <putAll return-type="void" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.util.Map"/>
+         </parameters>
+      </putAll>
+      <keySet return-type="java.util.Set" visibility="public" overrides="true"/>
+      <loadFactor return-type="float"/>
+      <containsValue return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </containsValue>
+      <containsKey return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </containsKey>
+      <capacity return-type="int"/>
+      <indexFor return-type="int" static-final="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </indexFor>
+      <getForNullKey return-type="java.lang.Object" visibility="private"/>
+      <getEntry return-type="java.util.HashMap$Entry" final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </getEntry>
+      <putForNullKey return-type="java.lang.Object" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </putForNullKey>
+      <putForCreate return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </putForCreate>
+      <putAllForCreate return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.util.Map"/>
+         </parameters>
+      </putAllForCreate>
+      <resize return-type="void">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </resize>
+      <transfer return-type="void">
+         <parameters>
+            <parameter parameter-type="[Ljava.util.HashMap$Entry;"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </transfer>
+      <removeEntryForKey return-type="java.util.HashMap$Entry" final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </removeEntryForKey>
+      <removeMapping return-type="java.util.HashMap$Entry" final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </removeMapping>
+      <containsNullValue return-type="boolean" visibility="private"/>
+      <addEntry return-type="void">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </addEntry>
+      <createEntry return-type="void">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </createEntry>
+      <newKeyIterator return-type="java.util.Iterator"/>
+      <newValueIterator return-type="java.util.Iterator"/>
+      <newEntryIterator return-type="java.util.Iterator"/>
+      <entrySet0 return-type="java.util.Set" visibility="private"/>
+   </methods>
+</HashMap>

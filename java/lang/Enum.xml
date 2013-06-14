@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Enum class="java.lang.Enum" ref-id="113273324" abstract="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/Serializable.xml"/>
+   <implements interface="java.io.Serializable"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Comparable.xml"/>
+   <implements interface="java.lang.Comparable"/>
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectStreamException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassNotFoundException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectInputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Class.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Enum.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/CloneNotSupportedException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <constructors>
+      <constructor visibility="protected">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="int"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <name type="java.lang.String" visibility="private" final="true"/>
+      <ordinal type="int" visibility="private" final="true"/>
+   </fields>
+   <methods>
+      <name return-type="java.lang.String" visibility="public" final="true"/>
+      <finalize return-type="void" visibility="protected" final="true"/>
+      <equals return-type="boolean" visibility="public" final="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </equals>
+      <toString return-type="java.lang.String" visibility="public" overrides="true"/>
+      <hashCode return-type="int" visibility="public" final="true" overrides="true"/>
+      <clone return-type="java.lang.Object" visibility="protected" final="true">
+         <throws>
+            <throwable throws="java.lang.CloneNotSupportedException"/>
+         </throws>
+      </clone>
+      <compareTo return-type="int" visibility="public" volatile="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </compareTo>
+      <compareTo return-type="int" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Enum"/>
+         </parameters>
+      </compareTo>
+      <valueOf return-type="java.lang.Enum" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Class"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </valueOf>
+      <readObject return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.io.ObjectInputStream"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+            <throwable throws="java.lang.ClassNotFoundException"/>
+         </throws>
+      </readObject>
+      <getDeclaringClass return-type="java.lang.Class" visibility="public" final="true"/>
+      <ordinal return-type="int" visibility="public" final="true"/>
+      <readObjectNoData return-type="void" visibility="private">
+         <throws>
+            <throwable throws="java.io.ObjectStreamException"/>
+         </throws>
+      </readObjectNoData>
+   </methods>
+</Enum>

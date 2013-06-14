@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<InvocationTargetException class="java.lang.reflect.InvocationTargetException" ref-id="978544559">
+   <extends class="java.lang.ReflectiveOperationException"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ReflectiveOperationException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Throwable.xml"/>
+   <constructors>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.Throwable"/>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.Throwable"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="protected"/>
+   </constructors>
+   <fields>
+      <serialVersionUID type="long" visibility="private" final="true" static-final="true"/>
+      <target type="java.lang.Throwable" visibility="private"/>
+   </fields>
+   <methods>
+      <getCause return-type="java.lang.Throwable" visibility="public" overrides="true"/>
+      <getTargetException return-type="java.lang.Throwable" visibility="public"/>
+   </methods>
+</InvocationTargetException>

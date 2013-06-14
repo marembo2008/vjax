@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<LinkedHashMap class="java.util.LinkedHashMap" ref-id="1135436670">
+   <implements interface="java.util.Map"/>
+   <extends class="java.util.HashMap"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/HashMap.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Map$Entry.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Iterator.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/LinkedHashMap.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/LinkedHashMap$Entry.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Map.xml"/>
+   <constructors>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="int"/>
+            <parameter type="float"/>
+            <parameter type="boolean"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.util.Map"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public"/>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="int"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="int"/>
+            <parameter type="float"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <serialVersionUID type="long" visibility="private" final="true" static-final="true"/>
+      <header type="java.util.LinkedHashMap$Entry" visibility="private" transient="true"/>
+      <accessOrder type="boolean" visibility="private" final="true"/>
+   </fields>
+   <methods>
+      <get return-type="java.lang.Object" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </get>
+      <clear return-type="void" visibility="public" overrides="true"/>
+      <access_000 escapeSequence="6:$" return-type="boolean" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.util.LinkedHashMap"/>
+         </parameters>
+      </access_000>
+      <init return-type="void"/>
+      <access_100 escapeSequence="6:$" return-type="java.util.LinkedHashMap$Entry" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.util.LinkedHashMap"/>
+         </parameters>
+      </access_100>
+      <containsValue return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </containsValue>
+      <transfer return-type="void">
+         <parameters>
+            <parameter parameter-type="[Ljava.util.HashMap$Entry;"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </transfer>
+      <addEntry return-type="void">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </addEntry>
+      <createEntry return-type="void">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </createEntry>
+      <newKeyIterator return-type="java.util.Iterator"/>
+      <newValueIterator return-type="java.util.Iterator"/>
+      <newEntryIterator return-type="java.util.Iterator"/>
+      <removeEldestEntry return-type="boolean" visibility="protected">
+         <parameters>
+            <parameter parameter-type="java.util.Map$Entry"/>
+         </parameters>
+      </removeEldestEntry>
+   </methods>
+</LinkedHashMap>

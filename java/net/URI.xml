@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<URI class="java.net.URI" ref-id="329352146">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/Serializable.xml"/>
+   <implements interface="java.io.Serializable"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Comparable.xml"/>
+   <implements interface="java.lang.Comparable"/>
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/StringBuffer.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/net/MalformedURLException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/net/URL.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectOutputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassNotFoundException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectInputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/net/URI.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/net/URISyntaxException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <constructors>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable type="java.net.URISyntaxException"/>
+         </throws>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable type="java.net.URISyntaxException"/>
+         </throws>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable type="java.net.URISyntaxException"/>
+         </throws>
+      </constructor>
+      <constructor visibility="private"/>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable type="java.net.URISyntaxException"/>
+         </throws>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+            <parameter type="int"/>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable type="java.net.URISyntaxException"/>
+         </throws>
+      </constructor>
+   </constructors>
+   <fields>
+      <serialVersionUID type="long" final="true" static-final="true"/>
+      <scheme type="java.lang.String" visibility="private" transient="true"/>
+      <fragment type="java.lang.String" visibility="private" transient="true"/>
+      <authority type="java.lang.String" visibility="private" transient="true"/>
+      <userInfo type="java.lang.String" visibility="private" transient="true"/>
+      <host type="java.lang.String" visibility="private" transient="true"/>
+      <port type="int" visibility="private" transient="true"/>
+      <path type="java.lang.String" visibility="private" transient="true"/>
+      <query type="java.lang.String" visibility="private" transient="true"/>
+      <schemeSpecificPart type="java.lang.String" visibility="private" transient="true" volatile="true"/>
+      <hash type="int" visibility="private" transient="true" volatile="true"/>
+      <decodedUserInfo type="java.lang.String" visibility="private" transient="true" volatile="true"/>
+      <decodedAuthority type="java.lang.String" visibility="private" transient="true" volatile="true"/>
+      <decodedPath type="java.lang.String" visibility="private" transient="true" volatile="true"/>
+      <decodedQuery type="java.lang.String" visibility="private" transient="true" volatile="true"/>
+      <decodedFragment type="java.lang.String" visibility="private" transient="true" volatile="true"/>
+      <decodedSchemeSpecificPart type="java.lang.String" visibility="private" transient="true" volatile="true"/>
+      <string type="java.lang.String" visibility="private" volatile="true"/>
+      <L_DIGIT type="long" visibility="private" final="true" static-final="true"/>
+      <H_DIGIT type="long" visibility="private" final="true" static-final="true"/>
+      <L_UPALPHA type="long" visibility="private" final="true" static-final="true"/>
+      <H_UPALPHA type="long" visibility="private" final="true" static-final="true"/>
+      <L_LOWALPHA type="long" visibility="private" final="true" static-final="true"/>
+      <H_LOWALPHA type="long" visibility="private" final="true" static-final="true"/>
+      <L_ALPHA type="long" visibility="private" final="true" static-final="true"/>
+      <H_ALPHA type="long" visibility="private" final="true" static-final="true"/>
+      <L_ALPHANUM type="long" visibility="private" final="true" static-final="true"/>
+      <H_ALPHANUM type="long" visibility="private" final="true" static-final="true"/>
+      <L_HEX type="long" visibility="private" final="true" static-final="true"/>
+      <H_HEX type="long" visibility="private" final="true" static-final="true"/>
+      <L_MARK type="long" visibility="private" final="true" static-final="true"/>
+      <H_MARK type="long" visibility="private" final="true" static-final="true"/>
+      <L_UNRESERVED type="long" visibility="private" final="true" static-final="true"/>
+      <H_UNRESERVED type="long" visibility="private" final="true" static-final="true"/>
+      <L_RESERVED type="long" visibility="private" final="true" static-final="true"/>
+      <H_RESERVED type="long" visibility="private" final="true" static-final="true"/>
+      <L_ESCAPED type="long" visibility="private" final="true" static-final="true"/>
+      <H_ESCAPED type="long" visibility="private" final="true" static-final="true"/>
+      <L_URIC type="long" visibility="private" final="true" static-final="true"/>
+      <H_URIC type="long" visibility="private" final="true" static-final="true"/>
+      <L_PCHAR type="long" visibility="private" final="true" static-final="true"/>
+      <H_PCHAR type="long" visibility="private" final="true" static-final="true"/>
+      <L_PATH type="long" visibility="private" final="true" static-final="true"/>
+      <H_PATH type="long" visibility="private" final="true" static-final="true"/>
+      <L_DASH type="long" visibility="private" final="true" static-final="true"/>
+      <H_DASH type="long" visibility="private" final="true" static-final="true"/>
+      <L_DOT type="long" visibility="private" final="true" static-final="true"/>
+      <H_DOT type="long" visibility="private" final="true" static-final="true"/>
+      <L_USERINFO type="long" visibility="private" final="true" static-final="true"/>
+      <H_USERINFO type="long" visibility="private" final="true" static-final="true"/>
+      <L_REG_NAME type="long" visibility="private" final="true" static-final="true"/>
+      <H_REG_NAME type="long" visibility="private" final="true" static-final="true"/>
+      <L_SERVER type="long" visibility="private" final="true" static-final="true"/>
+      <H_SERVER type="long" visibility="private" final="true" static-final="true"/>
+      <L_SERVER_PERCENT type="long" visibility="private" final="true" static-final="true"/>
+      <H_SERVER_PERCENT type="long" visibility="private" final="true" static-final="true"/>
+      <L_LEFT_BRACKET type="long" visibility="private" final="true" static-final="true"/>
+      <H_LEFT_BRACKET type="long" visibility="private" final="true" static-final="true"/>
+      <L_SCHEME type="long" visibility="private" final="true" static-final="true"/>
+      <H_SCHEME type="long" visibility="private" final="true" static-final="true"/>
+      <L_URIC_NO_SLASH type="long" visibility="private" final="true" static-final="true"/>
+      <H_URIC_NO_SLASH type="long" visibility="private" final="true" static-final="true"/>
+      <hexDigits type="[C" visibility="private" final="true" static-final="true"/>
+      <_assertionsDisabled escapeSequence="0:$" type="boolean" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <hash return-type="int" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </hash>
+      <equals return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </equals>
+      <toString return-type="java.lang.String" visibility="public" overrides="true"/>
+      <toString return-type="java.lang.String" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </toString>
+      <hashCode return-type="int" visibility="public" overrides="true"/>
+      <compareTo return-type="int" visibility="public" volatile="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </compareTo>
+      <compareTo return-type="int" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.net.URI"/>
+         </parameters>
+      </compareTo>
+      <split return-type="void" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="[C"/>
+            <parameter parameter-type="[I"/>
+         </parameters>
+      </split>
+      <decode return-type="int" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="char"/>
+         </parameters>
+      </decode>
+      <decode return-type="byte" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="char"/>
+            <parameter parameter-type="char"/>
+         </parameters>
+      </decode>
+      <decode return-type="java.lang.String" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </decode>
+      <encode return-type="java.lang.String" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </encode>
+      <compare return-type="int" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </compare>
+      <resolve return-type="java.net.URI" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.net.URI"/>
+         </parameters>
+      </resolve>
+      <resolve return-type="java.net.URI" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.net.URI"/>
+            <parameter parameter-type="java.net.URI"/>
+         </parameters>
+      </resolve>
+      <resolve return-type="java.net.URI" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </resolve>
+      <match return-type="boolean" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="char"/>
+            <parameter parameter-type="long"/>
+            <parameter parameter-type="long"/>
+         </parameters>
+      </match>
+      <isAbsolute return-type="boolean" visibility="public"/>
+      <access_200 escapeSequence="6:$" return-type="long" static-final="true"/>
+      <readObject return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.io.ObjectInputStream"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.ClassNotFoundException"/>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </readObject>
+      <writeObject return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.io.ObjectOutputStream"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </writeObject>
+      <access_100 escapeSequence="6:$" return-type="long" static-final="true"/>
+      <access_300 escapeSequence="6:$" return-type="boolean" static-final="true">
+         <parameters>
+            <parameter parameter-type="char"/>
+            <parameter parameter-type="long"/>
+            <parameter parameter-type="long"/>
+         </parameters>
+      </access_300>
+      <access_400 escapeSequence="6:$" return-type="long" static-final="true"/>
+      <join return-type="int" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="[C"/>
+            <parameter parameter-type="[I"/>
+         </parameters>
+      </join>
+      <access_500 escapeSequence="6:$" return-type="long" static-final="true"/>
+      <access_600 escapeSequence="6:$" return-type="long" static-final="true"/>
+      <access_002 escapeSequence="6:$" return-type="java.lang.String" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.net.URI"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </access_002>
+      <toLower return-type="int" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="char"/>
+         </parameters>
+      </toLower>
+      <getPath return-type="java.lang.String" visibility="public"/>
+      <toURL return-type="java.net.URL" visibility="public">
+         <throws>
+            <throwable throws="java.net.MalformedURLException"/>
+         </throws>
+      </toURL>
+      <normalize return-type="java.lang.String" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </normalize>
+      <normalize return-type="java.net.URI" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.net.URI"/>
+         </parameters>
+      </normalize>
+      <normalize return-type="java.net.URI" visibility="public"/>
+      <isOpaque return-type="boolean" visibility="public"/>
+      <getScheme return-type="java.lang.String" visibility="public"/>
+      <getAuthority return-type="java.lang.String" visibility="public"/>
+      <getFragment return-type="java.lang.String" visibility="public"/>
+      <getQuery return-type="java.lang.String" visibility="public"/>
+      <getHost return-type="java.lang.String" visibility="public"/>
+      <create return-type="java.net.URI" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </create>
+      <appendSchemeSpecificPart return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.StringBuffer"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </appendSchemeSpecificPart>
+      <appendAuthority return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.StringBuffer"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </appendAuthority>
+      <appendFragment return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.StringBuffer"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </appendFragment>
+      <quote return-type="java.lang.String" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="long"/>
+            <parameter parameter-type="long"/>
+         </parameters>
+      </quote>
+      <lowMask return-type="long" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="char"/>
+            <parameter parameter-type="char"/>
+         </parameters>
+      </lowMask>
+      <lowMask return-type="long" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </lowMask>
+      <highMask return-type="long" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="char"/>
+            <parameter parameter-type="char"/>
+         </parameters>
+      </highMask>
+      <highMask return-type="long" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </highMask>
+      <appendEncoded return-type="void" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.StringBuffer"/>
+            <parameter parameter-type="char"/>
+         </parameters>
+      </appendEncoded>
+      <appendEscape return-type="void" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.StringBuffer"/>
+            <parameter parameter-type="byte"/>
+         </parameters>
+      </appendEscape>
+      <checkPath return-type="void" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.net.URISyntaxException"/>
+         </throws>
+      </checkPath>
+      <getUserInfo return-type="java.lang.String" visibility="public"/>
+      <getPort return-type="int" visibility="public"/>
+      <access_800 escapeSequence="6:$" return-type="long" static-final="true"/>
+      <access_702 escapeSequence="6:$" return-type="java.lang.String" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.net.URI"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </access_702>
+      <access_900 escapeSequence="6:$" return-type="long" static-final="true"/>
+      <access_1200 escapeSequence="6:$" return-type="long" static-final="true"/>
+      <access_1300 escapeSequence="6:$" return-type="long" static-final="true"/>
+      <getRawSchemeSpecificPart return-type="java.lang.String" visibility="public"/>
+      <getSchemeSpecificPart return-type="java.lang.String" visibility="public"/>
+      <getRawAuthority return-type="java.lang.String" visibility="public"/>
+      <getRawUserInfo return-type="java.lang.String" visibility="public"/>
+      <getRawFragment return-type="java.lang.String" visibility="public"/>
+      <toASCIIString return-type="java.lang.String" visibility="public"/>
+      <equalIgnoringCase return-type="boolean" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </equalIgnoringCase>
+      <hashIgnoringCase return-type="int" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </hashIgnoringCase>
+      <compareIgnoringCase return-type="int" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </compareIgnoringCase>
+      <defineSchemeSpecificPart return-type="void" visibility="private"/>
+      <defineString return-type="void" visibility="private"/>
+      <resolvePath return-type="java.lang.String" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </resolvePath>
+      <needsNormalization return-type="int" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </needsNormalization>
+      <removeDots return-type="void" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="[C"/>
+            <parameter parameter-type="[I"/>
+         </parameters>
+      </removeDots>
+      <maybeAddLeadingDot return-type="void" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="[C"/>
+            <parameter parameter-type="[I"/>
+         </parameters>
+      </maybeAddLeadingDot>
+      <access_1002 escapeSequence="6:$" return-type="java.lang.String" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.net.URI"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </access_1002>
+      <access_1102 escapeSequence="6:$" return-type="java.lang.String" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.net.URI"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </access_1102>
+      <access_1402 escapeSequence="6:$" return-type="java.lang.String" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.net.URI"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </access_1402>
+      <access_1502 escapeSequence="6:$" return-type="java.lang.String" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.net.URI"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </access_1502>
+      <access_1600 escapeSequence="6:$" return-type="long" static-final="true"/>
+      <access_1700 escapeSequence="6:$" return-type="long" static-final="true"/>
+      <access_1800 escapeSequence="6:$" return-type="long" static-final="true"/>
+      <access_1900 escapeSequence="6:$" return-type="long" static-final="true"/>
+      <access_2000 escapeSequence="6:$" return-type="long" static-final="true"/>
+      <access_2100 escapeSequence="6:$" return-type="long" static-final="true"/>
+      <access_2202 escapeSequence="6:$" return-type="java.lang.String" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.net.URI"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </access_2202>
+      <access_2302 escapeSequence="6:$" return-type="java.lang.String" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.net.URI"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </access_2302>
+      <access_2402 escapeSequence="6:$" return-type="java.lang.String" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.net.URI"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </access_2402>
+      <access_2502 escapeSequence="6:$" return-type="int" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.net.URI"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </access_2502>
+      <access_2600 escapeSequence="6:$" return-type="long" static-final="true"/>
+      <access_2700 escapeSequence="6:$" return-type="long" static-final="true"/>
+      <access_2800 escapeSequence="6:$" return-type="long" static-final="true"/>
+      <access_2900 escapeSequence="6:$" return-type="long" static-final="true"/>
+      <access_3000 escapeSequence="6:$" return-type="long" static-final="true"/>
+      <access_3100 escapeSequence="6:$" return-type="long" static-final="true"/>
+      <access_3200 escapeSequence="6:$" return-type="long" static-final="true"/>
+      <access_3300 escapeSequence="6:$" return-type="long" static-final="true"/>
+      <access_3400 escapeSequence="6:$" return-type="long" static-final="true"/>
+      <parseServerAuthority return-type="java.net.URI" visibility="public">
+         <throws>
+            <throwable throws="java.net.URISyntaxException"/>
+         </throws>
+      </parseServerAuthority>
+      <equal return-type="boolean" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </equal>
+      <getRawQuery return-type="java.lang.String" visibility="public"/>
+      <getRawPath return-type="java.lang.String" visibility="public"/>
+      <relativize return-type="java.net.URI" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.net.URI"/>
+            <parameter parameter-type="java.net.URI"/>
+         </parameters>
+      </relativize>
+      <relativize return-type="java.net.URI" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.net.URI"/>
+         </parameters>
+      </relativize>
+   </methods>
+</URI>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<GroupHead class="java.util.regex.Pattern$GroupHead" ref-id="1326354973">
+   <extends class="java.util.regex.Pattern$Node"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/regex/Pattern$Node.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/CharSequence.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/regex/Matcher.xml"/>
+   <constructors>
+      <constructor>
+         <parameters>
+            <parameter type="int"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <localIndex type="int"/>
+   </fields>
+   <methods>
+      <match return-type="boolean">
+         <parameters>
+            <parameter parameter-type="java.util.regex.Matcher"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.CharSequence"/>
+         </parameters>
+      </match>
+      <matchRef return-type="boolean">
+         <parameters>
+            <parameter parameter-type="java.util.regex.Matcher"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.CharSequence"/>
+         </parameters>
+      </matchRef>
+   </methods>
+</GroupHead>

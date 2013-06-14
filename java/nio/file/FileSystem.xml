@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<FileSystem class="java.nio.file.FileSystem" ref-id="2002427871" abstract="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/Closeable.xml"/>
+   <implements interface="java.io.Closeable"/>
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/file/WatchService.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/file/attribute/UserPrincipalLookupService.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/file/PathMatcher.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Set.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Iterable.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/file/Path.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/file/spi/FileSystemProvider.xml"/>
+   <constructors>
+      <constructor visibility="protected"/>
+   </constructors>
+   <methods>
+      <provider return-type="java.nio.file.spi.FileSystemProvider" visibility="public" abstract="true"/>
+      <close return-type="void" visibility="public" abstract="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </close>
+      <isReadOnly return-type="boolean" visibility="public" abstract="true"/>
+      <getPath return-type="java.nio.file.Path" visibility="public" transient="true" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="[Ljava.lang.String;"/>
+         </parameters>
+      </getPath>
+      <isOpen return-type="boolean" visibility="public" abstract="true"/>
+      <getSeparator return-type="java.lang.String" visibility="public" abstract="true"/>
+      <getRootDirectories return-type="java.lang.Iterable" visibility="public" abstract="true"/>
+      <getFileStores return-type="java.lang.Iterable" visibility="public" abstract="true"/>
+      <supportedFileAttributeViews return-type="java.util.Set" visibility="public" abstract="true"/>
+      <getPathMatcher return-type="java.nio.file.PathMatcher" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getPathMatcher>
+      <getUserPrincipalLookupService return-type="java.nio.file.attribute.UserPrincipalLookupService" visibility="public" abstract="true"/>
+      <newWatchService return-type="java.nio.file.WatchService" visibility="public" abstract="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </newWatchService>
+   </methods>
+</FileSystem>

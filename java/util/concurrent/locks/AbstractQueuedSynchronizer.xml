@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<AbstractQueuedSynchronizer class="java.util.concurrent.locks.AbstractQueuedSynchronizer" ref-id="392793278" abstract="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/Serializable.xml"/>
+   <implements interface="java.io.Serializable"/>
+   <extends class="java.util.concurrent.locks.AbstractOwnableSynchronizer"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/concurrent/locks/AbstractOwnableSynchronizer.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Thread.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/InterruptedException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/concurrent/locks/AbstractQueuedSynchronizer$ConditionObject.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Collection.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/concurrent/locks/AbstractQueuedSynchronizer$Node.xml"/>
+   <constructors>
+      <constructor visibility="protected"/>
+   </constructors>
+   <fields>
+      <serialVersionUID type="long" visibility="private" final="true" static-final="true"/>
+      <head type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node" visibility="private" transient="true" volatile="true"/>
+      <tail type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node" visibility="private" transient="true" volatile="true"/>
+      <state type="int" visibility="private" volatile="true"/>
+      <spinForTimeoutThreshold type="long" final="true" static-final="true"/>
+      <unsafe type="sun.misc.Unsafe" visibility="private" final="true" static-final="true"/>
+      <stateOffset type="long" visibility="private" final="true" static-final="true"/>
+      <headOffset type="long" visibility="private" final="true" static-final="true"/>
+      <tailOffset type="long" visibility="private" final="true" static-final="true"/>
+      <waitStatusOffset type="long" visibility="private" final="true" static-final="true"/>
+      <nextOffset type="long" visibility="private" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <toString return-type="java.lang.String" visibility="public" overrides="true"/>
+      <access_000 escapeSequence="6:$" return-type="void" static-final="true"/>
+      <getState return-type="int" visibility="protected" final="true"/>
+      <hasQueuedThreads return-type="boolean" visibility="public" final="true"/>
+      <getQueueLength return-type="int" visibility="public" final="true"/>
+      <getQueuedThreads return-type="java.util.Collection" visibility="public" final="true"/>
+      <hasWaiters return-type="boolean" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject"/>
+         </parameters>
+      </hasWaiters>
+      <getWaitQueueLength return-type="int" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject"/>
+         </parameters>
+      </getWaitQueueLength>
+      <getWaitingThreads return-type="java.util.Collection" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject"/>
+         </parameters>
+      </getWaitingThreads>
+      <acquireInterruptibly return-type="void" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.InterruptedException"/>
+         </throws>
+      </acquireInterruptibly>
+      <tryAcquireNanos return-type="boolean" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="long"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.InterruptedException"/>
+         </throws>
+      </tryAcquireNanos>
+      <release return-type="boolean" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </release>
+      <isHeldExclusively return-type="boolean" visibility="protected"/>
+      <isQueued return-type="boolean" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Thread"/>
+         </parameters>
+      </isQueued>
+      <acquire return-type="void" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </acquire>
+      <tryAcquire return-type="boolean" visibility="protected">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </tryAcquire>
+      <apparentlyFirstQueuedIsExclusive return-type="boolean" final="true"/>
+      <compareAndSetState return-type="boolean" visibility="protected" final="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </compareAndSetState>
+      <tryRelease return-type="boolean" visibility="protected">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </tryRelease>
+      <setState return-type="void" visibility="protected" final="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </setState>
+      <enq return-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node"/>
+         </parameters>
+      </enq>
+      <addWaiter return-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node"/>
+         </parameters>
+      </addWaiter>
+      <setHead return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node"/>
+         </parameters>
+      </setHead>
+      <unparkSuccessor return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node"/>
+         </parameters>
+      </unparkSuccessor>
+      <doReleaseShared return-type="void" visibility="private"/>
+      <setHeadAndPropagate return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </setHeadAndPropagate>
+      <cancelAcquire return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node"/>
+         </parameters>
+      </cancelAcquire>
+      <shouldParkAfterFailedAcquire return-type="boolean" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node"/>
+            <parameter parameter-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node"/>
+         </parameters>
+      </shouldParkAfterFailedAcquire>
+      <selfInterrupt return-type="void" visibility="private" static-final="true"/>
+      <parkAndCheckInterrupt return-type="boolean" visibility="private" final="true"/>
+      <acquireQueued return-type="boolean" final="true">
+         <parameters>
+            <parameter parameter-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </acquireQueued>
+      <doAcquireInterruptibly return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.InterruptedException"/>
+         </throws>
+      </doAcquireInterruptibly>
+      <doAcquireNanos return-type="boolean" visibility="private">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="long"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.InterruptedException"/>
+         </throws>
+      </doAcquireNanos>
+      <doAcquireShared return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </doAcquireShared>
+      <doAcquireSharedInterruptibly return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.InterruptedException"/>
+         </throws>
+      </doAcquireSharedInterruptibly>
+      <doAcquireSharedNanos return-type="boolean" visibility="private">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="long"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.InterruptedException"/>
+         </throws>
+      </doAcquireSharedNanos>
+      <tryAcquireShared return-type="int" visibility="protected">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </tryAcquireShared>
+      <tryReleaseShared return-type="boolean" visibility="protected">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </tryReleaseShared>
+      <acquireShared return-type="void" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </acquireShared>
+      <acquireSharedInterruptibly return-type="void" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.InterruptedException"/>
+         </throws>
+      </acquireSharedInterruptibly>
+      <tryAcquireSharedNanos return-type="boolean" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="long"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.InterruptedException"/>
+         </throws>
+      </tryAcquireSharedNanos>
+      <releaseShared return-type="boolean" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </releaseShared>
+      <hasContended return-type="boolean" visibility="public" final="true"/>
+      <getFirstQueuedThread return-type="java.lang.Thread" visibility="public" final="true"/>
+      <fullGetFirstQueuedThread return-type="java.lang.Thread" visibility="private"/>
+      <hasQueuedPredecessors return-type="boolean" visibility="public" final="true"/>
+      <getExclusiveQueuedThreads return-type="java.util.Collection" visibility="public" final="true"/>
+      <getSharedQueuedThreads return-type="java.util.Collection" visibility="public" final="true"/>
+      <isOnSyncQueue return-type="boolean" final="true">
+         <parameters>
+            <parameter parameter-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node"/>
+         </parameters>
+      </isOnSyncQueue>
+      <findNodeFromTail return-type="boolean" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node"/>
+         </parameters>
+      </findNodeFromTail>
+      <transferForSignal return-type="boolean" final="true">
+         <parameters>
+            <parameter parameter-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node"/>
+         </parameters>
+      </transferForSignal>
+      <transferAfterCancelledWait return-type="boolean" final="true">
+         <parameters>
+            <parameter parameter-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node"/>
+         </parameters>
+      </transferAfterCancelledWait>
+      <fullyRelease return-type="int" final="true">
+         <parameters>
+            <parameter parameter-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node"/>
+         </parameters>
+      </fullyRelease>
+      <owns return-type="boolean" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject"/>
+         </parameters>
+      </owns>
+      <compareAndSetHead return-type="boolean" visibility="private" final="true">
+         <parameters>
+            <parameter parameter-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node"/>
+         </parameters>
+      </compareAndSetHead>
+      <compareAndSetTail return-type="boolean" visibility="private" final="true">
+         <parameters>
+            <parameter parameter-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node"/>
+            <parameter parameter-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node"/>
+         </parameters>
+      </compareAndSetTail>
+      <compareAndSetWaitStatus return-type="boolean" visibility="private" final="true" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </compareAndSetWaitStatus>
+      <compareAndSetNext return-type="boolean" visibility="private" final="true" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node"/>
+            <parameter parameter-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node"/>
+            <parameter parameter-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node"/>
+         </parameters>
+      </compareAndSetNext>
+   </methods>
+</AbstractQueuedSynchronizer>

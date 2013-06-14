@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Locale class="java.util.Locale" ref-id="1974158726">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/Serializable.xml"/>
+   <implements interface="java.io.Serializable"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Cloneable.xml"/>
+   <implements interface="java.lang.Cloneable"/>
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/text/MessageFormat.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/MissingResourceException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Set.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectStreamException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectOutputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassNotFoundException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectInputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Locale$Category.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Locale.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Locale$Cache.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <constructors>
+      <constructor>
+         <parameters>
+            <parameter type="sun.util.locale.BaseLocale"/>
+            <parameter type="sun.util.locale.LocaleExtensions"/>
+            <parameter type="java.util.Locale$1"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="private">
+         <parameters>
+            <parameter type="sun.util.locale.BaseLocale"/>
+            <parameter type="sun.util.locale.LocaleExtensions"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <LOCALECACHE type="java.util.Locale$Cache" visibility="private" final="true" static-final="true"/>
+      <ENGLISH type="java.util.Locale" visibility="public" final="true" static-final="true"/>
+      <FRENCH type="java.util.Locale" visibility="public" final="true" static-final="true"/>
+      <GERMAN type="java.util.Locale" visibility="public" final="true" static-final="true"/>
+      <ITALIAN type="java.util.Locale" visibility="public" final="true" static-final="true"/>
+      <JAPANESE type="java.util.Locale" visibility="public" final="true" static-final="true"/>
+      <KOREAN type="java.util.Locale" visibility="public" final="true" static-final="true"/>
+      <CHINESE type="java.util.Locale" visibility="public" final="true" static-final="true"/>
+      <SIMPLIFIED_CHINESE type="java.util.Locale" visibility="public" final="true" static-final="true"/>
+      <TRADITIONAL_CHINESE type="java.util.Locale" visibility="public" final="true" static-final="true"/>
+      <FRANCE type="java.util.Locale" visibility="public" final="true" static-final="true"/>
+      <GERMANY type="java.util.Locale" visibility="public" final="true" static-final="true"/>
+      <ITALY type="java.util.Locale" visibility="public" final="true" static-final="true"/>
+      <JAPAN type="java.util.Locale" visibility="public" final="true" static-final="true"/>
+      <KOREA type="java.util.Locale" visibility="public" final="true" static-final="true"/>
+      <CHINA type="java.util.Locale" visibility="public" final="true" static-final="true"/>
+      <PRC type="java.util.Locale" visibility="public" final="true" static-final="true"/>
+      <TAIWAN type="java.util.Locale" visibility="public" final="true" static-final="true"/>
+      <UK type="java.util.Locale" visibility="public" final="true" static-final="true"/>
+      <US type="java.util.Locale" visibility="public" final="true" static-final="true"/>
+      <CANADA type="java.util.Locale" visibility="public" final="true" static-final="true"/>
+      <CANADA_FRENCH type="java.util.Locale" visibility="public" final="true" static-final="true"/>
+      <ROOT type="java.util.Locale" visibility="public" final="true" static-final="true"/>
+      <PRIVATE_USE_EXTENSION type="char" visibility="public" final="true" static-final="true"/>
+      <UNICODE_LOCALE_EXTENSION type="char" visibility="public" final="true" static-final="true"/>
+      <serialVersionUID type="long" final="true" static-final="true"/>
+      <DISPLAY_LANGUAGE type="int" visibility="private" final="true" static-final="true"/>
+      <DISPLAY_COUNTRY type="int" visibility="private" final="true" static-final="true"/>
+      <DISPLAY_VARIANT type="int" visibility="private" final="true" static-final="true"/>
+      <DISPLAY_SCRIPT type="int" visibility="private" final="true" static-final="true"/>
+      <baseLocale type="sun.util.locale.BaseLocale" visibility="private" transient="true"/>
+      <localeExtensions type="sun.util.locale.LocaleExtensions" visibility="private" transient="true"/>
+      <hashCodeValue type="int" visibility="private" transient="true" volatile="true"/>
+      <defaultLocale type="java.util.Locale" visibility="private" static-final="true"/>
+      <defaultDisplayLocale type="java.util.Locale" visibility="private" static-final="true"/>
+      <defaultFormatLocale type="java.util.Locale" visibility="private" static-final="true"/>
+      <serialPersistentFields type="[Ljava.io.ObjectStreamField;" visibility="private" final="true" static-final="true"/>
+      <isoLanguages type="[Ljava.lang.String;" visibility="private" volatile="true" static-final="true"/>
+      <isoCountries type="[Ljava.lang.String;" visibility="private" volatile="true" static-final="true"/>
+      <_assertionsDisabled escapeSequence="0:$" type="boolean" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <equals return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </equals>
+      <toString return-type="java.lang.String" visibility="public" final="true" overrides="true"/>
+      <hashCode return-type="int" visibility="public" overrides="true"/>
+      <clone return-type="java.lang.Object" visibility="public"/>
+      <getLanguage return-type="java.lang.String" visibility="public"/>
+      <getDefault return-type="java.util.Locale" visibility="public" static-final="true"/>
+      <getDefault return-type="java.util.Locale" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.util.Locale$Category"/>
+         </parameters>
+      </getDefault>
+      <readObject return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.io.ObjectInputStream"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+            <throwable throws="java.lang.ClassNotFoundException"/>
+         </throws>
+      </readObject>
+      <writeObject return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.io.ObjectOutputStream"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </writeObject>
+      <getInstance return-type="java.util.Locale" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="sun.util.locale.LocaleExtensions"/>
+         </parameters>
+      </getInstance>
+      <getInstance return-type="java.util.Locale" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getInstance>
+      <getInstance return-type="java.util.Locale" static-final="true">
+         <parameters>
+            <parameter parameter-type="sun.util.locale.BaseLocale"/>
+            <parameter parameter-type="sun.util.locale.LocaleExtensions"/>
+         </parameters>
+      </getInstance>
+      <access_600 escapeSequence="6:$" return-type="sun.util.locale.BaseLocale" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.util.Locale"/>
+         </parameters>
+      </access_600>
+      <readResolve return-type="java.lang.Object" visibility="private">
+         <throws>
+            <throwable throws="java.io.ObjectStreamException"/>
+         </throws>
+      </readResolve>
+      <createConstant return-type="java.util.Locale" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </createConstant>
+      <initDefault return-type="void" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.util.Locale$Category"/>
+         </parameters>
+      </initDefault>
+      <initDefault return-type="void" visibility="private" static-final="true"/>
+      <setDefault return-type="void" visibility="public" static-final="true" synchronized="true">
+         <parameters>
+            <parameter parameter-type="java.util.Locale"/>
+         </parameters>
+      </setDefault>
+      <setDefault return-type="void" visibility="public" static-final="true" synchronized="true">
+         <parameters>
+            <parameter parameter-type="java.util.Locale$Category"/>
+            <parameter parameter-type="java.util.Locale"/>
+         </parameters>
+      </setDefault>
+      <getAvailableLocales return-type="[Ljava.util.Locale;" visibility="public" static-final="true"/>
+      <getISOCountries return-type="[Ljava.lang.String;" visibility="public" static-final="true"/>
+      <getISOLanguages return-type="[Ljava.lang.String;" visibility="public" static-final="true"/>
+      <getISO2Table return-type="[Ljava.lang.String;" visibility="private" final="true" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getISO2Table>
+      <getScript return-type="java.lang.String" visibility="public"/>
+      <getCountry return-type="java.lang.String" visibility="public"/>
+      <getVariant return-type="java.lang.String" visibility="public"/>
+      <getExtension return-type="java.lang.String" visibility="public">
+         <parameters>
+            <parameter parameter-type="char"/>
+         </parameters>
+      </getExtension>
+      <getExtensionKeys return-type="java.util.Set" visibility="public"/>
+      <getUnicodeLocaleAttributes return-type="java.util.Set" visibility="public"/>
+      <getUnicodeLocaleType return-type="java.lang.String" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getUnicodeLocaleType>
+      <getUnicodeLocaleKeys return-type="java.util.Set" visibility="public"/>
+      <getBaseLocale return-type="sun.util.locale.BaseLocale"/>
+      <getLocaleExtensions return-type="sun.util.locale.LocaleExtensions"/>
+      <toLanguageTag return-type="java.lang.String" visibility="public"/>
+      <forLanguageTag return-type="java.util.Locale" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </forLanguageTag>
+      <getISO3Language return-type="java.lang.String" visibility="public">
+         <throws>
+            <throwable throws="java.util.MissingResourceException"/>
+         </throws>
+      </getISO3Language>
+      <getISO3Country return-type="java.lang.String" visibility="public">
+         <throws>
+            <throwable throws="java.util.MissingResourceException"/>
+         </throws>
+      </getISO3Country>
+      <getISO3Code return-type="java.lang.String" visibility="private" final="true" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getISO3Code>
+      <getDisplayLanguage return-type="java.lang.String" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.util.Locale"/>
+         </parameters>
+      </getDisplayLanguage>
+      <getDisplayLanguage return-type="java.lang.String" visibility="public" final="true"/>
+      <getDisplayScript return-type="java.lang.String" visibility="public"/>
+      <getDisplayScript return-type="java.lang.String" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.util.Locale"/>
+         </parameters>
+      </getDisplayScript>
+      <getDisplayCountry return-type="java.lang.String" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.util.Locale"/>
+         </parameters>
+      </getDisplayCountry>
+      <getDisplayCountry return-type="java.lang.String" visibility="public" final="true"/>
+      <getDisplayString return-type="java.lang.String" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.util.Locale"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </getDisplayString>
+      <getDisplayVariant return-type="java.lang.String" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.util.Locale"/>
+         </parameters>
+      </getDisplayVariant>
+      <getDisplayVariant return-type="java.lang.String" visibility="public" final="true"/>
+      <getDisplayName return-type="java.lang.String" visibility="public" final="true"/>
+      <getDisplayName return-type="java.lang.String" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.util.Locale"/>
+         </parameters>
+      </getDisplayName>
+      <getDisplayVariantArray return-type="[Ljava.lang.String;" visibility="private">
+         <parameters>
+            <parameter parameter-type="sun.util.resources.OpenListResourceBundle"/>
+            <parameter parameter-type="java.util.Locale"/>
+         </parameters>
+      </getDisplayVariantArray>
+      <formatList return-type="java.lang.String" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="[Ljava.lang.String;"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </formatList>
+      <composeList return-type="[Ljava.lang.String;" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.text.MessageFormat"/>
+            <parameter parameter-type="[Ljava.lang.String;"/>
+         </parameters>
+      </composeList>
+      <convertOldISOCodes return-type="java.lang.String" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </convertOldISOCodes>
+      <getCompatibilityExtensions return-type="sun.util.locale.LocaleExtensions" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getCompatibilityExtensions>
+      <access_700 escapeSequence="6:$" return-type="sun.util.locale.LocaleExtensions" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.util.Locale"/>
+         </parameters>
+      </access_700>
+      <access_800 escapeSequence="6:$" return-type="sun.util.locale.LocaleExtensions" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </access_800>
+   </methods>
+</Locale>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<SAXParseException class="org.xml.sax.SAXParseException" ref-id="1472555088">
+   <extends class="org.xml.sax.SAXException"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="org/xml/sax/SAXException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="org/xml/sax/Locator.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Exception.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <constructors>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+            <parameter type="int"/>
+            <parameter type="int"/>
+            <parameter type="java.lang.Exception"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+            <parameter type="int"/>
+            <parameter type="int"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="org.xml.sax.Locator"/>
+            <parameter type="java.lang.Exception"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="org.xml.sax.Locator"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <publicId type="java.lang.String" visibility="private"/>
+      <systemId type="java.lang.String" visibility="private"/>
+      <lineNumber type="int" visibility="private"/>
+      <columnNumber type="int" visibility="private"/>
+      <serialVersionUID type="long" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <toString return-type="java.lang.String" visibility="public" overrides="true"/>
+      <init return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </init>
+      <getLineNumber return-type="int" visibility="public"/>
+      <getPublicId return-type="java.lang.String" visibility="public"/>
+      <getColumnNumber return-type="int" visibility="public"/>
+      <getSystemId return-type="java.lang.String" visibility="public"/>
+   </methods>
+</SAXParseException>

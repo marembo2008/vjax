@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Segment class="java.util.concurrent.ConcurrentHashMap$Segment" ref-id="177083307">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/Serializable.xml"/>
+   <implements interface="java.io.Serializable"/>
+   <extends class="java.util.concurrent.locks.ReentrantLock"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/concurrent/locks/ReentrantLock.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/concurrent/ConcurrentHashMap$HashEntry.xml"/>
+   <constructors>
+      <constructor>
+         <parameters>
+            <parameter type="float"/>
+            <parameter type="int"/>
+            <parameter type="[Ljava.util.concurrent.ConcurrentHashMap$HashEntry;"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <serialVersionUID type="long" visibility="private" final="true" static-final="true"/>
+      <MAX_SCAN_RETRIES type="int" final="true" static-final="true"/>
+      <table type="[Ljava.util.concurrent.ConcurrentHashMap$HashEntry;" transient="true" volatile="true"/>
+      <count type="int" transient="true"/>
+      <modCount type="int" transient="true"/>
+      <threshold type="int" transient="true"/>
+      <loadFactor type="float" final="true"/>
+   </fields>
+   <methods>
+      <remove return-type="java.lang.Object" final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </remove>
+      <put return-type="java.lang.Object" final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </put>
+      <clear return-type="void" final="true"/>
+      <replace return-type="boolean" final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </replace>
+      <replace return-type="java.lang.Object" final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </replace>
+      <rehash return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.util.concurrent.ConcurrentHashMap$HashEntry"/>
+         </parameters>
+      </rehash>
+      <scanAndLockForPut return-type="java.util.concurrent.ConcurrentHashMap$HashEntry" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </scanAndLockForPut>
+      <scanAndLock return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </scanAndLock>
+   </methods>
+</Segment>

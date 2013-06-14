@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<DoubleBuffer class="java.nio.DoubleBuffer" ref-id="2114479448" abstract="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Comparable.xml"/>
+   <implements interface="java.lang.Comparable"/>
+   <extends class="java.nio.Buffer"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/Buffer.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/ByteOrder.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/DoubleBuffer.xml"/>
+   <constructors>
+      <constructor>
+         <parameters>
+            <parameter type="int"/>
+            <parameter type="int"/>
+            <parameter type="int"/>
+            <parameter type="int"/>
+            <parameter type="[D"/>
+            <parameter type="int"/>
+         </parameters>
+      </constructor>
+      <constructor>
+         <parameters>
+            <parameter type="int"/>
+            <parameter type="int"/>
+            <parameter type="int"/>
+            <parameter type="int"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <hb type="[D" final="true"/>
+      <offset type="int" final="true"/>
+      <isReadOnly type="boolean"/>
+   </fields>
+   <methods>
+      <get return-type="java.nio.DoubleBuffer" visibility="public">
+         <parameters>
+            <parameter parameter-type="[D"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </get>
+      <get return-type="java.nio.DoubleBuffer" visibility="public">
+         <parameters>
+            <parameter parameter-type="[D"/>
+         </parameters>
+      </get>
+      <get return-type="double" visibility="public" abstract="true"/>
+      <get return-type="double" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </get>
+      <put return-type="java.nio.DoubleBuffer" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="[D"/>
+         </parameters>
+      </put>
+      <put return-type="java.nio.DoubleBuffer" visibility="public">
+         <parameters>
+            <parameter parameter-type="[D"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </put>
+      <put return-type="java.nio.DoubleBuffer" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="double"/>
+         </parameters>
+      </put>
+      <put return-type="java.nio.DoubleBuffer" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.nio.DoubleBuffer"/>
+         </parameters>
+      </put>
+      <put return-type="java.nio.DoubleBuffer" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="double"/>
+         </parameters>
+      </put>
+      <equals return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </equals>
+      <equals return-type="boolean" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="double"/>
+            <parameter parameter-type="double"/>
+         </parameters>
+      </equals>
+      <toString return-type="java.lang.String" visibility="public" overrides="true"/>
+      <hashCode return-type="int" visibility="public" overrides="true"/>
+      <compareTo return-type="int" visibility="public" volatile="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </compareTo>
+      <compareTo return-type="int" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.nio.DoubleBuffer"/>
+         </parameters>
+      </compareTo>
+      <compare return-type="int" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="double"/>
+            <parameter parameter-type="double"/>
+         </parameters>
+      </compare>
+      <isDirect return-type="boolean" visibility="public" abstract="true" overrides="true"/>
+      <hasArray return-type="boolean" visibility="public" final="true" overrides="true"/>
+      <array return-type="[D" visibility="public" final="true" overrides="true"/>
+      <array return-type="java.lang.Object" visibility="public" volatile="true" overrides="true"/>
+      <arrayOffset return-type="int" visibility="public" final="true" overrides="true"/>
+      <wrap return-type="java.nio.DoubleBuffer" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="[D"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </wrap>
+      <wrap return-type="java.nio.DoubleBuffer" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="[D"/>
+         </parameters>
+      </wrap>
+      <allocate return-type="java.nio.DoubleBuffer" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </allocate>
+      <duplicate return-type="java.nio.DoubleBuffer" visibility="public" abstract="true"/>
+      <slice return-type="java.nio.DoubleBuffer" visibility="public" abstract="true"/>
+      <asReadOnlyBuffer return-type="java.nio.DoubleBuffer" visibility="public" abstract="true"/>
+      <compact return-type="java.nio.DoubleBuffer" visibility="public" abstract="true"/>
+      <order return-type="java.nio.ByteOrder" visibility="public" abstract="true"/>
+   </methods>
+</DoubleBuffer>

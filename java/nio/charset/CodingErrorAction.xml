@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodingErrorAction class="java.nio.charset.CodingErrorAction" ref-id="998940260">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/charset/CodingErrorAction.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <constructors>
+      <constructor visibility="private">
+         <parameters>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <name type="java.lang.String" visibility="private"/>
+      <IGNORE type="java.nio.charset.CodingErrorAction" visibility="public" final="true" static-final="true"/>
+      <REPLACE type="java.nio.charset.CodingErrorAction" visibility="public" final="true" static-final="true"/>
+      <REPORT type="java.nio.charset.CodingErrorAction" visibility="public" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <toString return-type="java.lang.String" visibility="public" overrides="true"/>
+   </methods>
+</CodingErrorAction>

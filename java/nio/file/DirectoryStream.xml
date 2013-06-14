@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<DirectoryStream class="java.nio.file.DirectoryStream" ref-id="439986754" interface="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Iterable.xml"/>
+   <implements interface="java.lang.Iterable"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/Closeable.xml"/>
+   <implements interface="java.io.Closeable"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Iterator.xml"/>
+   <methods>
+      <iterator return-type="java.util.Iterator" visibility="public" abstract="true"/>
+   </methods>
+</DirectoryStream>

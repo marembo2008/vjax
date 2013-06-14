@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<AccessControlContext class="java.security.AccessControlContext" ref-id="1936733271">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/security/AccessControlException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/security/Permission.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/security/AccessControlContext.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/security/DomainCombiner.xml"/>
+   <constructors>
+      <constructor>
+         <parameters>
+            <parameter type="[Ljava.security.ProtectionDomain;"/>
+            <parameter type="boolean"/>
+         </parameters>
+      </constructor>
+      <constructor>
+         <parameters>
+            <parameter type="[Ljava.security.ProtectionDomain;"/>
+            <parameter type="java.security.DomainCombiner"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.security.AccessControlContext"/>
+            <parameter type="java.security.DomainCombiner"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="[Ljava.security.ProtectionDomain;"/>
+         </parameters>
+      </constructor>
+      <constructor>
+         <parameters>
+            <parameter type="[Ljava.security.ProtectionDomain;"/>
+            <parameter type="java.security.AccessControlContext"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <context type="[Ljava.security.ProtectionDomain;" visibility="private"/>
+      <isPrivileged type="boolean" visibility="private"/>
+      <privilegedContext type="java.security.AccessControlContext" visibility="private"/>
+      <combiner type="java.security.DomainCombiner" visibility="private"/>
+      <debugInit type="boolean" visibility="private" static-final="true"/>
+      <debug type="sun.security.util.Debug" visibility="private" static-final="true"/>
+   </fields>
+   <methods>
+      <isPrivileged return-type="boolean"/>
+      <equals return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </equals>
+      <hashCode return-type="int" visibility="public" overrides="true"/>
+      <checkPermission return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.security.Permission"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.security.AccessControlException"/>
+         </throws>
+      </checkPermission>
+      <getDebug return-type="sun.security.util.Debug" static-final="true"/>
+      <getContext return-type="[Ljava.security.ProtectionDomain;"/>
+      <getAssignedCombiner return-type="java.security.DomainCombiner"/>
+      <getDomainCombiner return-type="java.security.DomainCombiner" visibility="public"/>
+      <optimize return-type="java.security.AccessControlContext"/>
+      <goCombiner return-type="java.security.AccessControlContext" visibility="private">
+         <parameters>
+            <parameter parameter-type="[Ljava.security.ProtectionDomain;"/>
+            <parameter parameter-type="java.security.AccessControlContext"/>
+         </parameters>
+      </goCombiner>
+      <containsAllPDs return-type="boolean" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.security.AccessControlContext"/>
+         </parameters>
+      </containsAllPDs>
+   </methods>
+</AccessControlContext>

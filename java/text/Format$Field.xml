@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Field class="java.text.Format$Field" ref-id="853299656">
+   <extends class="java.text.AttributedCharacterIterator$Attribute"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/text/AttributedCharacterIterator$Attribute.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <constructors>
+      <constructor visibility="protected">
+         <parameters>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <serialVersionUID type="long" visibility="private" final="true" static-final="true"/>
+   </fields>
+</Field>

@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<ClassLoader class="java.lang.ClassLoader" ref-id="327325694" abstract="true">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/InputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/AssertionStatusDirectives.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/File.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/IllegalArgumentException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Package.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/net/URL.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Enumeration.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/security/CodeSource.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/ByteBuffer.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassFormatError.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassNotFoundException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Class.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Stack.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/HashMap.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Set.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/security/ProtectionDomain.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Vector.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/security/cert/Certificate.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Map.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/concurrent/ConcurrentHashMap.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Void.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassLoader.xml"/>
+   <constructors>
+      <constructor visibility="protected">
+         <parameters>
+            <parameter type="java.lang.ClassLoader"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="protected"/>
+      <constructor visibility="private">
+         <parameters>
+            <parameter type="java.lang.Void"/>
+            <parameter type="java.lang.ClassLoader"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <parent type="java.lang.ClassLoader" visibility="private" final="true"/>
+      <parallelLockMap type="java.util.concurrent.ConcurrentHashMap" visibility="private" final="true"/>
+      <package2certs type="java.util.Map" visibility="private" final="true"/>
+      <nocerts type="[Ljava.security.cert.Certificate;" visibility="private" final="true" static-final="true"/>
+      <classes type="java.util.Vector" visibility="private" final="true"/>
+      <defaultDomain type="java.security.ProtectionDomain" visibility="private" final="true"/>
+      <domains type="java.util.Set" visibility="private" final="true"/>
+      <packages type="java.util.HashMap" visibility="private" final="true"/>
+      <scl type="java.lang.ClassLoader" visibility="private" static-final="true"/>
+      <sclSet type="boolean" visibility="private" static-final="true"/>
+      <loadedLibraryNames type="java.util.Vector" visibility="private" static-final="true"/>
+      <systemNativeLibraries type="java.util.Vector" visibility="private" static-final="true"/>
+      <nativeLibraries type="java.util.Vector" visibility="private"/>
+      <nativeLibraryContext type="java.util.Stack" visibility="private" static-final="true"/>
+      <usr_paths type="[Ljava.lang.String;" visibility="private" static-final="true"/>
+      <sys_paths type="[Ljava.lang.String;" visibility="private" static-final="true"/>
+      <assertionLock type="java.lang.Object" final="true"/>
+      <defaultAssertionStatus type="boolean" visibility="private"/>
+      <packageAssertionStatus type="java.util.Map" visibility="private"/>
+      <classAssertionStatus type="java.util.Map"/>
+   </fields>
+   <methods>
+      <loadClass return-type="java.lang.Class" visibility="protected">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.ClassNotFoundException"/>
+         </throws>
+      </loadClass>
+      <loadClass return-type="java.lang.Class" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.ClassNotFoundException"/>
+         </throws>
+      </loadClass>
+      <loadClassInternal return-type="java.lang.Class" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.ClassNotFoundException"/>
+         </throws>
+      </loadClassInternal>
+      <findNative return-type="long" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.ClassLoader"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </findNative>
+      <addClass return-type="void">
+         <parameters>
+            <parameter parameter-type="java.lang.Class"/>
+         </parameters>
+      </addClass>
+      <getSystemClassLoader return-type="java.lang.ClassLoader" visibility="public" static-final="true"/>
+      <checkPackageAccess return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.Class"/>
+            <parameter parameter-type="java.security.ProtectionDomain"/>
+         </parameters>
+      </checkPackageAccess>
+      <registerNatives return-type="void" visibility="private" static-final="true" native="true"/>
+      <checkCreateClassLoader return-type="java.lang.Void" visibility="private" static-final="true"/>
+      <getClassLoadingLock return-type="java.lang.Object" visibility="protected">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getClassLoadingLock>
+      <findClass return-type="java.lang.Class" visibility="protected">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.ClassNotFoundException"/>
+         </throws>
+      </findClass>
+      <defineClass return-type="java.lang.Class" visibility="protected" final="true">
+         <parameters>
+            <parameter parameter-type="[B"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.ClassFormatError"/>
+         </throws>
+      </defineClass>
+      <defineClass return-type="java.lang.Class" visibility="protected" final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.nio.ByteBuffer"/>
+            <parameter parameter-type="java.security.ProtectionDomain"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.ClassFormatError"/>
+         </throws>
+      </defineClass>
+      <defineClass return-type="java.lang.Class" visibility="protected" final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="[B"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.security.ProtectionDomain"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.ClassFormatError"/>
+         </throws>
+      </defineClass>
+      <defineClass return-type="java.lang.Class" visibility="protected" final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="[B"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.ClassFormatError"/>
+         </throws>
+      </defineClass>
+      <preDefineClass return-type="java.security.ProtectionDomain" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.security.ProtectionDomain"/>
+         </parameters>
+      </preDefineClass>
+      <defineClassSourceLocation return-type="java.lang.String" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.security.ProtectionDomain"/>
+         </parameters>
+      </defineClassSourceLocation>
+      <defineTransformedClass return-type="java.lang.Class" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="[B"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.security.ProtectionDomain"/>
+            <parameter parameter-type="java.lang.ClassFormatError"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.ClassFormatError"/>
+         </throws>
+      </defineTransformedClass>
+      <postDefineClass return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.Class"/>
+            <parameter parameter-type="java.security.ProtectionDomain"/>
+         </parameters>
+      </postDefineClass>
+      <defineClass0 return-type="java.lang.Class" visibility="private" native="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="[B"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.security.ProtectionDomain"/>
+         </parameters>
+      </defineClass0>
+      <defineClass1 return-type="java.lang.Class" visibility="private" native="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="[B"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.security.ProtectionDomain"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </defineClass1>
+      <defineClass2 return-type="java.lang.Class" visibility="private" native="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.nio.ByteBuffer"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.security.ProtectionDomain"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </defineClass2>
+      <checkName return-type="boolean" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </checkName>
+      <checkCerts return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.security.CodeSource"/>
+         </parameters>
+      </checkCerts>
+      <compareCerts return-type="boolean" visibility="private">
+         <parameters>
+            <parameter parameter-type="[Ljava.security.cert.Certificate;"/>
+            <parameter parameter-type="[Ljava.security.cert.Certificate;"/>
+         </parameters>
+      </compareCerts>
+      <resolveClass return-type="void" visibility="protected" final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Class"/>
+         </parameters>
+      </resolveClass>
+      <resolveClass0 return-type="void" visibility="private" native="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Class"/>
+         </parameters>
+      </resolveClass0>
+      <findSystemClass return-type="java.lang.Class" visibility="protected" final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.ClassNotFoundException"/>
+         </throws>
+      </findSystemClass>
+      <findBootstrapClassOrNull return-type="java.lang.Class" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </findBootstrapClassOrNull>
+      <findBootstrapClass return-type="java.lang.Class" visibility="private" native="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </findBootstrapClass>
+      <findLoadedClass return-type="java.lang.Class" visibility="protected" final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </findLoadedClass>
+      <findLoadedClass0 return-type="java.lang.Class" visibility="private" final="true" native="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </findLoadedClass0>
+      <getResources return-type="java.util.Enumeration" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </getResources>
+      <findResource return-type="java.net.URL" visibility="protected">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </findResource>
+      <findResources return-type="java.util.Enumeration" visibility="protected">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </findResources>
+      <getCaller return-type="java.lang.Class" visibility="private" static-final="true" native="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </getCaller>
+      <registerAsParallelCapable return-type="boolean" visibility="protected" static-final="true"/>
+      <getSystemResources return-type="java.util.Enumeration" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </getSystemResources>
+      <getBootstrapResource return-type="java.net.URL" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getBootstrapResource>
+      <getBootstrapResources return-type="java.util.Enumeration" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </getBootstrapResources>
+      <getBootstrapClassPath return-type="sun.misc.URLClassPath" static-final="true"/>
+      <getParent return-type="java.lang.ClassLoader" visibility="public" final="true"/>
+      <initSystemClassLoader return-type="void" visibility="private" static-final="true" synchronized="true"/>
+      <definePackage return-type="java.lang.Package" visibility="protected">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.net.URL"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.IllegalArgumentException"/>
+         </throws>
+      </definePackage>
+      <getPackages return-type="[Ljava.lang.Package;" visibility="protected"/>
+      <findLibrary return-type="java.lang.String" visibility="protected">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </findLibrary>
+      <initializePath return-type="[Ljava.lang.String;" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </initializePath>
+      <loadLibrary return-type="void" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Class"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </loadLibrary>
+      <loadLibrary0 return-type="boolean" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Class"/>
+            <parameter parameter-type="java.io.File"/>
+         </parameters>
+      </loadLibrary0>
+      <loadLibrary1 return-type="boolean" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Class"/>
+            <parameter parameter-type="java.io.File"/>
+         </parameters>
+      </loadLibrary1>
+      <setDefaultAssertionStatus return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </setDefaultAssertionStatus>
+      <setPackageAssertionStatus return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </setPackageAssertionStatus>
+      <setClassAssertionStatus return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </setClassAssertionStatus>
+      <clearAssertionStatus return-type="void" visibility="public"/>
+      <initializeJavaAssertionMaps return-type="void" visibility="private"/>
+      <retrieveDirectives return-type="java.lang.AssertionStatusDirectives" visibility="private" static-final="true" native="true"/>
+      <access_000 escapeSequence="6:$" return-type="java.util.Vector" static-final="true"/>
+      <getPackage return-type="java.lang.Package" visibility="protected">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getPackage>
+      <setSigners return-type="void" visibility="protected" final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Class"/>
+            <parameter parameter-type="[Ljava.lang.Object;"/>
+         </parameters>
+      </setSigners>
+      <getResourceAsStream return-type="java.io.InputStream" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getResourceAsStream>
+      <getResource return-type="java.net.URL" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getResource>
+      <desiredAssertionStatus return-type="boolean">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </desiredAssertionStatus>
+      <access_100 escapeSequence="6:$" return-type="java.util.Stack" static-final="true"/>
+      <getCallerClassLoader return-type="java.lang.ClassLoader" static-final="true"/>
+      <isAncestor return-type="boolean">
+         <parameters>
+            <parameter parameter-type="java.lang.ClassLoader"/>
+         </parameters>
+      </isAncestor>
+      <getSystemResourceAsStream return-type="java.io.InputStream" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getSystemResourceAsStream>
+      <getSystemResource return-type="java.net.URL" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getSystemResource>
+   </methods>
+</ClassLoader>

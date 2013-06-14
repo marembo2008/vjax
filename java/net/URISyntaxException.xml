@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<URISyntaxException class="java.net.URISyntaxException" ref-id="2061991076">
+   <extends class="java.lang.Exception"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Exception.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <constructors>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+            <parameter type="int"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <serialVersionUID type="long" visibility="private" final="true" static-final="true"/>
+      <input type="java.lang.String" visibility="private"/>
+      <index type="int" visibility="private"/>
+   </fields>
+   <methods>
+      <getMessage return-type="java.lang.String" visibility="public" overrides="true"/>
+      <getIndex return-type="int" visibility="public"/>
+      <getReason return-type="java.lang.String" visibility="public"/>
+      <getInput return-type="java.lang.String" visibility="public"/>
+   </methods>
+</URISyntaxException>

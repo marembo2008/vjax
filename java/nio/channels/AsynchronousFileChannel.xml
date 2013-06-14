@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<AsynchronousFileChannel class="java.nio.channels.AsynchronousFileChannel" ref-id="1517554265" abstract="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/channels/AsynchronousChannel.xml"/>
+   <implements interface="java.nio.channels.AsynchronousChannel"/>
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/channels/FileLock.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/concurrent/ExecutorService.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Set.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/file/Path.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/channels/AsynchronousFileChannel.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/ByteBuffer.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/channels/CompletionHandler.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/concurrent/Future.xml"/>
+   <constructors>
+      <constructor visibility="protected"/>
+   </constructors>
+   <fields>
+      <NO_ATTRIBUTES type="[Ljava.nio.file.attribute.FileAttribute;" visibility="private" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <lock return-type="java.util.concurrent.Future" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+            <parameter parameter-type="long"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </lock>
+      <lock return-type="void" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="java.nio.channels.CompletionHandler"/>
+         </parameters>
+      </lock>
+      <lock return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+            <parameter parameter-type="long"/>
+            <parameter parameter-type="boolean"/>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="java.nio.channels.CompletionHandler"/>
+         </parameters>
+      </lock>
+      <lock return-type="java.util.concurrent.Future" visibility="public" final="true"/>
+      <size return-type="long" visibility="public" abstract="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </size>
+      <write return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.nio.ByteBuffer"/>
+            <parameter parameter-type="long"/>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="java.nio.channels.CompletionHandler"/>
+         </parameters>
+      </write>
+      <write return-type="java.util.concurrent.Future" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.nio.ByteBuffer"/>
+            <parameter parameter-type="long"/>
+         </parameters>
+      </write>
+      <truncate return-type="java.nio.channels.AsynchronousFileChannel" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </truncate>
+      <open return-type="java.nio.channels.AsynchronousFileChannel" visibility="public" transient="true" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.nio.file.Path"/>
+            <parameter parameter-type="[Ljava.nio.file.OpenOption;"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </open>
+      <open return-type="java.nio.channels.AsynchronousFileChannel" visibility="public" transient="true" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.nio.file.Path"/>
+            <parameter parameter-type="java.util.Set"/>
+            <parameter parameter-type="java.util.concurrent.ExecutorService"/>
+            <parameter parameter-type="[Ljava.nio.file.attribute.FileAttribute;"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </open>
+      <read return-type="java.util.concurrent.Future" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.nio.ByteBuffer"/>
+            <parameter parameter-type="long"/>
+         </parameters>
+      </read>
+      <read return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.nio.ByteBuffer"/>
+            <parameter parameter-type="long"/>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="java.nio.channels.CompletionHandler"/>
+         </parameters>
+      </read>
+      <tryLock return-type="java.nio.channels.FileLock" visibility="public" final="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </tryLock>
+      <tryLock return-type="java.nio.channels.FileLock" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+            <parameter parameter-type="long"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </tryLock>
+      <force return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </force>
+   </methods>
+</AsynchronousFileChannel>

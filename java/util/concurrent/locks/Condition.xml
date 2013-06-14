@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Condition class="java.util.concurrent.locks.Condition" ref-id="1601374365" interface="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Date.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/InterruptedException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/concurrent/TimeUnit.xml"/>
+   <methods>
+      <awaitUninterruptibly return-type="void" visibility="public" abstract="true"/>
+      <await return-type="boolean" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+            <parameter parameter-type="java.util.concurrent.TimeUnit"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.InterruptedException"/>
+         </throws>
+      </await>
+      <await return-type="void" visibility="public" abstract="true">
+         <throws>
+            <throwable throws="java.lang.InterruptedException"/>
+         </throws>
+      </await>
+      <awaitNanos return-type="long" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.InterruptedException"/>
+         </throws>
+      </awaitNanos>
+      <awaitUntil return-type="boolean" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.util.Date"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.InterruptedException"/>
+         </throws>
+      </awaitUntil>
+      <signal return-type="void" visibility="public" abstract="true"/>
+      <signalAll return-type="void" visibility="public" abstract="true"/>
+   </methods>
+</Condition>

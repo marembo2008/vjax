@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Entry class="java.util.LinkedHashMap$Entry" ref-id="744425448">
+   <extends class="java.util.HashMap$Entry"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/HashMap.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/LinkedHashMap$Entry.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/HashMap$Entry.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <constructors>
+      <constructor>
+         <parameters>
+            <parameter type="int"/>
+            <parameter type="java.lang.Object"/>
+            <parameter type="java.lang.Object"/>
+            <parameter type="java.util.HashMap$Entry"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <before type="java.util.LinkedHashMap$Entry"/>
+      <after type="java.util.LinkedHashMap$Entry"/>
+   </fields>
+   <methods>
+      <remove return-type="void" visibility="private"/>
+      <access_600 escapeSequence="6:$" return-type="void" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.util.LinkedHashMap$Entry"/>
+            <parameter parameter-type="java.util.LinkedHashMap$Entry"/>
+         </parameters>
+      </access_600>
+      <recordAccess return-type="void">
+         <parameters>
+            <parameter parameter-type="java.util.HashMap"/>
+         </parameters>
+      </recordAccess>
+      <recordRemoval return-type="void">
+         <parameters>
+            <parameter parameter-type="java.util.HashMap"/>
+         </parameters>
+      </recordRemoval>
+      <addBefore return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.util.LinkedHashMap$Entry"/>
+         </parameters>
+      </addBefore>
+   </methods>
+</Entry>

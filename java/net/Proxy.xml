@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Proxy class="java.net.Proxy" ref-id="404928504">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/net/Proxy.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/net/SocketAddress.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/net/Proxy$Type.xml"/>
+   <constructors>
+      <constructor visibility="private"/>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.net.Proxy$Type"/>
+            <parameter type="java.net.SocketAddress"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <type type="java.net.Proxy$Type" visibility="private"/>
+      <sa type="java.net.SocketAddress" visibility="private"/>
+      <NO_PROXY type="java.net.Proxy" visibility="public" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <type return-type="java.net.Proxy$Type" visibility="public"/>
+      <equals return-type="boolean" visibility="public" final="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </equals>
+      <toString return-type="java.lang.String" visibility="public" overrides="true"/>
+      <hashCode return-type="int" visibility="public" final="true" overrides="true"/>
+      <address return-type="java.net.SocketAddress" visibility="public"/>
+   </methods>
+</Proxy>

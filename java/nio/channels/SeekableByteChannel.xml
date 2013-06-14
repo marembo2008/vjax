@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<SeekableByteChannel class="java.nio.channels.SeekableByteChannel" ref-id="457854930" interface="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/channels/ByteChannel.xml"/>
+   <implements interface="java.nio.channels.ByteChannel"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/ByteBuffer.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/channels/SeekableByteChannel.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <methods>
+      <size return-type="long" visibility="public" abstract="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </size>
+      <position return-type="java.nio.channels.SeekableByteChannel" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </position>
+      <position return-type="long" visibility="public" abstract="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </position>
+      <write return-type="int" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.nio.ByteBuffer"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </write>
+      <truncate return-type="java.nio.channels.SeekableByteChannel" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </truncate>
+      <read return-type="int" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.nio.ByteBuffer"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </read>
+   </methods>
+</SeekableByteChannel>

@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<InetAddress class="java.net.InetAddress" ref-id="2138910064">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/Serializable.xml"/>
+   <implements interface="java.io.Serializable"/>
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/net/NetworkInterface.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/net/UnknownHostException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectStreamException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectOutputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassNotFoundException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectInputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectStreamField.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/net/InetAddress.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/HashMap.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/net/InetAddressImpl.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/net/InetAddress$Cache.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/List.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/net/InetAddress$InetAddressHolder.xml"/>
+   <constructors>
+      <constructor/>
+   </constructors>
+   <fields>
+      <IPv4 type="int" final="true" static-final="true"/>
+      <IPv6 type="int" final="true" static-final="true"/>
+      <preferIPv6Address type="boolean" transient="true" static-final="true"/>
+      <holder type="java.net.InetAddress$InetAddressHolder" final="true" transient="true"/>
+      <nameServices type="java.util.List" visibility="private" static-final="true"/>
+      <canonicalHostName type="java.lang.String" visibility="private" transient="true"/>
+      <serialVersionUID type="long" visibility="private" final="true" static-final="true"/>
+      <addressCache type="java.net.InetAddress$Cache" visibility="private" static-final="true"/>
+      <negativeCache type="java.net.InetAddress$Cache" visibility="private" static-final="true"/>
+      <addressCacheInit type="boolean" visibility="private" static-final="true"/>
+      <unknown_array type="[Ljava.net.InetAddress;" static-final="true"/>
+      <impl type="java.net.InetAddressImpl" static-final="true"/>
+      <lookupTable type="java.util.HashMap" visibility="private" final="true" static-final="true"/>
+      <cachedLocalHost type="java.net.InetAddress" visibility="private" static-final="true"/>
+      <cacheTime type="long" visibility="private" static-final="true"/>
+      <maxCacheTime type="long" visibility="private" final="true" static-final="true"/>
+      <cacheLock type="java.lang.Object" visibility="private" final="true" static-final="true"/>
+      <FIELDS_OFFSET type="long" visibility="private" final="true" static-final="true"/>
+      <UNSAFE type="sun.misc.Unsafe" visibility="private" final="true" static-final="true"/>
+      <serialPersistentFields type="[Ljava.io.ObjectStreamField;" visibility="private" final="true" static-final="true"/>
+      <_assertionsDisabled escapeSequence="0:$" type="boolean" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <equals return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </equals>
+      <toString return-type="java.lang.String" visibility="public" overrides="true"/>
+      <hashCode return-type="int" visibility="public" overrides="true"/>
+      <getAddress return-type="[B" visibility="public"/>
+      <init return-type="void" visibility="private" static-final="true" native="true"/>
+      <readObject return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.io.ObjectInputStream"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+            <throwable throws="java.lang.ClassNotFoundException"/>
+         </throws>
+      </readObject>
+      <writeObject return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.io.ObjectOutputStream"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </writeObject>
+      <readResolve return-type="java.lang.Object" visibility="private">
+         <throws>
+            <throwable throws="java.io.ObjectStreamException"/>
+         </throws>
+      </readResolve>
+      <getHostName return-type="java.lang.String" visibility="public"/>
+      <getHostName return-type="java.lang.String">
+         <parameters>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </getHostName>
+      <getHostAddress return-type="java.lang.String" visibility="public"/>
+      <getByName return-type="java.net.InetAddress" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.net.UnknownHostException"/>
+         </throws>
+      </getByName>
+      <getByName return-type="java.net.InetAddress" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.net.InetAddress"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.net.UnknownHostException"/>
+         </throws>
+      </getByName>
+      <readObjectNoData return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.io.ObjectInputStream"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+            <throwable throws="java.lang.ClassNotFoundException"/>
+         </throws>
+      </readObjectNoData>
+      <holder return-type="java.net.InetAddress$InetAddressHolder"/>
+      <isMulticastAddress return-type="boolean" visibility="public"/>
+      <isAnyLocalAddress return-type="boolean" visibility="public"/>
+      <isLoopbackAddress return-type="boolean" visibility="public"/>
+      <isLinkLocalAddress return-type="boolean" visibility="public"/>
+      <isSiteLocalAddress return-type="boolean" visibility="public"/>
+      <isMCGlobal return-type="boolean" visibility="public"/>
+      <isMCNodeLocal return-type="boolean" visibility="public"/>
+      <isMCLinkLocal return-type="boolean" visibility="public"/>
+      <isMCSiteLocal return-type="boolean" visibility="public"/>
+      <isMCOrgLocal return-type="boolean" visibility="public"/>
+      <isReachable return-type="boolean" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.net.NetworkInterface"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </isReachable>
+      <isReachable return-type="boolean" visibility="public">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </isReachable>
+      <getCanonicalHostName return-type="java.lang.String" visibility="public"/>
+      <getHostFromNameService return-type="java.lang.String" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.net.InetAddress"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </getHostFromNameService>
+      <cacheInitIfNeeded return-type="void" visibility="private" static-final="true"/>
+      <cacheAddresses return-type="void" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="[Ljava.net.InetAddress;"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </cacheAddresses>
+      <getCachedAddresses return-type="[Ljava.net.InetAddress;" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getCachedAddresses>
+      <createNSProvider return-type="sun.net.spi.nameservice.NameService" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </createNSProvider>
+      <getByAddress return-type="java.net.InetAddress" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="[B"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.net.UnknownHostException"/>
+         </throws>
+      </getByAddress>
+      <getByAddress return-type="java.net.InetAddress" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="[B"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.net.UnknownHostException"/>
+         </throws>
+      </getByAddress>
+      <getAllByName return-type="[Ljava.net.InetAddress;" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.net.UnknownHostException"/>
+         </throws>
+      </getAllByName>
+      <getAllByName return-type="[Ljava.net.InetAddress;" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.net.InetAddress"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.net.UnknownHostException"/>
+         </throws>
+      </getAllByName>
+      <getLoopbackAddress return-type="java.net.InetAddress" visibility="public" static-final="true"/>
+      <checkNumericZone return-type="int" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.net.UnknownHostException"/>
+         </throws>
+      </checkNumericZone>
+      <getAllByName0 return-type="[Ljava.net.InetAddress;" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.net.InetAddress"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.net.UnknownHostException"/>
+         </throws>
+      </getAllByName0>
+      <getAllByName0 return-type="[Ljava.net.InetAddress;" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.net.UnknownHostException"/>
+         </throws>
+      </getAllByName0>
+      <getAllByName0 return-type="[Ljava.net.InetAddress;" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.net.UnknownHostException"/>
+         </throws>
+      </getAllByName0>
+      <getAddressesFromNameService return-type="[Ljava.net.InetAddress;" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.net.InetAddress"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.net.UnknownHostException"/>
+         </throws>
+      </getAddressesFromNameService>
+      <checkLookupTable return-type="[Ljava.net.InetAddress;" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </checkLookupTable>
+      <updateLookupTable return-type="void" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </updateLookupTable>
+      <getLocalHost return-type="java.net.InetAddress" visibility="public" static-final="true">
+         <throws>
+            <throwable throws="java.net.UnknownHostException"/>
+         </throws>
+      </getLocalHost>
+      <anyLocalAddress return-type="java.net.InetAddress" static-final="true"/>
+      <loadImpl return-type="java.net.InetAddressImpl" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </loadImpl>
+   </methods>
+</InetAddress>

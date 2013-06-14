@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<ConditionObject class="java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject" ref-id="634643443">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/Serializable.xml"/>
+   <implements interface="java.io.Serializable"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/concurrent/locks/Condition.xml"/>
+   <implements interface="java.util.concurrent.locks.Condition"/>
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Date.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/concurrent/TimeUnit.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/InterruptedException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Collection.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/concurrent/locks/AbstractQueuedSynchronizer$Node.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/concurrent/locks/AbstractQueuedSynchronizer.xml"/>
+   <constructors>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.util.concurrent.locks.AbstractQueuedSynchronizer"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <serialVersionUID type="long" visibility="private" final="true" static-final="true"/>
+      <firstWaiter type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node" visibility="private" transient="true"/>
+      <lastWaiter type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node" visibility="private" transient="true"/>
+      <REINTERRUPT type="int" visibility="private" final="true" static-final="true"/>
+      <THROW_IE type="int" visibility="private" final="true" static-final="true"/>
+      <this_0 escapeSequence="4:$" type="java.util.concurrent.locks.AbstractQueuedSynchronizer" final="true"/>
+   </fields>
+   <methods>
+      <hasWaiters return-type="boolean" visibility="protected" final="true"/>
+      <getWaitQueueLength return-type="int" visibility="protected" final="true"/>
+      <getWaitingThreads return-type="java.util.Collection" visibility="protected" final="true"/>
+      <isOwnedBy return-type="boolean" final="true">
+         <parameters>
+            <parameter parameter-type="java.util.concurrent.locks.AbstractQueuedSynchronizer"/>
+         </parameters>
+      </isOwnedBy>
+      <awaitUninterruptibly return-type="void" visibility="public" final="true"/>
+      <await return-type="void" visibility="public" final="true">
+         <throws>
+            <throwable throws="java.lang.InterruptedException"/>
+         </throws>
+      </await>
+      <await return-type="boolean" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+            <parameter parameter-type="java.util.concurrent.TimeUnit"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.InterruptedException"/>
+         </throws>
+      </await>
+      <awaitNanos return-type="long" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.InterruptedException"/>
+         </throws>
+      </awaitNanos>
+      <awaitUntil return-type="boolean" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="java.util.Date"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.InterruptedException"/>
+         </throws>
+      </awaitUntil>
+      <signal return-type="void" visibility="public" final="true"/>
+      <signalAll return-type="void" visibility="public" final="true"/>
+      <addConditionWaiter return-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node" visibility="private"/>
+      <doSignal return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node"/>
+         </parameters>
+      </doSignal>
+      <doSignalAll return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node"/>
+         </parameters>
+      </doSignalAll>
+      <unlinkCancelledWaiters return-type="void" visibility="private"/>
+      <checkInterruptWhileWaiting return-type="int" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node"/>
+         </parameters>
+      </checkInterruptWhileWaiting>
+      <reportInterruptAfterWait return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.InterruptedException"/>
+         </throws>
+      </reportInterruptAfterWait>
+   </methods>
+</ConditionObject>

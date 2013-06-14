@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Entry class="java.lang.ClassValue$Entry" ref-id="1749894598">
+   <extends class="java.lang.ref.WeakReference"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ref/WeakReference.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassValue.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassValue$Entry.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassValue$Version.xml"/>
+   <constructors>
+      <constructor>
+         <parameters>
+            <parameter type="java.lang.ClassValue$Version"/>
+            <parameter type="java.lang.Object"/>
+         </parameters>
+      </constructor>
+      <constructor>
+         <parameters>
+            <parameter type="java.lang.ClassValue$Version"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <value type="java.lang.Object" final="true"/>
+      <DEAD_ENTRY type="java.lang.ClassValue$Entry" final="true" static-final="true"/>
+      <_assertionsDisabled escapeSequence="0:$" type="boolean" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <value return-type="java.lang.Object"/>
+      <version return-type="java.lang.ClassValue$Version"/>
+      <isPromise return-type="boolean"/>
+      <refreshVersion return-type="java.lang.ClassValue$Entry">
+         <parameters>
+            <parameter parameter-type="java.lang.ClassValue$Version"/>
+         </parameters>
+      </refreshVersion>
+      <isLive return-type="boolean"/>
+      <classValueOrNull return-type="java.lang.ClassValue"/>
+      <assertNotPromise return-type="void" visibility="private"/>
+   </methods>
+</Entry>

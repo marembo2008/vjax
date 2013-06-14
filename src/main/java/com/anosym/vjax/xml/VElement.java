@@ -594,6 +594,7 @@ public class VElement implements Cloneable, Serializable {
     if (val != null) {
       addChild(val, index + 1);
     }
+    indexing++;
     child.setParent(this);
   }
 

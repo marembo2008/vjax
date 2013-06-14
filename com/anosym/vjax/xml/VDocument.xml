@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<VDocument class="com.anosym.vjax.xml.VDocument" ref-id="1040873052">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="com/anosym/vjax/xml/VDocument.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="org/xml/sax/SAXException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="com/anosym/vjax/xml/VXMLHandler.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/InputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/List.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="com/anosym/vjax/xml/VElement.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/net/URL.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/File.xml"/>
+   <constructors>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.io.File"/>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.net.URL"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.net.URL"/>
+            <parameter type="boolean"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public"/>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.io.File"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <rootElement type="com.anosym.vjax.xml.VElement" visibility="private"/>
+      <documentUrl type="java.net.URL" visibility="private"/>
+      <documentName type="java.io.File" visibility="private"/>
+      <documentType type="java.lang.String" visibility="private"/>
+      <schemaUrl type="java.lang.String" visibility="private"/>
+      <notationDeclaration type="com.anosym.vjax.xml.VElement" visibility="private"/>
+      <standalone type="boolean" visibility="private"/>
+      <includes type="java.util.List" visibility="private"/>
+      <debug type="boolean" visibility="private" transient="true"/>
+   </fields>
+   <methods>
+      <equals return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </equals>
+      <toString return-type="java.lang.String" visibility="public" overrides="true"/>
+      <hashCode return-type="int" visibility="public" overrides="true"/>
+      <getName return-type="java.lang.String" visibility="public"/>
+      <removeElement return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="com.anosym.vjax.xml.VElement"/>
+         </parameters>
+      </removeElement>
+      <parse return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.io.InputStream"/>
+            <parameter parameter-type="com.anosym.vjax.xml.VXMLHandler"/>
+         </parameters>
+         <throws>
+            <throwable throws="org.xml.sax.SAXException"/>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </parse>
+      <parse return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.io.InputStream"/>
+         </parameters>
+         <throws>
+            <throwable throws="org.xml.sax.SAXException"/>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </parse>
+      <parse return-type="void" visibility="public"/>
+      <getNotationDeclaration return-type="com.anosym.vjax.xml.VElement" visibility="public"/>
+      <parseDocument return-type="com.anosym.vjax.xml.VDocument" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.io.InputStream"/>
+         </parameters>
+      </parseDocument>
+      <parseDocument return-type="com.anosym.vjax.xml.VDocument" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.io.InputStream"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </parseDocument>
+      <parseDocument return-type="com.anosym.vjax.xml.VDocument" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </parseDocument>
+      <parseDocumentFromString return-type="com.anosym.vjax.xml.VDocument" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </parseDocumentFromString>
+      <setIncludes return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.util.List"/>
+         </parameters>
+      </setIncludes>
+      <setRootElement return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="com.anosym.vjax.xml.VElement"/>
+         </parameters>
+      </setRootElement>
+      <addInclude return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="com.anosym.vjax.xml.VDocument"/>
+         </parameters>
+      </addInclude>
+      <getIncludes return-type="java.util.List" visibility="public"/>
+      <writeDocument return-type="void" visibility="public"/>
+      <toXmlString return-type="java.lang.String" visibility="public"/>
+      <setDebug return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </setDebug>
+      <isDebug return-type="boolean" visibility="public"/>
+      <getDocumentName return-type="java.io.File" visibility="public"/>
+      <setDocumentName return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.io.File"/>
+         </parameters>
+      </setDocumentName>
+      <doGetURL return-type="void" visibility="private"/>
+      <getRootElement return-type="com.anosym.vjax.xml.VElement" visibility="public"/>
+   </methods>
+</VDocument>

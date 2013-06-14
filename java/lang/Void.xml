@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Void class="java.lang.Void" ref-id="95806480">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Class.xml"/>
+   <constructors>
+      <constructor visibility="private"/>
+   </constructors>
+   <fields>
+      <TYPE type="java.lang.Class" visibility="public" final="true" static-final="true"/>
+   </fields>
+</Void>

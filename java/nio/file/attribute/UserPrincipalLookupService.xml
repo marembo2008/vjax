@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<UserPrincipalLookupService class="java.nio.file.attribute.UserPrincipalLookupService" ref-id="265506476" abstract="true">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/file/attribute/UserPrincipal.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/file/attribute/GroupPrincipal.xml"/>
+   <constructors>
+      <constructor visibility="protected"/>
+   </constructors>
+   <methods>
+      <lookupPrincipalByGroupName return-type="java.nio.file.attribute.GroupPrincipal" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </lookupPrincipalByGroupName>
+      <lookupPrincipalByName return-type="java.nio.file.attribute.UserPrincipal" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </lookupPrincipalByName>
+   </methods>
+</UserPrincipalLookupService>

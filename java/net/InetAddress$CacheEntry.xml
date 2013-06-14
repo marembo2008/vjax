@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CacheEntry class="java.net.InetAddress$CacheEntry" ref-id="1565977303">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <constructors>
+      <constructor>
+         <parameters>
+            <parameter type="[Ljava.net.InetAddress;"/>
+            <parameter type="long"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <addresses type="[Ljava.net.InetAddress;"/>
+      <expiration type="long"/>
+   </fields>
+</CacheEntry>

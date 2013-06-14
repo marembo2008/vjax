@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<AsynchronousCloseException class="java.nio.channels.AsynchronousCloseException" ref-id="950229120">
+   <extends class="java.nio.channels.ClosedChannelException"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/channels/ClosedChannelException.xml"/>
+   <constructors>
+      <constructor visibility="public"/>
+   </constructors>
+   <fields>
+      <serialVersionUID type="long" visibility="private" final="true" static-final="true"/>
+   </fields>
+</AsynchronousCloseException>

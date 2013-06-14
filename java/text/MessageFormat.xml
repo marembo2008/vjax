@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<MessageFormat class="java.text.MessageFormat" ref-id="1985303864">
+   <extends class="java.text.Format"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/StringBuilder.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/List.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/text/AttributedCharacterIterator.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/text/ParseException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/text/ParsePosition.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassNotFoundException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectInputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/text/FieldPosition.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/text/CharacterIterator.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/StringBuffer.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/text/Format.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Locale.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <constructors>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.util.Locale"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <serialVersionUID type="long" visibility="private" final="true" static-final="true"/>
+      <locale type="java.util.Locale" visibility="private"/>
+      <pattern type="java.lang.String" visibility="private"/>
+      <INITIAL_FORMATS type="int" visibility="private" final="true" static-final="true"/>
+      <formats type="[Ljava.text.Format;" visibility="private"/>
+      <offsets type="[I" visibility="private"/>
+      <argumentNumbers type="[I" visibility="private"/>
+      <maxOffset type="int" visibility="private"/>
+      <SEG_RAW type="int" visibility="private" final="true" static-final="true"/>
+      <SEG_INDEX type="int" visibility="private" final="true" static-final="true"/>
+      <SEG_TYPE type="int" visibility="private" final="true" static-final="true"/>
+      <SEG_MODIFIER type="int" visibility="private" final="true" static-final="true"/>
+      <TYPE_NULL type="int" visibility="private" final="true" static-final="true"/>
+      <TYPE_NUMBER type="int" visibility="private" final="true" static-final="true"/>
+      <TYPE_DATE type="int" visibility="private" final="true" static-final="true"/>
+      <TYPE_TIME type="int" visibility="private" final="true" static-final="true"/>
+      <TYPE_CHOICE type="int" visibility="private" final="true" static-final="true"/>
+      <TYPE_KEYWORDS type="[Ljava.lang.String;" visibility="private" final="true" static-final="true"/>
+      <MODIFIER_DEFAULT type="int" visibility="private" final="true" static-final="true"/>
+      <MODIFIER_CURRENCY type="int" visibility="private" final="true" static-final="true"/>
+      <MODIFIER_PERCENT type="int" visibility="private" final="true" static-final="true"/>
+      <MODIFIER_INTEGER type="int" visibility="private" final="true" static-final="true"/>
+      <NUMBER_MODIFIER_KEYWORDS type="[Ljava.lang.String;" visibility="private" final="true" static-final="true"/>
+      <MODIFIER_SHORT type="int" visibility="private" final="true" static-final="true"/>
+      <MODIFIER_MEDIUM type="int" visibility="private" final="true" static-final="true"/>
+      <MODIFIER_LONG type="int" visibility="private" final="true" static-final="true"/>
+      <MODIFIER_FULL type="int" visibility="private" final="true" static-final="true"/>
+      <DATE_TIME_MODIFIER_KEYWORDS type="[Ljava.lang.String;" visibility="private" final="true" static-final="true"/>
+      <DATE_TIME_MODIFIERS type="[I" visibility="private" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <equals return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </equals>
+      <append return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.StringBuffer"/>
+            <parameter parameter-type="java.text.CharacterIterator"/>
+         </parameters>
+      </append>
+      <hashCode return-type="int" visibility="public" overrides="true"/>
+      <clone return-type="java.lang.Object" visibility="public" overrides="true"/>
+      <format return-type="java.lang.StringBuffer" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="[Ljava.lang.Object;"/>
+            <parameter parameter-type="java.lang.StringBuffer"/>
+            <parameter parameter-type="java.text.FieldPosition"/>
+         </parameters>
+      </format>
+      <format return-type="java.lang.String" visibility="public" transient="true" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="[Ljava.lang.Object;"/>
+         </parameters>
+      </format>
+      <format return-type="java.lang.StringBuffer" visibility="public" final="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="java.lang.StringBuffer"/>
+            <parameter parameter-type="java.text.FieldPosition"/>
+         </parameters>
+      </format>
+      <readObject return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.io.ObjectInputStream"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+            <throwable throws="java.lang.ClassNotFoundException"/>
+         </throws>
+      </readObject>
+      <parse return-type="[Ljava.lang.Object;" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.text.ParsePosition"/>
+         </parameters>
+      </parse>
+      <parse return-type="[Ljava.lang.Object;" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.text.ParseException"/>
+         </throws>
+      </parse>
+      <setLocale return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.util.Locale"/>
+         </parameters>
+      </setLocale>
+      <getLocale return-type="java.util.Locale" visibility="public"/>
+      <getFormats return-type="[Ljava.text.Format;" visibility="public"/>
+      <setFormat return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.text.Format"/>
+         </parameters>
+      </setFormat>
+      <applyPattern return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </applyPattern>
+      <toPattern return-type="java.lang.String" visibility="public"/>
+      <setFormatsByArgumentIndex return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="[Ljava.text.Format;"/>
+         </parameters>
+      </setFormatsByArgumentIndex>
+      <setFormats return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="[Ljava.text.Format;"/>
+         </parameters>
+      </setFormats>
+      <setFormatByArgumentIndex return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.text.Format"/>
+         </parameters>
+      </setFormatByArgumentIndex>
+      <getFormatsByArgumentIndex return-type="[Ljava.text.Format;" visibility="public"/>
+      <formatToCharacterIterator return-type="java.text.AttributedCharacterIterator" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </formatToCharacterIterator>
+      <parseObject return-type="java.lang.Object" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.text.ParsePosition"/>
+         </parameters>
+      </parseObject>
+      <subformat return-type="java.lang.StringBuffer" visibility="private">
+         <parameters>
+            <parameter parameter-type="[Ljava.lang.Object;"/>
+            <parameter parameter-type="java.lang.StringBuffer"/>
+            <parameter parameter-type="java.text.FieldPosition"/>
+            <parameter parameter-type="java.util.List"/>
+         </parameters>
+      </subformat>
+      <makeFormat return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="[Ljava.lang.StringBuilder;"/>
+         </parameters>
+      </makeFormat>
+      <findKeyword return-type="int" visibility="private" final="true" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="[Ljava.lang.String;"/>
+         </parameters>
+      </findKeyword>
+      <copyAndFixQuotes return-type="void" visibility="private" final="true" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.StringBuilder"/>
+         </parameters>
+      </copyAndFixQuotes>
+   </methods>
+</MessageFormat>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<ThreadLocalMap class="java.lang.ThreadLocal$ThreadLocalMap" ref-id="953528593">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ThreadLocal$ThreadLocalMap$Entry.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ThreadLocal.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ThreadLocal$ThreadLocalMap.xml"/>
+   <constructors>
+      <constructor visibility="private">
+         <parameters>
+            <parameter type="java.lang.ThreadLocal$ThreadLocalMap"/>
+         </parameters>
+      </constructor>
+      <constructor>
+         <parameters>
+            <parameter type="java.lang.ThreadLocal"/>
+            <parameter type="java.lang.Object"/>
+         </parameters>
+      </constructor>
+      <constructor>
+         <parameters>
+            <parameter type="java.lang.ThreadLocal$ThreadLocalMap"/>
+            <parameter type="java.lang.ThreadLocal$1"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <INITIAL_CAPACITY type="int" visibility="private" final="true" static-final="true"/>
+      <table type="[Ljava.lang.ThreadLocal$ThreadLocalMap$Entry;" visibility="private"/>
+      <size type="int" visibility="private"/>
+      <threshold type="int" visibility="private"/>
+   </fields>
+   <methods>
+      <remove return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.ThreadLocal"/>
+         </parameters>
+      </remove>
+      <access_000 escapeSequence="6:$" return-type="java.lang.ThreadLocal$ThreadLocalMap$Entry" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.ThreadLocal$ThreadLocalMap"/>
+            <parameter parameter-type="java.lang.ThreadLocal"/>
+         </parameters>
+      </access_000>
+      <access_200 escapeSequence="6:$" return-type="void" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.ThreadLocal$ThreadLocalMap"/>
+            <parameter parameter-type="java.lang.ThreadLocal"/>
+         </parameters>
+      </access_200>
+      <access_100 escapeSequence="6:$" return-type="void" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.ThreadLocal$ThreadLocalMap"/>
+            <parameter parameter-type="java.lang.ThreadLocal"/>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </access_100>
+      <rehash return-type="void" visibility="private"/>
+      <set return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.ThreadLocal"/>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </set>
+      <nextIndex return-type="int" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </nextIndex>
+      <getEntry return-type="java.lang.ThreadLocal$ThreadLocalMap$Entry" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.ThreadLocal"/>
+         </parameters>
+      </getEntry>
+      <resize return-type="void" visibility="private"/>
+      <prevIndex return-type="int" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </prevIndex>
+      <getEntryAfterMiss return-type="java.lang.ThreadLocal$ThreadLocalMap$Entry" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.ThreadLocal"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.ThreadLocal$ThreadLocalMap$Entry"/>
+         </parameters>
+      </getEntryAfterMiss>
+      <setThreshold return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </setThreshold>
+      <replaceStaleEntry return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.ThreadLocal"/>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </replaceStaleEntry>
+      <expungeStaleEntry return-type="int" visibility="private">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </expungeStaleEntry>
+      <cleanSomeSlots return-type="boolean" visibility="private">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </cleanSomeSlots>
+      <expungeStaleEntries return-type="void" visibility="private"/>
+   </methods>
+</ThreadLocalMap>

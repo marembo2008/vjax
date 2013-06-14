@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Node class="java.util.regex.Pattern$Node" ref-id="1386836451">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/regex/Pattern$TreeInfo.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/CharSequence.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/regex/Matcher.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/regex/Pattern$Node.xml"/>
+   <constructors>
+      <constructor/>
+   </constructors>
+   <fields>
+      <next type="java.util.regex.Pattern$Node"/>
+   </fields>
+   <methods>
+      <match return-type="boolean">
+         <parameters>
+            <parameter parameter-type="java.util.regex.Matcher"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.CharSequence"/>
+         </parameters>
+      </match>
+      <study return-type="boolean">
+         <parameters>
+            <parameter parameter-type="java.util.regex.Pattern$TreeInfo"/>
+         </parameters>
+      </study>
+   </methods>
+</Node>

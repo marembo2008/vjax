@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<BmpCharProperty class="java.util.regex.Pattern$BmpCharProperty" ref-id="444104423" abstract="true">
+   <extends class="java.util.regex.Pattern$CharProperty"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/regex/Pattern$CharProperty.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/CharSequence.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/regex/Matcher.xml"/>
+   <constructors>
+      <constructor visibility="private"/>
+      <constructor>
+         <parameters>
+            <parameter type="java.util.regex.Pattern$1"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <methods>
+      <match return-type="boolean">
+         <parameters>
+            <parameter parameter-type="java.util.regex.Matcher"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.CharSequence"/>
+         </parameters>
+      </match>
+   </methods>
+</BmpCharProperty>

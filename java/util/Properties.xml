@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Properties class="java.util.Properties" ref-id="1947407428">
+   <extends class="java.util.Hashtable"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Set.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Enumeration.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/InvalidPropertiesFormatException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/Writer.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/OutputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/BufferedWriter.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Hashtable.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Properties$LineReader.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/InputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/Reader.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/PrintStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/PrintWriter.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Properties.xml"/>
+   <constructors>
+      <constructor visibility="public"/>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.util.Properties"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <serialVersionUID type="long" visibility="private" final="true" static-final="true"/>
+      <defaults type="java.util.Properties" visibility="protected"/>
+      <hexDigit type="[C" visibility="private" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <setProperty return-type="java.lang.Object" visibility="public" synchronized="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </setProperty>
+      <getProperty return-type="java.lang.String" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getProperty>
+      <getProperty return-type="java.lang.String" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </getProperty>
+      <list return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.io.PrintWriter"/>
+         </parameters>
+      </list>
+      <list return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.io.PrintStream"/>
+         </parameters>
+      </list>
+      <load return-type="void" visibility="public" synchronized="true">
+         <parameters>
+            <parameter parameter-type="java.io.Reader"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </load>
+      <load return-type="void" visibility="public" synchronized="true">
+         <parameters>
+            <parameter parameter-type="java.io.InputStream"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </load>
+      <load0 return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.util.Properties$LineReader"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </load0>
+      <enumerate return-type="void" visibility="private" synchronized="true">
+         <parameters>
+            <parameter parameter-type="java.util.Hashtable"/>
+         </parameters>
+      </enumerate>
+      <loadConvert return-type="java.lang.String" visibility="private">
+         <parameters>
+            <parameter parameter-type="[C"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="[C"/>
+         </parameters>
+      </loadConvert>
+      <saveConvert return-type="java.lang.String" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="boolean"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </saveConvert>
+      <writeComments return-type="void" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.io.BufferedWriter"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </writeComments>
+      <save return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.io.OutputStream"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </save>
+      <store return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.io.OutputStream"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </store>
+      <store return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.io.Writer"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </store>
+      <store0 return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.io.BufferedWriter"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </store0>
+      <loadFromXML return-type="void" visibility="public" synchronized="true">
+         <parameters>
+            <parameter parameter-type="java.io.InputStream"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+            <throwable throws="java.util.InvalidPropertiesFormatException"/>
+         </throws>
+      </loadFromXML>
+      <storeToXML return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.io.OutputStream"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </storeToXML>
+      <storeToXML return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.io.OutputStream"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </storeToXML>
+      <propertyNames return-type="java.util.Enumeration" visibility="public"/>
+      <stringPropertyNames return-type="java.util.Set" visibility="public"/>
+      <enumerateStringProperties return-type="void" visibility="private" synchronized="true">
+         <parameters>
+            <parameter parameter-type="java.util.Hashtable"/>
+         </parameters>
+      </enumerateStringProperties>
+      <toHex return-type="char" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </toHex>
+   </methods>
+</Properties>

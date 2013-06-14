@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<InputSource class="org.xml.sax.InputSource" ref-id="417654479">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/InputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/Reader.xml"/>
+   <constructors>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.io.Reader"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.io.InputStream"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public"/>
+   </constructors>
+   <fields>
+      <publicId type="java.lang.String" visibility="private"/>
+      <systemId type="java.lang.String" visibility="private"/>
+      <byteStream type="java.io.InputStream" visibility="private"/>
+      <encoding type="java.lang.String" visibility="private"/>
+      <characterStream type="java.io.Reader" visibility="private"/>
+   </fields>
+   <methods>
+      <getEncoding return-type="java.lang.String" visibility="public"/>
+      <getPublicId return-type="java.lang.String" visibility="public"/>
+      <getSystemId return-type="java.lang.String" visibility="public"/>
+      <setPublicId return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </setPublicId>
+      <setSystemId return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </setSystemId>
+      <setByteStream return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.io.InputStream"/>
+         </parameters>
+      </setByteStream>
+      <getByteStream return-type="java.io.InputStream" visibility="public"/>
+      <setEncoding return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </setEncoding>
+      <setCharacterStream return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.io.Reader"/>
+         </parameters>
+      </setCharacterStream>
+      <getCharacterStream return-type="java.io.Reader" visibility="public"/>
+   </methods>
+</InputSource>

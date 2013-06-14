@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<File class="java.io.File" ref-id="125620621">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Comparable.xml"/>
+   <implements interface="java.lang.Comparable"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/Serializable.xml"/>
+   <implements interface="java.io.Serializable"/>
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/FileFilter.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/net/MalformedURLException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/net/URL.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectOutputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassNotFoundException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectInputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/FilenameFilter.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/file/Path.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/FileSystem.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/File.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/net/URI.xml"/>
+   <constructors>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.net.URI"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="private">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.io.File"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="private">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="int"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.io.File"/>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <fs type="java.io.FileSystem" visibility="private" static-final="true"/>
+      <path type="java.lang.String" visibility="private"/>
+      <prefixLength type="int" visibility="private" transient="true"/>
+      <separatorChar type="char" visibility="public" final="true" static-final="true"/>
+      <separator type="java.lang.String" visibility="public" final="true" static-final="true"/>
+      <pathSeparatorChar type="char" visibility="public" final="true" static-final="true"/>
+      <pathSeparator type="java.lang.String" visibility="public" final="true" static-final="true"/>
+      <serialVersionUID type="long" visibility="private" final="true" static-final="true"/>
+      <filePath type="java.nio.file.Path" visibility="private" transient="true" volatile="true"/>
+      <_assertionsDisabled escapeSequence="0:$" type="boolean" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <equals return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </equals>
+      <toString return-type="java.lang.String" visibility="public" overrides="true"/>
+      <hashCode return-type="int" visibility="public" overrides="true"/>
+      <compareTo return-type="int" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.io.File"/>
+         </parameters>
+      </compareTo>
+      <compareTo return-type="int" visibility="public" volatile="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </compareTo>
+      <getName return-type="java.lang.String" visibility="public"/>
+      <length return-type="long" visibility="public"/>
+      <list return-type="[Ljava.lang.String;" visibility="public"/>
+      <list return-type="[Ljava.lang.String;" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.io.FilenameFilter"/>
+         </parameters>
+      </list>
+      <getParent return-type="java.lang.String" visibility="public"/>
+      <isAbsolute return-type="boolean" visibility="public"/>
+      <exists return-type="boolean" visibility="public"/>
+      <access_000 escapeSequence="6:$" return-type="java.io.FileSystem" static-final="true"/>
+      <getCanonicalPath return-type="java.lang.String" visibility="public">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </getCanonicalPath>
+      <readObject return-type="void" visibility="private" synchronized="true">
+         <parameters>
+            <parameter parameter-type="java.io.ObjectInputStream"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+            <throwable throws="java.lang.ClassNotFoundException"/>
+         </throws>
+      </readObject>
+      <writeObject return-type="void" visibility="private" synchronized="true">
+         <parameters>
+            <parameter parameter-type="java.io.ObjectOutputStream"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </writeObject>
+      <setReadOnly return-type="boolean" visibility="public"/>
+      <delete return-type="boolean" visibility="public"/>
+      <getPath return-type="java.lang.String" visibility="public"/>
+      <getPrefixLength return-type="int"/>
+      <getParentFile return-type="java.io.File" visibility="public"/>
+      <getAbsolutePath return-type="java.lang.String" visibility="public"/>
+      <getAbsoluteFile return-type="java.io.File" visibility="public"/>
+      <getCanonicalFile return-type="java.io.File" visibility="public">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </getCanonicalFile>
+      <slashify return-type="java.lang.String" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </slashify>
+      <isDirectory return-type="boolean" visibility="public"/>
+      <toURL return-type="java.net.URL" visibility="public">
+         <throws>
+            <throwable throws="java.net.MalformedURLException"/>
+         </throws>
+      </toURL>
+      <toURI return-type="java.net.URI" visibility="public"/>
+      <canRead return-type="boolean" visibility="public"/>
+      <canWrite return-type="boolean" visibility="public"/>
+      <isFile return-type="boolean" visibility="public"/>
+      <isHidden return-type="boolean" visibility="public"/>
+      <lastModified return-type="long" visibility="public"/>
+      <createNewFile return-type="boolean" visibility="public">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </createNewFile>
+      <deleteOnExit return-type="void" visibility="public"/>
+      <listFiles return-type="[Ljava.io.File;" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.io.FilenameFilter"/>
+         </parameters>
+      </listFiles>
+      <listFiles return-type="[Ljava.io.File;" visibility="public"/>
+      <listFiles return-type="[Ljava.io.File;" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.io.FileFilter"/>
+         </parameters>
+      </listFiles>
+      <mkdir return-type="boolean" visibility="public"/>
+      <mkdirs return-type="boolean" visibility="public"/>
+      <renameTo return-type="boolean" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.io.File"/>
+         </parameters>
+      </renameTo>
+      <setLastModified return-type="boolean" visibility="public">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+      </setLastModified>
+      <setWritable return-type="boolean" visibility="public">
+         <parameters>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </setWritable>
+      <setWritable return-type="boolean" visibility="public">
+         <parameters>
+            <parameter parameter-type="boolean"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </setWritable>
+      <setReadable return-type="boolean" visibility="public">
+         <parameters>
+            <parameter parameter-type="boolean"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </setReadable>
+      <setReadable return-type="boolean" visibility="public">
+         <parameters>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </setReadable>
+      <setExecutable return-type="boolean" visibility="public">
+         <parameters>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </setExecutable>
+      <setExecutable return-type="boolean" visibility="public">
+         <parameters>
+            <parameter parameter-type="boolean"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </setExecutable>
+      <canExecute return-type="boolean" visibility="public"/>
+      <listRoots return-type="[Ljava.io.File;" visibility="public" static-final="true"/>
+      <getTotalSpace return-type="long" visibility="public"/>
+      <getFreeSpace return-type="long" visibility="public"/>
+      <getUsableSpace return-type="long" visibility="public"/>
+      <createTempFile return-type="java.io.File" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.io.File"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </createTempFile>
+      <createTempFile return-type="java.io.File" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </createTempFile>
+      <toPath return-type="java.nio.file.Path" visibility="public"/>
+   </methods>
+</File>

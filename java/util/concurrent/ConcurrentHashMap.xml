@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<ConcurrentHashMap class="java.util.concurrent.ConcurrentHashMap" ref-id="671002127">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/Serializable.xml"/>
+   <implements interface="java.io.Serializable"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/concurrent/ConcurrentMap.xml"/>
+   <implements interface="java.util.concurrent.ConcurrentMap"/>
+   <extends class="java.util.AbstractMap"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/AbstractMap.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/concurrent/ConcurrentHashMap$HashEntry.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/concurrent/ConcurrentHashMap.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Enumeration.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectOutputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassNotFoundException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/ObjectInputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Collection.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Set.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/concurrent/ConcurrentHashMap$Segment.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Map.xml"/>
+   <constructors>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="int"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public"/>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="int"/>
+            <parameter type="float"/>
+            <parameter type="int"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="int"/>
+            <parameter type="float"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.util.Map"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <serialVersionUID type="long" visibility="private" final="true" static-final="true"/>
+      <DEFAULT_INITIAL_CAPACITY type="int" final="true" static-final="true"/>
+      <DEFAULT_LOAD_FACTOR type="float" final="true" static-final="true"/>
+      <DEFAULT_CONCURRENCY_LEVEL type="int" final="true" static-final="true"/>
+      <MAXIMUM_CAPACITY type="int" final="true" static-final="true"/>
+      <MIN_SEGMENT_TABLE_CAPACITY type="int" final="true" static-final="true"/>
+      <MAX_SEGMENTS type="int" final="true" static-final="true"/>
+      <RETRIES_BEFORE_LOCK type="int" final="true" static-final="true"/>
+      <hashSeed type="int" visibility="private" final="true" transient="true"/>
+      <segmentMask type="int" final="true"/>
+      <segmentShift type="int" final="true"/>
+      <segments type="[Ljava.util.concurrent.ConcurrentHashMap$Segment;" final="true"/>
+      <keySet type="java.util.Set" transient="true"/>
+      <entrySet type="java.util.Set" transient="true"/>
+      <values type="java.util.Collection" transient="true"/>
+      <UNSAFE type="sun.misc.Unsafe" visibility="private" final="true" static-final="true"/>
+      <SBASE type="long" visibility="private" final="true" static-final="true"/>
+      <SSHIFT type="int" visibility="private" final="true" static-final="true"/>
+      <TBASE type="long" visibility="private" final="true" static-final="true"/>
+      <TSHIFT type="int" visibility="private" final="true" static-final="true"/>
+      <HASHSEED_OFFSET type="long" visibility="private" final="true" static-final="true"/>
+      <SEGSHIFT_OFFSET type="long" visibility="private" final="true" static-final="true"/>
+      <SEGMASK_OFFSET type="long" visibility="private" final="true" static-final="true"/>
+      <SEGMENTS_OFFSET type="long" visibility="private" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <remove return-type="java.lang.Object" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </remove>
+      <remove return-type="boolean" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </remove>
+      <get return-type="java.lang.Object" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </get>
+      <put return-type="java.lang.Object" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </put>
+      <hash return-type="int" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </hash>
+      <values return-type="java.util.Collection" visibility="public" overrides="true"/>
+      <clear return-type="void" visibility="public" overrides="true"/>
+      <isEmpty return-type="boolean" visibility="public" overrides="true"/>
+      <replace return-type="java.lang.Object" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </replace>
+      <replace return-type="boolean" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </replace>
+      <contains return-type="boolean" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </contains>
+      <size return-type="int" visibility="public" overrides="true"/>
+      <putIfAbsent return-type="java.lang.Object" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </putIfAbsent>
+      <readObject return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.io.ObjectInputStream"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+            <throwable throws="java.lang.ClassNotFoundException"/>
+         </throws>
+      </readObject>
+      <writeObject return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.io.ObjectOutputStream"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </writeObject>
+      <entrySet return-type="java.util.Set" visibility="public" overrides="true"/>
+      <putAll return-type="void" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.util.Map"/>
+         </parameters>
+      </putAll>
+      <elements return-type="java.util.Enumeration" visibility="public"/>
+      <keys return-type="java.util.Enumeration" visibility="public"/>
+      <keySet return-type="java.util.Set" visibility="public" overrides="true"/>
+      <containsValue return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </containsValue>
+      <containsKey return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </containsKey>
+      <randomHashSeed return-type="int" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.util.concurrent.ConcurrentHashMap"/>
+         </parameters>
+      </randomHashSeed>
+      <entryAt return-type="java.util.concurrent.ConcurrentHashMap$HashEntry" final="true" static-final="true">
+         <parameters>
+            <parameter parameter-type="[Ljava.util.concurrent.ConcurrentHashMap$HashEntry;"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </entryAt>
+      <setEntryAt return-type="void" final="true" static-final="true">
+         <parameters>
+            <parameter parameter-type="[Ljava.util.concurrent.ConcurrentHashMap$HashEntry;"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.util.concurrent.ConcurrentHashMap$HashEntry"/>
+         </parameters>
+      </setEntryAt>
+      <segmentAt return-type="java.util.concurrent.ConcurrentHashMap$Segment" final="true" static-final="true">
+         <parameters>
+            <parameter parameter-type="[Ljava.util.concurrent.ConcurrentHashMap$Segment;"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </segmentAt>
+      <ensureSegment return-type="java.util.concurrent.ConcurrentHashMap$Segment" visibility="private">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </ensureSegment>
+      <segmentForHash return-type="java.util.concurrent.ConcurrentHashMap$Segment" visibility="private">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </segmentForHash>
+      <entryForHash return-type="java.util.concurrent.ConcurrentHashMap$HashEntry" final="true" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.util.concurrent.ConcurrentHashMap$Segment"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </entryForHash>
+   </methods>
+</ConcurrentHashMap>

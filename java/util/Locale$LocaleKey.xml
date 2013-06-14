@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<LocaleKey class="java.util.Locale$LocaleKey" ref-id="1625866753">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Locale$LocaleKey.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <constructors>
+      <constructor>
+         <parameters>
+            <parameter type="sun.util.locale.BaseLocale"/>
+            <parameter type="sun.util.locale.LocaleExtensions"/>
+            <parameter type="java.util.Locale$1"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="private">
+         <parameters>
+            <parameter type="sun.util.locale.BaseLocale"/>
+            <parameter type="sun.util.locale.LocaleExtensions"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <base type="sun.util.locale.BaseLocale" visibility="private" final="true"/>
+      <exts type="sun.util.locale.LocaleExtensions" visibility="private" final="true"/>
+      <hash type="int" visibility="private" final="true"/>
+   </fields>
+   <methods>
+      <equals return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </equals>
+      <hashCode return-type="int" visibility="public" overrides="true"/>
+      <access_200 escapeSequence="6:$" return-type="sun.util.locale.BaseLocale" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.util.Locale$LocaleKey"/>
+         </parameters>
+      </access_200>
+      <access_300 escapeSequence="6:$" return-type="sun.util.locale.LocaleExtensions" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.util.Locale$LocaleKey"/>
+         </parameters>
+      </access_300>
+   </methods>
+</LocaleKey>

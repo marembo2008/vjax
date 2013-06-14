@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<ClassValueMap class="java.lang.ClassValue$ClassValueMap" ref-id="855852525">
+   <extends class="java.util.WeakHashMap"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/WeakHashMap.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassValue.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ClassValue$Entry.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Class.xml"/>
+   <constructors>
+      <constructor>
+         <parameters>
+            <parameter type="java.lang.Class"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <type type="java.lang.Class" visibility="private" final="true"/>
+      <cacheArray type="[Ljava.lang.ClassValue$Entry;" visibility="private"/>
+      <cacheLoad type="int" visibility="private"/>
+      <cacheLoadLimit type="int" visibility="private"/>
+      <INITIAL_ENTRIES type="int" visibility="private" final="true" static-final="true"/>
+      <CACHE_LOAD_LIMIT type="int" visibility="private" final="true" static-final="true"/>
+      <PROBE_LIMIT type="int" visibility="private" final="true" static-final="true"/>
+      <_assertionsDisabled escapeSequence="0:$" type="boolean" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <getCache return-type="[Ljava.lang.ClassValue$Entry;"/>
+      <startEntry return-type="java.lang.ClassValue$Entry" synchronized="true">
+         <parameters>
+            <parameter parameter-type="java.lang.ClassValue"/>
+         </parameters>
+      </startEntry>
+      <finishEntry return-type="java.lang.ClassValue$Entry" synchronized="true">
+         <parameters>
+            <parameter parameter-type="java.lang.ClassValue"/>
+            <parameter parameter-type="java.lang.ClassValue$Entry"/>
+         </parameters>
+      </finishEntry>
+      <removeEntry return-type="void" synchronized="true">
+         <parameters>
+            <parameter parameter-type="java.lang.ClassValue"/>
+         </parameters>
+      </removeEntry>
+      <changeEntry return-type="void" synchronized="true">
+         <parameters>
+            <parameter parameter-type="java.lang.ClassValue"/>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </changeEntry>
+      <loadFromCache return-type="java.lang.ClassValue$Entry" static-final="true">
+         <parameters>
+            <parameter parameter-type="[Ljava.lang.ClassValue$Entry;"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </loadFromCache>
+      <probeHomeLocation return-type="java.lang.ClassValue$Entry" static-final="true">
+         <parameters>
+            <parameter parameter-type="[Ljava.lang.ClassValue$Entry;"/>
+            <parameter parameter-type="java.lang.ClassValue"/>
+         </parameters>
+      </probeHomeLocation>
+      <probeBackupLocations return-type="java.lang.ClassValue$Entry" static-final="true">
+         <parameters>
+            <parameter parameter-type="[Ljava.lang.ClassValue$Entry;"/>
+            <parameter parameter-type="java.lang.ClassValue"/>
+         </parameters>
+      </probeBackupLocations>
+      <entryDislocation return-type="int" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="[Ljava.lang.ClassValue$Entry;"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.ClassValue$Entry"/>
+         </parameters>
+      </entryDislocation>
+      <sizeCache return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </sizeCache>
+      <checkCacheLoad return-type="void" visibility="private"/>
+      <reduceCacheLoad return-type="void" visibility="private"/>
+      <removeStaleEntries return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="[Ljava.lang.ClassValue$Entry;"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </removeStaleEntries>
+      <removeStaleEntries return-type="void" visibility="private"/>
+      <removeStaleEntries return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.ClassValue"/>
+         </parameters>
+      </removeStaleEntries>
+      <findReplacement return-type="java.lang.ClassValue$Entry" visibility="private">
+         <parameters>
+            <parameter parameter-type="[Ljava.lang.ClassValue$Entry;"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </findReplacement>
+      <addToCache return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.ClassValue$Entry"/>
+         </parameters>
+      </addToCache>
+      <addToCache return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.ClassValue"/>
+            <parameter parameter-type="java.lang.ClassValue$Entry"/>
+         </parameters>
+      </addToCache>
+      <placeInCache return-type="java.lang.ClassValue$Entry" visibility="private">
+         <parameters>
+            <parameter parameter-type="[Ljava.lang.ClassValue$Entry;"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.ClassValue$Entry"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </placeInCache>
+      <overwrittenEntry return-type="java.lang.ClassValue$Entry" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.ClassValue$Entry"/>
+         </parameters>
+      </overwrittenEntry>
+   </methods>
+</ClassValueMap>

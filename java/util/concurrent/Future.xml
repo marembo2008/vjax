@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Future class="java.util.concurrent.Future" ref-id="1677185839" interface="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/concurrent/TimeoutException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/concurrent/ExecutionException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/InterruptedException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/concurrent/TimeUnit.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <methods>
+      <get return-type="java.lang.Object" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="long"/>
+            <parameter parameter-type="java.util.concurrent.TimeUnit"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.InterruptedException"/>
+            <throwable throws="java.util.concurrent.ExecutionException"/>
+            <throwable throws="java.util.concurrent.TimeoutException"/>
+         </throws>
+      </get>
+      <get return-type="java.lang.Object" visibility="public" abstract="true">
+         <throws>
+            <throwable throws="java.lang.InterruptedException"/>
+            <throwable throws="java.util.concurrent.ExecutionException"/>
+         </throws>
+      </get>
+      <cancel return-type="boolean" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </cancel>
+      <isCancelled return-type="boolean" visibility="public" abstract="true"/>
+      <isDone return-type="boolean" visibility="public" abstract="true"/>
+   </methods>
+</Future>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<DataInputStream class="java.io.DataInputStream" ref-id="1391263288">
+   <implements interface="java.io.DataInput"/>
+   <extends class="java.io.FilterInputStream"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/FilterInputStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/DataInput.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/InputStream.xml"/>
+   <constructors>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.io.InputStream"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <bytearr type="[B" visibility="private"/>
+      <chararr type="[C" visibility="private"/>
+      <readBuffer type="[B" visibility="private"/>
+      <lineBuffer type="[C" visibility="private"/>
+   </fields>
+   <methods>
+      <readLine return-type="java.lang.String" visibility="public" final="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </readLine>
+      <readInt return-type="int" visibility="public" final="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </readInt>
+      <read return-type="int" visibility="public" final="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="[B"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </read>
+      <read return-type="int" visibility="public" final="true" overrides="true">
+         <parameters>
+            <parameter parameter-type="[B"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </read>
+      <readChar return-type="char" visibility="public" final="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </readChar>
+      <readUTF return-type="java.lang.String" visibility="public" final="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </readUTF>
+      <readUTF return-type="java.lang.String" visibility="public" final="true" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.io.DataInput"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </readUTF>
+      <readFully return-type="void" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="[B"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </readFully>
+      <readFully return-type="void" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="[B"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </readFully>
+      <readFloat return-type="float" visibility="public" final="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </readFloat>
+      <readBoolean return-type="boolean" visibility="public" final="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </readBoolean>
+      <readByte return-type="byte" visibility="public" final="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </readByte>
+      <readUnsignedByte return-type="int" visibility="public" final="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </readUnsignedByte>
+      <readShort return-type="short" visibility="public" final="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </readShort>
+      <readUnsignedShort return-type="int" visibility="public" final="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </readUnsignedShort>
+      <readLong return-type="long" visibility="public" final="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </readLong>
+      <readDouble return-type="double" visibility="public" final="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </readDouble>
+      <skipBytes return-type="int" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </skipBytes>
+   </methods>
+</DataInputStream>

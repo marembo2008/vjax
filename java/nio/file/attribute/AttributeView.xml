@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<AttributeView class="java.nio.file.attribute.AttributeView" ref-id="1092708126" interface="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <methods>
+      <name return-type="java.lang.String" visibility="public" abstract="true"/>
+   </methods>
+</AttributeView>

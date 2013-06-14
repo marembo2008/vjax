@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Type class="java.net.InetAddress$Cache$Type" ref-id="2064954287">
+   <extends class="java.lang.Enum"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Enum.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/net/InetAddress$Cache$Type.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <constructors>
+      <constructor visibility="private">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="int"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <Positive type="java.net.InetAddress$Cache$Type" visibility="public" final="true" static-final="true"/>
+      <Negative type="java.net.InetAddress$Cache$Type" visibility="public" final="true" static-final="true"/>
+      <_VALUES escapeSequence="0:$" type="[Ljava.net.InetAddress$Cache$Type;" visibility="private" final="true" static-final="true"/>
+   </fields>
+   <methods>
+      <values return-type="[Ljava.net.InetAddress$Cache$Type;" visibility="public" static-final="true"/>
+      <valueOf return-type="java.net.InetAddress$Cache$Type" visibility="public" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </valueOf>
+   </methods>
+</Type>

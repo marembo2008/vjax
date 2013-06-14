@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<SoftReference class="java.lang.ref.SoftReference" ref-id="626069078">
+   <extends class="java.lang.ref.Reference"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ref/Reference.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ref/ReferenceQueue.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <constructors>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.Object"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.Object"/>
+            <parameter type="java.lang.ref.ReferenceQueue"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <clock type="long" visibility="private" static-final="true"/>
+      <timestamp type="long" visibility="private"/>
+   </fields>
+   <methods>
+      <get return-type="java.lang.Object" visibility="public" overrides="true"/>
+   </methods>
+</SoftReference>

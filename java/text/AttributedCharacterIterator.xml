@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<AttributedCharacterIterator class="java.text.AttributedCharacterIterator" ref-id="907134805" interface="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/text/CharacterIterator.xml"/>
+   <implements interface="java.text.CharacterIterator"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Set.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/text/AttributedCharacterIterator$Attribute.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Map.xml"/>
+   <methods>
+      <getAttributes return-type="java.util.Map" visibility="public" abstract="true"/>
+      <getAttribute return-type="java.lang.Object" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.text.AttributedCharacterIterator$Attribute"/>
+         </parameters>
+      </getAttribute>
+      <getRunStart return-type="int" visibility="public" abstract="true"/>
+      <getRunStart return-type="int" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.util.Set"/>
+         </parameters>
+      </getRunStart>
+      <getRunStart return-type="int" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.text.AttributedCharacterIterator$Attribute"/>
+         </parameters>
+      </getRunStart>
+      <getRunLimit return-type="int" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.util.Set"/>
+         </parameters>
+      </getRunLimit>
+      <getRunLimit return-type="int" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.text.AttributedCharacterIterator$Attribute"/>
+         </parameters>
+      </getRunLimit>
+      <getRunLimit return-type="int" visibility="public" abstract="true"/>
+      <getAllAttributeKeys return-type="java.util.Set" visibility="public" abstract="true"/>
+   </methods>
+</AttributedCharacterIterator>

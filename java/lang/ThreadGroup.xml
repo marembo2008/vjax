@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<ThreadGroup class="java.lang.ThreadGroup" ref-id="417696189">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Thread$UncaughtExceptionHandler.xml"/>
+   <implements interface="java.lang.Thread$UncaughtExceptionHandler"/>
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/PrintStream.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Throwable.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Thread.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ThreadGroup.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Void.xml"/>
+   <constructors>
+      <constructor visibility="private">
+         <parameters>
+            <parameter type="java.lang.Void"/>
+            <parameter type="java.lang.ThreadGroup"/>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.ThreadGroup"/>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="private"/>
+   </constructors>
+   <fields>
+      <parent type="java.lang.ThreadGroup" visibility="private" final="true"/>
+      <name type="java.lang.String"/>
+      <maxPriority type="int"/>
+      <destroyed type="boolean"/>
+      <daemon type="boolean"/>
+      <vmAllowSuspension type="boolean"/>
+      <nUnstartedThreads type="int"/>
+      <nthreads type="int"/>
+      <threads type="[Ljava.lang.Thread;"/>
+      <ngroups type="int"/>
+      <groups type="[Ljava.lang.ThreadGroup;"/>
+   </fields>
+   <methods>
+      <add return-type="void">
+         <parameters>
+            <parameter parameter-type="java.lang.Thread"/>
+         </parameters>
+      </add>
+      <add return-type="void" visibility="private" final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.ThreadGroup"/>
+         </parameters>
+      </add>
+      <remove return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.ThreadGroup"/>
+         </parameters>
+      </remove>
+      <remove return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.Thread"/>
+         </parameters>
+      </remove>
+      <uncaughtException return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Thread"/>
+            <parameter parameter-type="java.lang.Throwable"/>
+         </parameters>
+      </uncaughtException>
+      <toString return-type="java.lang.String" visibility="public" overrides="true"/>
+      <getName return-type="java.lang.String" visibility="public" final="true"/>
+      <list return-type="void" visibility="public"/>
+      <list return-type="void">
+         <parameters>
+            <parameter parameter-type="java.io.PrintStream"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </list>
+      <getParent return-type="java.lang.ThreadGroup" visibility="public" final="true"/>
+      <setDaemon return-type="void" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </setDaemon>
+      <isDestroyed return-type="boolean" visibility="public" synchronized="true"/>
+      <stop return-type="void" visibility="public" final="true"/>
+      <interrupt return-type="void" visibility="public" final="true"/>
+      <destroy return-type="void" visibility="public" final="true"/>
+      <suspend return-type="void" visibility="public" final="true"/>
+      <resume return-type="void" visibility="public" final="true"/>
+      <activeCount return-type="int" visibility="public"/>
+      <enumerate return-type="int" visibility="public">
+         <parameters>
+            <parameter parameter-type="[Ljava.lang.ThreadGroup;"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </enumerate>
+      <enumerate return-type="int" visibility="public">
+         <parameters>
+            <parameter parameter-type="[Ljava.lang.Thread;"/>
+         </parameters>
+      </enumerate>
+      <enumerate return-type="int" visibility="public">
+         <parameters>
+            <parameter parameter-type="[Ljava.lang.Thread;"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </enumerate>
+      <enumerate return-type="int" visibility="private">
+         <parameters>
+            <parameter parameter-type="[Ljava.lang.Thread;"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </enumerate>
+      <enumerate return-type="int" visibility="private">
+         <parameters>
+            <parameter parameter-type="[Ljava.lang.ThreadGroup;"/>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </enumerate>
+      <enumerate return-type="int" visibility="public">
+         <parameters>
+            <parameter parameter-type="[Ljava.lang.ThreadGroup;"/>
+         </parameters>
+      </enumerate>
+      <isDaemon return-type="boolean" visibility="public" final="true"/>
+      <checkAccess return-type="void" visibility="public" final="true"/>
+      <addUnstarted return-type="void"/>
+      <threadStartFailed return-type="void">
+         <parameters>
+            <parameter parameter-type="java.lang.Thread"/>
+         </parameters>
+      </threadStartFailed>
+      <threadTerminated return-type="void">
+         <parameters>
+            <parameter parameter-type="java.lang.Thread"/>
+         </parameters>
+      </threadTerminated>
+      <getMaxPriority return-type="int" visibility="public" final="true"/>
+      <checkParentAccess return-type="java.lang.Void" visibility="private" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.ThreadGroup"/>
+         </parameters>
+      </checkParentAccess>
+      <setMaxPriority return-type="void" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </setMaxPriority>
+      <parentOf return-type="boolean" visibility="public" final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.ThreadGroup"/>
+         </parameters>
+      </parentOf>
+      <activeGroupCount return-type="int" visibility="public"/>
+      <stopOrSuspend return-type="boolean" visibility="private">
+         <parameters>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </stopOrSuspend>
+      <allowThreadSuspension return-type="boolean" visibility="public">
+         <parameters>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </allowThreadSuspension>
+   </methods>
+</ThreadGroup>

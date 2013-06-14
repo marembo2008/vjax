@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<InterruptibleChannel class="java.nio.channels.InterruptibleChannel" ref-id="1777950779" interface="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/channels/Channel.xml"/>
+   <implements interface="java.nio.channels.Channel"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/io/IOException.xml"/>
+   <methods>
+      <close return-type="void" visibility="public" abstract="true">
+         <throws>
+            <throwable throws="java.io.IOException"/>
+         </throws>
+      </close>
+   </methods>
+</InterruptibleChannel>

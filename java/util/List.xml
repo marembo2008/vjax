@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<List class="java.util.List" ref-id="1674448408" interface="true">
+   <implements interface="java.util.Collection"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/ListIterator.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Iterator.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Collection.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/List.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <methods>
+      <add return-type="boolean" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </add>
+      <add return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </add>
+      <remove return-type="boolean" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </remove>
+      <remove return-type="java.lang.Object" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </remove>
+      <get return-type="java.lang.Object" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </get>
+      <equals return-type="boolean" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </equals>
+      <hashCode return-type="int" visibility="public" abstract="true"/>
+      <indexOf return-type="int" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </indexOf>
+      <clear return-type="void" visibility="public" abstract="true"/>
+      <isEmpty return-type="boolean" visibility="public" abstract="true"/>
+      <lastIndexOf return-type="int" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </lastIndexOf>
+      <contains return-type="boolean" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </contains>
+      <size return-type="int" visibility="public" abstract="true"/>
+      <subList return-type="java.util.List" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </subList>
+      <toArray return-type="[Ljava.lang.Object;" visibility="public" abstract="true"/>
+      <toArray return-type="[Ljava.lang.Object;" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="[Ljava.lang.Object;"/>
+         </parameters>
+      </toArray>
+      <addAll return-type="boolean" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.util.Collection"/>
+         </parameters>
+      </addAll>
+      <addAll return-type="boolean" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.util.Collection"/>
+         </parameters>
+      </addAll>
+      <iterator return-type="java.util.Iterator" visibility="public" abstract="true"/>
+      <set return-type="java.lang.Object" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </set>
+      <containsAll return-type="boolean" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.util.Collection"/>
+         </parameters>
+      </containsAll>
+      <removeAll return-type="boolean" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.util.Collection"/>
+         </parameters>
+      </removeAll>
+      <retainAll return-type="boolean" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.util.Collection"/>
+         </parameters>
+      </retainAll>
+      <listIterator return-type="java.util.ListIterator" visibility="public" abstract="true"/>
+      <listIterator return-type="java.util.ListIterator" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="int"/>
+         </parameters>
+      </listIterator>
+   </methods>
+</List>

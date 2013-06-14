@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<DTDHandler class="org.xml.sax.DTDHandler" ref-id="1930632600" interface="true">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="org/xml/sax/SAXException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <methods>
+      <unparsedEntityDecl return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="org.xml.sax.SAXException"/>
+         </throws>
+      </unparsedEntityDecl>
+      <notationDecl return-type="void" visibility="public" abstract="true">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+         <throws>
+            <throwable throws="org.xml.sax.SAXException"/>
+         </throws>
+      </notationDecl>
+   </methods>
+</DTDHandler>

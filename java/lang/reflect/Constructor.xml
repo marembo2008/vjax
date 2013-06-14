@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Constructor class="java.lang.reflect.Constructor" ref-id="1846667755">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/reflect/Member.xml"/>
+   <implements interface="java.lang.reflect.Member"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/reflect/GenericDeclaration.xml"/>
+   <implements interface="java.lang.reflect.GenericDeclaration"/>
+   <extends class="java.lang.reflect.AccessibleObject"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/reflect/AccessibleObject.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/annotation/Annotation.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/reflect/TypeVariable.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/reflect/InvocationTargetException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/IllegalArgumentException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/IllegalAccessException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/InstantiationException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Map.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/reflect/Constructor.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Class.xml"/>
+   <constructors>
+      <constructor>
+         <parameters>
+            <parameter type="java.lang.Class"/>
+            <parameter type="[Ljava.lang.Class;"/>
+            <parameter type="[Ljava.lang.Class;"/>
+            <parameter type="int"/>
+            <parameter type="int"/>
+            <parameter type="java.lang.String"/>
+            <parameter type="[B"/>
+            <parameter type="[B"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <clazz type="java.lang.Class" visibility="private"/>
+      <slot type="int" visibility="private"/>
+      <parameterTypes type="[Ljava.lang.Class;" visibility="private"/>
+      <exceptionTypes type="[Ljava.lang.Class;" visibility="private"/>
+      <modifiers type="int" visibility="private"/>
+      <signature type="java.lang.String" visibility="private" transient="true"/>
+      <genericInfo type="sun.reflect.generics.repository.ConstructorRepository" visibility="private" transient="true"/>
+      <annotations type="[B" visibility="private"/>
+      <parameterAnnotations type="[B" visibility="private"/>
+      <constructorAccessor type="sun.reflect.ConstructorAccessor" visibility="private" volatile="true"/>
+      <root type="java.lang.reflect.Constructor" visibility="private"/>
+      <declaredAnnotations type="java.util.Map" visibility="private" transient="true"/>
+   </fields>
+   <methods>
+      <equals return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </equals>
+      <toString return-type="java.lang.String" visibility="public" overrides="true"/>
+      <hashCode return-type="int" visibility="public" overrides="true"/>
+      <getModifiers return-type="int" visibility="public"/>
+      <getName return-type="java.lang.String" visibility="public"/>
+      <declaredAnnotations return-type="java.util.Map" visibility="private" synchronized="true"/>
+      <newInstance return-type="java.lang.Object" visibility="public" transient="true">
+         <parameters>
+            <parameter parameter-type="[Ljava.lang.Object;"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.InstantiationException"/>
+            <throwable throws="java.lang.IllegalAccessException"/>
+            <throwable throws="java.lang.IllegalArgumentException"/>
+            <throwable throws="java.lang.reflect.InvocationTargetException"/>
+         </throws>
+      </newInstance>
+      <isSynthetic return-type="boolean" visibility="public"/>
+      <getTypeParameters return-type="[Ljava.lang.reflect.TypeVariable;" visibility="public"/>
+      <getDeclaringClass return-type="java.lang.Class" visibility="public"/>
+      <getFactory return-type="sun.reflect.generics.factory.GenericsFactory" visibility="private"/>
+      <getGenericInfo return-type="sun.reflect.generics.repository.ConstructorRepository" visibility="private"/>
+      <getRawAnnotations return-type="[B"/>
+      <getAnnotation return-type="java.lang.annotation.Annotation" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Class"/>
+         </parameters>
+      </getAnnotation>
+      <getDeclaredAnnotations return-type="[Ljava.lang.annotation.Annotation;" visibility="public" overrides="true"/>
+      <getParameterTypes return-type="[Ljava.lang.Class;" visibility="public"/>
+      <copy return-type="java.lang.reflect.Constructor"/>
+      <toGenericString return-type="java.lang.String" visibility="public"/>
+      <getGenericParameterTypes return-type="[Ljava.lang.reflect.Type;" visibility="public"/>
+      <getExceptionTypes return-type="[Ljava.lang.Class;" visibility="public"/>
+      <getGenericExceptionTypes return-type="[Ljava.lang.reflect.Type;" visibility="public"/>
+      <isVarArgs return-type="boolean" visibility="public"/>
+      <getParameterAnnotations return-type="[[Ljava.lang.annotation.Annotation;" visibility="public"/>
+      <acquireConstructorAccessor return-type="sun.reflect.ConstructorAccessor" visibility="private"/>
+      <getConstructorAccessor return-type="sun.reflect.ConstructorAccessor"/>
+      <setConstructorAccessor return-type="void">
+         <parameters>
+            <parameter parameter-type="sun.reflect.ConstructorAccessor"/>
+         </parameters>
+      </setConstructorAccessor>
+      <getSlot return-type="int"/>
+      <getSignature return-type="java.lang.String"/>
+      <getRawParameterAnnotations return-type="[B"/>
+   </methods>
+</Constructor>

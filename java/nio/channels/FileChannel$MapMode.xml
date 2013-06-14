@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<MapMode class="java.nio.channels.FileChannel$MapMode" ref-id="1926463307">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/channels/FileChannel$MapMode.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <constructors>
+      <constructor visibility="private">
+         <parameters>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <READ_ONLY type="java.nio.channels.FileChannel$MapMode" visibility="public" final="true" static-final="true"/>
+      <READ_WRITE type="java.nio.channels.FileChannel$MapMode" visibility="public" final="true" static-final="true"/>
+      <PRIVATE type="java.nio.channels.FileChannel$MapMode" visibility="public" final="true" static-final="true"/>
+      <name type="java.lang.String" visibility="private" final="true"/>
+   </fields>
+   <methods>
+      <toString return-type="java.lang.String" visibility="public" overrides="true"/>
+   </methods>
+</MapMode>

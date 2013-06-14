@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<ReferenceQueue class="java.lang.ref.ReferenceQueue" ref-id="1518751850">
+   <extends class="java.lang.Object"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/InterruptedException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/IllegalArgumentException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ref/Reference.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ref/ReferenceQueue$Lock.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/ref/ReferenceQueue.xml"/>
+   <constructors>
+      <constructor visibility="public"/>
+   </constructors>
+   <fields>
+      <NULL type="java.lang.ref.ReferenceQueue" static-final="true"/>
+      <ENQUEUED type="java.lang.ref.ReferenceQueue" static-final="true"/>
+      <lock type="java.lang.ref.ReferenceQueue$Lock" visibility="private"/>
+      <head type="java.lang.ref.Reference" visibility="private" volatile="true"/>
+      <queueLength type="long" visibility="private"/>
+   </fields>
+   <methods>
+      <remove return-type="java.lang.ref.Reference" visibility="public">
+         <parameters>
+            <parameter parameter-type="long"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.IllegalArgumentException"/>
+            <throwable throws="java.lang.InterruptedException"/>
+         </throws>
+      </remove>
+      <remove return-type="java.lang.ref.Reference" visibility="public">
+         <throws>
+            <throwable throws="java.lang.InterruptedException"/>
+         </throws>
+      </remove>
+      <enqueue return-type="boolean">
+         <parameters>
+            <parameter parameter-type="java.lang.ref.Reference"/>
+         </parameters>
+      </enqueue>
+      <poll return-type="java.lang.ref.Reference" visibility="public"/>
+      <reallyPoll return-type="java.lang.ref.Reference" visibility="private"/>
+   </methods>
+</ReferenceQueue>

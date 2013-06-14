@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<VNamespace class="com.anosym.vjax.xml.VNamespace" ref-id="502572999">
+   <extends class="com.anosym.vjax.xml.VAttribute"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="com/anosym/vjax/xml/VAttribute.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="com/anosym/vjax/xml/VNamespace.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <constructors>
+      <constructor visibility="public"/>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+            <parameter type="boolean"/>
+            <parameter type="boolean"/>
+            <parameter type="boolean"/>
+            <parameter type="boolean"/>
+         </parameters>
+      </constructor>
+      <constructor visibility="public">
+         <parameters>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+            <parameter type="boolean"/>
+            <parameter type="boolean"/>
+            <parameter type="boolean"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <DEFUALT_NAMESPACE_PROPERTY_BINDING type="java.lang.String" visibility="public" final="true" static-final="true"/>
+      <VJAX_NAMESPACE type="com.anosym.vjax.xml.VNamespace" visibility="public" final="true" static-final="true"/>
+      <SCHEMA_NAMESPACE type="com.anosym.vjax.xml.VNamespace" visibility="public" final="true" static-final="true"/>
+      <XINCLUDE_NAMESPACE type="com.anosym.vjax.xml.VNamespace" visibility="public" final="true" static-final="true"/>
+      <XINSTANCE_NAMESPACE type="com.anosym.vjax.xml.VNamespace" visibility="public" final="true" static-final="true"/>
+      <prefix type="java.lang.String" visibility="private"/>
+      <elementFormDefault type="boolean" visibility="private"/>
+      <attributeFormDefault type="boolean" visibility="private"/>
+      <version type="java.lang.String" visibility="private"/>
+      <xmlLanguage type="java.lang.String" visibility="private"/>
+      <includeFormDefaultAttributeOnFalse type="boolean" visibility="private"/>
+      <hasSchema type="boolean" visibility="private"/>
+      <schemaLocation type="java.lang.String" visibility="private"/>
+   </fields>
+   <methods>
+      <equals return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </equals>
+      <toString return-type="java.lang.String" visibility="public" overrides="true"/>
+      <hashCode return-type="int" visibility="public" overrides="true"/>
+      <getName return-type="java.lang.String" visibility="public" overrides="true"/>
+      <isHasSchema return-type="boolean" visibility="public"/>
+      <getPrefix return-type="java.lang.String" visibility="public"/>
+      <isAttributeFormDefault return-type="boolean" visibility="public"/>
+      <isElementFormDefault return-type="boolean" visibility="public"/>
+      <isIncludeFormDefaultAttributeOnFalse return-type="boolean" visibility="public"/>
+      <getElementFormDefaultAttribute return-type="com.anosym.vjax.xml.VAttribute" visibility="public"/>
+      <getAttributeFormDefaultAttribute return-type="com.anosym.vjax.xml.VAttribute" visibility="public"/>
+      <setHasSchema return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </setHasSchema>
+      <getSchemaLocation return-type="java.lang.String" visibility="public"/>
+      <setSchemaLocation return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </setSchemaLocation>
+      <setIncludeFormDefaultAttributeOnFalse return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </setIncludeFormDefaultAttributeOnFalse>
+      <setAttributeFormDefault return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </setAttributeFormDefault>
+      <setElementFormDefault return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </setElementFormDefault>
+      <setPrefix return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.String"/>
+         </parameters>
+      </setPrefix>
+   </methods>
+</VNamespace>

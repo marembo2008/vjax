@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Field class="java.lang.reflect.Field" ref-id="918425598">
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/reflect/Member.xml"/>
+   <implements interface="java.lang.reflect.Member"/>
+   <extends class="java.lang.reflect.AccessibleObject"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/reflect/AccessibleObject.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/reflect/Type.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/annotation/Annotation.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/IllegalAccessException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/IllegalArgumentException.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Map.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/reflect/Field.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Class.xml"/>
+   <constructors>
+      <constructor>
+         <parameters>
+            <parameter type="java.lang.Class"/>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.Class"/>
+            <parameter type="int"/>
+            <parameter type="int"/>
+            <parameter type="java.lang.String"/>
+            <parameter type="[B"/>
+         </parameters>
+      </constructor>
+   </constructors>
+   <fields>
+      <clazz type="java.lang.Class" visibility="private"/>
+      <slot type="int" visibility="private"/>
+      <name type="java.lang.String" visibility="private"/>
+      <type type="java.lang.Class" visibility="private"/>
+      <modifiers type="int" visibility="private"/>
+      <signature type="java.lang.String" visibility="private" transient="true"/>
+      <genericInfo type="sun.reflect.generics.repository.FieldRepository" visibility="private" transient="true"/>
+      <annotations type="[B" visibility="private"/>
+      <fieldAccessor type="sun.reflect.FieldAccessor" visibility="private"/>
+      <overrideFieldAccessor type="sun.reflect.FieldAccessor" visibility="private"/>
+      <root type="java.lang.reflect.Field" visibility="private"/>
+      <declaredAnnotations type="java.util.Map" visibility="private" transient="true"/>
+   </fields>
+   <methods>
+      <get return-type="java.lang.Object" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.IllegalArgumentException"/>
+            <throwable throws="java.lang.IllegalAccessException"/>
+         </throws>
+      </get>
+      <equals return-type="boolean" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+      </equals>
+      <toString return-type="java.lang.String" visibility="public" overrides="true"/>
+      <hashCode return-type="int" visibility="public" overrides="true"/>
+      <getModifiers return-type="int" visibility="public"/>
+      <getBoolean return-type="boolean" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.IllegalArgumentException"/>
+            <throwable throws="java.lang.IllegalAccessException"/>
+         </throws>
+      </getBoolean>
+      <getByte return-type="byte" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.IllegalArgumentException"/>
+            <throwable throws="java.lang.IllegalAccessException"/>
+         </throws>
+      </getByte>
+      <getShort return-type="short" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.IllegalArgumentException"/>
+            <throwable throws="java.lang.IllegalAccessException"/>
+         </throws>
+      </getShort>
+      <getChar return-type="char" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.IllegalArgumentException"/>
+            <throwable throws="java.lang.IllegalAccessException"/>
+         </throws>
+      </getChar>
+      <getInt return-type="int" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.IllegalArgumentException"/>
+            <throwable throws="java.lang.IllegalAccessException"/>
+         </throws>
+      </getInt>
+      <getLong return-type="long" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.IllegalArgumentException"/>
+            <throwable throws="java.lang.IllegalAccessException"/>
+         </throws>
+      </getLong>
+      <getFloat return-type="float" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.IllegalArgumentException"/>
+            <throwable throws="java.lang.IllegalAccessException"/>
+         </throws>
+      </getFloat>
+      <getDouble return-type="double" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.IllegalArgumentException"/>
+            <throwable throws="java.lang.IllegalAccessException"/>
+         </throws>
+      </getDouble>
+      <getName return-type="java.lang.String" visibility="public"/>
+      <declaredAnnotations return-type="java.util.Map" visibility="private" synchronized="true"/>
+      <isSynthetic return-type="boolean" visibility="public"/>
+      <getDeclaringClass return-type="java.lang.Class" visibility="public"/>
+      <getGenericSignature return-type="java.lang.String" visibility="private"/>
+      <getFactory return-type="sun.reflect.generics.factory.GenericsFactory" visibility="private"/>
+      <getGenericInfo return-type="sun.reflect.generics.repository.FieldRepository" visibility="private"/>
+      <getAnnotation return-type="java.lang.annotation.Annotation" visibility="public" overrides="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Class"/>
+         </parameters>
+      </getAnnotation>
+      <getDeclaredAnnotations return-type="[Ljava.lang.annotation.Annotation;" visibility="public" overrides="true"/>
+      <copy return-type="java.lang.reflect.Field"/>
+      <isEnumConstant return-type="boolean" visibility="public"/>
+      <getType return-type="java.lang.Class" visibility="public"/>
+      <getGenericType return-type="java.lang.reflect.Type" visibility="public"/>
+      <toGenericString return-type="java.lang.String" visibility="public"/>
+      <set return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.IllegalArgumentException"/>
+            <throwable throws="java.lang.IllegalAccessException"/>
+         </throws>
+      </set>
+      <setBoolean return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.IllegalArgumentException"/>
+            <throwable throws="java.lang.IllegalAccessException"/>
+         </throws>
+      </setBoolean>
+      <setByte return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="byte"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.IllegalArgumentException"/>
+            <throwable throws="java.lang.IllegalAccessException"/>
+         </throws>
+      </setByte>
+      <setChar return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="char"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.IllegalArgumentException"/>
+            <throwable throws="java.lang.IllegalAccessException"/>
+         </throws>
+      </setChar>
+      <setShort return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="short"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.IllegalArgumentException"/>
+            <throwable throws="java.lang.IllegalAccessException"/>
+         </throws>
+      </setShort>
+      <setInt return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="int"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.IllegalArgumentException"/>
+            <throwable throws="java.lang.IllegalAccessException"/>
+         </throws>
+      </setInt>
+      <setLong return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="long"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.IllegalArgumentException"/>
+            <throwable throws="java.lang.IllegalAccessException"/>
+         </throws>
+      </setLong>
+      <setFloat return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="float"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.IllegalArgumentException"/>
+            <throwable throws="java.lang.IllegalAccessException"/>
+         </throws>
+      </setFloat>
+      <setDouble return-type="void" visibility="public">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+            <parameter parameter-type="double"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.IllegalArgumentException"/>
+            <throwable throws="java.lang.IllegalAccessException"/>
+         </throws>
+      </setDouble>
+      <getFieldAccessor return-type="sun.reflect.FieldAccessor" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.IllegalAccessException"/>
+         </throws>
+      </getFieldAccessor>
+      <getFieldAccessor return-type="sun.reflect.FieldAccessor" visibility="private">
+         <parameters>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </getFieldAccessor>
+      <acquireFieldAccessor return-type="sun.reflect.FieldAccessor" visibility="private">
+         <parameters>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </acquireFieldAccessor>
+      <setFieldAccessor return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="sun.reflect.FieldAccessor"/>
+            <parameter parameter-type="boolean"/>
+         </parameters>
+      </setFieldAccessor>
+      <doSecurityCheck return-type="void" visibility="private">
+         <parameters>
+            <parameter parameter-type="java.lang.Object"/>
+         </parameters>
+         <throws>
+            <throwable throws="java.lang.IllegalAccessException"/>
+         </throws>
+      </doSecurityCheck>
+      <getTypeName return-type="java.lang.String" static-final="true">
+         <parameters>
+            <parameter parameter-type="java.lang.Class"/>
+         </parameters>
+      </getTypeName>
+   </methods>
+</Field>
