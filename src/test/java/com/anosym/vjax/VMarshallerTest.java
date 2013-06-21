@@ -407,4 +407,93 @@ public class VMarshallerTest {
     } catch (Exception e) {
     }
   }
+
+  /**
+   * **********************************************************************************************
+   * Testing unmarshalling
+   * **********************************************************************************************
+   */
+  public static class UnmarshallExample {
+
+    private String name;
+    private String title;
+    private int id;
+
+    public UnmarshallExample() {
+    }
+
+    public UnmarshallExample(String name, String title, int id) {
+      this.name = name;
+      this.title = title;
+      this.id = id;
+    }
+
+    public String getName() {
+      return name;
+    }
+
+    public void setName(String name) {
+      this.name = name;
+    }
+
+    public String getTitle() {
+      return title;
+    }
+
+    public void setTitle(String title) {
+      this.title = title;
+    }
+
+    public int getId() {
+      return id;
+    }
+
+    public void setId(int id) {
+      this.id = id;
+    }
+
+    @Override
+    public int hashCode() {
+      int hash = 3;
+      hash = 83 * hash + (this.name != null ? this.name.hashCode() : 0);
+      hash = 83 * hash + (this.title != null ? this.title.hashCode() : 0);
+      hash = 83 * hash + this.id;
+      return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+      if (obj == null) {
+        return false;
+      }
+      if (getClass() != obj.getClass()) {
+        return false;
+      }
+      final UnmarshallExample other = (UnmarshallExample) obj;
+      if ((this.name == null) ? (other.name != null) : !this.name.equals(other.name)) {
+        return false;
+      }
+      if ((this.title == null) ? (other.title != null) : !this.title.equals(other.title)) {
+        return false;
+      }
+      if (this.id != other.id) {
+        return false;
+      }
+      return true;
+    }
+  }
+
+  @Test
+  public void testBasicUnmarshall() {
+    try {
+      VMarshaller<UnmarshallExample> m = new VMarshaller<VMarshallerTest.UnmarshallExample>();
+      UnmarshallExample expected = new UnmarshallExample("unmarshall example", "test example", 3555354);
+      VDocument doc = m.marshallDocument(expected);
+      System.out.println(doc.toXmlString());
+      UnmarshallExample result = m.unmarshall(doc);
+      assertEquals(expected, result);
+    } catch (Exception ex) {
+      Logger.getLogger(VMarshallerTest.class.getName()).log(Level.SEVERE, null, ex);
+    }
+  }
 }

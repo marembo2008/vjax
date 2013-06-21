@@ -375,10 +375,27 @@ public class VElement implements Cloneable, Serializable, Iterable<VElement> {
    * This method returns the references to the children of this element It is noted that removing
    * any child from the returned list does not affect the children of this element
    *
+   * Note that, the element text content is also considered as a child of this element.
+   *
    * @return
    */
   public List<VElement> getChildren() {
     return new ArrayList<VElement>(children.values());
+  }
+
+  /**
+   * Returns the children of this element, excluding the text content child
+   *
+   * @return
+   */
+  public List<VElement> getInstanceChildren() {
+    List<VElement> ch = getChildren();
+    for (ListIterator<VElement> it = ch.listIterator(); it.hasNext();) {
+      if (it.next() instanceof VContent) {
+        it.remove();
+      }
+    }
+    return ch;
   }
 
   public int childrenCount() {

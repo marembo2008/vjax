@@ -344,7 +344,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
 
   private T unmarshallPrimitive(VElement elem) throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, IllegalArgumentException, InvocationTargetException {
     String wr = elem.getAttribute(VMarshallerConstants.PRIMITIVE_WRAPPER_ATTRIBUTE).getValue();
-    String value = elem.getContent();
+    String value = elem.toContent();
     Object o = null;
     if (!value.isEmpty()) {
       Object ob = Class.forName(wr).getConstructor(new Class[]{String.class}).newInstance(new Object[]{"0"});
@@ -364,6 +364,12 @@ public final class VMarshaller<T> implements java.io.Serializable {
         value = value.trim();
         o = value.charAt(0);
       }
+    }
+    VAttribute at = elem.getAttribute(VMarshallerConstants.OBJECT_REFERENCE_ID_ATTRIBUTE);
+    if (at != null) {
+      String val = at.getValue();
+      int id = Integer.parseInt(val);
+      idMapping.put(id, o);
     }
     return (T) o;
   }
@@ -462,7 +468,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
 
   private T unmarshallBasic(VElement elem, VAttribute initAttr, Object o, Class clazz) throws VXMLBindingException {
     try {
-      String val = elem.getContent();
+      String val = elem.toContent();
       if (val == null) {
         o = newInstance(initAttr, clazz);
       } else {
@@ -603,7 +609,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
       //get the content
       //at this point we believe that the element has been determined to be serialized
       VAttribute isAliased = elem.getAttribute(VMarshallerConstants.ALIAS_ATTRIBUTE);
-      String content = elem.getContent();
+      String content = elem.toContent();
       HexBinaryAdapter adpter = new HexBinaryAdapter();
 //            //since this is in array form, convert it to byte
 //            content = content.substring(1, content.length() - 1); //remove []
@@ -652,7 +658,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
       //we have a converter
       Class conClass = Class.forName(conAttr.getValue());
       VConverter converter = (VConverter) conClass.newInstance();
-      return (T) converter.convert(elem.getContent());
+      return (T) converter.convert(elem.toContent());
     } catch (Exception e) {
       if (e instanceof VXMLBindingException) {
         throw (VXMLBindingException) e;
@@ -743,7 +749,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
         return unmarshallSerializable(elem);
       }
       Object o = null;
-      List<VElement> elems = elem.getChildren();
+      List<VElement> elems = elem.getInstanceChildren();
       //check if we are referencing another object
       VAttribute _at__ = elem.getAttribute(VMarshallerConstants.OBJECT_CIRCULAR_REFERENCE_ATTRIBUTE);
       if (_at__ != null) {
@@ -787,14 +793,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
       //check if it is primitive
       VAttribute va = elem.getAttribute(VMarshallerConstants.PRIMITIVE_ATTRIBUTE);
       if (va != null && va.getValue().equalsIgnoreCase("true")) {
-        Object tmp = unmarshallPrimitive(elem);
-        VAttribute at = elem.getAttribute(VMarshallerConstants.OBJECT_REFERENCE_ID_ATTRIBUTE);
-        if (at != null) {
-          String val = at.getValue();
-          int id = Integer.parseInt(val);
-          idMapping.put(id, tmp);
-        }
-        return (T) tmp;
+        return unmarshallPrimitive(elem);
       }
       //check if it is an enum
       va = elem.getAttribute(VMarshallerConstants.ENUM_ATTRIBUTE);
