@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.anosym.vjax;
+package com.anosym.vjax.url;
 
 import com.anosym.vjax.annotation.IgnoreUrlParam;
 import com.anosym.vjax.annotation.Url;
@@ -76,9 +76,9 @@ public class HttpUrlEncoderTest {
   @org.junit.Test
   public void testEncodeUrl() throws Exception {
     System.out.println("encodeUrl");
-    UrlEncodingTestParam object = new UrlEncodingTestParam("my_param1", "my_param2_ignored", "my_param3_param_name_renamed", "http://url.com");
+    UrlEncodingTestParam object = new UrlEncodingTestParam("my param1", "my_param2_ignored", "my_param3_param_name_renamed", "http://url.com");
     HttpUrlEncoder<UrlEncodingTestParam> instance = new HttpUrlEncoder<UrlEncodingTestParam>();
-    String expResult = "http://url.com?testParam1=my_param1&testurlparamrenamedby_urlparam_annotation=my_param3_param_name_renamed";
+    String expResult = "http://url.com?testParam1=my+param1&testurlparamrenamedby_urlparam_annotation=my_param3_param_name_renamed";
     String result = instance.encodeUrl(object);
     System.out.println("Result: " + result);
     assertEquals(expResult, result);

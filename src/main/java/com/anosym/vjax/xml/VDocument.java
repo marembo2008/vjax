@@ -236,6 +236,14 @@ public class VDocument {
     return parseDocument(inn, false);
   }
 
+  public static VDocument parseDocument(File file) {
+    try {
+      return parseDocument(new FileInputStream(file), false);
+    } catch (FileNotFoundException ex) {
+      throw new RuntimeException(ex);
+    }
+  }
+
   /**
    * if this document is an html, it may not be well formed, and therefore, it needs to be cleaned
    * first.

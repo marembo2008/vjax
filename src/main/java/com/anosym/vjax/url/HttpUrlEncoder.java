@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.anosym.vjax;
+package com.anosym.vjax.url;
 
 import com.anosym.vjax.annotation.IgnoreUrlParam;
 import com.anosym.vjax.annotation.Url;
@@ -10,6 +10,7 @@ import com.anosym.vjax.annotation.UrlEncodeInheritedParam;
 import com.anosym.vjax.annotation.UrlParam;
 import com.flemax.vjax.annotation.UrlParamValue;
 import java.lang.reflect.Field;
+import java.net.URLEncoder;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class HttpUrlEncoder<T> {
     currentLevel++;
     if (encodeSuper && currentLevel < maxEncodeLevel) {
       Class<?> superClass = clazz.getSuperclass();
-      if (!superClass.isAssignableFrom(Object.class)) {
+      if (!superClass.isAssignableFrom(Object.class) && !clazz.isInterface()) {
         fields.addAll(getAllFields(superClass, currentLevel, encodeSuper, maxEncodeLevel));
       }
     }
@@ -63,37 +64,7 @@ public class HttpUrlEncoder<T> {
           if (ignoreUrlParam != null) {
             continue;
           }
-          //get url annotation.
-          if (!baseUrlEncoded) {
-            Url url = f.getAnnotation(Url.class);
-            if (url != null) {
-              Object urlValue = AccessController.doPrivileged(new PrivilegedAction<Object>() {
-                @Override
-                public Object run() {
-                  try {
-                    return f.get(object);
-                  } catch (IllegalArgumentException ex) {
-                    Logger.getLogger(HttpUrlEncoder.class.getName()).log(Level.SEVERE, null, ex);
-                  } catch (IllegalAccessException ex) {
-                    Logger.getLogger(HttpUrlEncoder.class.getName()).log(Level.SEVERE, null, ex);
-                  }
-                  return null;
-                }
-              });
-              if (urlValue != null) {
-                urlEncoded = urlValue.toString();
-                baseUrlEncoded = true;
-              }
-              continue;
-            }
-          }
-          String urlParamName;
-          UrlParam urlParam = f.getAnnotation(UrlParam.class);
-          if (urlParam != null) {
-            urlParamName = urlParam.value();
-          } else {
-            urlParamName = f.getName();
-          }
+          //get the field value
           Object value = AccessController.doPrivileged(new PrivilegedAction<Object>() {
             @Override
             public Object run() {
@@ -107,6 +78,24 @@ public class HttpUrlEncoder<T> {
               return null;
             }
           });
+          //get url annotation.
+          if (!baseUrlEncoded) {
+            Url url = f.getAnnotation(Url.class);
+            if (url != null) {
+              if (value != null) {
+                urlEncoded = value.toString();
+                baseUrlEncoded = true;
+              }
+              continue;
+            }
+          }
+          String urlParamName;
+          UrlParam urlParam = f.getAnnotation(UrlParam.class);
+          if (urlParam != null) {
+            urlParamName = urlParam.value();
+          } else {
+            urlParamName = f.getName();
+          }
           String urlParamValue = "" + value;
           boolean encodeNullValue = true;
           boolean encodeEmptyValue = true;
@@ -121,7 +110,10 @@ public class HttpUrlEncoder<T> {
             }
             urlParams += urlParamName;
             urlParams += "=";
-            urlParams += urlParamValue;
+            /**
+             * TODO(marembo) escape this parameter value.
+             */
+            urlParams += URLEncoder.encode(urlParamValue, "UTF-8");
           }
         }
       }

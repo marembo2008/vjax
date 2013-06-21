@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
  *
  * @author Marembo
  */
-public class VElement implements Cloneable, Serializable {
+public class VElement implements Cloneable, Serializable, Iterable<VElement> {
 
   /**
    * When characters that are reserved in the xml specification appears on an element tag, then the
@@ -319,8 +319,8 @@ public class VElement implements Cloneable, Serializable {
    * define namespace, its parent element is searched for any namespace definition, otherwise, the
    * current element overrides namespace definition of its parents
    * <pre>
-   * <b>The returned list of namespaces cannot be used to remove namespaces from this element
-   * It will be needless calling {@literal List.remove(java.lang.Object)} on the returned list</b>
+   * <b>The returned list of namespaces cannot be used to remove namespaces from this element It
+   * will be needless calling {@literal List.remove(java.lang.Object)} on the returned list</b>
    * </pre>
    *
    * @return
@@ -1169,7 +1169,7 @@ public class VElement implements Cloneable, Serializable {
     }
     String str = markups[0];
     VElement elem = new VElement(str);
-    for (VElement ve : this.children.values()) {
+    for (VElement ve : this) {
       if (ve.getMarkup().equals(elem.getMarkup())) {
         if (markups.length == 1) {
           return ve;
@@ -1553,5 +1553,9 @@ public class VElement implements Cloneable, Serializable {
       }
     }
     return strContent;
+  }
+
+  public Iterator<VElement> iterator() {
+    return getChildren().iterator();
   }
 }
