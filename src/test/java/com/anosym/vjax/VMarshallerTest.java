@@ -11,6 +11,7 @@ import com.anosym.vjax.annotations.Generated;
 import com.anosym.vjax.annotations.Id;
 import com.anosym.vjax.annotations.IgnoreGeneratedAttribute;
 import com.anosym.vjax.annotations.NoNamespace;
+import com.anosym.vjax.annotations.Position;
 import com.anosym.vjax.annotations.XmlMarkup;
 import com.anosym.vjax.id.generation.VGenerator;
 import com.anosym.vjax.xml.VAttribute;
@@ -48,6 +49,7 @@ public class VMarshallerTest {
       this.testCollections = testCollections;
     }
 
+    @Position(index = 0)
     public String getName() {
       return name;
     }
