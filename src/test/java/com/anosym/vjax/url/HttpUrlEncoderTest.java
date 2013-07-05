@@ -4,10 +4,10 @@
  */
 package com.anosym.vjax.url;
 
-import com.anosym.vjax.annotation.IgnoreUrlParam;
-import com.anosym.vjax.annotation.Url;
-import com.anosym.vjax.annotation.UrlEncodeInheritedParam;
-import com.anosym.vjax.annotation.UrlParam;
+import com.anosym.vjax.annotations.url.IgnoreUrlParam;
+import com.anosym.vjax.annotations.url.Url;
+import com.anosym.vjax.annotations.url.UrlEncodeInheritedParam;
+import com.anosym.vjax.annotations.url.UrlParam;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;

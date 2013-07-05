@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.flemax.vjax.annotation;
+package com.anosym.vjax.annotations.url;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -11,17 +11,19 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Specifies how to handle empty or null param values. By default, the url encoder does not ignore
- * null or empty values.
+ * specifies the name of the url parameters.
  *
  * @author marembo
  */
 @Documented
 @Target({ElementType.FIELD, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface UrlParamValue {
+public @interface UrlParam {
 
-  boolean encodeNull() default true;
-
-  boolean encodeEmpty() default true;
+  /**
+   * The name of the parameter value
+   *
+   * @return
+   */
+  String value() default "";
 }

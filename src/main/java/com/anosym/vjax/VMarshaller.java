@@ -392,7 +392,16 @@ public final class VMarshaller<T> implements java.io.Serializable {
     if (o == null) {
       o = newInstance(initAttr, clazz);
     }
-    for (VElement v : elems_) {
+    for (Iterator<VElement> it = elems_.iterator(); it.hasNext();) {
+      /**
+       * We remove the collection children elements as we marshall the collection. If this
+       * collection has properties, other than its children content, the children must have been
+       * wrapped into a collection_element_markup, and hence this removal will not affect the
+       * children. This is therefore prone to ClassCastException when different type of objects are
+       * added to the collection, when the children and properties are mixed up.
+       */
+      VElement v = it.next();
+      it.remove();
       //be sure that the child element is not an empty entry markup
       VAttribute a = v.getAttribute(VMarshallerConstants.COLLECTION_EMPTY_MARKUP);
       if (a == null) {
@@ -517,18 +526,18 @@ public final class VMarshaller<T> implements java.io.Serializable {
     EnumMarkup em = (EnumMarkup) clazz.getAnnotation(EnumMarkup.class);
     if (em != null && elem.isParent(em.value())) {
       VElement enumValue = elem.getChild(em.value());
-      name = enumValue.getContent();
+      name = enumValue.toContent();
       list.remove(enumValue);
     } else if (elem.isParent(VMarshallerConstants.ENUM_VALUE_ELEMENT)) {
       VElement e = elem.getChild(VMarshallerConstants.ENUM_VALUE_ELEMENT);
-      name = e.getContent();
+      name = e.toContent();
       list.remove(e);
     } else {
       VAttribute va = elem.getAttribute(VMarshallerConstants.VALUE_ATTRIBUTE);
       if (va != null) {
         name = va.getValue();
       } else {
-        name = elem.getContent();
+        name = elem.toContent();
       }
     }
     Object eo = Enum.valueOf(clazz, name);

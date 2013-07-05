@@ -159,13 +159,13 @@ public class VObjectMarshaller<T> {
           try {
             data += put(markupName, o);
           } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(VObjectMarshaller.class.getName()).log(Level.SEVERE, data, e);
           }
         } else {
           try {
             data += put(markupName, marshall((T) o, null, null));
           } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(VObjectMarshaller.class.getName()).log(Level.SEVERE, data, e);
           }
         }
       }
@@ -256,7 +256,7 @@ public class VObjectMarshaller<T> {
                       f.getDeclaredAnnotations());
             }
           } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(VObjectMarshaller.class.getName()).log(Level.SEVERE, data, e);
           }
         }
       }
@@ -279,7 +279,7 @@ public class VObjectMarshaller<T> {
         return unmarshallPrimitive(element, clazz, annots);
       }
       if (clazz.equals(String.class)) {
-        return (T) element.getContent();
+        return (T) element.toContent();
       }
       T instance = null;
       if (clazz.isEnum()) {
@@ -296,7 +296,7 @@ public class VObjectMarshaller<T> {
           Object convertedValue = unmarshal(element, returnType, null);
           return cn.convertTo(convertedValue);
         }
-        instance = (T) Enum.valueOf(clazz, element.getContent());
+        instance = (T) Enum.valueOf(clazz, element.toContent());
       }
       if (clazz.isArray()) {
         int children = element.getChildren().size();
@@ -425,7 +425,7 @@ public class VObjectMarshaller<T> {
   @SuppressWarnings({"unchecked", "rawtypes"})
   private T unmarshallPrimitive(VElement elem, Class<?> clazz, Annotation[] annotations)
           throws VXMLBindingException {
-    String value = elem.getContent();
+    String value = elem.toContent();
     if (value == null) {
       return null;
     }
@@ -439,7 +439,7 @@ public class VObjectMarshaller<T> {
             .get(primitiveClass);
     if (PrimitiveType == null) {
       throw new VXMLBindingException(
-              "Unknow primitive mapping for primitve class: "
+              "Unknown primitive mapping for primitve class: "
               + primitiveClass.getName());
     }
     switch (PrimitiveType) {
