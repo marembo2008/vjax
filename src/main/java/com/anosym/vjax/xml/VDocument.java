@@ -294,9 +294,6 @@ public class VDocument {
   public void writeDocument() {
     FileOutputStream out = null;
     try {
-      if (documentName.exists() && documentName.length() > 0) {
-        return;
-      }
       out = new FileOutputStream(documentName);
       out.write(this.toXmlString().getBytes());
       out.close();
@@ -314,10 +311,6 @@ public class VDocument {
           Logger.getLogger(VDocument.class.getName()).log(Level.SEVERE, null, ex);
         }
       }
-    }
-    //write the includes
-    for (VDocument doc : includes) {
-      doc.writeDocument();
     }
   }
 
