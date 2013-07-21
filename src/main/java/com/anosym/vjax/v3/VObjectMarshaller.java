@@ -274,6 +274,18 @@ public class VObjectMarshaller<T> {
   public T unmarshal(VElement element, Class clazz, Annotation[] annots)
           throws VXMLBindingException {
     try {
+      Converter converter = getAnnotation(annots, Converter.class);
+      if (converter != null) {
+        Class cls = converter.value();
+        com.anosym.vjax.converter.v3.Converter<T, Object> cn = converter.value().newInstance();
+        // get the return type of a method
+        Method m = cls.getDeclaredMethod("convertFrom",
+                new Class[]{clazz});
+        Class returnType = m.getReturnType();
+        // marshall against this class
+        Object convertedValue = unmarshal(element, returnType, null);
+        return cn.convertTo(convertedValue);
+      }
       if (clazz.isPrimitive()
               || PRIMITIVE_WRAPPER_MAPPING.get(clazz) != null) {
         return unmarshallPrimitive(element, clazz, annots);
@@ -284,18 +296,6 @@ public class VObjectMarshaller<T> {
       T instance = null;
       if (clazz.isEnum()) {
         //do we have a converter
-        Converter c = getAnnotation(annots, Converter.class);
-        if (c != null) {
-          Class cls = c.value();
-          com.anosym.vjax.converter.v3.Converter<T, Object> cn = c.value().newInstance();
-          // get the return type of a method
-          Method m = cls.getDeclaredMethod("convertFrom",
-                  new Class[]{clazz});
-          Class returnType = m.getReturnType();
-          // marshall against this class
-          Object convertedValue = unmarshal(element, returnType, null);
-          return cn.convertTo(convertedValue);
-        }
         instance = (T) Enum.valueOf(clazz, element.toContent());
       }
       if (clazz.isArray()) {
