@@ -2463,4 +2463,15 @@ public final class VMarshaller<T> implements java.io.Serializable {
   public static boolean isWrapperType(Class<?> clazz) {
     return PRIMITIVE_WARPPER_MAPPING.containsKey(clazz);
   }
+
+  public static <T> String toXmlString(T t) {
+    try {
+      VMarshaller<T> m = new VMarshaller<T>();
+      VDocument doc = m.marshallDocument(t);
+      return doc.toXmlString();
+    } catch (VXMLBindingException ex) {
+      Logger.getLogger(VMarshaller.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return null;
+  }
 }
