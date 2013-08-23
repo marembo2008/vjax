@@ -1930,9 +1930,26 @@ public final class VMarshaller<T> implements java.io.Serializable {
    */
   private boolean marshallAttribute(VElement elem, T o, Method m) throws Exception {
     //add it as attribute
+    //this can be an Id or an attribute element without being annotated as Attribute
     Class cls = m.getReturnType();
-    String value;
+    String value = null;
     String mName = getName(m);
+    Attribute attr = getAnnotation(m, Attribute.class);
+    if (attr != null) {
+      //does it have a markup
+      String attrName = attr.name();
+      if (!attrName.isEmpty()) {
+        mName = attrName;
+      }
+      //does it have an attribute normalizer?
+      Class<? extends VAttributeKeyNormalizer> vaknClass = attr.attributeKeyNormalizer();
+      try {
+        VAttributeKeyNormalizer vakn = vaknClass.newInstance();
+        mName = vakn.normalizeKey(mName);
+      } catch (Exception e) {
+      }
+      value = attr.value();
+    }
     if (!cls.isPrimitive()
             && !isWrapperType(cls)
             && cls != String.class) {
@@ -1949,28 +1966,15 @@ public final class VMarshaller<T> implements java.io.Serializable {
       value = vcon.convert(m.invoke(o, new Object[]{}));
     } else {
       Object resValue = m.invoke(o, new Object[]{});
-      if (resValue == null) {
+      if (resValue == null && (value == null || value.trim().isEmpty())) {
         return true;
       }
-      value = resValue.toString();
+      if (resValue != null) {
+        value = resValue.toString();
+      }
     }
     if (value == null) {
       throw new VXMLBindingException("Error on Attribute Binding: " + cls.getName());
-    }
-    Attribute attr = getAnnotation(m, Attribute.class);
-    if (attr != null) {
-      //does it have a markup
-      String attrName = attr.name();
-      if (!attrName.isEmpty()) {
-        mName = attrName;
-      }
-      //does it have an attribute normalizer?
-      Class<? extends VAttributeKeyNormalizer> vaknClass = attr.attributeKeyNormalizer();
-      try {
-        VAttributeKeyNormalizer vakn = vaknClass.newInstance();
-        mName = vakn.normalizeKey(mName);
-      } catch (Exception e) {
-      }
     }
     //check if this attribute has been positioned.
     Position pos = getAnnotation(m, Position.class);

@@ -42,4 +42,11 @@ public @interface Attribute {
    * @return
    */
   public Class<? extends VAttributeKeyNormalizer> attributeKeyNormalizer() default VAttributeKeyNormalizer.class;
+
+  /**
+   * The default value of this attribute if the property value is null.
+   *
+   * @return
+   */
+  public String value() default "";
 }

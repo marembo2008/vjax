@@ -7,6 +7,7 @@ package com.anosym.vjax;
 import com.anosym.vjax.annotations.AsAttribute;
 import com.anosym.vjax.annotations.AsAttributes;
 import com.anosym.vjax.annotations.AsCollection;
+import com.anosym.vjax.annotations.Attribute;
 import com.anosym.vjax.annotations.Generated;
 import com.anosym.vjax.annotations.Id;
 import com.anosym.vjax.annotations.IgnoreGeneratedAttribute;
@@ -485,6 +486,25 @@ public class VMarshallerTest {
     }
   }
 
+  @IgnoreGeneratedAttribute
+  @NoNamespace
+  public class TestDefaultAttribute {
+
+    private String name;
+
+    public TestDefaultAttribute() {
+    }
+
+    @Attribute("7336363366")
+    public String getName() {
+      return name;
+    }
+
+    public void setName(String name) {
+      this.name = name;
+    }
+  }
+
   @Test
   public void testBasicUnmarshall() {
     try {
@@ -496,6 +516,22 @@ public class VMarshallerTest {
       assertEquals(expected, result);
     } catch (Exception ex) {
       Logger.getLogger(VMarshallerTest.class.getName()).log(Level.SEVERE, null, ex);
+    }
+  }
+
+  @Test
+  public void testDefaultAttributeAssignment() {
+    try {
+      VMarshaller<TestDefaultAttribute> m = new VMarshaller<TestDefaultAttribute>();
+      TestDefaultAttribute tda = new TestDefaultAttribute();
+      VDocument doc = m.marshallDocument(tda);
+      String xml = doc.toXmlString();
+      String expected = "7336363366";
+      String actual = doc.getRootElement().getAttribute("name").getValue();
+      assertEquals(expected, actual);
+      System.out.println(xml);
+    } catch (Exception e) {
+      Logger.getLogger(VMarshallerTest.class.getName()).log(Level.SEVERE, null, e);
     }
   }
 }
