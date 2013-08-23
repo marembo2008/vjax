@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<UserPrincipal class="java.nio.file.attribute.UserPrincipal" ref-id="2039677065" interface="true">
-   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/security/Principal.xml"/>
-   <implements interface="java.security.Principal"/>
-</UserPrincipal>

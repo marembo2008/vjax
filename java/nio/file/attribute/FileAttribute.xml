@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<FileAttribute class="java.nio.file.attribute.FileAttribute" ref-id="650647154" interface="true">
-   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
-   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
-   <methods>
-      <name return-type="java.lang.String" visibility="public" abstract="true"/>
-      <value return-type="java.lang.Object" visibility="public" abstract="true"/>
-   </methods>
-</FileAttribute>

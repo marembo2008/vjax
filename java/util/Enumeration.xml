@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<Enumeration class="java.util.Enumeration" ref-id="1594756827" interface="true">
-   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Object.xml"/>
-   <methods>
-      <hasMoreElements return-type="boolean" visibility="public" abstract="true"/>
-      <nextElement return-type="java.lang.Object" visibility="public" abstract="true"/>
-   </methods>
-</Enumeration>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<Iterable class="java.lang.Iterable" ref-id="1773392968" interface="true">
-   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/util/Iterator.xml"/>
-   <methods>
-      <iterator return-type="java.util.Iterator" visibility="public" abstract="true"/>
-   </methods>
-</Iterable>

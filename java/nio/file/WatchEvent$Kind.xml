@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<Kind class="java.nio.file.WatchEvent$Kind" ref-id="275720648" interface="true">
-   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/Class.xml"/>
-   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/lang/String.xml"/>
-   <methods>
-      <name return-type="java.lang.String" visibility="public" abstract="true"/>
-      <type return-type="java.lang.Class" visibility="public" abstract="true"/>
-   </methods>
-</Kind>

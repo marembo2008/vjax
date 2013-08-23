@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<FileAttributeView class="java.nio.file.attribute.FileAttributeView" ref-id="2012808185" interface="true">
-   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/nio/file/attribute/AttributeView.xml"/>
-   <implements interface="java.nio.file.attribute.AttributeView"/>
-</FileAttributeView>

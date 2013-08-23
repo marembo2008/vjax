@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<PublicKey class="java.security.PublicKey" ref-id="27460709" interface="true">
-   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="java/security/Key.xml"/>
-   <implements interface="java.security.Key"/>
-   <fields>
-      <serialVersionUID type="long" visibility="public" final="true" static-final="true"/>
-   </fields>
-</PublicKey>
