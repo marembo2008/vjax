@@ -1364,6 +1364,21 @@ public class VElement implements Cloneable, Serializable, Iterable<VElement> {
     return el;
   }
 
+  /**
+   * Iterates over the entire element and its children, calling the conditional with with each of
+   * the element.
+   *
+   * @param conditional
+   */
+  public void iterate(VConditional<VElement> conditional) {
+    for (VElement e : getChildren()) {
+      conditional.accept(e);
+      if (e.hasChildren()) {
+        e.iterate(conditional);
+      }
+    }
+  }
+
   public VElement getChild(String name, int index) {
     if (index >= childrenCount()) {
       throw new IndexOutOfBoundsException("No such element at index: " + index);
