@@ -10,9 +10,26 @@ package com.anosym.vjax.xml;
  */
 public final class VContent extends VElement {
 
+  private String content;
+
   public VContent(String content) {
     super("content");
     setContent(content);
+  }
+
+  @Override
+  public void setContent(String content) {
+    this.content = content;
+  }
+
+  @Override
+  public String getContent() {
+    return content;
+  }
+
+  @Override
+  public String toContent() {
+    return getContent();
   }
 
   @Override

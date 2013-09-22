@@ -81,15 +81,15 @@ public class VObjectMarshaller<T> {
     maps.put(void.class, PrimitiveType.VOID);
     return maps;
   }
-  private Class<T> instanceClass;
+  private Class<? extends T> instanceClass;
   @SuppressWarnings("unused")
   private boolean ignoreUnmappedElements;
 
-  public VObjectMarshaller(Class<T> instanceClass) {
+  public VObjectMarshaller(Class<? extends T> instanceClass) {
     this.instanceClass = instanceClass;
   }
 
-  public VObjectMarshaller(Class<T> instanceClass,
+  public VObjectMarshaller(Class<? extends T> instanceClass,
           boolean ignoreUnmappedElements) {
     this.instanceClass = instanceClass;
     this.ignoreUnmappedElements = ignoreUnmappedElements;

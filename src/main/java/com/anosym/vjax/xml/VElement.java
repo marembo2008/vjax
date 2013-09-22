@@ -35,7 +35,6 @@ public class VElement implements Cloneable, Serializable, Iterable<VElement> {
    */
   private Long id = System.currentTimeMillis();
   private String markup;
-  private String content;
   private List<VAttribute> attributes;
   private Map<Integer, VElement> children;
   private boolean empty;
@@ -58,7 +57,6 @@ public class VElement implements Cloneable, Serializable, Iterable<VElement> {
     elementId = elementIds++;
     this.attributes = new ArrayList<VAttribute>();
     this.SetTag(markup);
-    this.content = null;
     this.children = new TreeMap<Integer, VElement>();
     this.parent = null;
     this.empty = true;
@@ -66,7 +64,6 @@ public class VElement implements Cloneable, Serializable, Iterable<VElement> {
 
   private VElement(VElement elem) {
     this(elem.markup);
-    this.content = elem.content;
     this.empty = elem.empty;
     this.comment = elem.comment;
     this.parent = elem.parent;
@@ -96,7 +93,6 @@ public class VElement implements Cloneable, Serializable, Iterable<VElement> {
 
   private VElement(VElement elem, VElement parent) {
     this(elem.markup);
-    this.content = elem.content;
     this.empty = elem.empty;
     this.comment = elem.comment;
     this.parent = parent;
@@ -421,28 +417,25 @@ public class VElement implements Cloneable, Serializable, Iterable<VElement> {
    * VContent
    *
    * @return
-   * @deprecated
    */
-  @Deprecated
   public String getContent() {
-    return content;
+    return toContent();
   }
 
   /**
-   * We deprecate this method in order to ensure consistency
-   *
    * @param content
-   * @deprecated
    */
-  @Deprecated
   public void setContent(String content) {
-    if (content != null && content.trim().isEmpty()) {
-      int debug = 0;
+    for (VElement e : getChildren()) {
+      if (e instanceof VContent) {
+        VContent vc = (VContent) e;
+        vc.setContent(content);
+        return;
+      }
     }
-    this.content = unescape(content);
-    if (this.content != null) {
-      this.removeAttribute(this.getAttribute(VMarshallerConstants.NULL_PROPERTY));
-    }
+    //add content to this elem
+    VContent vc = new VContent(content);
+    addChild(vc);
   }
 
   public String getMarkup() {
@@ -512,8 +505,21 @@ public class VElement implements Cloneable, Serializable, Iterable<VElement> {
     return this.hasChildren();
   }
 
+  public boolean hasContentOnly() {
+    for (VElement e : getChildren()) {
+      if (!(e instanceof VContent)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  public boolean isContentOnly() {
+    return hasContentOnly();
+  }
+
   public boolean isEmpty() {
-    return (this.content != null ? (this.content.isEmpty() && this.children.isEmpty()) : this.children.isEmpty());
+    return this.children.isEmpty();
   }
 
   public void addAttribute(VAttribute attr) {
@@ -752,9 +758,6 @@ public class VElement implements Cloneable, Serializable, Iterable<VElement> {
     if ((this.markup == null) ? (other.markup != null) : !this.markup.equals(other.markup)) {
       return false;
     }
-    if ((this.content == null) ? (other.content != null) : !this.content.equals(other.content)) {
-      return false;
-    }
     if (this.attributes != other.attributes && (this.attributes == null || !this.attributes.equals(other.attributes))) {
       return false;
     }
@@ -771,7 +774,6 @@ public class VElement implements Cloneable, Serializable, Iterable<VElement> {
   public int hashCode() {
     int hash = 3;
     hash = 83 * hash + (this.markup != null ? this.markup.hashCode() : 0);
-    hash = 83 * hash + (this.content != null ? this.content.hashCode() : 0);
     hash = 83 * hash + (this.attributes != null ? this.attributes.hashCode() : 0);
     hash = 83 * hash + (this.children != null ? this.children.hashCode() : 0);
     hash = 83 * hash + (this.empty ? 1 : 0);
@@ -868,28 +870,6 @@ public class VElement implements Cloneable, Serializable, Iterable<VElement> {
     } else {
       //close mark
       str += ">";
-      //then write contents and children
-      if (element.content != null) {
-        String elem_content = element.content;
-        if (element.hasChildren()) {
-          elem_content = "\n" + elem_content;
-        }
-        String[] conts = elem_content.split("\n");
-        //tabify it appropriately
-        if (conts.length > 1) {
-          String vTab = VElement.gTab(tab);
-          str += "\n  " + vTab;
-          for (String s : conts) {
-            str += escape(s);
-            str += "\n";
-            str += (vTab + "  ");
-          }
-          //remove the last two spaces
-          str = str.substring(0, str.length() - 2);
-        } else {
-          str += escape(elem_content);
-        }
-      }
       if (element.hasChildren()) {
         List<Integer> keys = new ArrayList<Integer>(element.children.keySet());
         for (int indx : keys) {
@@ -1578,11 +1558,7 @@ public class VElement implements Cloneable, Serializable, Iterable<VElement> {
   public String toContent() {
     String strContent = "";
     for (VElement c : getChildren()) {
-      if (c instanceof VContent) {
-        strContent += c.toString();
-      } else {
-        strContent += c.toContent();
-      }
+      strContent += c.toContent();
     }
     return strContent;
   }
