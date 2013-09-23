@@ -465,7 +465,7 @@ public class VElement implements Cloneable, Serializable, Iterable<VElement> {
         ccs[i] = '%';
       }
     }
-    if (!escapeSequence.isEmpty()) {
+    if (escapeSequence.length() != 0) {
       //remove the last ;
       escapeSequence = escapeSequence.substring(0, escapeSequence.length() - 1);
       this.addAttribute(new VAttribute(ESCAPE_SEQUENCE, escapeSequence));
@@ -1111,7 +1111,7 @@ public class VElement implements Cloneable, Serializable, Iterable<VElement> {
             childrenContent += (" " + c.getContent() != null ? c.getContent().trim() : "");
           }
         }
-        if (childrenContent != null && !childrenContent.trim().isEmpty()) {
+        if (childrenContent != null && childrenContent.trim().length() != 0) {
           String currentContent = this.getContent();
           if (currentContent != null) {
             currentContent = childrenContent + currentContent;

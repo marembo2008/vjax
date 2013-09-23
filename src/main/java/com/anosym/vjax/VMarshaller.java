@@ -175,7 +175,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
 
   public VElement marshall(T o) throws VXMLBindingException {
     String markup = o.getClass().getSimpleName();
-    if ((markup == null || markup.isEmpty()) && o.getClass().isAnonymousClass()) {
+    if ((markup == null || markup.length() == 0) && o.getClass().isAnonymousClass()) {
       markup = o.getClass().getName();
       int ix1 = markup.lastIndexOf("."),
               ix2 = markup.lastIndexOf("$");
@@ -346,7 +346,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
     String wr = elem.getAttribute(VMarshallerConstants.PRIMITIVE_WRAPPER_ATTRIBUTE).getValue();
     String value = elem.toContent();
     Object o = null;
-    if (!value.isEmpty()) {
+    if (value.length() != 0) {
       Object ob = Class.forName(wr).getConstructor(new Class[]{String.class}).newInstance(new Object[]{"0"});
       if (ob instanceof Integer) {
         o = Integer.parseInt(value);
@@ -869,7 +869,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
         //we must not be working with primitives
         if (primAttr != null && "true".equalsIgnoreCase(primAttr.getValue().trim())) {
           clazz = null; //just parse null
-        } else if (val != null && !val.isEmpty()) {
+        } else if (val != null && val.length() != 0) {
           clazz = Class.forName(val);
         }
       }
@@ -1146,7 +1146,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
   }
 
   private void doMarshallArray(VElement elem, T o, Class clazz, VNamespace namespace[], String elementMarkup) throws VXMLBindingException {
-    if (elementMarkup == null || elementMarkup.isEmpty()) {
+    if (elementMarkup == null || elementMarkup.length() == 0) {
       elementMarkup = VMarshallerConstants.ELEMENT_ELEMENT_MARKUP;
     }
     addAttribute(elem, new VAttribute(VMarshallerConstants.ARRAY_ATTRIBUTE, "true"));
@@ -1415,7 +1415,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
       }
       for (Object o1 : c) {
         String elemName;
-        if (elementParam1 != null && !elementParam1.isEmpty()) {
+        if (elementParam1 != null && elementParam1.length() != 0) {
           elemName = elementParam1;
         } else {
           //use the o1 class name
@@ -1566,7 +1566,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
         elem.addChild(new VContent(o.toString()));
       } else if (o instanceof String) {
         String ss = (String) o;
-        if (!ss.isEmpty()) {
+        if (ss.length() != 0) {
           elem.addChild(new VContent(o.toString()));
         }
       } else if (o instanceof Calendar) {
@@ -1938,7 +1938,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
     if (attr != null) {
       //does it have a markup
       String attrName = attr.name();
-      if (!attrName.isEmpty()) {
+      if (attrName.length() != 0) {
         mName = attrName;
       }
       //does it have an attribute normalizer?
@@ -1966,7 +1966,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
       value = vcon.convert(m.invoke(o, new Object[]{}));
     } else {
       Object resValue = m.invoke(o, new Object[]{});
-      if (resValue == null && (value == null || value.trim().isEmpty())) {
+      if (resValue == null && (value == null || value.trim().length() == 0)) {
         return true;
       }
       if (resValue != null) {
@@ -2278,7 +2278,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
             if (markup != null) {
               fe.setMarkup(markup.name());
               String prop = markup.property();
-              if (prop.isEmpty()) {
+              if (prop.length() == 0) {
                 prop = mName;
               }
               addAttribute(fe, new VAttribute(VMarshallerConstants.OBJECT_PROPERTY_ATTRIBUTE, prop));

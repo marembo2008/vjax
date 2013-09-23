@@ -388,7 +388,7 @@ public class VMarshallerTest {
       VAttribute idAttr = actual.getRootElement().getAttribute("id");
       assertNotNull(idAttr);
       assertNotNull(idAttr.getValue());
-      assertFalse(idAttr.getValue().trim().isEmpty());
+      assertFalse(idAttr.getValue().trim().length() == 0);
     } catch (Exception e) {
     }
   }

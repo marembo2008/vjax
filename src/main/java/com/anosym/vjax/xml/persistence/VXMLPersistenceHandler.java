@@ -49,7 +49,7 @@ public class VXMLPersistenceHandler extends VXMLHandler {
                 String name = attributes.getLocalName(i);
                 String value = attributes.getValue(i);
                 String aQname = attributes.getQName(i);
-                if ((aQname != null && !aQname.isEmpty()) && (name.equals(elementIdName) && value.equals(elementId))) {
+                if ((aQname != null && aQname.trim().length()!=0) && (name.equals(elementIdName) && value.equals(elementId))) {
                     super.startElement(uri, localName, qName, attributes);
                     decodingElement = true;
                     break;

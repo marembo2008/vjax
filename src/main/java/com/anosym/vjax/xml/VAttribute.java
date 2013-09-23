@@ -37,7 +37,7 @@ public class VAttribute {
   }
 
   public boolean isDefined() {
-    return this.name != null && !this.name.isEmpty();
+    return this.name != null && this.name.length() != 0;
   }
 
   public String getName() {
@@ -96,7 +96,7 @@ public class VAttribute {
     if (attributeNamespace != null) {
       if (attributeNamespace.isAttributeFormDefault()) {
         String attrPrf = attributeNamespace.getPrefix();
-        if (attrPrf != null && !attrPrf.isEmpty()) {
+        if (attrPrf != null && attrPrf.length() != 0) {
           attrName = attrPrf + ":" + attrName;
         }
       }

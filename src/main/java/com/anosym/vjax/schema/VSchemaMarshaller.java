@@ -116,7 +116,7 @@ public class VSchemaMarshaller<T> {
       if (schemaElement.definesNamespace(namespace)) {
         throw new VNamespaceConflictException("Schema already defines namespace");
       }
-      if (schema.prefix() != null && !schema.prefix().isEmpty()) {
+      if (schema.prefix() != null && schema.prefix().length() != 0) {
         try {
           //make sure that the namespace prefix does not collide with the preserved prefices
           PreservedPrefix pp = PreservedPrefix.valueOf(schema.prefix().toLowerCase().trim());

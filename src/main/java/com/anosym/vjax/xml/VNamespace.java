@@ -82,7 +82,7 @@ public class VNamespace extends VAttribute {
   }
 
   public boolean isAttributeFormDefault() {
-    return attributeFormDefault && prefix != null && !prefix.isEmpty();
+    return attributeFormDefault && prefix != null && prefix.length() != 0;
   }
 
   public void setAttributeFormDefault(boolean attributeFormQualified) {
@@ -90,7 +90,7 @@ public class VNamespace extends VAttribute {
   }
 
   public boolean isElementFormDefault() {
-    return elementFormDefault && prefix != null && !prefix.isEmpty();
+    return elementFormDefault && prefix != null && prefix.length() != 0;
   }
 
   public void setElementFormDefault(boolean elementFormQualified) {
@@ -121,12 +121,12 @@ public class VNamespace extends VAttribute {
   public String getName() {
     String name = super.getName();
     if (!name.contains(":")) {
-      if (prefix != null && !prefix.isEmpty()) {
+      if (prefix != null && prefix.length() != 0) {
         return name + ":" + this.prefix;
       }
     } else {
       String prf = name.substring(name.indexOf(":") + 1);
-      if (prefix != null && !prefix.isEmpty() && !prefix.equals(prf)) {
+      if (prefix != null && prefix.length() != 0 && !prefix.equals(prf)) {
         return name.substring(0, name.indexOf(":")) + prefix;
       }
     }

@@ -4,10 +4,9 @@
  */
 package com.anosym.vjax.xml;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.List;
+import java.util.Stack;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.ext.DeclHandler;
@@ -19,14 +18,14 @@ import org.xml.sax.ext.LexicalHandler;
  */
 public class VXMLHandler extends org.xml.sax.helpers.DefaultHandler implements LexicalHandler, DeclHandler {
 
-  private Deque<VElement> elements;
+  private Stack<VElement> elements;
   private VElement element;
   private StringBuffer contentBuffer;
   private StringBuffer commentBuffer;
   private List<String[]> notationDeclaration;
 
   public VXMLHandler() {
-    this.elements = new ArrayDeque<VElement>();
+    this.elements = new Stack<VElement>();
     notationDeclaration = new ArrayList<String[]>();
     this.element = null;
     this.contentBuffer = new StringBuffer();
@@ -46,11 +45,11 @@ public class VXMLHandler extends org.xml.sax.helpers.DefaultHandler implements L
     this.element = this.elements.pop();
     if (this.element != null) {
       String content = this.contentBuffer.toString().trim();
-      if (!content.isEmpty()) {
+      if (content.length() != 0) {
         this.element.addChild(new VContent(content));
       }
       String comment = this.commentBuffer.toString().trim();
-      if (!comment.isEmpty()) {
+      if (comment.length() != 0) {
         this.element.setComment(comment);
       }
       this.contentBuffer.delete(0, this.contentBuffer.length());
@@ -73,7 +72,7 @@ public class VXMLHandler extends org.xml.sax.helpers.DefaultHandler implements L
       if (this.contentBuffer.length() > 0) {
         //we have mixed sequence
         String content = this.contentBuffer.toString().trim();
-        if (!content.isEmpty()) {
+        if (content.length() != 0) {
           p.addChild(new VContent(content));
         }
         this.contentBuffer.delete(0, this.contentBuffer.length());
@@ -83,9 +82,9 @@ public class VXMLHandler extends org.xml.sax.helpers.DefaultHandler implements L
     this.elements.push(elem);
     int num = attributes.getLength();
     VNamespace namespace = null;
-    if (uri != null && !uri.isEmpty()) {
+    if (uri != null && uri.length() != 0) {
       namespace = new VNamespace("", uri);
-      if (qName != null && !qName.isEmpty() && qName.contains(":")) {
+      if (qName != null && qName.length() != 0 && qName.contains(":")) {
         String prf = qName.substring(0, qName.indexOf(":"));
         namespace.setPrefix(prf);
       }
@@ -99,7 +98,7 @@ public class VXMLHandler extends org.xml.sax.helpers.DefaultHandler implements L
       String name = attributes.getLocalName(i);
       String value = attributes.getValue(i);
       String aQname = attributes.getQName(i);
-      if (aQname != null && !aQname.isEmpty()) {
+      if (aQname != null && aQname.length() != 0) {
         if ("elementFormDefault".equalsIgnoreCase(name) && namespace != null) {
           namespace.setElementFormDefault("qualified".equalsIgnoreCase(value));
         } else if ("attributeFormDefault".equalsIgnoreCase(name) && namespace != null) {

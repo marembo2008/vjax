@@ -104,8 +104,8 @@ public class HttpUrlEncoder<T> {
             encodeNullValue = paramValue.encodeNull();
             encodeEmptyValue = paramValue.encodeEmpty();
           }
-          if (encodeNullValue || (encodeEmptyValue && urlParamValue.isEmpty()) || value != null) {
-            if (!urlParams.isEmpty()) {
+          if (encodeNullValue || (encodeEmptyValue && urlParamValue.length() == 0) || value != null) {
+            if (urlParams.length() != 0) {
               urlParams += "&";
             }
             urlParams += urlParamName;
@@ -120,7 +120,7 @@ public class HttpUrlEncoder<T> {
       if (urlEncoded == null || urlEncoded.isEmpty()) {
         throw new IllegalArgumentException("Url for encoding not specified");
       }
-      return urlParams != null && !urlParams.isEmpty() ? urlEncoded + "?" + urlParams : urlEncoded;
+      return urlParams != null && urlParams.length() != 0 ? urlEncoded + "?" + urlParams : urlEncoded;
     } catch (Exception es) {
       throw new HttpUrlEncodingException("Error Encoding url for object: " + object.getClass(), es);
     }

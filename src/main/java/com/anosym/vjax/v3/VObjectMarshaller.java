@@ -148,7 +148,7 @@ public class VObjectMarshaller<T> {
       ArrayParented ap = getAnnotation(annotations, ArrayParented.class);
       boolean parented = ap != null
               && ap.componentMarkup() != null
-              && !ap.componentMarkup().isEmpty();
+              && ap.componentMarkup().length() != 0;
       String arrayMarkup = markupName;
       if (parented) {
         markupName = ap.componentMarkup();

@@ -12,15 +12,15 @@ import com.anosym.vjax.exceptions.VXMLNamespaceException;
  */
 public final class VXMLVerifier {
 
-    public static void verifyNamespace(VNamespace namespace) {
-        //get the name part
-        String name = namespace.getName();
-        if (name.equalsIgnoreCase("xmlns")) {
-            //get the prefix part
-            String prf = namespace.getPrefix();
-            if (prf != null && !prf.isEmpty() && prf.startsWith("xml")) {
-                throw new VXMLNamespaceException("Invalid Namespace Declaration");
-            }
-        }
+  public static void verifyNamespace(VNamespace namespace) {
+    //get the name part
+    String name = namespace.getName();
+    if (name.equalsIgnoreCase("xmlns")) {
+      //get the prefix part
+      String prf = namespace.getPrefix();
+      if (prf != null && prf.length() != 0 && prf.startsWith("xml")) {
+        throw new VXMLNamespaceException("Invalid Namespace Declaration");
+      }
     }
+  }
 }
