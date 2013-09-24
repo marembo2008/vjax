@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 import org.htmlcleaner.CleanerProperties;
 import org.htmlcleaner.HtmlCleaner;
 import org.htmlcleaner.SimpleXmlSerializer;
@@ -218,8 +221,72 @@ public class VDocument {
     }
   }
 
+  /**
+   * This parsing is adapted for android. Please set system property.
+   * 'com.anosym.xml.sax.parser.adapted' to true.
+   *
+   * @param inn
+   * @param handler
+   * @throws SAXException
+   * @throws IOException
+   */
+  private void parseAdapted(InputStream inn, VXMLHandler handler) throws SAXException, IOException, ParserConfigurationException {
+    try {
+      SAXParserFactory spf = SAXParserFactory.newInstance();
+      SAXParser sp = spf.newSAXParser();
+      XMLReader xmlreader = sp.getXMLReader();
+      xmlreader.setContentHandler(handler);
+      InputSource s = new InputSource(new InputStreamReader(inn));
+      xmlreader.parse(s);
+      this.setRootElement(handler.getRootElement());
+      List<String[]> decls = handler.getNotationDeclaration();
+      for (String[] d : decls) {
+        VElement decl = null;
+        if (notationDeclaration == null) {
+          notationDeclaration = new VElement(d[0]);
+          decl = notationDeclaration;
+        } else {
+          decl = new VElement(d[0], notationDeclaration);
+        }
+        decl.addAttribute(new VAttribute("publicid", d[1]));
+        decl.addAttribute(new VAttribute("systemid", d[2]));
+      }
+      //find if we have includes, read then in
+      for (VElement elem : rootElement.getChildren()) {
+        VNamespace xinclude = elem.getAssociatedNamespace();
+        if (xinclude != null) { //Should this be null?
+          if (xinclude.equals(VNamespace.XINCLUDE_NAMESPACE)) {
+            String name = elem.getAttribute("href").getValue();
+            URL url = null;
+            //consider file or http or ftp
+            if (!name.startsWith("file") && !name.startsWith("http") && !name.startsWith("ftp")) {
+              File file = new File(name);
+              url = file.toURI().toURL();
+            } else {
+              url = new URL(name);
+            }
+            VDocument doc = new VDocument(name);
+            doc.parse(url.openStream(), handler);
+            this.includes.add(doc);
+          }
+        }
+      }
+    } catch (SAXException ee) {
+      System.out.println(ee.getMessage());
+      throw ee;
+    }
+  }
+
   private void parse(InputStream inn) throws SAXException, IOException {
-    parse(inn, new VXMLHandler());
+    if (Boolean.valueOf(System.getProperty("com.anosym.xml.sax.parser.adapted", "false"))) {
+      try {
+        parseAdapted(inn, new VXMLHandler());
+      } catch (ParserConfigurationException ex) {
+        throw new SAXException(ex);
+      }
+    } else {
+      parse(inn, new VXMLHandler());
+    }
   }
 
   public VElement getNotationDeclaration() {

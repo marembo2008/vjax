@@ -8,17 +8,20 @@ import com.anosym.vjax.annotations.AsAttribute;
 import com.anosym.vjax.annotations.AsAttributes;
 import com.anosym.vjax.annotations.AsCollection;
 import com.anosym.vjax.annotations.Attribute;
+import com.anosym.vjax.annotations.Converter;
 import com.anosym.vjax.annotations.Generated;
 import com.anosym.vjax.annotations.Id;
 import com.anosym.vjax.annotations.IgnoreGeneratedAttribute;
 import com.anosym.vjax.annotations.NoNamespace;
 import com.anosym.vjax.annotations.Position;
 import com.anosym.vjax.annotations.XmlMarkup;
+import com.anosym.vjax.converter.VCalendarConverter;
 import com.anosym.vjax.id.generation.VGenerator;
 import com.anosym.vjax.xml.VAttribute;
 import com.anosym.vjax.xml.VDocument;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -532,6 +535,36 @@ public class VMarshallerTest {
       System.out.println(xml);
     } catch (Exception e) {
       Logger.getLogger(VMarshallerTest.class.getName()).log(Level.SEVERE, null, e);
+    }
+  }
+
+  public static class ConverterTestImpl {
+
+    private Calendar instance;
+
+    public ConverterTestImpl() {
+      this.instance = Calendar.getInstance();
+    }
+
+    @Converter(converter = VCalendarConverter.class)
+    public Calendar getInstance() {
+      return instance;
+    }
+
+    public void setInstance(Calendar instance) {
+      this.instance = instance;
+    }
+  }
+
+  @Test
+  public void testCalendarConverter() {
+    try {
+      ConverterTestImpl cti = new ConverterTestImpl();
+      VMarshaller<ConverterTestImpl> m = new VMarshaller<VMarshallerTest.ConverterTestImpl>();
+      VDocument doc = m.marshallDocument(cti);
+      System.out.println(doc.toXmlString());
+    } catch (VXMLBindingException ex) {
+      Logger.getLogger(VMarshallerTest.class.getName()).log(Level.SEVERE, null, ex);
     }
   }
 }

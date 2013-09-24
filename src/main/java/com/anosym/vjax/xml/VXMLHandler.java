@@ -116,8 +116,9 @@ public class VXMLHandler extends org.xml.sax.helpers.DefaultHandler implements L
   public void characters(char ch[], int start, int length)
           throws SAXException {
     // no op
-    char[] aa = java.util.Arrays.copyOfRange(ch, start, start + length);
-    String value = String.copyValueOf(aa);
+    char[] aa = new char[length];
+    System.arraycopy(ch, start, aa, 0, aa.length);
+    String value = new String(aa);
     this.contentBuffer.append(value);
   }
 

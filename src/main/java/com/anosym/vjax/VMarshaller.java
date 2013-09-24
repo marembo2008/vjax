@@ -56,8 +56,11 @@ import com.anosym.vjax.xml.VContent;
 import com.anosym.vjax.xml.VDocument;
 import com.anosym.vjax.xml.VElement;
 import com.anosym.vjax.xml.VNamespace;
-import java.awt.Color;
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.lang.annotation.Annotation;
 import java.lang.annotation.Inherited;
 import java.lang.reflect.*;
@@ -66,10 +69,19 @@ import java.math.BigInteger;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.security.Permission;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Date;
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
 
 /**
  * Marshalls a java object to an xml element The supported types for the object properties include
@@ -559,40 +571,36 @@ public final class VMarshaller<T> implements java.io.Serializable {
   private T unmarshallBeanOrBasicObject(VElement elem, List<VElement> elems, VAttribute initAttr, Class clazz, Object o) throws VXMLBindingException {
     try {
       if (o == null) {
-        if (clazz.equals(Color.class)) {
-          o = clazz.getConstructor(new Class[]{int.class}).newInstance(new Object[]{0});
-        } else {
-          //we determine if it is date or time
-          if (clazz.equals(java.sql.Date.class)
-                  || clazz.equals(java.sql.Time.class)
-                  || clazz.equals(java.sql.Timestamp.class)
-                  || clazz.equals(java.util.Date.class)) {
-            o = clazz.getConstructor(new Class[]{long.class}).newInstance(new Object[]{0});
-          } else if (clazz == MathContext.class) {
-            //we need to unmarshall the properties and then instantiate it as initializers attribute
-            //we are sure there are only two properties because the class is immutable and cannot be overidden
-            if (elems.size() == 2) {
-              VElement precisionEleme = null;
-              VElement roundingModeElem = null;
-              //assign them from the list
-              for (VElement ve : elems) {
-                if (ve.getAttribute(VMarshallerConstants.CLASS_ATTRIBUTE).getValue().equals(Integer.class.getName())) {
-                  precisionEleme = ve;
-                }
-                if (ve.getAttribute(VMarshallerConstants.CLASS_ATTRIBUTE).getValue().equals(RoundingMode.class.getName())) {
-                  roundingModeElem = ve;
-                }
+        //we determine if it is date or time
+        if (clazz.equals(java.sql.Date.class)
+                || clazz.equals(java.sql.Time.class)
+                || clazz.equals(java.sql.Timestamp.class)
+                || clazz.equals(java.util.Date.class)) {
+          o = clazz.getConstructor(new Class[]{long.class}).newInstance(new Object[]{0});
+        } else if (clazz == MathContext.class) {
+          //we need to unmarshall the properties and then instantiate it as initializers attribute
+          //we are sure there are only two properties because the class is immutable and cannot be overidden
+          if (elems.size() == 2) {
+            VElement precisionEleme = null;
+            VElement roundingModeElem = null;
+            //assign them from the list
+            for (VElement ve : elems) {
+              if (ve.getAttribute(VMarshallerConstants.CLASS_ATTRIBUTE).getValue().equals(Integer.class.getName())) {
+                precisionEleme = ve;
               }
-              //then unmarshall the integer and the rounding mode
-              unmarshallObject(precisionEleme);
-              unmarshallObject(roundingModeElem);
-              String params = "[" + precisionEleme.getAttribute(VMarshallerConstants.OBJECT_REFERENCE_ID_ATTRIBUTE).getValue() + "," + roundingModeElem.getAttribute(VMarshallerConstants.OBJECT_REFERENCE_ID_ATTRIBUTE).getValue() + "]";
-              VAttribute initializers = new VAttribute(VMarshallerConstants.INITIALIZERS_ATTRIBUTE, params);
-              o = newInstance(initializers, clazz);
+              if (ve.getAttribute(VMarshallerConstants.CLASS_ATTRIBUTE).getValue().equals(RoundingMode.class.getName())) {
+                roundingModeElem = ve;
+              }
             }
-          } else {
-            o = newInstance(initAttr, clazz);
+            //then unmarshall the integer and the rounding mode
+            unmarshallObject(precisionEleme);
+            unmarshallObject(roundingModeElem);
+            String params = "[" + precisionEleme.getAttribute(VMarshallerConstants.OBJECT_REFERENCE_ID_ATTRIBUTE).getValue() + "," + roundingModeElem.getAttribute(VMarshallerConstants.OBJECT_REFERENCE_ID_ATTRIBUTE).getValue() + "]";
+            VAttribute initializers = new VAttribute(VMarshallerConstants.INITIALIZERS_ATTRIBUTE, params);
+            o = newInstance(initializers, clazz);
           }
+        } else {
+          o = newInstance(initAttr, clazz);
         }
       }
       VAttribute at = elem.getAttribute(VMarshallerConstants.OBJECT_REFERENCE_ID_ATTRIBUTE);
@@ -619,16 +627,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
       //at this point we believe that the element has been determined to be serialized
       VAttribute isAliased = elem.getAttribute(VMarshallerConstants.ALIAS_ATTRIBUTE);
       String content = elem.toContent();
-      HexBinaryAdapter adpter = new HexBinaryAdapter();
-//            //since this is in array form, convert it to byte
-//            content = content.substring(1, content.length() - 1); //remove []
-//            String[] bytes = content.split(",\\s"); //split at the boundary of comma-space separated list
-      byte[] data = adpter.unmarshal(content);
-//            int i = 0;
-//            for (String bStr : bytes) {
-//                byte b = Byte.parseByte(bStr);
-//                data[i++] = b;
-//            }
+      byte[] data = VMarshallerUtil.parseHexBinary(content);
       inn = new ByteArrayInputStream(data);
       objInn = new ObjectInputStream(inn);
       Object instance = objInn.readObject();
@@ -1196,9 +1195,8 @@ public final class VMarshaller<T> implements java.io.Serializable {
       out = new ByteArrayOutputStream();
       objOut = new ObjectOutputStream(out);
       objOut.writeObject(o);
-      HexBinaryAdapter adapter = new HexBinaryAdapter();
       byte[] data = out.toByteArray();
-      String content = adapter.marshal(data);
+      String content = VMarshallerUtil.printHexBinary(data);
       elem.addChild(new VContent(content));
     } catch (Exception ex) {
       if (ex instanceof VXMLBindingException) {
@@ -2251,7 +2249,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
           //does it have informational attribute, then we set it as informational before the first parent
           Informational info = m.getAnnotation(Informational.class);
           if (info != null) {
-            addAttribute(elem, new VAttribute(VMarshallerConstants.INFORMATIONAL_ATTRIBUTE, "true"));
+            addAttribute(fe, new VAttribute(VMarshallerConstants.INFORMATIONAL_ATTRIBUTE, "true"));
             //be sure that the current element is the top level element
             //otherwise throw an exception
             if (elem.getParent() != null) {
@@ -2294,14 +2292,14 @@ public final class VMarshaller<T> implements java.io.Serializable {
             }
           }
           //check if we are aliased
-          o1 = checkAlias(elem, null, m, o1);
-          if (checkConverter(elem, null, m, o1)) {
+          o1 = checkAlias(fe, null, m, o1);
+          if (checkConverter(fe, null, m, o1)) {
             continue;
           }
-          if (checkSerializable(elem, null, m, o1)) {
+          if (checkSerializable(fe, null, m, o1)) {
             continue;
           }
-          checkInitializer(elem, m, o1);
+          checkInitializer(fe, m, o1);
           //supply the collectionelement value if it exist
           /**
            * TODO(marembo) We need to refactor this code and stop supplying the CollectionElement in
