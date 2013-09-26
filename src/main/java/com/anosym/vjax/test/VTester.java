@@ -7,15 +7,11 @@ package com.anosym.vjax.test;
 import com.anosym.vjax.annotations.NoNamespace;
 import com.anosym.vjax.annotations.v3.GenericCollectionType;
 import com.anosym.vjax.converter.v3.Converter;
-import com.anosym.vjax.v3.VObjectMarshaller;
-import com.anosym.vjax.xml.VDocument;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Random;
 import java.util.Set;
 
 /**

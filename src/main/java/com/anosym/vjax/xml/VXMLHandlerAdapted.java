@@ -4,7 +4,6 @@
  */
 package com.anosym.vjax.xml;
 
-import com.anosym.vjax.util.ArrayUtil;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -17,7 +16,7 @@ import org.xml.sax.ext.LexicalHandler;
  *
  * @author Marembo
  */
-public class VXMLHandler extends org.xml.sax.helpers.DefaultHandler implements LexicalHandler, DeclHandler {
+public class VXMLHandlerAdapted extends VXMLHandler implements LexicalHandler, DeclHandler {
 
   private Stack<VElement> elements;
   private VElement element;
@@ -25,7 +24,7 @@ public class VXMLHandler extends org.xml.sax.helpers.DefaultHandler implements L
   private StringBuffer commentBuffer;
   private List<String[]> notationDeclaration;
 
-  public VXMLHandler() {
+  public VXMLHandlerAdapted() {
     this.elements = new Stack<VElement>();
     notationDeclaration = new ArrayList<String[]>();
     this.element = null;
@@ -33,16 +32,9 @@ public class VXMLHandler extends org.xml.sax.helpers.DefaultHandler implements L
     this.commentBuffer = new StringBuffer();
   }
 
-  public void clear() {
-    element = null;
-    elements.clear();
-    contentBuffer = null;
-    commentBuffer = null;
-    notationDeclaration.clear();
-  }
-
   @Override
-  public void notationDecl(String name, String publicId, String systemId) throws SAXException {
+  public void notationDecl(String name, String publicId, String systemId)
+          throws SAXException {
     String[] decls = {name, publicId, systemId};
     notationDeclaration.add(decls);
   }
@@ -53,12 +45,9 @@ public class VXMLHandler extends org.xml.sax.helpers.DefaultHandler implements L
     // no op
     this.element = this.elements.pop();
     if (this.element != null) {
-      String content = this.contentBuffer.toString().trim();
-      if (content.trim().length() != 0) {
-        this.element.addChild(new VContent(content));
-      }
+      this.element.setContent(this.contentBuffer.toString().trim());
       String comment = this.commentBuffer.toString().trim();
-      if (comment.trim().length() != 0) {
+      if (comment != null && !isNullOrEmpty(comment)) {
         this.element.setComment(comment);
       }
       this.contentBuffer.delete(0, this.contentBuffer.length());
@@ -70,30 +59,20 @@ public class VXMLHandler extends org.xml.sax.helpers.DefaultHandler implements L
   }
 
   @Override
-  public void startElement(String uri, String localName,
-          String qName, Attributes attributes)
-          throws SAXException {
+  public void startElement(String uri, String localName, String qName,
+          Attributes attributes) throws SAXException {
     // no op
     VElement elem = new VElement(localName);
     if (!this.elements.isEmpty()) {
       VElement p = this.elements.peek();
-      //we may have mixed elements. So we add content if there is before a new element
-      if (this.contentBuffer.length() > 0) {
-        //we have mixed sequence
-        String content = this.contentBuffer.toString().trim();
-        if (content.trim().length() != 0) {
-          p.addChild(new VContent(content));
-        }
-        this.contentBuffer.delete(0, this.contentBuffer.length());
-      }
       p.addChild(elem);
     }
     this.elements.push(elem);
     int num = attributes.getLength();
     VNamespace namespace = null;
-    if (uri != null && uri.trim().length() != 0) {
+    if (uri != null && !isNullOrEmpty(uri)) {
       namespace = new VNamespace("", uri);
-      if (qName != null && qName.trim().length() != 0 && qName.contains(":")) {
+      if (qName != null && !isNullOrEmpty(qName)) {
         String prf = qName.substring(0, qName.indexOf(":"));
         namespace.setPrefix(prf);
       }
@@ -106,12 +85,15 @@ public class VXMLHandler extends org.xml.sax.helpers.DefaultHandler implements L
     for (int i = 0; i < num; i++) {
       String name = attributes.getLocalName(i);
       String value = attributes.getValue(i);
-      String aQname = attributes.getQName(i);
-      if (aQname != null && aQname.trim().length() != 0) {
-        if ("elementFormDefault".equalsIgnoreCase(name) && namespace != null) {
-          namespace.setElementFormDefault("qualified".equalsIgnoreCase(value));
-        } else if ("attributeFormDefault".equalsIgnoreCase(name) && namespace != null) {
-          namespace.setAttributeFormDefault("qualified".equalsIgnoreCase(value));
+      if (!isNullOrEmpty(name)) {
+        if ("elementFormDefault".equalsIgnoreCase(name)
+                && namespace != null) {
+          namespace.setElementFormDefault("qualified"
+                  .equalsIgnoreCase(value));
+        } else if ("attributeFormDefault".equalsIgnoreCase(name)
+                && namespace != null) {
+          namespace.setAttributeFormDefault("qualified"
+                  .equalsIgnoreCase(value));
         } else {
           VAttribute a = new VAttribute(name, value);
           a.setAttributeNamespace(namespace);
@@ -125,9 +107,9 @@ public class VXMLHandler extends org.xml.sax.helpers.DefaultHandler implements L
   public void characters(char ch[], int start, int length)
           throws SAXException {
     // no op
-    char[] aa = new char[length];
-    System.arraycopy(ch, start, aa, 0, aa.length);
-    String value = new String(aa);
+    char[] aa = new char[start + length];
+    System.arraycopy(ch, 0, aa, 0, aa.length);
+    String value = String.copyValueOf(aa);
     this.contentBuffer.append(value);
   }
 
@@ -139,40 +121,42 @@ public class VXMLHandler extends org.xml.sax.helpers.DefaultHandler implements L
     return notationDeclaration;
   }
 
-  public void startDTD(String name, String publicId, String systemId) throws SAXException {
-    //do nothing
+  public void startDTD(String name, String publicId, String systemId)
+          throws SAXException {
+    // do nothing
     System.out.println(name);
     System.out.println(publicId);
     System.out.println(systemId);
   }
 
   public void endDTD() throws SAXException {
-    //do nothing
+    // do nothing
   }
 
   public void startEntity(String name) throws SAXException {
-    //do nothing
+    // do nothing
     System.out.println(name);
   }
 
   public void endEntity(String name) throws SAXException {
-    //do nothing
+    // do nothing
     System.out.println(name);
   }
 
   public void startCDATA() throws SAXException {
-    //do nothing
+    // do nothing
   }
 
   public void endCDATA() throws SAXException {
-    //do nothing
+    // do nothing
   }
 
   public void comment(char[] ch, int start, int length) throws SAXException {
     // no op
-    char[] aa = ArrayUtil.copyOfRange(ch, start, start + length);
+    char[] aa = new char[start + length];
+    System.arraycopy(ch, 0, aa, 0, aa.length);
     String value = String.copyValueOf(aa);
-    //add with a new line annotation
+    // add with a new line annotation
     if (this.commentBuffer.length() > 0) {
       this.commentBuffer.append("\n").append(value);
     } else {
@@ -184,7 +168,16 @@ public class VXMLHandler extends org.xml.sax.helpers.DefaultHandler implements L
     System.out.println(name + " " + model);
   }
 
-  public void attributeDecl(String eName, String aName, String type, String mode, String value) throws SAXException {
+  public void clear() {
+    element = null;
+    elements.clear();
+    contentBuffer = null;
+    commentBuffer = null;
+    notationDeclaration.clear();
+  }
+
+  public void attributeDecl(String eName, String aName, String type,
+          String mode, String value) throws SAXException {
     System.out.println(eName);
     System.out.println(aName);
     System.out.println(type);
@@ -192,14 +185,20 @@ public class VXMLHandler extends org.xml.sax.helpers.DefaultHandler implements L
     System.out.println(value);
   }
 
-  public void internalEntityDecl(String name, String value) throws SAXException {
+  public void internalEntityDecl(String name, String value)
+          throws SAXException {
     System.out.println(name);
     System.out.println(value);
   }
 
-  public void externalEntityDecl(String name, String publicId, String systemId) throws SAXException {
+  public void externalEntityDecl(String name, String publicId, String systemId)
+          throws SAXException {
     System.out.println(name);
     System.out.println(publicId);
     System.out.println(systemId);
+  }
+
+  public static boolean isNullOrEmpty(String str) {
+    return str == null || str.trim().equals("");
   }
 }

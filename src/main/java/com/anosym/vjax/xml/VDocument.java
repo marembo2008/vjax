@@ -183,6 +183,7 @@ public class VDocument {
       xmlreader.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
       xmlreader.parse(s);
       this.setRootElement(handler.getRootElement());
+      handler.clear();//to release memory
       List<String[]> decls = handler.getNotationDeclaration();
       for (String[] d : decls) {
         VElement decl = null;
@@ -280,7 +281,7 @@ public class VDocument {
   private void parse(InputStream inn) throws SAXException, IOException {
     if (Boolean.valueOf(System.getProperty("com.anosym.xml.sax.parser.adapted", "false"))) {
       try {
-        parseAdapted(inn, new VXMLHandler());
+        parseAdapted(inn, new VXMLHandlerAdapted());
       } catch (ParserConfigurationException ex) {
         throw new SAXException(ex);
       }

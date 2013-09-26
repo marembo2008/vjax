@@ -1250,7 +1250,6 @@ public class VElement implements Cloneable, Serializable, Iterable<VElement> {
       for (VAttribute a : ee.attributes) {
         if (a.equals(at)) {
           return ee;
-
         }
       }
     }
