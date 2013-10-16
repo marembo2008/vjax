@@ -14,6 +14,8 @@ import com.anosym.vjax.annotations.v3.Converter;
 import com.anosym.vjax.annotations.v3.GenericCollectionType;
 import com.anosym.vjax.annotations.v3.GenericMapType;
 import com.anosym.vjax.annotations.v3.Transient;
+import com.anosym.vjax.converter.VBigDecimalConverter;
+import com.anosym.vjax.exceptions.VConverterBindingException;
 import com.anosym.vjax.xml.VDocument;
 import com.anosym.vjax.xml.VElement;
 import java.lang.annotation.Annotation;
@@ -21,6 +23,7 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -142,6 +145,14 @@ public class VObjectMarshaller<T> {
     } else if (c.isEnum()) {
       markupName = markupName == null ? c.getSimpleName() : markupName;
       data += put(markupName, ((Enum) object).name());
+    } else if (c.isAssignableFrom(BigDecimal.class) && getAnnotation(annotations, Converter.class) == null) {
+      VBigDecimalConverter converter = new VBigDecimalConverter();
+      markupName = markupName == null ? c.getSimpleName() : markupName;
+      try {
+        data += put(markupName, converter.convert((BigDecimal) object));
+      } catch (VConverterBindingException ex) {
+        Logger.getLogger(VObjectMarshaller.class.getName()).log(Level.SEVERE, null, ex);
+      }
     } else if (c.isArray()) {
       Object[] arr = (Object[]) object;
       Class cmpClass = c.getComponentType();
@@ -285,6 +296,10 @@ public class VObjectMarshaller<T> {
         // marshall against this class
         Object convertedValue = unmarshal(element, returnType, null);
         return cn.convertTo(convertedValue);
+      }
+      if (clazz.isAssignableFrom(BigDecimal.class) && getAnnotation(annots, Converter.class) == null) {
+        VBigDecimalConverter bdConverter = new VBigDecimalConverter();
+        return (T) bdConverter.convert(element.toContent());
       }
       if (clazz.isPrimitive()
               || PRIMITIVE_WRAPPER_MAPPING.get(clazz) != null) {
