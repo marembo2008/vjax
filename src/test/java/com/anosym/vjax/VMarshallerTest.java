@@ -606,6 +606,19 @@ public class VMarshallerTest {
     }
   }
 
+  public static class DynamicMarkupGeneratorUnmarshalling implements VMarkupGenerator<MarkupTestWithParentDynamicMarkupUnmarshalling> {
+
+    @Override
+    public String generateMarkup(Object property) {
+      return null;
+    }
+
+    @Override
+    public String markup(MarkupTestWithParentDynamicMarkupUnmarshalling instance) {
+      return "instance";
+    }
+  }
+
   @IgnoreGeneratedAttribute
   @DynamicMarkup(markupGenerator = DynamicMarkupGenerator.class)
   public static class MarkupTestWithParentDynamicMarkup {
@@ -616,6 +629,28 @@ public class VMarshallerTest {
     }
 
     public MarkupTestWithParentDynamicMarkup(String testMarkup) {
+      this.testMarkup = testMarkup;
+    }
+
+    @Markup(name = "MARKUP_TEST")
+    public String getTestMarkup() {
+      return testMarkup;
+    }
+
+    public void setTestMarkup(String testMarkup) {
+      this.testMarkup = testMarkup;
+    }
+  }
+
+  @DynamicMarkup(markupGenerator = DynamicMarkupGeneratorUnmarshalling.class)
+  public static class MarkupTestWithParentDynamicMarkupUnmarshalling {
+
+    private String testMarkup;
+
+    public MarkupTestWithParentDynamicMarkupUnmarshalling() {
+    }
+
+    public MarkupTestWithParentDynamicMarkupUnmarshalling(String testMarkup) {
       this.testMarkup = testMarkup;
     }
 
@@ -656,6 +691,20 @@ public class VMarshallerTest {
       VMarshaller<MarkupTestWithParentDynamicMarkup> m = new VMarshaller<MarkupTestWithParentDynamicMarkup>();
       VDocument doc = m.marshallDocument(mt);
       assertEquals(expected, doc.toXmlString());
+    } catch (VXMLBindingException ex) {
+      Logger.getLogger(VMarshallerTest.class.getName()).log(Level.SEVERE, null, ex);
+    }
+  }
+
+  @Test
+  public void testMarkupTestWithParentDynamicMarkupUnmarshalling() {
+    try {
+      MarkupTestWithParentDynamicMarkupUnmarshalling mm = new MarkupTestWithParentDynamicMarkupUnmarshalling("Testing unmarshalling back of @Markup with parent @DynamicMarkup");
+      VMarshaller<MarkupTestWithParentDynamicMarkupUnmarshalling> m = new VMarshaller<VMarshallerTest.MarkupTestWithParentDynamicMarkupUnmarshalling>();
+      VDocument d = m.marshallDocument(mm);
+      MarkupTestWithParentDynamicMarkupUnmarshalling mm_ = m.unmarshall(d);
+      assertEquals(mm.getTestMarkup(), mm_.getTestMarkup());
+      System.out.println(mm_.getTestMarkup());
     } catch (VXMLBindingException ex) {
       Logger.getLogger(VMarshallerTest.class.getName()).log(Level.SEVERE, null, ex);
     }
