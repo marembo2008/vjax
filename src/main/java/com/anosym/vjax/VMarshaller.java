@@ -2640,22 +2640,25 @@ public final class VMarshaller<T> implements java.io.Serializable {
           if (comment != null) {
             fe.setComment(comment.value());
           }
-          if (generator == null) {
-            // check on static markup only if the generator is null
-            // does it have a markup annotation
-            Markup markup = m.getAnnotation(Markup.class);
-            if (markup != null) {
-              fe.setMarkup(markup.name());
-              String prop = markup.property();
-              if (prop.length() == 0) {
-                prop = mName;
-              }
-              addAttribute(
-                      fe,
-                      new VAttribute(
-                      VMarshallerConstants.OBJECT_PROPERTY_ATTRIBUTE,
-                      prop));
+          /**
+           * The
+           *
+           * @DynamicMarkup and
+           * @Markup, if defined the
+           * @Markup takes precedence.
+           */
+          Markup markup = m.getAnnotation(Markup.class);
+          if (markup != null) {
+            fe.setMarkup(markup.name());
+            String prop = markup.property();
+            if (prop.length() == 0) {
+              prop = mName;
             }
+            addAttribute(
+                    fe,
+                    new VAttribute(
+                    VMarshallerConstants.OBJECT_PROPERTY_ATTRIBUTE,
+                    prop));
           }
           // do we have a namespace declaration on methods
           Namespace _ns = m.getAnnotation(Namespace.class);

@@ -9,14 +9,17 @@ import com.anosym.vjax.annotations.AsAttributes;
 import com.anosym.vjax.annotations.AsCollection;
 import com.anosym.vjax.annotations.Attribute;
 import com.anosym.vjax.annotations.Converter;
+import com.anosym.vjax.annotations.DynamicMarkup;
 import com.anosym.vjax.annotations.Generated;
 import com.anosym.vjax.annotations.Id;
 import com.anosym.vjax.annotations.IgnoreGeneratedAttribute;
+import com.anosym.vjax.annotations.Markup;
 import com.anosym.vjax.annotations.NoNamespace;
 import com.anosym.vjax.annotations.Position;
 import com.anosym.vjax.annotations.XmlMarkup;
 import com.anosym.vjax.converter.VCalendarConverter;
 import com.anosym.vjax.id.generation.VGenerator;
+import com.anosym.vjax.util.VMarkupGenerator;
 import com.anosym.vjax.xml.VAttribute;
 import com.anosym.vjax.xml.VDocument;
 import java.math.BigDecimal;
@@ -563,6 +566,96 @@ public class VMarshallerTest {
       VMarshaller<ConverterTestImpl> m = new VMarshaller<VMarshallerTest.ConverterTestImpl>();
       VDocument doc = m.marshallDocument(cti);
       System.out.println(doc.toXmlString());
+    } catch (VXMLBindingException ex) {
+      Logger.getLogger(VMarshallerTest.class.getName()).log(Level.SEVERE, null, ex);
+    }
+  }
+
+  @IgnoreGeneratedAttribute
+  public static class MarkupTest {
+
+    private String testMarkup;
+
+    public MarkupTest() {
+    }
+
+    public MarkupTest(String testMarkup) {
+      this.testMarkup = testMarkup;
+    }
+
+    @Markup(name = "MARKUP_TEST")
+    public String getTestMarkup() {
+      return testMarkup;
+    }
+
+    public void setTestMarkup(String testMarkup) {
+      this.testMarkup = testMarkup;
+    }
+  }
+
+  public static class DynamicMarkupGenerator implements VMarkupGenerator<MarkupTestWithParentDynamicMarkup> {
+
+    @Override
+    public String generateMarkup(Object property) {
+      return null;
+    }
+
+    @Override
+    public String markup(MarkupTestWithParentDynamicMarkup instance) {
+      return "instance";
+    }
+  }
+
+  @IgnoreGeneratedAttribute
+  @DynamicMarkup(markupGenerator = DynamicMarkupGenerator.class)
+  public static class MarkupTestWithParentDynamicMarkup {
+
+    private String testMarkup;
+
+    public MarkupTestWithParentDynamicMarkup() {
+    }
+
+    public MarkupTestWithParentDynamicMarkup(String testMarkup) {
+      this.testMarkup = testMarkup;
+    }
+
+    @Markup(name = "MARKUP_TEST")
+    public String getTestMarkup() {
+      return testMarkup;
+    }
+
+    public void setTestMarkup(String testMarkup) {
+      this.testMarkup = testMarkup;
+    }
+  }
+
+  @Test
+  public void testMarkup() {
+    try {
+      String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\" ?>\n"
+              + "<vjax:MarkupTest xmlns:vjax=\"http://www.flemax.com/2011/vjax\">\n"
+              + "   <vjax:MARKUP_TEST>This is a test for markup</vjax:MARKUP_TEST>\n"
+              + "</vjax:MarkupTest>";
+      MarkupTest mt = new MarkupTest("This is a test for markup");
+      VMarshaller<MarkupTest> m = new VMarshaller<VMarshallerTest.MarkupTest>();
+      VDocument doc = m.marshallDocument(mt);
+      assertEquals(expected, doc.toXmlString());
+    } catch (VXMLBindingException ex) {
+      Logger.getLogger(VMarshallerTest.class.getName()).log(Level.SEVERE, null, ex);
+    }
+  }
+
+  @Test
+  public void testMarkupAndDynamicMarkup() {
+    try {
+      String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\" ?>\n"
+              + "<vjax:instance xmlns:vjax=\"http://www.flemax.com/2011/vjax\">\n"
+              + "   <vjax:MARKUP_TEST>This is a test for markup</vjax:MARKUP_TEST>\n"
+              + "</vjax:instance>";
+      MarkupTestWithParentDynamicMarkup mt = new MarkupTestWithParentDynamicMarkup("This is a test for markup");
+      VMarshaller<MarkupTestWithParentDynamicMarkup> m = new VMarshaller<MarkupTestWithParentDynamicMarkup>();
+      VDocument doc = m.marshallDocument(mt);
+      assertEquals(expected, doc.toXmlString());
     } catch (VXMLBindingException ex) {
       Logger.getLogger(VMarshallerTest.class.getName()).log(Level.SEVERE, null, ex);
     }
