@@ -5,6 +5,7 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.util.Map;
 
 /**
  * Converts one value to another
@@ -19,4 +20,14 @@ public @interface Converter {
 
   @SuppressWarnings("rawtypes")
   Class<? extends com.anosym.vjax.converter.v3.Converter> value();
+
+  /**
+   * Parameters to be passed to the converter.
+   *
+   * The converter must accept a {@link Map} as constructor parameter if the following parameters
+   * are specified.
+   *
+   * @return
+   */
+  ConverterParam[] params() default {};
 }

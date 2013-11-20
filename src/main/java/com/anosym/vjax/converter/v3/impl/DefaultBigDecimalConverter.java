@@ -13,11 +13,19 @@ import java.math.BigDecimal;
  */
 public class DefaultBigDecimalConverter implements Converter<BigDecimal, String> {
 
+  @Override
   public String convertFrom(BigDecimal value) {
+    if (value == null) {
+      return null;
+    }
     return value.toString();
   }
 
+  @Override
   public BigDecimal convertTo(String value) {
+    if (value == null || value.trim().isEmpty()) {
+      return null;
+    }
     return new BigDecimal(value);
   }
 }

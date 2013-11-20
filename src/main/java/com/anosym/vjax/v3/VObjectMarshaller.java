@@ -7,6 +7,7 @@ package com.anosym.vjax.v3;
 import com.anosym.vjax.PrimitiveType;
 import com.anosym.vjax.VXMLBindingException;
 import com.anosym.vjax.VXMLMemberNotFoundException;
+import com.anosym.vjax.annotations.Markup;
 import com.anosym.vjax.annotations.v3.ArrayParented;
 import com.anosym.vjax.annotations.v3.CollectionElement;
 import com.anosym.vjax.annotations.v3.CollectionElementConverter;
@@ -25,6 +26,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -84,7 +86,7 @@ public class VObjectMarshaller<T> {
     maps.put(void.class, PrimitiveType.VOID);
     return maps;
   }
-  private Class<? extends T> instanceClass;
+  private final Class<? extends T> instanceClass;
   @SuppressWarnings("unused")
   private boolean ignoreUnmappedElements;
 
@@ -344,9 +346,14 @@ public class VObjectMarshaller<T> {
         }
       }
       if (element.hasChildren()) {
-        Field[] fields = clazz.getDeclaredFields();
+        List<Field> fields = new ArrayList<Field>();
+        getFields(clazz, fields);
         for (Field f : fields) {
           String name = f.getName();
+          Markup mm = f.getAnnotation(Markup.class);
+          if (mm != null) {
+            name = mm.name();
+          }
           Class<?> typeClass = f.getType();
           List<VElement> elems = element.getChildren(name);
           if (typeClass.isArray()) {
@@ -360,16 +367,17 @@ public class VObjectMarshaller<T> {
               // The array can be specified through individial
               // elements, or through one parent element
               Class cmpType = typeClass.getComponentType();
-              T[] ob = (T[]) Array.newInstance(cmpType,
-                      elems.size());
+              int length = elems.size();
+              Object arr = Array.newInstance(cmpType, length);
+              int i = 0;
               for (VElement c : elems) {
-                ob[j++] = unmarshal(c, cmpType,
+                Object o = unmarshal(c, cmpType,
                         f.getAnnotations());
+                Array.set(arr, i++, o);
               }
               f.setAccessible(true);
-              f.set(instance, ob);
+              f.set(instance, arr);
             }
-            continue;
           } else if (Collection.class.isAssignableFrom(typeClass)) {
             if (elems.size() == 1) {
               VElement listElem = elems.get(0);
@@ -478,6 +486,19 @@ public class VObjectMarshaller<T> {
       case VOID:
       default:
         return null;
+    }
+  }
+
+  /**
+   * Returns all declared fields excluding any field declared in {@link Object} class.
+   *
+   * @param clazz
+   * @param fields
+   */
+  private static void getFields(Class clazz, List<Field> fields) {
+    fields.addAll(Arrays.asList(clazz.getDeclaredFields()));
+    if (clazz.getSuperclass() != Object.class) {
+      getFields(clazz.getSuperclass(), fields);
     }
   }
 }
