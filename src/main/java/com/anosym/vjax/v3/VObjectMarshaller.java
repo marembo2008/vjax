@@ -236,8 +236,9 @@ public class VObjectMarshaller<T> {
       }
       return put(markupName, mapEntries);
     } else {
-      Field[] decFields = c.getDeclaredFields();
-      for (Field f : decFields) {
+      List<Field> fields = new ArrayList<Field>();
+      getFields(c, fields);
+      for (Field f : fields) {
         int mod = f.getModifiers();
         if ((mod & Modifier.STATIC) == 0 && (mod & Modifier.FINAL) == 0
                 && f.getAnnotation(Transient.class) == null) {
@@ -261,11 +262,16 @@ public class VObjectMarshaller<T> {
                 cl = value.getClass();
               }
             }
+            String markup = f.getName();
+            Markup m = f.getAnnotation(Markup.class);
+            if (m != null) {
+              markup = m.name();
+            }
             if (isPrimitiveOrPrimitiveWrapper(cl)
                     || cl.equals(String.class)) {
-              data += put(f.getName(), value);
+              data += put(markup, value);
             } else {
-              data += marshall((T) value, f.getName(),
+              data += marshall((T) value, markup,
                       f.getDeclaredAnnotations());
             }
           } catch (Exception e) {
