@@ -1300,6 +1300,24 @@ public class VElement implements Cloneable, Serializable, Iterable<VElement> {
     return el;
   }
 
+  /**
+   * Get children based on the specified condition.
+   *
+   * @param markup
+   * @param conditional
+   * @return
+   */
+  public List<VElement> getChildren(VConditional<VElement> conditional) {
+    List<VElement> el = getChildren();
+    for (ListIterator<VElement> it = el.listIterator(); it.hasNext();) {
+      VElement e = it.next();
+      if (!conditional.accept(e)) {
+        it.remove();
+      }
+    }
+    return el;
+  }
+
   public List<VElement> getChildren(String markup, String childMarkup) {
     List<VElement> el = getChildren();
     for (ListIterator<VElement> it = el.listIterator(); it.hasNext();) {

@@ -8,15 +8,18 @@ import com.anosym.vjax.PrimitiveType;
 import com.anosym.vjax.VXMLBindingException;
 import com.anosym.vjax.VXMLMemberNotFoundException;
 import com.anosym.vjax.annotations.Markup;
+import com.anosym.vjax.annotations.v3.ArrayComponentInitializer;
 import com.anosym.vjax.annotations.v3.ArrayParented;
 import com.anosym.vjax.annotations.v3.CollectionElement;
 import com.anosym.vjax.annotations.v3.CollectionElementConverter;
 import com.anosym.vjax.annotations.v3.Converter;
+import com.anosym.vjax.annotations.v3.Define;
 import com.anosym.vjax.annotations.v3.GenericCollectionType;
 import com.anosym.vjax.annotations.v3.GenericMapType;
 import com.anosym.vjax.annotations.v3.Transient;
 import com.anosym.vjax.converter.VBigDecimalConverter;
 import com.anosym.vjax.exceptions.VConverterBindingException;
+import com.anosym.vjax.util.VConditional;
 import com.anosym.vjax.xml.VDocument;
 import com.anosym.vjax.xml.VElement;
 import java.lang.annotation.Annotation;
@@ -39,6 +42,8 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * The class maps html element directly to object member instances. no schema, or class information
@@ -279,7 +284,9 @@ public class VObjectMarshaller<T> {
           }
         }
       }
-      data = put(markupName, data);
+      if (markupName != null) {
+        data = put(markupName, data);
+      }
     }
     return data;
   }
@@ -305,6 +312,13 @@ public class VObjectMarshaller<T> {
         Object convertedValue = unmarshal(element, returnType, null);
         return cn.convertTo(convertedValue);
       }
+      Define define = getAnnotation(annots, Define.class);
+      if (define != null) {
+        //the class is defined using a different class, probably the current class represents and interface or abstract class.
+        Class<com.anosym.vjax.v3.initializer.Initializer> definer = (Class<com.anosym.vjax.v3.initializer.Initializer>) define.value();
+        com.anosym.vjax.v3.initializer.Initializer initializer = definer.newInstance();
+        clazz = initializer.define(element);
+      }
       if (clazz.isAssignableFrom(BigDecimal.class) && getAnnotation(annots, Converter.class) == null) {
         VBigDecimalConverter bdConverter = new VBigDecimalConverter();
         return (T) bdConverter.convert(element.toContent());
@@ -325,8 +339,18 @@ public class VObjectMarshaller<T> {
         int children = element.getChildren().size();
         T[] arr = (T[]) new Object[children];
         int i = 0;
+        ArrayComponentInitializer aci = getAnnotation(annots, ArrayComponentInitializer.class);
         for (VElement e : element.getChildren()) {
-          arr[i++] = unmarshal(e, clazz.getComponentType(), null);
+          if (aci != null) {
+            Class<com.anosym.vjax.v3.arrays.ArrayComponentInitializer> initializerClass = aci.value();
+            com.anosym.vjax.v3.arrays.ArrayComponentInitializer initializer = initializerClass.newInstance();
+            Class cmpClass = initializer.define(e);
+            if (cmpClass != null) {
+              arr[i++] = unmarshal(e, cmpClass, null);
+            }
+          } else {
+            arr[i++] = unmarshal(e, clazz.getComponentType(), null);
+          }
         }
         instance = (T) arr;
         return instance;
@@ -356,12 +380,29 @@ public class VObjectMarshaller<T> {
         getFields(clazz, fields);
         for (Field f : fields) {
           String name = f.getName();
-          Markup mm = f.getAnnotation(Markup.class);
+          final Markup mm = f.getAnnotation(Markup.class);
           if (mm != null) {
             name = mm.name();
           }
+          final String name_ = name;
           Class<?> typeClass = f.getType();
-          List<VElement> elems = element.getChildren(name);
+          List<VElement> elems = element.getChildren(new VConditional<VElement>() {
+            @Override
+            public boolean accept(VElement instance) {
+              if (mm == null || !mm.useRegex()) {
+                return instance.getMarkup().equals(name_);
+              } else {
+                Pattern p = Pattern.compile(mm.regex());
+                Matcher m = p.matcher(instance.getMarkup());
+                return m.find();
+              }
+            }
+
+            @Override
+            public boolean acceptProperty(Object prop) {
+              return false;
+            }
+          });
           if (typeClass.isArray()) {
             if (elems.size() > 0) {
               int j = 0;
@@ -372,13 +413,25 @@ public class VObjectMarshaller<T> {
               }
               // The array can be specified through individial
               // elements, or through one parent element
+              ArrayComponentInitializer aci = f.getAnnotation(ArrayComponentInitializer.class);
               Class cmpType = typeClass.getComponentType();
               int length = elems.size();
               Object arr = Array.newInstance(cmpType, length);
               int i = 0;
               for (VElement c : elems) {
-                Object o = unmarshal(c, cmpType,
-                        f.getAnnotations());
+                Object o = null;
+                if (aci != null) {
+                  Class<com.anosym.vjax.v3.arrays.ArrayComponentInitializer> initializerClass = aci.value();
+                  com.anosym.vjax.v3.arrays.ArrayComponentInitializer initializer = initializerClass.newInstance();
+                  Class cmpClass = initializer.define(c);
+                  if (cmpClass != null) {
+                    o = unmarshal(c, cmpClass,
+                            f.getAnnotations());
+                  }
+                } else {
+                  o = unmarshal(c, cmpType,
+                          f.getAnnotations());
+                }
                 Array.set(arr, i++, o);
               }
               f.setAccessible(true);
@@ -464,34 +517,38 @@ public class VObjectMarshaller<T> {
       throw new VXMLBindingException("Unknown primitive mapping: "
               + clazz.getName());
     }
-    PrimitiveType PrimitiveType = PRIMITIVE_MAPPING_TYPES
+    PrimitiveType primitiveType = PRIMITIVE_MAPPING_TYPES
             .get(primitiveClass);
-    if (PrimitiveType == null) {
+    if (primitiveType == null) {
       throw new VXMLBindingException(
               "Unknown primitive mapping for primitve class: "
               + primitiveClass.getName());
     }
-    switch (PrimitiveType) {
-      //thro an exception or set the default.
-      case BOOLEAN:
-        return (T) Boolean.valueOf(value);
-      case BYTE:
-        return (T) Byte.valueOf(value);
-      case CHAR:
-        return (T) Character.valueOf(value.charAt(0));
-      case DOUBLE:
-        return (T) Double.valueOf(value);
-      case FLOAT:
-        return (T) Float.valueOf(value);
-      case INT:
-        return (T) Integer.valueOf(value);
-      case LONG:
-        return (T) Long.valueOf(value);
-      case SHORT:
-        return (T) Short.valueOf(value);
-      case VOID:
-      default:
-        return null;
+    try {
+      switch (primitiveType) {
+        //throw an exception or set the default.
+        case BOOLEAN:
+          return (T) Boolean.valueOf(value);
+        case BYTE:
+          return (T) Byte.valueOf(value);
+        case CHAR:
+          return (T) Character.valueOf(value.charAt(0));
+        case DOUBLE:
+          return (T) Double.valueOf(value);
+        case FLOAT:
+          return (T) Float.valueOf(value);
+        case INT:
+          return (T) Integer.valueOf(value);
+        case LONG:
+          return (T) Long.valueOf(value);
+        case SHORT:
+          return (T) Short.valueOf(value);
+        case VOID:
+        default:
+          return null;
+      }
+    } catch (Exception ex) {
+      return (T) new Integer(0);
     }
   }
 

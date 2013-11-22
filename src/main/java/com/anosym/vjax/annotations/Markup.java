@@ -12,6 +12,7 @@ import java.lang.annotation.Target;
 
 /**
  * The value of this annotation is used as markup that associates an element and a property
+ *
  * @author Administrator
  */
 @Documented
@@ -19,7 +20,24 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD, ElementType.METHOD, ElementType.TYPE})
 public @interface Markup {
 
-    public String name();
+  public String name();
 
-    public String property() default "";
+  public String property() default "";
+
+  /**
+   * tells the marhsaller that the element markup should use the regex to compare between fields and
+   * element markups for equality.
+   *
+   * This only applies during unmarshalling.
+   *
+   * @return
+   */
+  public boolean useRegex() default false;
+
+  /**
+   * Considered only if the {@link #useRegex() } is true.
+   *
+   * @return
+   */
+  public String regex() default "";
 }
