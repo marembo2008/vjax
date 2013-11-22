@@ -23,5 +23,5 @@ public @interface ConverterParam {
    *
    * @return
    */
-  String value();
+  String[] value();
 }

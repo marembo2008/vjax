@@ -13,6 +13,7 @@ import com.anosym.vjax.annotations.v3.ArrayParented;
 import com.anosym.vjax.annotations.v3.CollectionElement;
 import com.anosym.vjax.annotations.v3.CollectionElementConverter;
 import com.anosym.vjax.annotations.v3.Converter;
+import com.anosym.vjax.annotations.v3.ConverterParam;
 import com.anosym.vjax.annotations.v3.Define;
 import com.anosym.vjax.annotations.v3.GenericCollectionType;
 import com.anosym.vjax.annotations.v3.GenericMapType;
@@ -24,6 +25,7 @@ import com.anosym.vjax.xml.VDocument;
 import com.anosym.vjax.xml.VElement;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Array;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -303,14 +305,26 @@ public class VObjectMarshaller<T> {
       Converter converter = getAnnotation(annots, Converter.class);
       if (converter != null) {
         Class cls = converter.value();
-        com.anosym.vjax.converter.v3.Converter<T, Object> cn = converter.value().newInstance();
+        com.anosym.vjax.converter.v3.Converter<T, Object> cnvs;
+        if (converter.params().length > 0) {
+          ConverterParam[] params = converter.params();
+          Map<String, String[]> converterParams = new HashMap<String, String[]>();
+          for (ConverterParam p : params) {
+            converterParams.put(p.key(), p.value());
+          }
+          Constructor<com.anosym.vjax.converter.v3.Converter<T, Object>> cns = cls.getConstructor(new Class[]{Map.class});
+          cnvs = cns.newInstance(new Object[]{converterParams});
+        } else {
+          cnvs = (com.anosym.vjax.converter.v3.Converter<T, Object>) cls
+                  .newInstance();
+        }
         // get the return type of a method
         Method m = cls.getDeclaredMethod("convertFrom",
                 new Class[]{clazz});
         Class returnType = m.getReturnType();
         // marshall against this class
         Object convertedValue = unmarshal(element, returnType, null);
-        return cn.convertTo(convertedValue);
+        return cnvs.convertTo(convertedValue);
       }
       Define define = getAnnotation(annots, Define.class);
       if (define != null) {
@@ -362,8 +376,19 @@ public class VObjectMarshaller<T> {
         Class cls = annot != null ? annot.value() : cec != null ? cec.value() : null;
         if (cls != null) {
           // find the converted to value
-          com.anosym.vjax.converter.v3.Converter<T, Object> cnvs = (com.anosym.vjax.converter.v3.Converter<T, Object>) cls
-                  .newInstance();
+          com.anosym.vjax.converter.v3.Converter<T, Object> cnvs = null;
+          if (annot != null && annot.params().length > 0) {
+            ConverterParam[] params = annot.params();
+            Map<String, String[]> converterParams = new HashMap<String, String[]>();
+            for (ConverterParam p : params) {
+              converterParams.put(p.key(), p.value());
+            }
+            Constructor<com.anosym.vjax.converter.v3.Converter<T, Object>> cns = cls.getConstructor(new Class[]{Map.class});
+            cnvs = cns.newInstance(new Object[]{converterParams});
+          } else {
+            cnvs = (com.anosym.vjax.converter.v3.Converter<T, Object>) cls
+                    .newInstance();
+          }
           // get the return type of a method
           Method m = cls.getDeclaredMethod("convertFrom",
                   new Class[]{clazz});
@@ -405,7 +430,6 @@ public class VObjectMarshaller<T> {
           });
           if (typeClass.isArray()) {
             if (elems.size() > 0) {
-              int j = 0;
               ArrayParented parented = f
                       .getAnnotation(ArrayParented.class);
               if (parented != null) {
