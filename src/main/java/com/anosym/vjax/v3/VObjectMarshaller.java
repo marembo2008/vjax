@@ -403,19 +403,19 @@ public class VObjectMarshaller<T> {
       if (element.hasChildren()) {
         List<Field> fields = new ArrayList<Field>();
         getFields(clazz, fields);
-        for (Field f : fields) {
-          String name = f.getName();
-          final Markup mm = f.getAnnotation(Markup.class);
-          if (mm != null) {
-            name = mm.name();
-          }
-          final String name_ = name;
+        for (final Field f : fields) {
           Class<?> typeClass = f.getType();
           List<VElement> elems = element.getChildren(new VConditional<VElement>() {
+            final Markup mm = f.getAnnotation(Markup.class);
+            final String name = f.getName();
+
             @Override
             public boolean accept(VElement instance) {
-              if (mm == null || !mm.useRegex()) {
-                return instance.getMarkup().equals(name_);
+              if (mm == null) {
+                return instance.getMarkup().equals(name);
+              } else if (!mm.useRegex()) {
+                return instance.getMarkup().equals(mm.name())
+                        || (mm.optionalNames().length > 0 && Arrays.asList(mm.optionalNames()).contains(instance.getMarkup()));
               } else {
                 Pattern p = Pattern.compile(mm.regex());
                 Matcher m = p.matcher(instance.getMarkup());

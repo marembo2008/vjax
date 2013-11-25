@@ -22,6 +22,14 @@ public @interface Markup {
 
   public String name();
 
+  /**
+   * Used on unmarshalling when element can be mapped to different element markup, on different
+   * context
+   *
+   * @return
+   */
+  public String[] optionalNames() default {};
+
   public String property() default "";
 
   /**
