@@ -76,17 +76,17 @@ public class VAttributeTest {
 
   }
 
-  public static class AttributeImpl {
+  public static class Instance {
 
     private String name;
     @Attribute
     private String id;
     private Option option;
 
-    public AttributeImpl() {
+    public Instance() {
     }
 
-    public AttributeImpl(String name, String id, Option option) {
+    public Instance(String name, String id, Option option) {
       this.name = name;
       this.id = id;
       this.option = option;
@@ -133,7 +133,7 @@ public class VAttributeTest {
       if (getClass() != obj.getClass()) {
         return false;
       }
-      final AttributeImpl other = (AttributeImpl) obj;
+      final Instance other = (Instance) obj;
       if ((this.name == null) ? (other.name != null) : !this.name.equals(other.name)) {
         return false;
       }
@@ -152,9 +152,9 @@ public class VAttributeTest {
   public void testMarshall() {
     try {
       Option p = new Option(888, "option-name");
-      AttributeImpl ai = new AttributeImpl("kalji833773", "344444", p);
-      VObjectMarshaller<AttributeImpl> m = new VObjectMarshaller<AttributeImpl>(AttributeImpl.class);
-      String expected = "<AttributeImpl id=\"344444\"><name>kalji833773</name><option><option1>888</option1><optionName>option-name</optionName></option></AttributeImpl>";
+      Instance ai = new Instance("kalji833773", "344444", p);
+      VObjectMarshaller<Instance> m = new VObjectMarshaller<Instance>(Instance.class);
+      String expected = "<Instance id=\"344444\"><name>kalji833773</name><option><option1>888</option1><optionName>option-name</optionName></option></Instance>";
       String xml = m.doMarshall(ai);
       assertEquals(expected, xml);
     } catch (Exception ex) {
@@ -166,10 +166,10 @@ public class VAttributeTest {
   public void testUnmarshall() {
     try {
       Option p = new Option(888, "option-name");
-      AttributeImpl expected = new AttributeImpl("kalji833773", "344444", p);
-      VObjectMarshaller<AttributeImpl> m = new VObjectMarshaller<AttributeImpl>(AttributeImpl.class);
-      String xml = "<AttributeImpl id=\"344444\"><name>kalji833773</name><option><option1>888</option1><optionName>option-name</optionName></option></AttributeImpl>";
-      AttributeImpl actual = m.unmarshall(VDocument.parseDocumentFromString(xml));
+      Instance expected = new Instance("kalji833773", "344444", p);
+      VObjectMarshaller<Instance> m = new VObjectMarshaller<Instance>(Instance.class);
+      String xml = "<Instance id=\"344444\"><name>kalji833773</name><option><option1>888</option1><optionName>option-name</optionName></option></Instance>";
+      Instance actual = m.unmarshall(VDocument.parseDocumentFromString(xml));
       assertEquals(expected, actual);
     } catch (VXMLBindingException ex) {
       Logger.getLogger(VObjectMarshallerTest.class.getName()).log(Level.SEVERE, null, ex);
