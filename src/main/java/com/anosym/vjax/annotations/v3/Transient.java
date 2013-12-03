@@ -7,7 +7,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Signifies that the method should not be serialized
+ * Signifies that the method/field should not be serialized
  *
  * @author marembo
  *

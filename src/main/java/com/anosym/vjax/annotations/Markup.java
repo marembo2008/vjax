@@ -11,7 +11,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * The value of this annotation is used as markup that associates an element and a property
+ * The value of this annotation is used as markup that associates an element and
+ * a property
  *
  * @author Administrator
  */
@@ -20,32 +21,41 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD, ElementType.METHOD, ElementType.TYPE})
 public @interface Markup {
 
-  public String name();
+    public String name();
 
-  /**
-   * Used on unmarshalling when element can be mapped to different element markup, on different
-   * context
-   *
-   * @return
-   */
-  public String[] optionalNames() default {};
+    /**
+     * Used on unmarshalling when element can be mapped to different element
+     * markup, on different context
+     *
+     * @return
+     */
+    public String[] optionalNames() default {};
 
-  public String property() default "";
+    public String property() default "";
 
-  /**
-   * tells the marhsaller that the element markup should use the regex to compare between fields and
-   * element markups for equality.
-   *
-   * This only applies during unmarshalling.
-   *
-   * @return
-   */
-  public boolean useRegex() default false;
+    /**
+     * tells the marhsaller that the element markup should use the regex to
+     * compare between fields and element markups for equality.
+     *
+     * This only applies during unmarshalling.
+     *
+     * @return
+     */
+    public boolean useRegex() default false;
 
-  /**
-   * Considered only if the {@link #useRegex() } is true.
-   *
-   * @return
-   */
-  public String regex() default "";
+    /**
+     * Considered only if the {@link #useRegex() } is true.
+     *
+     * @return
+     */
+    public String regex() default "";
+
+    /**
+     * If the markup uses regex, and the markup name is indexed, the index must
+     * be the last part of the mark, and the marshaller expects a field named
+     * index_
+     *
+     * @return
+     */
+    public boolean indexed() default false;
 }
