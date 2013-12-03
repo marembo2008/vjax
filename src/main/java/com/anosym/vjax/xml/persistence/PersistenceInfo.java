@@ -18,26 +18,24 @@ import java.util.Map;
  */
 public class PersistenceInfo {
 
-    public static final class PersistenceUnitInfoMapConverter implements PropertyListener<PersistenceInfo, PersistenceUnitInfo[]> {
+  public static final class PersistenceUnitInfoMapListener implements PropertyListener<PersistenceInfo, PersistenceUnitInfo[]> {
 
-        @Override
-        public void onSet(PersistenceInfo persistenceInfo, PersistenceUnitInfo[] persistenceUnitInfos) {
-            Map<String, PersistenceUnitInfo> map = new HashMap<String, PersistenceUnitInfo>();
-            for (PersistenceUnitInfo pui : persistenceUnitInfos) {
-                map.put(pui.getName(), pui);
-            }
-            persistenceInfo.persistenceUnits = map;
-        }
-
+    @Override
+    public void onSet(PersistenceInfo persistenceInfo, PersistenceUnitInfo[] persistenceUnitInfos) {
+      Map<String, PersistenceUnitInfo> map = new HashMap<String, PersistenceUnitInfo>();
+      for (PersistenceUnitInfo pui : persistenceUnitInfos) {
+        map.put(pui.getName(), pui);
+      }
+      persistenceInfo.persistenceUnits = map;
     }
-    @Transient
-    private Map<String, PersistenceUnitInfo> persistenceUnits;
-    @Markup(name = "persistence-unit")
-    @Listener(PropertyListener.class)
-    private PersistenceUnitInfo[] persistenceUnitInformation;
+  }
+  @Transient
+  private Map<String, PersistenceUnitInfo> persistenceUnits;
+  @Markup(name = "persistence-unit")
+  @Listener(PersistenceUnitInfoMapListener.class)
+  private PersistenceUnitInfo[] persistenceUnitInformation;
 
-    public PersistenceUnitInfo getPersistenceUnitInfo(String unitName) {
-        return persistenceUnits.get(unitName);
-    }
-
+  public PersistenceUnitInfo getPersistenceUnitInfo(String unitName) {
+    return persistenceUnits.get(unitName);
+  }
 }

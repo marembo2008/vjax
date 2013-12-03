@@ -127,9 +127,8 @@ public class Unmarshaller<T> {
           instance = (T) clazz.newInstance();
         }
       }
-      if (element.hasChildren()) {
-        handleFields(element, clazz, instance);
-      }
+      //We do need to check if the element has children. Most probably it has only attributes.
+      handleFields(element, clazz, instance);
       return instance;
     } catch (Exception ex) {
       throw new VXMLBindingException(ex);
