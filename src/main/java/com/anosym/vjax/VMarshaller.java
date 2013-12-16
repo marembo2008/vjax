@@ -782,7 +782,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
   private T unmarshallOnReference(VElement elem, VAttribute _at__)
           throws VXMLBindingException {
     String val_ = _at__.getValue();
-    int id = Integer.parseInt(val_);
+    long id = Long.parseLong(val_);
     Object tmp = idMapping.get(id);
     // since this is a reference we simply return the reference we have
     if (tmp != null) {
@@ -836,7 +836,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
       throw new VXMLBindingException(
               "Inner class without outer reference instance");
     }
-    int refId = Integer.parseInt(_at_.getValue());
+    long refId = Long.parseLong(_at_.getValue());
     Object ref = idMapping.get(refId);
     if (ref == null) {
       // then we must find the next element that has a reference to it
@@ -1039,7 +1039,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
         }
         for (; i < paramCls.length; i++) {
           String idStr = inits[i - j].trim();
-          int id = Integer.parseInt(idStr);
+          long id = Long.parseLong(idStr);
           Object _o_ = idMapping.get(id);
           params[i] = _o_;
           paramCls[i] = _o_.getClass();
