@@ -177,7 +177,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
    * Used for marshalling and unmarshalling During marshalling, the system simply goes through to
    * determine the ids and object mappings
    */
-  private Map<Integer, Object> idMapping;
+  private Map<Long, Object> idMapping;
   private boolean enableDefaultConversion;
   private VElement marshallElement;
   private boolean ignoreGeneratedAttributes;
@@ -188,7 +188,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
    * By default, ignore-property-setting is set to off, and marshalling uses method property values
    */
   public VMarshaller() {
-    idMapping = new HashMap<Integer, Object>();
+    idMapping = new HashMap<Long, Object>();
     includes = new ArrayList<VDocument>();
   }
 
@@ -418,7 +418,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
             .getAttribute(VMarshallerConstants.OBJECT_REFERENCE_ID_ATTRIBUTE);
     if (at != null) {
       String val = at.getValue();
-      int id = Integer.parseInt(val);
+      long id = Long.parseLong(val);
       idMapping.put(id, o);
     }
     return (T) o;
@@ -467,7 +467,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
               .getAttribute(VMarshallerConstants.OBJECT_REFERENCE_ID_ATTRIBUTE);
       if (at != null) {
         String val = at.getValue();
-        int id = Integer.parseInt(val);
+        long id = Long.parseLong(val);
         idMapping.put(id, o);
       }
       return (T) o;
@@ -531,7 +531,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
             .getAttribute(VMarshallerConstants.OBJECT_REFERENCE_ID_ATTRIBUTE);
     if (at != null) {
       String val = at.getValue();
-      int id = Integer.parseInt(val);
+      long id = Long.parseLong(val);
       idMapping.put(id, o);
     }
     return (T) o;
@@ -620,7 +620,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
             .getAttribute(VMarshallerConstants.OBJECT_REFERENCE_ID_ATTRIBUTE);
     if (at != null) {
       String val = at.getValue();
-      int id = Integer.parseInt(val);
+      long id = Long.parseLong(val);
       idMapping.put(id, eo);
     }
     return (T) eo;
@@ -666,12 +666,12 @@ public final class VMarshaller<T> implements java.io.Serializable {
             String params = "["
                     + precisionEleme
                     .getAttribute(
-                    VMarshallerConstants.OBJECT_REFERENCE_ID_ATTRIBUTE)
+                            VMarshallerConstants.OBJECT_REFERENCE_ID_ATTRIBUTE)
                     .getValue()
                     + ","
                     + roundingModeElem
                     .getAttribute(
-                    VMarshallerConstants.OBJECT_REFERENCE_ID_ATTRIBUTE)
+                            VMarshallerConstants.OBJECT_REFERENCE_ID_ATTRIBUTE)
                     .getValue() + "]";
             VAttribute initializers = new VAttribute(
                     VMarshallerConstants.INITIALIZERS_ATTRIBUTE,
@@ -686,7 +686,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
               .getAttribute(VMarshallerConstants.OBJECT_REFERENCE_ID_ATTRIBUTE);
       if (at != null) {
         String val_ = at.getValue();
-        int id = Integer.parseInt(val_);
+        long id = Long.parseLong(val_);
         idMapping.put(id, o);
       }
       this.unmarshallProperties(elems, clazz, o);
@@ -907,7 +907,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
                 .getAttribute(VMarshallerConstants.OBJECT_REFERENCE_ID_ATTRIBUTE);
         if (at != null) {
           String val = at.getValue();
-          int id = Integer.parseInt(val);
+          long id = Long.parseLong(val);
           idMapping.put(id, tmp);
         }
         return (T) tmp;
@@ -963,7 +963,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
                 .getAttribute(VMarshallerConstants.OBJECT_REFERENCE_ID_ATTRIBUTE);
         if (at != null) {
           String val_ = at.getValue();
-          int id = Integer.parseInt(val_);
+          long id = Long.parseLong(val_);
           idMapping.put(id, o);
         }
         return (T) o;
@@ -1477,7 +1477,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
       // add the converter
       addAttribute(elem,
               new VAttribute(VMarshallerConstants.CONVERTER_ATTRIBUTE,
-              conClass.getName()));
+                      conClass.getName()));
       String value = vcon.convert(o);
       elem.addChild(new VContent(value));
       return true;
@@ -1525,7 +1525,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
   private boolean checkCircularReference(VElement elem, Class<?> clazz, T o)
           throws Exception {
     boolean isInner = isInner(o.getClass());
-    int refid = System.identityHashCode(o);
+    long refid = System.identityHashCode(o);
     // we cannot create a reference to primitive types, String and Enums. It
     // does not make sense
     if (idMapping.containsKey(refid) && !isInner && !(o instanceof String)
@@ -1554,7 +1554,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
         Field ff = o.getClass().getDeclaredField("this$0");
         ff.setAccessible(true);
         Object ref = ff.get(o);
-        int id = System.identityHashCode(ref);
+        long id = System.identityHashCode(ref);
         // find the object
         Object refObj = idMapping.get(id);
         if (refObj == null) {
@@ -1803,8 +1803,8 @@ public final class VMarshaller<T> implements java.io.Serializable {
       if (d != null) {
         addAttribute(elem,
                 new VAttribute(
-                VMarshallerConstants.DISPLAYABLE_ATTRIBUTE, ""
-                + d.value()));
+                        VMarshallerConstants.DISPLAYABLE_ATTRIBUTE, ""
+                        + d.value()));
       }
       VMarkupGenerator<T> generator = checkDynamicMarkup(elem, clazz, o);
       // does this class have comments
@@ -1828,8 +1828,8 @@ public final class VMarshaller<T> implements java.io.Serializable {
         addAttribute(
                 elem,
                 new VAttribute(
-                VMarshallerConstants.PRIMITIVE_ATTRIBUTE, clazz
-                .isPrimitive() + ""));
+                        VMarshallerConstants.PRIMITIVE_ATTRIBUTE, clazz
+                        .isPrimitive() + ""));
         elem.addChild(new VContent(o.toString()));
       } else if (clazz.isEnum()) {
         checkEnum(elem, clazz, o, namespace, generator);
@@ -2457,7 +2457,7 @@ public final class VMarshaller<T> implements java.io.Serializable {
         Class condClass = cond.condition();
         VConditional<T> vCond = (VConditional<T>) condClass
                 .getConstructor(new Class[]{}).newInstance(
-                new Object[]{});
+                        new Object[]{});
         if (!vCond.accept((T) o1)) {
           return true;
         }
@@ -2551,8 +2551,8 @@ public final class VMarshaller<T> implements java.io.Serializable {
             addAttribute(
                     fe,
                     new VAttribute(
-                    VMarshallerConstants.CONSTANT_ATTRIBUTE,
-                    "true"));
+                            VMarshallerConstants.CONSTANT_ATTRIBUTE,
+                            "true"));
           }
           // add the class attribute
           addAttribute(fe, new VAttribute(
@@ -2596,8 +2596,8 @@ public final class VMarshaller<T> implements java.io.Serializable {
                   addAttribute(
                           fe,
                           new VAttribute(
-                          VMarshallerConstants.OBJECT_PROPERTY_ATTRIBUTE,
-                          mName));
+                                  VMarshallerConstants.OBJECT_PROPERTY_ATTRIBUTE,
+                                  mName));
                 }
               }
             } else if (generator != null) {
@@ -2607,8 +2607,8 @@ public final class VMarshaller<T> implements java.io.Serializable {
                 addAttribute(
                         fe,
                         new VAttribute(
-                        VMarshallerConstants.OBJECT_PROPERTY_ATTRIBUTE,
-                        mName));
+                                VMarshallerConstants.OBJECT_PROPERTY_ATTRIBUTE,
+                                mName));
               }
             }
           }
@@ -2657,8 +2657,8 @@ public final class VMarshaller<T> implements java.io.Serializable {
             addAttribute(
                     fe,
                     new VAttribute(
-                    VMarshallerConstants.OBJECT_PROPERTY_ATTRIBUTE,
-                    prop));
+                            VMarshallerConstants.OBJECT_PROPERTY_ATTRIBUTE,
+                            prop));
           }
           // do we have a namespace declaration on methods
           Namespace _ns = m.getAnnotation(Namespace.class);
@@ -2831,8 +2831,8 @@ public final class VMarshaller<T> implements java.io.Serializable {
       fe.setMarkup(markup.name());
       addAttribute(fe,
               new VAttribute(
-              VMarshallerConstants.OBJECT_PROPERTY_ATTRIBUTE,
-              markup.property()));
+                      VMarshallerConstants.OBJECT_PROPERTY_ATTRIBUTE,
+                      markup.property()));
     }
     // do we have a namespace declaration on methods
     Namespace _ns = m.getAnnotation(Namespace.class);
