@@ -1745,6 +1745,18 @@ public final class VMarshaller<T> implements java.io.Serializable {
                   .getName()));
           addAttribute(vElem, new VAttribute(
                   VMarshallerConstants.VALUE_ATTRIBUTE, "true"));
+          MapElement me = getAnnotation(annotations, MapElement.class);
+          if (me != null) {
+            if (me.entry() != null && !me.entry().isEmpty()) {
+              ee.setMarkup(me.entry());
+            }
+            if (me.key() != null && !me.key().isEmpty()) {
+              kElem.setMarkup(me.key());
+            }
+            if (me.value() != null && !me.value().isEmpty()) {
+              vElem.setMarkup(me.value());
+            }
+          }
           ee.addChild(kElem);
           ee.addChild(vElem);
           elem.addChild(ee);
