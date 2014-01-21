@@ -8,26 +8,30 @@ import com.anosym.vjax.exceptions.VConverterBindingException;
 
 /**
  * The default conversion is to return the lowercase name of the enum instance.
- *
+ * Replaces all spaces with an underscore, during the unmarshalling phase.
+ * 
  * @author marembo
  */
 public class VEnumConverter extends VConverter<Enum<?>> {
 
-  private Class enumClass;
+	@SuppressWarnings("rawtypes")
+	private Class enumClass;
 
-  @Override
-  public Enum convert(String value) throws VConverterBindingException {
-    return Enum.valueOf(enumClass, value.toUpperCase());
-  }
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
+	public Enum convert(String value) throws VConverterBindingException {
+		return Enum
+				.valueOf(enumClass, value.toUpperCase().replaceAll(" ", "_"));
+	}
 
-  @Override
-  public String convert(Enum<?> value) throws VConverterBindingException {
-    return value.name().toLowerCase();
-  }
+	@Override
+	public String convert(Enum<?> value) throws VConverterBindingException {
+		return value.name().toLowerCase().replaceAll("_", " ");
+	}
 
-  @Override
-  public boolean isConvertCapable(Class clazz) {
-    enumClass = clazz;
-    return Enum.class.isAssignableFrom(clazz);
-  }
+	@Override
+	public boolean isConvertCapable(@SuppressWarnings("rawtypes") Class clazz) {
+		enumClass = clazz;
+		return Enum.class.isAssignableFrom(clazz);
+	}
 }
