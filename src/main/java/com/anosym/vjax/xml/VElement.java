@@ -487,6 +487,15 @@ public class VElement implements Cloneable, Serializable, Iterable<VElement> {
     return false;
   }
 
+  public boolean hasAttribute(String attributeId, String attributeValue) {
+    for (VAttribute a : attributes) {
+      if (a.getName().equals(attributeId) && a.getValue().equals(attributeValue)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   public boolean booleanAttributeValue(String attributeId) {
     for (VAttribute a : attributes) {
       if (a.getName().equals(attributeId)) {
