@@ -4,6 +4,7 @@
  */
 package com.anosym.vjax.converter.v3.impl;
 
+import com.anosym.vjax.VJaxLogger;
 import com.anosym.vjax.converter.v3.Converter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,14 +28,14 @@ public class CalendarConverter implements Converter<Calendar, String> {
   }
 
   public CalendarConverter() {
-    this.formats = new String[]{"yyyy-MM-dd"};
+    this.formats = new String[]{"yyyy-MM-dd HH:mm:ss"};
   }
 
   @Override
   public String convertFrom(Calendar value) {
     for (String format : this.formats) {
       try {
-        System.out.println("Format: " + format);
+        VJaxLogger.info("Format: " + format);
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);
         return dateFormat.format(value.getTime());
       } catch (Exception ex) {
@@ -51,7 +52,7 @@ public class CalendarConverter implements Converter<Calendar, String> {
     }
     for (String format : this.formats) {
       try {
-        System.out.println("Format: " + format);
+        VJaxLogger.info("Format: " + format);
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);
         Date date = dateFormat.parse(value);
         Calendar instance = Calendar.getInstance();

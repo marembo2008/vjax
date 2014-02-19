@@ -39,10 +39,9 @@ public class ConfigurationUtil {
         ac = m.unmarshall(doc);
         VJaxLogger.info("Loaded Configurations: " + configPath.getAbsolutePath());
         VJaxLogger.fine(doc.toXmlString());
-      } else {
-        //we save the default config
-        saveConfiguration(ac);
       }
+      //we save the default config regardless, so that we update the underlying config xml with any new fields.
+      saveConfiguration(ac);
       return ac;
     } catch (VXMLMemberNotFoundException ex) {
       VJaxLogger.log(Level.SEVERE, null, ex);
