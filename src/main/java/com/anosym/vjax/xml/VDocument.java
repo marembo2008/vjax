@@ -29,6 +29,17 @@ import org.xml.sax.helpers.XMLReaderFactory;
  */
 public class VDocument {
 
+  static {
+    /**
+     * handling android sax parsers and the xml element handlers
+     */
+    String jvm = System.getProperty("java.specification.name");
+    if (jvm != null && !jvm.trim().isEmpty() && jvm.equalsIgnoreCase("Dalvik Core Library")) {
+      System.setProperty("org.xml.sax.driver",
+              "org.apache.xerces.parsers.SAXParser");
+      System.setProperty("com.anosym.xml.sax.parser.adapted", "true");
+    }
+  }
   private VElement rootElement;
   private URL documentUrl;
   private File documentName;

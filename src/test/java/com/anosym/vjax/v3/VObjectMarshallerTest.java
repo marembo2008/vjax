@@ -133,7 +133,9 @@ public class VObjectMarshallerTest {
       String expected = "<Sub><two>2</two><subInfo>sub-info</subInfo><one>1</one><info>super-info</info></Sub>";
       String actual = m.doMarshall(sub);
       assertEquals(expected, actual);
-      Sub actualSub = m.unmarshall(VDocument.parseDocumentFromString(expected));
+      VDocument doc = VDocument.parseDocumentFromString(actual);
+      System.out.println(doc.toXmlString());
+      Sub actualSub = m.unmarshall(doc);
       assertEquals(sub, actualSub);
     } catch (VXMLMemberNotFoundException ex) {
       Logger.getLogger(VObjectMarshallerTest.class.getName()).log(Level.SEVERE, null, ex);

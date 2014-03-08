@@ -18,11 +18,11 @@ import org.xml.sax.ext.LexicalHandler;
  */
 public class VXMLHandlerAdapted extends VXMLHandler implements LexicalHandler, DeclHandler {
 
-  private Stack<VElement> elements;
+  private final Stack<VElement> elements;
   private VElement element;
   private StringBuffer contentBuffer;
   private StringBuffer commentBuffer;
-  private List<String[]> notationDeclaration;
+  private final List<String[]> notationDeclaration;
 
   public VXMLHandlerAdapted() {
     this.elements = new Stack<VElement>();

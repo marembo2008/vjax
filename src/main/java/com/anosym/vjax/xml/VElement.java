@@ -456,13 +456,15 @@ public class VElement implements Cloneable, Serializable, Iterable<VElement> {
     this.markup = elementTag.trim();
     //we must escape it with the correct syntax
     String escapeSequence = "";
-    char c = this.markup.charAt(0);
     char[] ccs = this.markup.toCharArray();
-    for (int i = 0; i < ccs.length; i++) {
-      c = this.markup.charAt(i);
-      if (!Character.isLetterOrDigit(c) && c != '_' && c != '-') {
-        escapeSequence += (i + ":" + c + ";");
-        ccs[i] = '%';
+    if (this.markup.length() > 0) {
+      char c = this.markup.charAt(0);
+      for (int i = 0; i < ccs.length; i++) {
+        c = this.markup.charAt(i);
+        if (!Character.isLetterOrDigit(c) && c != '_' && c != '-') {
+          escapeSequence += (i + ":" + c + ";");
+          ccs[i] = '%';
+        }
       }
     }
     if (escapeSequence.length() != 0) {

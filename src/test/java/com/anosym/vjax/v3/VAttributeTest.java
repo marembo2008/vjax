@@ -68,10 +68,7 @@ public class VAttributeTest {
       if (this.option1 != other.option1) {
         return false;
       }
-      if ((this.optionName == null) ? (other.optionName != null) : !this.optionName.equals(other.optionName)) {
-        return false;
-      }
-      return true;
+      return !((this.optionName == null) ? (other.optionName != null) : !this.optionName.equals(other.optionName));
     }
 
   }
@@ -140,10 +137,7 @@ public class VAttributeTest {
       if ((this.id == null) ? (other.id != null) : !this.id.equals(other.id)) {
         return false;
       }
-      if (this.option != other.option && (this.option == null || !this.option.equals(other.option))) {
-        return false;
-      }
-      return true;
+      return this.option == other.option || (this.option != null && this.option.equals(other.option));
     }
 
   }
@@ -154,7 +148,9 @@ public class VAttributeTest {
       Option p = new Option(888, "option-name");
       Instance ai = new Instance("kalji833773", "344444", p);
       VObjectMarshaller<Instance> m = new VObjectMarshaller<Instance>(Instance.class);
-      String expected = "<Instance id=\"344444\"><name>kalji833773</name><option><option1>888</option1><optionName>option-name</optionName></option></Instance>";
+      String expected = "<Instance id=\"344444\">"
+              + "<name>kalji833773</name><option><option1>888</option1><optionName>option-name</optionName></option>"
+              + "</Instance>";
       String xml = m.doMarshall(ai);
       assertEquals(expected, xml);
     } catch (Exception ex) {
@@ -168,7 +164,9 @@ public class VAttributeTest {
       Option p = new Option(888, "option-name");
       Instance expected = new Instance("kalji833773", "344444", p);
       VObjectMarshaller<Instance> m = new VObjectMarshaller<Instance>(Instance.class);
-      String xml = "<Instance id=\"344444\"><name>kalji833773</name><option><option1>888</option1><optionName>option-name</optionName></option></Instance>";
+      String xml = "<Instance id=\"344444\">"
+              + "<name>kalji833773</name><option><option1>888</option1><optionName>option-name</optionName></option>"
+              + "</Instance>";
       Instance actual = m.unmarshall(VDocument.parseDocumentFromString(xml));
       assertEquals(expected, actual);
     } catch (VXMLBindingException ex) {

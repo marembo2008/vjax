@@ -18,6 +18,7 @@ import static com.anosym.vjax.v3.VObjectMarshaller.PRIMITIVE_WRAPPER_MAPPING;
 import static com.anosym.vjax.v3.VObjectMarshaller.getAnnotation;
 import com.anosym.vjax.xml.VDocument;
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.math.BigDecimal;
@@ -186,9 +187,9 @@ public class Marshaller<T> {
     return data;
   }
 
+  @SuppressWarnings("null")
   private String marshallArray(T object, String markupName, String data, Annotation[] annotations) {
     Class c = object.getClass();
-    Object[] arr = (Object[]) object;
     Class cmpClass = c.getComponentType();
     ArrayParented ap = getAnnotation(annotations, ArrayParented.class);
     boolean parented = ap != null
@@ -198,7 +199,9 @@ public class Marshaller<T> {
     if (parented) {
       markupName = ap.componentMarkup();
     }
-    for (Object o : arr) {
+    int arrLength = Array.getLength(object);
+    for (int i = 0; i < arrLength; i++) {
+      Object o = Array.get(object, i);
       if (isPrimitiveOrPrimitiveWrapper(cmpClass)
               || cmpClass.equals(String.class)) {
         try {
