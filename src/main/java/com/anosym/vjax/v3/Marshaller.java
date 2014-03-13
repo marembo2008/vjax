@@ -4,6 +4,7 @@
  */
 package com.anosym.vjax.v3;
 
+import com.anosym.vjax.VJaxLogger;
 import com.anosym.vjax.annotations.Attribute;
 import com.anosym.vjax.annotations.Markup;
 import com.anosym.vjax.annotations.v3.ArrayParented;
@@ -30,6 +31,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -38,6 +41,15 @@ import java.util.logging.Logger;
 public class Marshaller<T> {
 
   private final Class<? extends T> instanceClass;
+  private static final Map<String, String> ENTITY_REFERENCES = new HashMap<String, String>();
+
+  static {
+    ENTITY_REFERENCES.put("&", "&amp;");
+    ENTITY_REFERENCES.put("\"", "&quot;");
+    ENTITY_REFERENCES.put("'", "&pos;");
+    ENTITY_REFERENCES.put("<", "&lt;");
+    ENTITY_REFERENCES.put(">", "&gt;");
+  }
 
   public Marshaller(Class<? extends T> instanceClass) {
     this.instanceClass = instanceClass;
@@ -78,6 +90,7 @@ public class Marshaller<T> {
     return sb.toString();
   }
 
+  @SuppressWarnings("UseSpecificCatch")
   private String marshallFields(T object, String markupName, String data, Annotation[] annotations) {
     List<Field> fields = new ArrayList<Field>();
     VObjectMarshaller.getFields(object.getClass(), fields);
@@ -113,15 +126,16 @@ public class Marshaller<T> {
           }
           if (f.getAnnotation(Attribute.class) != null) {
             attributes.put(markup, value.toString());
-          } else if (isPrimitiveOrPrimitiveWrapper(cl)
-                  || cl.equals(String.class)) {
+          } else if (isPrimitiveOrPrimitiveWrapper(cl)) {
             data += put(markup, value);
+          } else if (cl.equals(String.class)) {
+            data += put(markup, escapeEntityReference(value.toString()));
           } else {
             data += marshall((T) value, markup,
                     f.getDeclaredAnnotations());
           }
         } catch (Exception e) {
-          Logger.getLogger(VObjectMarshaller.class.getName()).log(Level.SEVERE, data, e);
+          VJaxLogger.log(Level.SEVERE, data, e);
         }
       }
     }
@@ -228,9 +242,12 @@ public class Marshaller<T> {
           Annotation[] annotations) {
     String data = "";
     Class<? extends Object> c = object.getClass();
-    if (isPrimitiveOrPrimitiveWrapper(c) || c.equals(String.class)) {
+    if (isPrimitiveOrPrimitiveWrapper(c)) {
       markupName = markupName == null ? c.getSimpleName() : markupName;
       data += put(markupName, object.toString());
+    } else if (c.equals(String.class)) {
+      markupName = markupName == null ? c.getSimpleName() : markupName;
+      data += put(markupName, escapeEntityReference(object.toString()));
     } else if (c.isEnum()) {
       markupName = markupName == null ? c.getSimpleName() : markupName;
       data += put(markupName, ((Enum) object).name());
@@ -252,5 +269,29 @@ public class Marshaller<T> {
       data = marshallFields(object, markupName, data, annotations);
     }
     return data;
+  }
+
+  private String getRegex(String value) {
+    String regex = "";
+    for (String repl : ENTITY_REFERENCES.values()) {
+      if (!regex.isEmpty()) {
+        regex += "|";
+      }
+      regex += "(" + value + "[!" + repl.substring(1) + "])";
+    }
+    return regex;
+  }
+
+  private String escapeEntityReference(String str) {
+    if (str.contains("&")) {
+      str = str.replaceAll("&", "&amp;");
+    }
+    for (Map.Entry<String, String> e : ENTITY_REFERENCES.entrySet()) {
+      if (e.getKey().equals("&")) {
+        continue;
+      }
+      str = str.replaceAll(e.getKey(), e.getValue());
+    }
+    return str;
   }
 }
