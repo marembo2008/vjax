@@ -25,7 +25,7 @@ public class CopyAnnotationTest {
 
   @Test
   public void testCopyConverter() {
-    VObjectWrapper vow = new VObjectWrapper("/programming/java-projects/anosym/VJax/src/test/java");
+    VObjectWrapper vow = new VObjectWrapper("src/test/java");
     vow.init();
     vow.process();
   }
