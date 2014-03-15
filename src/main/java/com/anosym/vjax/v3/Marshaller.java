@@ -6,6 +6,7 @@ package com.anosym.vjax.v3;
 
 import com.anosym.vjax.VJaxLogger;
 import com.anosym.vjax.annotations.Attribute;
+import com.anosym.vjax.annotations.Id;
 import com.anosym.vjax.annotations.Markup;
 import com.anosym.vjax.annotations.v3.ArrayParented;
 import com.anosym.vjax.annotations.v3.CollectionElement;
@@ -15,6 +16,7 @@ import com.anosym.vjax.annotations.v3.GenericMapType;
 import com.anosym.vjax.annotations.v3.Transient;
 import com.anosym.vjax.converter.VBigDecimalConverter;
 import com.anosym.vjax.exceptions.VConverterBindingException;
+import com.anosym.vjax.util.VJaxUtils;
 import static com.anosym.vjax.v3.VObjectMarshaller.PRIMITIVE_WRAPPER_MAPPING;
 import static com.anosym.vjax.v3.VObjectMarshaller.getAnnotation;
 import com.anosym.vjax.xml.VDocument;
@@ -31,8 +33,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import org.htmlcleaner.Utils;
 
 /**
  *
@@ -50,18 +51,28 @@ public class Marshaller<T> {
     ENTITY_REFERENCES.put("<", "&lt;");
     ENTITY_REFERENCES.put(">", "&gt;");
   }
+  //the key is the object, and the value is its id referenced
+  private final Map<Object, String> REFERENCES = new HashMap<Object, String>();
 
   public Marshaller(Class<? extends T> instanceClass) {
     this.instanceClass = instanceClass;
   }
 
   public VDocument marshall(T object) {
-    return VDocument.parseDocumentFromString(doMarshall(object));
+    try {
+      return VDocument.parseDocumentFromString(doMarshall(object));
+    } finally {
+      REFERENCES.clear();;
+    }
   }
 
   public String doMarshall(T object) {
-    String name = object.getClass().getSimpleName();
-    return marshall(object, name, null);
+    try {
+      String name = object.getClass().getSimpleName();
+      return marshall(object, name, null);
+    } finally {
+      REFERENCES.clear();;
+    }
   }
 
   @SuppressWarnings("rawtypes")
@@ -72,9 +83,16 @@ public class Marshaller<T> {
 
   private String put(String id, Object data) {
     StringBuilder sb = new StringBuilder();
-    sb.append("<").append(id).append(">");
-    sb.append(data);
-    sb.append("</").append(id).append(">");
+    sb.append("<").append(id);
+    if (VJaxUtils.isNullOrEmpty(data)) {
+      sb.append("/>");
+    } else {
+      sb.append(">");
+      sb.append(data);
+      sb.append("</")
+              .append(id)
+              .append(">");
+    }
     return sb.toString();
   }
 
@@ -84,9 +102,13 @@ public class Marshaller<T> {
     for (Map.Entry<String, String> e : attributes.entrySet()) {
       sb.append(" ").append(e.getKey()).append("=\"").append(e.getValue()).append("\"");
     }
-    sb.append(">");
-    sb.append(data);
-    sb.append("</").append(id).append(">");
+    if (VJaxUtils.isNullOrEmpty(data)) {
+      sb.append("/>");
+    } else {
+      sb.append(">");
+      sb.append(data);
+      sb.append("</").append(id).append(">");
+    }
     return sb.toString();
   }
 
@@ -124,8 +146,12 @@ public class Marshaller<T> {
           if (m != null) {
             markup = m.name();
           }
-          if (f.getAnnotation(Attribute.class) != null) {
+          if (f.getAnnotation(Attribute.class) != null || f.getAnnotation(Id.class) != null) {
             attributes.put(markup, value.toString());
+            if (f.getAnnotation(Id.class) != null) {
+              //then use references.
+              REFERENCES.put(object, value.toString());
+            }
           } else if (isPrimitiveOrPrimitiveWrapper(cl)) {
             data += put(markup, value);
           } else if (cl.equals(String.class)) {
@@ -242,6 +268,16 @@ public class Marshaller<T> {
           Annotation[] annotations) {
     String data = "";
     Class<? extends Object> c = object.getClass();
+    //if the object has already been marshalled.
+    if (REFERENCES.containsKey(object)) {
+      //add a a ref attribute and return.
+      String refId = REFERENCES.get(object);
+      markupName = markupName == null ? c.getSimpleName() : markupName;
+      Map<String, String> attrs = new HashMap<String, String>();
+      attrs.put("ref-id", refId);
+      data += putWithAttributes(markupName, "", attrs);
+      return data;
+    }
     if (isPrimitiveOrPrimitiveWrapper(c)) {
       markupName = markupName == null ? c.getSimpleName() : markupName;
       data += put(markupName, object.toString());

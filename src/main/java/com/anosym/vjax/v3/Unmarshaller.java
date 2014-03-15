@@ -17,6 +17,7 @@ import static com.anosym.vjax.PrimitiveType.VOID;
 import com.anosym.vjax.VXMLBindingException;
 import com.anosym.vjax.VXMLMemberNotFoundException;
 import com.anosym.vjax.annotations.Attribute;
+import com.anosym.vjax.annotations.Id;
 import com.anosym.vjax.annotations.Markup;
 import com.anosym.vjax.annotations.v3.ArrayComponentInitializer;
 import com.anosym.vjax.annotations.v3.ArrayParented;
@@ -60,10 +61,12 @@ import java.util.regex.Pattern;
 /**
  *
  * @author marembo
+ * @param <T> the type to unmarshall to.
  */
 public class Unmarshaller<T> {
 
   private final Class<? extends T> instanceClass;
+  private Map<String, Object> REFERENCES = new HashMap<String, Object>();
 
   public Unmarshaller(Class<? extends T> instanceClass) {
     this.instanceClass = instanceClass;
@@ -71,12 +74,24 @@ public class Unmarshaller<T> {
 
   public T unmarshall(VDocument document) throws VXMLMemberNotFoundException,
           VXMLBindingException {
-    return unmarshal(document.getRootElement(), instanceClass, null);
+    try {
+      return unmarshal(document.getRootElement(), instanceClass, null);
+    } finally {
+      REFERENCES.clear();
+    }
   }
 
   @SuppressWarnings({"unchecked", "rawtypes"})
   private T unmarshal(VElement element, Class clazz, Annotation[] annots)
           throws VXMLBindingException {
+    //check if we have attribute ref!
+    if (element.hasAttribute("ref-id")) {
+      String refId = element.getAttribute("ref-id").getValue();
+      T obj = (T) REFERENCES.get(refId);
+      if (obj != null) {
+        return obj;
+      }
+    }
     try {
       Converter converter = VObjectMarshaller.getAnnotation(annots, Converter.class);
       if (converter != null) {
@@ -329,13 +344,19 @@ public class Unmarshaller<T> {
       List<VElement> elems = getFieldMapping(instance, f, element);
       if (elems.isEmpty()) {
         Attribute a = f.getAnnotation(Attribute.class);
-        if (a != null) {
+        Id id = f.getAnnotation(Id.class);
+        if (a != null || id != null) {
           String name = f.getName();
           Markup mm = f.getAnnotation(Markup.class);
           if (mm != null) {
             name = mm.name();
           }
           propety = unmarshallAttribute(element, name, f.getAnnotations());
+          if (id != null) {
+            //add references to current object.
+            VAttribute at = element.getAttribute(name);
+            REFERENCES.put(at.getValue(), instance);
+          }
         }
       } else if (typeClass.isArray()) {
         propety = unmarshallFieldArray(elems, f);
@@ -414,18 +435,20 @@ public class Unmarshaller<T> {
     if (at != null) {
       String value = at.getValue();
       Converter cn = VObjectMarshaller.getAnnotation(annots, Converter.class);
+      T instance = null;
       if (cn != null) {
         try {
           com.anosym.vjax.converter.v3.Converter<T, String> cnv = cn.value().newInstance();
-          return cnv.convertTo(value);
+          instance = cnv.convertTo(value);
         } catch (InstantiationException ex) {
           Logger.getLogger(VObjectMarshaller.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
           Logger.getLogger(VObjectMarshaller.class.getName()).log(Level.SEVERE, null, ex);
         }
       } else {
-        return (T) value;
+        instance = (T) value;
       }
+      return instance;
     }
     return null;
   }

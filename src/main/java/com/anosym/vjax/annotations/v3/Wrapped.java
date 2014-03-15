@@ -23,10 +23,18 @@ import java.lang.annotation.Target;
 public @interface Wrapped {
 
   /**
-   * The name of the wrapper class. Default preappends 'W' to the name of the original class.
+   * The className of the wrapper class. Default pre-appends 'W' to the className of the original
+   * class.
    *
    * @return
    */
-  String name() default "";
+  String className() default "";
+
+  /**
+   * The package name of the generated wrapper. Default appends .wrapper to current class package.
+   *
+   * @return
+   */
+  String packageName() default "";
 
 }
