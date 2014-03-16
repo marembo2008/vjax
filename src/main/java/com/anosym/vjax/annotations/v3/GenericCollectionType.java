@@ -19,5 +19,22 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD, ElementType.METHOD})
 public @interface GenericCollectionType {
 
-  Class value();
+  public static interface Typer {
+
+    Class typer();
+  }
+
+  /**
+   * The type of the generic collection element. If not specified, the typer must be specified.
+   *
+   * @return
+   */
+  Class value() default Void.class;
+
+  /**
+   * A typer is a class that may decide to generate a different collection element type dynamically.
+   *
+   * @return
+   */
+  Class<? extends Typer> typer() default Typer.class;
 }

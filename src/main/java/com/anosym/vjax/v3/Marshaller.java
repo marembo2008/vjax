@@ -62,7 +62,7 @@ public class Marshaller<T> {
     try {
       return VDocument.parseDocumentFromString(doMarshall(object));
     } finally {
-      REFERENCES.clear();;
+      REFERENCES.clear();
     }
   }
 
@@ -71,7 +71,7 @@ public class Marshaller<T> {
       String name = object.getClass().getSimpleName();
       return marshall(object, name, null);
     } finally {
-      REFERENCES.clear();;
+      REFERENCES.clear();
     }
   }
 

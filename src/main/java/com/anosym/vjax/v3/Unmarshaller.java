@@ -26,6 +26,7 @@ import com.anosym.vjax.annotations.v3.Converter;
 import com.anosym.vjax.annotations.v3.ConverterParam;
 import com.anosym.vjax.annotations.v3.Define;
 import com.anosym.vjax.annotations.v3.GenericCollectionType;
+import com.anosym.vjax.annotations.v3.GenericCollectionType.Typer;
 import com.anosym.vjax.annotations.v3.GenericMapType;
 import com.anosym.vjax.annotations.v3.Listener;
 import com.anosym.vjax.converter.VBigDecimalConverter;
@@ -301,8 +302,17 @@ public class Unmarshaller<T> {
       if (type == null) {
         return null;
       }
+      Class collectionElementType = type.value();
+      if (collectionElementType.isAssignableFrom(Void.class)) {
+        //try to see if we are supposed to find it dynamically.
+        Class<? extends Typer> typer = type.typer();
+        if (typer.isInterface()) {
+          throw new VXMLBindingException("Invalid collection element typer: " + typer);
+        }
+        collectionElementType = typer.newInstance().typer();
+      }
       for (VElement c : listElem.getChildren()) {
-        l.add(unmarshal(c, type.value(),
+        l.add(unmarshal(c, collectionElementType,
                 f.getAnnotations()));
       }
       return l;
