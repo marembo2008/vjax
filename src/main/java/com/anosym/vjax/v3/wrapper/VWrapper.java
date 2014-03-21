@@ -41,7 +41,7 @@ public final class VWrapper {
       VObjectMarshaller<W> vom_ = new VObjectMarshaller<W>(wrapperClass);
       return vom_.unmarshall(doc);
     } catch (Exception ex) {
-      throw new VWrapperException(value == null ? Void.class : value.getClass(), wrapperClass, ex);
+      throw new VWrapperException(value.getClass(), wrapperClass, ex);
     }
   }
 

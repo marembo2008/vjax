@@ -46,7 +46,7 @@ public  class WWithCopyAnnotation implements java.io.Serializable {
 
 	@Override
 	public int hashCode() {
-		int hash = 254;
+		int hash = 509;
 		return hash;
 	}
 

@@ -35,7 +35,7 @@ public  class WRequire extends com.anosym.vjax.v3.wrapper.wrapper.WExtended impl
 
 	@Override
 	public int hashCode() {
-		int hash = 756;
+		int hash = 20;
 		return hash;
 	}
 

@@ -5,6 +5,7 @@
  */
 package com.anosym.vjax.v3.wrapper;
 
+import com.anosym.vjax.annotations.Id;
 import com.anosym.vjax.annotations.v3.Converter;
 import com.anosym.vjax.annotations.v3.CopyAnnotation;
 import com.anosym.vjax.annotations.v3.Transient;
@@ -19,6 +20,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,41 +38,46 @@ import org.reflections.util.FilterBuilder;
  */
 public class VObjectWrapper {
 
-  private class FieldInfo {
-
-    private String name;
-    private Class clazz;
-    private Annotation[] annotations;
-
-    public FieldInfo() {
-    }
-
-    public FieldInfo(String name, Class clazz, Annotation[] annotations) {
-      this.name = name;
-      this.clazz = clazz;
-      this.annotations = annotations;
-    }
-
-  }
-
-  private class Pair {
+  private class FieldInformation {
 
     String first;
     String second;
     List<Annotation> copiedAnnotations;
+    boolean equalityField;
+    boolean isPrimitive;
+    boolean isBoolean;
+    boolean isInt; //includes byte, short and int, and char
+    boolean isLong;
+    boolean isDouble;
+    boolean isFloat;
 
-    public Pair() {
+    public FieldInformation() {
     }
 
-    public Pair(String first, String second) {
+    public FieldInformation(String first, String second) {
       this.first = first;
       this.second = second;
     }
 
-    public Pair(String first, String second, List<Annotation> copiedAnnotations) {
+    public FieldInformation(String first, String second, List<Annotation> copiedAnnotations) {
       this.first = first;
       this.second = second;
       this.copiedAnnotations = copiedAnnotations;
+    }
+
+    public FieldInformation(String first, String second, List<Annotation> copiedAnnotations, boolean equalityField) {
+      this.first = first;
+      this.second = second;
+      this.copiedAnnotations = copiedAnnotations;
+      this.equalityField = equalityField;
+    }
+
+    public FieldInformation(String first, String second, List<Annotation> copiedAnnotations, boolean equalityField, boolean primitive) {
+      this.first = first;
+      this.second = second;
+      this.copiedAnnotations = copiedAnnotations;
+      this.equalityField = equalityField;
+      this.isPrimitive = primitive;
     }
 
   }
@@ -150,7 +157,7 @@ public class VObjectWrapper {
     if (((Wrapped) c.getAnnotation(Wrapped.class)).serializable()) {
       wrapperClassDecl += " implements java.io.Serializable ";
     }
-    List<Pair> fieldDecls = new ArrayList<Pair>();
+    List<FieldInformation> fieldDecls = new ArrayList<FieldInformation>();
     //get the declared fields only.
     Field[] declFields = c.getDeclaredFields();
     for (Field f : declFields) {
@@ -169,7 +176,7 @@ public class VObjectWrapper {
   }
 
   @SuppressWarnings({"BroadCatchBlock", "TooBroadCatch", "UseSpecificCatch"})
-  private Pair getField(Field f) {
+  private FieldInformation getField(Field f) {
     Class type = f.getType();
     String name = f.getName();
     String fieldType;
@@ -223,11 +230,29 @@ public class VObjectWrapper {
       }
       fieldType += dimens;
     }
-    return new Pair(fieldType, name, copiedAnnotations);
+    FieldInformation fi = new FieldInformation(fieldType, name, copiedAnnotations, f.isAnnotationPresent(Id.class), f.getType().isPrimitive());
+    if (fi.isPrimitive) {
+      Class fc = f.getType();
+      if (fc == int.class
+              || fc == char.class
+              || fc == byte.class
+              || fc == short.class) {
+        fi.isInt = true;
+      } else if (fc == boolean.class) {
+        fi.isBoolean = true;
+      } else if (fc == long.class) {
+        fi.isLong = true;
+      } else if (fc == float.class) {
+        fi.isFloat = true;
+      } else if (fc == double.class) {
+        fi.isDouble = true;
+      }
+    }
+    return fi;
   }
 
   @SuppressWarnings({"BroadCatchBlock", "TooBroadCatch"})
-  private void processSource(String simpleWrapperClassName, String classComment, String packageDecl, String classDecl, List<Pair> declFields) {
+  private void processSource(String simpleWrapperClassName, String classComment, String packageDecl, String classDecl, List<FieldInformation> declFields) {
     FileOutputStream out = null;
     try {
       File sourceFolder = new File(srcFolder, packageDecl.replaceAll("\\.", File.separator));
@@ -237,7 +262,7 @@ public class VObjectWrapper {
       }
       File sourceFile = new File(sourceFolder, simpleWrapperClassName + ".java");
       out = new FileOutputStream(sourceFile);
-      String source = generateSource(classComment, packageDecl, classDecl, declFields);
+      String source = generateSource(simpleWrapperClassName, classComment, packageDecl, classDecl, declFields);
       //get the file name.
       out.write(source.getBytes());
       out.flush();
@@ -304,8 +329,25 @@ public class VObjectWrapper {
     }
   }
 
-  private String generateSource(String classComment, String packageDecl, String classDecl, List<Pair> declFields) {
+  private String generateSource(String className, String classComment, String packageDecl, String classDecl, List<FieldInformation> declFields) {
     StringBuilder sb = new StringBuilder(classComment);
+
+    StringBuilder hashcode = new StringBuilder();
+    hashcode.append("\t@Override\n\tpublic int hashCode() {\n")
+            .append("\t\tint hash = ")
+            .append(new Random(System.currentTimeMillis()).nextInt(1000))
+            .append(";\n");
+    StringBuilder equals = new StringBuilder();
+    equals.append("\t@Override\n\tpublic boolean equals(Object obj) {\n")
+            .append("\t\tif(obj == null) {\n\t\t\treturn false;\n\t\t}\n")
+            .append("\t\tif(getClass() != obj.getClass()) {\n\t\t\treturn false;\n\t\t}\n")
+            .append("\t\tfinal ")
+            .append(className)
+            .append(" other = (")
+            .append(className)
+            .append(")")
+            .append("obj;\n");
+
     sb.append("\n");
     sb.append("package ");
     sb.append(packageDecl);
@@ -315,7 +357,7 @@ public class VObjectWrapper {
     sb.append("\n\n");
     //add fields
     //all fields are private
-    for (Pair p : declFields) {
+    for (FieldInformation p : declFields) {
       //annotations first.
       for (Annotation a : p.copiedAnnotations) {
         sb.append("\t");
@@ -328,22 +370,97 @@ public class VObjectWrapper {
       sb.append(p.second);
       sb.append(";");
       sb.append("\n");
+      //hashcode and equals.
+      if (p.equalityField) {
+        hashcode.append("\t\thash = ")
+                .append(new Random(System.currentTimeMillis()).nextInt(100))
+                .append(" * hash + ");
+        if (p.isPrimitive) {
+          if (p.isBoolean) {
+            hashcode.append("(this.")
+                    .append(p.second)
+                    .append("? 1: 0 ); \n");
+            equals.append("\t\tif(this.")
+                    .append(p.second)
+                    .append(" != other.")
+                    .append(p.second)
+                    .append(") {\n\t\t\treturn false;\n\t\t}\n");
+          } else if (p.isInt) {
+            hashcode.append("this.")
+                    .append(p.second)
+                    .append(";\n");
+            equals.append("\t\tif(this.")
+                    .append(p.second)
+                    .append(" != other.")
+                    .append(p.second)
+                    .append(") {\n\t\t\treturn false;\n\t\t}\n");
+          } else if (p.isLong) {
+            hashcode.append("(int) (this.")
+                    .append(p.second)
+                    .append(" ^ (this.")
+                    .append(p.second)
+                    .append(" >>> 32));\n");
+            equals.append("\t\tif(this.")
+                    .append(p.second)
+                    .append(" != other.")
+                    .append(p.second)
+                    .append(") {\n\t\t\treturn false;\n\t\t}\n");
+          } else if (p.isFloat) {
+            hashcode.append("Float.floatToIntBits(this.")
+                    .append(p.second)
+                    .append(");\n");
+            equals.append("\t\tif (Float.floatToIntBits(this.")
+                    .append(p.second)
+                    .append(") != Float.floatToIntBits(other.")
+                    .append(p.second)
+                    .append(")) {\n\t\t\treturn false;\n\t\t}\n");
+          } else if (p.isDouble) {
+            hashcode.append("(int) (Double.doubleToLongBits(this.")
+                    .append(p.second)
+                    .append(") ^ (Double.doubleToLongBits(this.")
+                    .append(p.second)
+                    .append(") >>> 32));\n");
+            equals.append("\t\tif (Double.doubleToLongBits(this.")
+                    .append(p.second)
+                    .append(") != Double.doubleToLongBits(other.")
+                    .append(p.second)
+                    .append(")) {\n\t\t\treturn false;\n\t\t}\n");
+          }
+        } else {
+          hashcode.append("(this.")
+                  .append(p.second)
+                  .append(" != null ? this.")
+                  .append(p.second)
+                  .append(".hashCode() : 0);\n");
+          equals.append("\t\tif (this.")
+                  .append(p.second)
+                  .append(" != other.")
+                  .append(p.second)
+                  .append(" && (this.")
+                  .append(p.second)
+                  .append(" == null || !this.")
+                  .append(p.second)
+                  .append(".equals(other.")
+                  .append(p.second)
+                  .append("))) {\n\t\t\treturn false;\n\t\t}\n");
+        }
+      }
     }
     sb.append("\n");
     //add getters and setters
-    for (Pair p : declFields) {
+    for (FieldInformation p : declFields) {
       //getter
-      sb.append("\tpublic ");
-      sb.append(p.first);
-      sb.append(" get");
-      sb.append(p.second.substring(0, 1).toUpperCase());
-      sb.append(p.second.substring(1));
-      sb.append("() {\n");
-      sb.append("\t\t");
-      sb.append("return this.");
-      sb.append(p.second);
-      sb.append(";\n");
-      sb.append("\t}\n\n");
+      sb.append("\tpublic ")
+              .append(p.first)
+              .append(" get")
+              .append(p.second.substring(0, 1).toUpperCase())
+              .append(p.second.substring(1))
+              .append("() {\n")
+              .append("\t\t")
+              .append("return this.")
+              .append(p.second)
+              .append(";\n")
+              .append("\t}\n\n");
       //setters
       sb.append("\tpublic void ");
       sb.append(" set");
@@ -362,6 +479,14 @@ public class VObjectWrapper {
       sb.append(";\n");
       sb.append("\t}\n\n");
     }
+    //close hashcode and equals.
+    hashcode.append("\t\treturn hash;\n")
+            .append("\t}\n\n");
+    equals.append("\t\treturn true;\n")
+            .append("\t}\n\n");
+    sb.append(hashcode);
+    sb.append(equals);
+    //append hash and equals.
     //close body.
     sb.append("}");
     return sb.toString();

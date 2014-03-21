@@ -28,9 +28,9 @@ public class VObjectWrapperTest {
 
   @Test
   public void testGeneration() {
-//    VObjectWrapper wrapper = new VObjectWrapper("src/wrapper-test/main");
-//    wrapper.init();
-//    wrapper.process();
+    VObjectWrapper wrapper = new VObjectWrapper("src/wrapper-test/main");
+    wrapper.init();
+    wrapper.process();
   }
 
 }

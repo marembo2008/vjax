@@ -17,7 +17,7 @@ public  class WExtended implements java.io.Serializable {
 
 	@Override
 	public int hashCode() {
-		int hash = 3;
+		int hash = 892;
 		return hash;
 	}
 

@@ -53,7 +53,7 @@ public  class WOption implements java.io.Serializable {
 
 	@Override
 	public int hashCode() {
-		int hash = 730;
+		int hash = 134;
 		return hash;
 	}
 
