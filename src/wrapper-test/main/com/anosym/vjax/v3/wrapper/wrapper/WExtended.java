@@ -15,22 +15,4 @@ public  class WExtended implements java.io.Serializable {
 		this.score = score;
 	}
 
-	@Override
-	public int hashCode() {
-		int hash = 892;
-		return hash;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if(obj == null) {
-			return false;
-		}
-		if(getClass() != obj.getClass()) {
-			return false;
-		}
-		final WExtended other = (WExtended)obj;
-		return true;
-	}
-
 }

@@ -333,6 +333,7 @@ public class VObjectWrapper {
     StringBuilder sb = new StringBuilder(classComment);
 
     StringBuilder hashcode = new StringBuilder();
+    boolean addHashCodeAndEquals = false;
     hashcode.append("\t@Override\n\tpublic int hashCode() {\n")
             .append("\t\tint hash = ")
             .append(new Random(System.currentTimeMillis()).nextInt(1000))
@@ -348,13 +349,13 @@ public class VObjectWrapper {
             .append(")")
             .append("obj;\n");
 
-    sb.append("\n");
-    sb.append("package ");
-    sb.append(packageDecl);
-    sb.append(";\n\n");
-    sb.append(classDecl);
-    sb.append("{"); //start class body
-    sb.append("\n\n");
+    sb.append("\n")
+            .append("package ")
+            .append(packageDecl)
+            .append(";\n\n")
+            .append(classDecl)
+            .append("{") //start class body
+            .append("\n\n");
     //add fields
     //all fields are private
     for (FieldInformation p : declFields) {
@@ -372,6 +373,7 @@ public class VObjectWrapper {
       sb.append("\n");
       //hashcode and equals.
       if (p.equalityField) {
+        addHashCodeAndEquals = true;
         hashcode.append("\t\thash = ")
                 .append(new Random(System.currentTimeMillis()).nextInt(100))
                 .append(" * hash + ");
@@ -479,13 +481,15 @@ public class VObjectWrapper {
       sb.append(";\n");
       sb.append("\t}\n\n");
     }
-    //close hashcode and equals.
-    hashcode.append("\t\treturn hash;\n")
-            .append("\t}\n\n");
-    equals.append("\t\treturn true;\n")
-            .append("\t}\n\n");
-    sb.append(hashcode);
-    sb.append(equals);
+    if (addHashCodeAndEquals) {
+      //close hashcode and equals.
+      hashcode.append("\t\treturn hash;\n")
+              .append("\t}\n\n");
+      equals.append("\t\treturn true;\n")
+              .append("\t}\n\n");
+      sb.append(hashcode);
+      sb.append(equals);
+    }
     //append hash and equals.
     //close body.
     sb.append("}");

@@ -26,8 +26,8 @@ public  class WWithId implements java.io.Serializable {
 
 	@Override
 	public int hashCode() {
-		int hash = 632;
-		hash = 32 * hash + (this.id != null ? this.id.hashCode() : 0);
+		int hash = 987;
+		hash = 87 * hash + (this.id != null ? this.id.hashCode() : 0);
 		return hash;
 	}
 

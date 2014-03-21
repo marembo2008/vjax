@@ -12,10 +12,13 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Implies that a property is an id of current element. Implicitly this declares that the property
- * is an attribute and that it is required. It becomes useless, if the element is annotated by the
- * {@link Required} attribute. If the property is not a primitive type, primitve wrapper or string,
- * then a converter must be provided.
+ * Implies that a property is an id of current element.
+ *
+ * Implicitly this declares that the property is an attribute and that it is required. It becomes
+ * useless, if the element is annotated by the {@link Required} attribute.
+ *
+ * If the property is not a primitive type, primitive wrapper or string, then a converter must be
+ * provided.
  *
  * @author marembo
  */

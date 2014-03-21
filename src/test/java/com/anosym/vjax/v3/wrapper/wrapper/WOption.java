@@ -51,22 +51,4 @@ public  class WOption implements java.io.Serializable {
 		this.required = required;
 	}
 
-	@Override
-	public int hashCode() {
-		int hash = 730;
-		return hash;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if(obj == null) {
-			return false;
-		}
-		if(getClass() != obj.getClass()) {
-			return false;
-		}
-		final WOption other = (WOption)obj;
-		return true;
-	}
-
 }

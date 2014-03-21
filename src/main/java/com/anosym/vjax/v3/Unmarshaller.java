@@ -361,7 +361,7 @@ public class Unmarshaller<T> {
           if (mm != null) {
             name = mm.name();
           }
-          propety = unmarshallAttribute(element, name, f.getAnnotations());
+          propety = unmarshallAttribute(element, name, f);
           if (id != null) {
             //add references to current object.
             VAttribute at = element.getAttribute(name);
@@ -396,6 +396,12 @@ public class Unmarshaller<T> {
   private T unmarshallPrimitive(VElement elem, Class<?> clazz, Annotation[] annotations)
           throws VXMLBindingException {
     String value = elem.toContent();
+    return unmarshallPrimitive(value, clazz, annotations);
+  }
+
+  @SuppressWarnings({"unchecked", "rawtypes"})
+  private T unmarshallPrimitive(String value, Class<?> clazz, Annotation[] annotations)
+          throws VXMLBindingException {
     if (value == null) {
       return null;
     }
@@ -440,25 +446,28 @@ public class Unmarshaller<T> {
     }
   }
 
-  private T unmarshallAttribute(VElement element, String attribute, Annotation[] annots) {
+  private T unmarshallAttribute(VElement element, String attribute, Field f) throws VXMLBindingException {
     VAttribute at = element.getAttribute(attribute);
     if (at != null) {
       String value = at.getValue();
-      Converter cn = VObjectMarshaller.getAnnotation(annots, Converter.class);
-      T instance = null;
+      Converter cn = f.getAnnotation(Converter.class);
       if (cn != null) {
         try {
           com.anosym.vjax.converter.v3.Converter<T, String> cnv = cn.value().newInstance();
-          instance = cnv.convertTo(value);
+          return cnv.convertTo(value);
         } catch (InstantiationException ex) {
           Logger.getLogger(VObjectMarshaller.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
           Logger.getLogger(VObjectMarshaller.class.getName()).log(Level.SEVERE, null, ex);
         }
       } else {
-        instance = (T) value;
+        //convert the value to the specified field type.
+        //we expect simple types here only.
+        if (String.class.isAssignableFrom(f.getType())) {
+          return (T) value;
+        }
+        return unmarshallPrimitive(value, f.getType(), f.getAnnotations());
       }
-      return instance;
     }
     return null;
   }

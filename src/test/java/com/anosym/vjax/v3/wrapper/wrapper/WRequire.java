@@ -33,22 +33,4 @@ public  class WRequire extends com.anosym.vjax.v3.wrapper.wrapper.WExtended impl
 		this.options = options;
 	}
 
-	@Override
-	public int hashCode() {
-		int hash = 756;
-		return hash;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if(obj == null) {
-			return false;
-		}
-		if(getClass() != obj.getClass()) {
-			return false;
-		}
-		final WRequire other = (WRequire)obj;
-		return true;
-	}
-
 }

@@ -44,22 +44,4 @@ public  class WWithCopyAnnotation implements java.io.Serializable {
 		this.options = options;
 	}
 
-	@Override
-	public int hashCode() {
-		int hash = 509;
-		return hash;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if(obj == null) {
-			return false;
-		}
-		if(getClass() != obj.getClass()) {
-			return false;
-		}
-		final WWithCopyAnnotation other = (WWithCopyAnnotation)obj;
-		return true;
-	}
-
 }
