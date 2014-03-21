@@ -147,6 +147,9 @@ public class VObjectWrapper {
             + " */";
     String wrapperClassDecl = "public " + (isAbstract ? "abstract" : "") + " class "
             + wrapperSimpleName + (extendSuper ? (" extends " + getGeneratedFullName(super_)) : "");
+    if (((Wrapped) c.getAnnotation(Wrapped.class)).serializable()) {
+      wrapperClassDecl += " implements java.io.Serializable ";
+    }
     List<Pair> fieldDecls = new ArrayList<Pair>();
     //get the declared fields only.
     Field[] declFields = c.getDeclaredFields();

@@ -3,7 +3,7 @@
  */
 package com.anosym.vjax.v3.wrapper.wrapper;
 
-public  class WOption{
+public  class WOption implements java.io.Serializable {
 
 	private int type;
 	private String name;

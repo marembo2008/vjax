@@ -3,7 +3,7 @@
  */
 package com.anosym.vjax.v3.wrapper.wrapper;
 
-public  class WExtended{
+public  class WExtended implements java.io.Serializable {
 
 	private java.math.BigDecimal score;
 

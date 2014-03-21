@@ -29,6 +29,12 @@ public final class VWrapper {
    * @throws com.anosym.vjax.v3.wrapper.VWrapperException
    */
   public static <W, T> W wrap(T value, Class<W> wrapperClass) throws VWrapperException {
+    if (value == null) {
+      return null;
+    }
+    if (wrapperClass == null) {
+      throw new VWrapperException("Wrapper class must not be null");
+    }
     try {
       VObjectMarshaller<T> vom = new VObjectMarshaller<T>((Class<? extends T>) value.getClass());
       VDocument doc = vom.marshall(value);
@@ -51,20 +57,21 @@ public final class VWrapper {
    */
   public static <W, T> List<W> wrapCollection(Collection<T> value, final Class<W> wrapperClass) throws VWrapperException {
     try {
-      VWrapper.wrapperClass = wrapperClass;
+      //id does not matter whether it is the same thread or not, it may have changed the wrapper class, so set it afresh.
+      WRAPPER_CLASS.set(wrapperClass);
       ValueHolder<T> valueHolder = new ValueHolder<T>(value);
       return wrap(valueHolder, WrapperHolder.class).values;
     } catch (Exception ex) {
       throw new VWrapperException(value.isEmpty() ? Void.class : value.iterator().next().getClass(), wrapperClass, ex);
     }
   }
-  private static Class wrapperClass;
+  private static ThreadLocal<Class> WRAPPER_CLASS = new ThreadLocal<Class>();
 
   public static class WrapperTyper implements Typer {
 
     @Override
     public Class typer() {
-      return wrapperClass;
+      return WRAPPER_CLASS.get();
     }
 
   }

@@ -7,6 +7,7 @@ package com.anosym.vjax.v3;
 import com.anosym.vjax.PrimitiveType;
 import com.anosym.vjax.VXMLBindingException;
 import com.anosym.vjax.VXMLMemberNotFoundException;
+import com.anosym.vjax.annotations.Id;
 import com.anosym.vjax.annotations.v3.Transient;
 import com.anosym.vjax.xml.VDocument;
 import java.lang.annotation.Annotation;
@@ -14,6 +15,8 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The class maps html element directly to object member instances. no schema, or class information
@@ -80,11 +83,19 @@ public class VObjectMarshaller<T> {
   }
 
   public VDocument marshall(T object) {
-    return marshaller.marshall(object);
+    try {
+      return marshaller.marshall(object);
+    } catch (VXMLBindingException ex) {
+      throw new RuntimeException(ex);
+    }
   }
 
   public String doMarshall(T object) {
-    return marshaller.doMarshall(object);
+    try {
+      return marshaller.doMarshall(object);
+    } catch (VXMLBindingException ex) {
+      throw new RuntimeException(ex);
+    }
   }
 
   public T unmarshall(VDocument document) throws VXMLMemberNotFoundException,
@@ -119,10 +130,19 @@ public class VObjectMarshaller<T> {
    * @param clazz
    * @param fields
    */
-  static void getFields(Class clazz, List<Field> fields) {
+  static void getFields(Class clazz, List<Field> fields) throws VXMLBindingException {
     for (Field f : clazz.getDeclaredFields()) {
-      if (f.getAnnotation(Transient.class) == null) {
-        fields.add(f);
+      if (!f.isAnnotationPresent(Transient.class)) {
+        //if it is an id field, add it as the first.
+        if (f.isAnnotationPresent(Id.class)) {
+          //check if the field at 0 is also an id field
+          if (!fields.isEmpty() && fields.get(0).isAnnotationPresent(Id.class)) {
+            throw new VXMLBindingException("Multiple ID fields specified: " + fields.get(0).toString() + " and " + f.toString());
+          }
+          fields.add(0, f);
+        } else {
+          fields.add(f);
+        }
       }
     }
     if (clazz.getSuperclass() != Object.class) {

@@ -3,7 +3,7 @@
  */
 package com.anosym.vjax.v3.wrapper.wrapper;
 
-public  class WWithCopyAnnotation{
+public  class WWithCopyAnnotation implements java.io.Serializable {
 
 	private String name;
 	private int id;

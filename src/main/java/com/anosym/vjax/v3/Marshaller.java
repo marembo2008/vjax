@@ -5,6 +5,7 @@
 package com.anosym.vjax.v3;
 
 import com.anosym.vjax.VJaxLogger;
+import com.anosym.vjax.VXMLBindingException;
 import com.anosym.vjax.annotations.Attribute;
 import com.anosym.vjax.annotations.Id;
 import com.anosym.vjax.annotations.Markup;
@@ -33,7 +34,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.htmlcleaner.Utils;
 
 /**
  *
@@ -58,7 +58,7 @@ public class Marshaller<T> {
     this.instanceClass = instanceClass;
   }
 
-  public VDocument marshall(T object) {
+  public VDocument marshall(T object) throws VXMLBindingException {
     try {
       return VDocument.parseDocumentFromString(doMarshall(object));
     } finally {
@@ -66,7 +66,7 @@ public class Marshaller<T> {
     }
   }
 
-  public String doMarshall(T object) {
+  public String doMarshall(T object) throws VXMLBindingException {
     try {
       String name = object.getClass().getSimpleName();
       return marshall(object, name, null);
@@ -113,7 +113,7 @@ public class Marshaller<T> {
   }
 
   @SuppressWarnings("UseSpecificCatch")
-  private String marshallFields(T object, String markupName, String data, Annotation[] annotations) {
+  private String marshallFields(T object, String markupName, String data, Annotation[] annotations) throws VXMLBindingException {
     List<Field> fields = new ArrayList<Field>();
     VObjectMarshaller.getFields(object.getClass(), fields);
     Map<String, String> attributes = new HashMap<String, String>();
@@ -146,9 +146,10 @@ public class Marshaller<T> {
           if (m != null) {
             markup = m.name();
           }
-          if (f.getAnnotation(Attribute.class) != null || f.getAnnotation(Id.class) != null) {
+
+          if (f.isAnnotationPresent(Attribute.class) || f.isAnnotationPresent(Id.class)) {
             attributes.put(markup, value.toString());
-            if (f.getAnnotation(Id.class) != null) {
+            if (f.isAnnotationPresent(Id.class)) {
               //then use references.
               REFERENCES.put(object, value.toString());
             }
@@ -171,7 +172,7 @@ public class Marshaller<T> {
     return data;
   }
 
-  private String marshallMap(T object, String markupName, Annotation[] annotations) {
+  private String marshallMap(T object, String markupName, Annotation[] annotations) throws VXMLBindingException {
     Map m = (Map) object;
     Class c = object.getClass();
     Set entries = m.entrySet();
@@ -194,7 +195,7 @@ public class Marshaller<T> {
     return put(markupName, mapEntries);
   }
 
-  private String marshallCollection(T object, String markupName, String data, Annotation[] annotations) {
+  private String marshallCollection(T object, String markupName, String data, Annotation[] annotations) throws VXMLBindingException {
     CollectionElement colElem = null;
     if (annotations != null) {
       colElem = getAnnotation(annotations, CollectionElement.class);
@@ -265,7 +266,7 @@ public class Marshaller<T> {
 
   @SuppressWarnings({"unchecked", "rawtypes"})
   private String marshall(T object, String markupName,
-          Annotation[] annotations) {
+          Annotation[] annotations) throws VXMLBindingException {
     String data = "";
     Class<? extends Object> c = object.getClass();
     //if the object has already been marshalled.

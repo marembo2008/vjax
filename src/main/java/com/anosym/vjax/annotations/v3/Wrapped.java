@@ -37,4 +37,11 @@ public @interface Wrapped {
    */
   String packageName() default "";
 
+  /**
+   * By default, the wrapper will implement the serializable.
+   *
+   * @return
+   */
+  boolean serializable() default true;
+
 }

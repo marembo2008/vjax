@@ -3,7 +3,7 @@
  */
 package com.anosym.vjax.v3.wrapper.wrapper;
 
-public  class WRequire extends com.anosym.vjax.v3.wrapper.wrapper.WExtended{
+public  class WRequire extends com.anosym.vjax.v3.wrapper.wrapper.WExtended implements java.io.Serializable {
 
 	private String name;
 	private int index;
