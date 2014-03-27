@@ -14,6 +14,7 @@ import com.anosym.vjax.annotations.v3.CollectionElement;
 import com.anosym.vjax.annotations.v3.CollectionElementConverter;
 import com.anosym.vjax.annotations.v3.Converter;
 import com.anosym.vjax.annotations.v3.GenericMapType;
+import com.anosym.vjax.annotations.v3.Marshallable;
 import com.anosym.vjax.annotations.v3.Transient;
 import com.anosym.vjax.converter.VBigDecimalConverter;
 import com.anosym.vjax.exceptions.VConverterBindingException;
@@ -121,6 +122,12 @@ public class Marshaller<T> {
       int mod = f.getModifiers();
       if ((mod & Modifier.STATIC) == 0 && (mod & Modifier.FINAL) == 0
               && f.getAnnotation(Transient.class) == null) {
+        Marshallable marshallable = f.getAnnotation(Marshallable.class);
+        if (marshallable != null
+                && marshallable.value() != Marshallable.Option.BOTH
+                && marshallable.value() != Marshallable.Option.MARSHALL) {
+          continue;
+        }
         // check if it is primitive or string.
         Class cl = f.getType();
         f.setAccessible(true);

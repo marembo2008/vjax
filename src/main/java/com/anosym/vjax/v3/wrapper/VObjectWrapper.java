@@ -40,10 +40,10 @@ public class VObjectWrapper {
 
   private class FieldInformation {
 
-    String first;
-    String second;
-    List<Annotation> copiedAnnotations;
-    boolean equalityField;
+    String fieldTypeName;
+    String fieldName;
+    List<Annotation> fieldAnnotations;
+    boolean isEqualityField; //if it has the @Id annotation.
     boolean isPrimitive;
     boolean isBoolean;
     boolean isInt; //includes byte, short and int, and char
@@ -55,28 +55,28 @@ public class VObjectWrapper {
     }
 
     public FieldInformation(String first, String second) {
-      this.first = first;
-      this.second = second;
+      this.fieldTypeName = first;
+      this.fieldName = second;
     }
 
     public FieldInformation(String first, String second, List<Annotation> copiedAnnotations) {
-      this.first = first;
-      this.second = second;
-      this.copiedAnnotations = copiedAnnotations;
+      this.fieldTypeName = first;
+      this.fieldName = second;
+      this.fieldAnnotations = copiedAnnotations;
     }
 
     public FieldInformation(String first, String second, List<Annotation> copiedAnnotations, boolean equalityField) {
-      this.first = first;
-      this.second = second;
-      this.copiedAnnotations = copiedAnnotations;
-      this.equalityField = equalityField;
+      this.fieldTypeName = first;
+      this.fieldName = second;
+      this.fieldAnnotations = copiedAnnotations;
+      this.isEqualityField = equalityField;
     }
 
     public FieldInformation(String first, String second, List<Annotation> copiedAnnotations, boolean equalityField, boolean primitive) {
-      this.first = first;
-      this.second = second;
-      this.copiedAnnotations = copiedAnnotations;
-      this.equalityField = equalityField;
+      this.fieldTypeName = first;
+      this.fieldName = second;
+      this.fieldAnnotations = copiedAnnotations;
+      this.isEqualityField = equalityField;
       this.isPrimitive = primitive;
     }
 
@@ -330,8 +330,6 @@ public class VObjectWrapper {
   }
 
   private String generateSource(String className, String classComment, String packageDecl, String classDecl, List<FieldInformation> declFields) {
-    StringBuilder sb = new StringBuilder(classComment);
-
     StringBuilder hashcode = new StringBuilder();
     boolean addHashCodeAndEquals = false;
     hashcode.append("\t@Override\n\tpublic int hashCode() {\n")
@@ -348,7 +346,7 @@ public class VObjectWrapper {
             .append(className)
             .append(")")
             .append("obj;\n");
-
+    StringBuilder sb = new StringBuilder(classComment);
     sb.append("\n")
             .append("package ")
             .append(packageDecl)
@@ -360,19 +358,19 @@ public class VObjectWrapper {
     //all fields are private
     for (FieldInformation p : declFields) {
       //annotations first.
-      for (Annotation a : p.copiedAnnotations) {
-        sb.append("\t");
-        sb.append(generateAnnotation(a));
-        sb.append("\n");
+      for (Annotation a : p.fieldAnnotations) {
+        sb.append("\t")
+                .append(generateAnnotation(a))
+                .append("\n");
       }
-      sb.append("\tprivate ");
-      sb.append(p.first);
-      sb.append(" ");
-      sb.append(p.second);
-      sb.append(";");
-      sb.append("\n");
+      sb.append("\tprivate ")
+              .append(p.fieldTypeName)
+              .append(" ")
+              .append(p.fieldName)
+              .append(";")
+              .append("\n");
       //hashcode and equals.
-      if (p.equalityField) {
+      if (p.isEqualityField) {
         addHashCodeAndEquals = true;
         hashcode.append("\t\thash = ")
                 .append(new Random(System.currentTimeMillis()).nextInt(100))
@@ -380,70 +378,70 @@ public class VObjectWrapper {
         if (p.isPrimitive) {
           if (p.isBoolean) {
             hashcode.append("(this.")
-                    .append(p.second)
+                    .append(p.fieldName)
                     .append("? 1: 0 ); \n");
             equals.append("\t\tif(this.")
-                    .append(p.second)
+                    .append(p.fieldName)
                     .append(" != other.")
-                    .append(p.second)
+                    .append(p.fieldName)
                     .append(") {\n\t\t\treturn false;\n\t\t}\n");
           } else if (p.isInt) {
             hashcode.append("this.")
-                    .append(p.second)
+                    .append(p.fieldName)
                     .append(";\n");
             equals.append("\t\tif(this.")
-                    .append(p.second)
+                    .append(p.fieldName)
                     .append(" != other.")
-                    .append(p.second)
+                    .append(p.fieldName)
                     .append(") {\n\t\t\treturn false;\n\t\t}\n");
           } else if (p.isLong) {
             hashcode.append("(int) (this.")
-                    .append(p.second)
+                    .append(p.fieldName)
                     .append(" ^ (this.")
-                    .append(p.second)
+                    .append(p.fieldName)
                     .append(" >>> 32));\n");
             equals.append("\t\tif(this.")
-                    .append(p.second)
+                    .append(p.fieldName)
                     .append(" != other.")
-                    .append(p.second)
+                    .append(p.fieldName)
                     .append(") {\n\t\t\treturn false;\n\t\t}\n");
           } else if (p.isFloat) {
             hashcode.append("Float.floatToIntBits(this.")
-                    .append(p.second)
+                    .append(p.fieldName)
                     .append(");\n");
             equals.append("\t\tif (Float.floatToIntBits(this.")
-                    .append(p.second)
+                    .append(p.fieldName)
                     .append(") != Float.floatToIntBits(other.")
-                    .append(p.second)
+                    .append(p.fieldName)
                     .append(")) {\n\t\t\treturn false;\n\t\t}\n");
           } else if (p.isDouble) {
             hashcode.append("(int) (Double.doubleToLongBits(this.")
-                    .append(p.second)
+                    .append(p.fieldName)
                     .append(") ^ (Double.doubleToLongBits(this.")
-                    .append(p.second)
+                    .append(p.fieldName)
                     .append(") >>> 32));\n");
             equals.append("\t\tif (Double.doubleToLongBits(this.")
-                    .append(p.second)
+                    .append(p.fieldName)
                     .append(") != Double.doubleToLongBits(other.")
-                    .append(p.second)
+                    .append(p.fieldName)
                     .append(")) {\n\t\t\treturn false;\n\t\t}\n");
           }
         } else {
           hashcode.append("(this.")
-                  .append(p.second)
+                  .append(p.fieldName)
                   .append(" != null ? this.")
-                  .append(p.second)
+                  .append(p.fieldName)
                   .append(".hashCode() : 0);\n");
           equals.append("\t\tif (this.")
-                  .append(p.second)
+                  .append(p.fieldName)
                   .append(" != other.")
-                  .append(p.second)
+                  .append(p.fieldName)
                   .append(" && (this.")
-                  .append(p.second)
+                  .append(p.fieldName)
                   .append(" == null || !this.")
-                  .append(p.second)
+                  .append(p.fieldName)
                   .append(".equals(other.")
-                  .append(p.second)
+                  .append(p.fieldName)
                   .append("))) {\n\t\t\treturn false;\n\t\t}\n");
         }
       }
@@ -453,33 +451,33 @@ public class VObjectWrapper {
     for (FieldInformation p : declFields) {
       //getter
       sb.append("\tpublic ")
-              .append(p.first)
+              .append(p.fieldTypeName)
               .append(" get")
-              .append(p.second.substring(0, 1).toUpperCase())
-              .append(p.second.substring(1))
+              .append(p.fieldName.substring(0, 1).toUpperCase())
+              .append(p.fieldName.substring(1))
               .append("() {\n")
               .append("\t\t")
               .append("return this.")
-              .append(p.second)
+              .append(p.fieldName)
               .append(";\n")
               .append("\t}\n\n");
       //setters
-      sb.append("\tpublic void ");
-      sb.append(" set");
-      sb.append(p.second.substring(0, 1).toUpperCase());
-      sb.append(p.second.substring(1));
-      sb.append("(");
-      sb.append(p.first);
-      sb.append(" ");
-      sb.append(p.second);
-      sb.append(")");
-      sb.append(" {\n");
-      sb.append("\t\tthis.");
-      sb.append(p.second);
-      sb.append(" = ");
-      sb.append(p.second);
-      sb.append(";\n");
-      sb.append("\t}\n\n");
+      sb.append("\tpublic void ")
+              .append(" set")
+              .append(p.fieldName.substring(0, 1).toUpperCase())
+              .append(p.fieldName.substring(1))
+              .append("(")
+              .append(p.fieldTypeName)
+              .append(" ")
+              .append(p.fieldName)
+              .append(")")
+              .append(" {\n")
+              .append("\t\tthis.")
+              .append(p.fieldName)
+              .append(" = ")
+              .append(p.fieldName)
+              .append(";\n")
+              .append("\t}\n\n");
     }
     if (addHashCodeAndEquals) {
       //close hashcode and equals.
@@ -487,10 +485,9 @@ public class VObjectWrapper {
               .append("\t}\n\n");
       equals.append("\t\treturn true;\n")
               .append("\t}\n\n");
-      sb.append(hashcode);
-      sb.append(equals);
+      sb.append(hashcode)
+              .append(equals);
     }
-    //append hash and equals.
     //close body.
     sb.append("}");
     return sb.toString();

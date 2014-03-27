@@ -29,6 +29,7 @@ import com.anosym.vjax.annotations.v3.GenericCollectionType;
 import com.anosym.vjax.annotations.v3.GenericCollectionType.Typer;
 import com.anosym.vjax.annotations.v3.GenericMapType;
 import com.anosym.vjax.annotations.v3.Listener;
+import com.anosym.vjax.annotations.v3.Marshallable;
 import com.anosym.vjax.converter.VBigDecimalConverter;
 import com.anosym.vjax.converter.v3.impl.PropertyListener;
 import com.anosym.vjax.util.VConditional;
@@ -349,6 +350,12 @@ public class Unmarshaller<T> {
     List<Field> fields = new ArrayList<Field>();
     VObjectMarshaller.getFields(clazz, fields);
     for (final Field f : fields) {
+      Marshallable marshallable = f.getAnnotation(Marshallable.class);
+      if (marshallable != null
+              && marshallable.value() != Marshallable.Option.BOTH
+              && marshallable.value() != Marshallable.Option.UNMARSHALL) {
+        continue;
+      }
       Class<?> typeClass = f.getType();
       Object propety = null;
       List<VElement> elems = getFieldMapping(instance, f, element);
