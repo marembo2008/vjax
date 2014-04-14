@@ -35,6 +35,6 @@ public class VJaxUtils {
         return f;
       }
     }
-    return getFieldAnnotated(c, annot);
+    return getFieldAnnotated(c.getSuperclass(), annot);
   }
 }
