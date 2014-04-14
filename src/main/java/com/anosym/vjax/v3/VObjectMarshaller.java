@@ -8,15 +8,22 @@ import com.anosym.vjax.PrimitiveType;
 import com.anosym.vjax.VXMLBindingException;
 import com.anosym.vjax.VXMLMemberNotFoundException;
 import com.anosym.vjax.annotations.Id;
+import com.anosym.vjax.annotations.Position;
+import com.anosym.vjax.annotations.v3.AccessSuper;
 import com.anosym.vjax.annotations.v3.Transient;
 import com.anosym.vjax.xml.VDocument;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * The class maps html element directly to object member instances. no schema, or class information
@@ -27,6 +34,7 @@ import java.util.logging.Logger;
  * be raised.
  *
  * @author marembo
+ * @param <T> The object type to unmarshall.
  */
 public class VObjectMarshaller<T> {
 
@@ -131,22 +139,177 @@ public class VObjectMarshaller<T> {
    * @param fields
    */
   static void getFields(Class clazz, List<Field> fields) throws VXMLBindingException {
+    List<FieldPropertyInfo> infos = new ArrayList<FieldPropertyInfo>();
+    getFields0(clazz, infos);
+    Collections.sort(infos);
+    for (FieldPropertyInfo info : infos) {
+      fields.add(info.field);
+    }
+  }
+
+  /**
+   * Returns all declared fields excluding any field declared in {@link Object} class.
+   *
+   * @param clazz
+   * @param fields
+   */
+  private static void getFields0(Class clazz, List<FieldPropertyInfo> fields) throws VXMLBindingException {
+    int pos = Integer.MAX_VALUE;
+    Field idField = null;
     for (Field f : clazz.getDeclaredFields()) {
-      if (!f.isAnnotationPresent(Transient.class)) {
+      int modifier = f.getModifiers();
+      //ensure it is not static, nor final
+      if (!Modifier.isFinal(modifier)
+              && !Modifier.isStatic(modifier)
+              && !f.isAnnotationPresent(Transient.class)) {
         //if it is an id field, add it as the first.
         if (f.isAnnotationPresent(Id.class)) {
-          //check if the field at 0 is also an id field
-          if (!fields.isEmpty() && fields.get(0).isAnnotationPresent(Id.class)) {
-            throw new VXMLBindingException("Multiple ID fields specified: " + fields.get(0).toString() + " and " + f.toString());
+          if (idField != null) {
+            throw new VXMLBindingException("Multiple ID fields specified: " + idField.toString() + " and " + f.toString());
           }
-          fields.add(0, f);
-        } else {
-          fields.add(f);
+          idField = f;
+          //check if the field at 0 is also an id field
+          pos = 0;
+        }
+        Position p = f.getAnnotation(Position.class);
+        if (p != null) {
+          pos = p.index();
+        }
+        fields.add(new FieldPropertyInfo(f, pos));
+      }
+    }
+    AccessSuper accessSuper = (AccessSuper) clazz.getAnnotation(AccessSuper.class);
+    if (clazz.getSuperclass() != Object.class && (accessSuper == null || accessSuper.value())) {
+      getFields0(clazz.getSuperclass(), fields);
+    }
+  }
+
+  /**
+   * Returns all declared fields excluding any field declared in {@link Object} class.
+   *
+   * @param clazz
+   * @param methods
+   */
+  static void getMethods(Class clazz, List<Method> methods, boolean getters) throws VXMLBindingException {
+    Pattern pGet = Pattern.compile("\\b(is|get)\\w+"); //starts with is/get and at least one more character
+    Pattern pSet = Pattern.compile("\\b(set)\\w+"); //starts with set and at least one more character
+    Map<String, MethodPropertyInfo> infos = new HashMap<String, MethodPropertyInfo>();
+    getMethods0(clazz, infos, getters);
+    List<MethodPropertyInfo> sortedList = new ArrayList<MethodPropertyInfo>(infos.values());
+    Collections.sort(sortedList);
+    for (MethodPropertyInfo info : sortedList) {
+      Method m = null;
+      if (getters && info.getter != null) {
+        m = info.getter;
+      } else if (!getters && info.setter != null) {
+        m = info.setter;
+      }
+      if (m != null) {
+        methods.add(m);
+      }
+    }
+  }
+
+  /**
+   * Returns all declared fields excluding any field declared in {@link Object} class.
+   *
+   * @param clazz
+   * @param methods
+   */
+  private static void getMethods0(Class clazz, Map<String, MethodPropertyInfo> infos, boolean getters) throws VXMLBindingException {
+    Pattern pGet = Pattern.compile("\\b(is|get)\\w+"); //starts with is/get and at least one more character
+    Pattern pSet = Pattern.compile("\\b(set)\\w+"); //starts with set and at least one more character
+    Method idProperty = null;
+    for (Method m : clazz.getDeclaredMethods()) {
+      int modifier = m.getModifiers();
+      //ensure it is not static, nor final
+      //only public methods.
+      if (!Modifier.isFinal(modifier)
+              && !Modifier.isStatic(modifier)
+              && !m.isAnnotationPresent(Transient.class)
+              && Modifier.isPublic(modifier)) {
+        String property = getProperty(m);
+        MethodPropertyInfo info = infos.get(property);
+        if (info == null) {
+          info = new MethodPropertyInfo();
+          infos.put(property, info);
+        }
+        String mName = m.getName();
+        Matcher mGet = pGet.matcher(mName);
+        if (mGet.find()) {
+          //if this is a getter and an id is specified?
+          info.getter = m;
+          //must start with is/get
+          //if it is an id property, add it as the first.
+          if (m.isAnnotationPresent(Id.class)) {
+            //check if the property at 0 is also an id propertys
+            if (idProperty != null) {
+              //Id had already been specified, throw an IllegalArgumentException.
+              throw new VXMLBindingException("Multiple ID properties specified: " + idProperty.toString() + " and " + m.toString());
+            }
+            idProperty = m;
+            info.propertyIndex = 0;
+          }
+          Position p = m.getAnnotation(Position.class);
+          if (p != null) {
+            info.propertyIndex = p.index();
+          }
+        } else if (!getters) {
+          Matcher mSet = pSet.matcher(mName);
+          if (mSet.find()) {
+            //ensure that the parameter to the method is only one.
+            if (m.getParameterTypes().length != 1) {
+              continue;
+            }
+            //get the getter equivalence. If it is already added, we may have
+            info.setter = m;
+          }
         }
       }
     }
-    if (clazz.getSuperclass() != Object.class) {
-      getFields(clazz.getSuperclass(), fields);
+    AccessSuper accessSuper = (AccessSuper) clazz.getAnnotation(AccessSuper.class);
+    if (clazz.getSuperclass() != Object.class && (accessSuper == null || accessSuper.value())) {
+      getMethods0(clazz.getSuperclass(), infos, getters);
     }
+  }
+
+  private static String getProperty(Method m) {
+    final Pattern p = Pattern.compile("\\b(is|get|set)");
+    String markup = m.getName();
+    Matcher mm = p.matcher(markup);
+    if (mm.find()) {
+      markup = mm.replaceAll("");
+    }
+    return markup.substring(0, 1).toLowerCase() + markup.substring(1);
+  }
+
+  private static final class MethodPropertyInfo implements Comparable<MethodPropertyInfo> {
+
+    private Method getter;
+    private Method setter;
+    private int propertyIndex = Integer.MAX_VALUE;
+
+    @Override
+    public int compareTo(MethodPropertyInfo o) {
+      return Integer.valueOf(propertyIndex).compareTo(o.propertyIndex);
+    }
+
+  }
+
+  private static final class FieldPropertyInfo implements Comparable<FieldPropertyInfo> {
+
+    private Field field;
+    private int propertyIndex = Integer.MAX_VALUE;
+
+    public FieldPropertyInfo(Field field, int propertyIndex) {
+      this.field = field;
+      this.propertyIndex = propertyIndex;
+    }
+
+    @Override
+    public int compareTo(FieldPropertyInfo o) {
+      return Integer.valueOf(propertyIndex).compareTo(o.propertyIndex);
+    }
+
   }
 }

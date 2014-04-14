@@ -9,6 +9,7 @@ import com.anosym.vjax.VXMLBindingException;
 import com.anosym.vjax.annotations.Attribute;
 import com.anosym.vjax.annotations.Id;
 import com.anosym.vjax.annotations.Markup;
+import com.anosym.vjax.annotations.v3.AccessOption;
 import com.anosym.vjax.annotations.v3.ArrayParented;
 import com.anosym.vjax.annotations.v3.CollectionElement;
 import com.anosym.vjax.annotations.v3.CollectionElementConverter;
@@ -25,6 +26,7 @@ import com.anosym.vjax.xml.VDocument;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -35,6 +37,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -69,7 +73,11 @@ public class Marshaller<T> {
 
   public String doMarshall(T object) throws VXMLBindingException {
     try {
-      String name = object.getClass().getSimpleName();
+      String name = instanceClass.getSimpleName();
+      Markup m = instanceClass.getAnnotation(Markup.class);
+      if (m != null) {
+        name = m.name();
+      }
       return marshall(object, name, null);
     } finally {
       REFERENCES.clear();
@@ -171,6 +179,75 @@ public class Marshaller<T> {
         } catch (Exception e) {
           VJaxLogger.log(Level.SEVERE, data, e);
         }
+      }
+    }
+    if (markupName != null) {
+      data = putWithAttributes(markupName, data, attributes);
+    }
+    return data;
+  }
+
+  @SuppressWarnings("UseSpecificCatch")
+  private String marshallMethods(T object, String markupName, String data, Annotation[] annotations) throws VXMLBindingException {
+    List<Method> methods = new ArrayList<Method>();
+    VObjectMarshaller.getMethods(object.getClass(), methods, true);
+    Map<String, String> attributes = new HashMap<String, String>();
+    final Pattern p = Pattern.compile("\\b(is|get)");
+    for (Method mProperty : methods) {
+      Marshallable marshallable = mProperty.getAnnotation(Marshallable.class);
+      if (marshallable != null
+              && marshallable.value() != Marshallable.Option.BOTH
+              && marshallable.value() != Marshallable.Option.MARSHALL) {
+        continue;
+      }
+      // check if it is primitive or string.
+      Class cl = mProperty.getReturnType();
+      mProperty.setAccessible(true);
+      Object value;
+      try {
+        value = mProperty.invoke(object, new Object[]{});
+        if (value == null) {
+          continue;
+        }
+        Converter cn = mProperty.getAnnotation(Converter.class);
+        if (cn != null) {
+          Class<? extends com.anosym.vjax.converter.v3.Converter> cnv = cn
+                  .value();
+          if (cnv != null) {
+            com.anosym.vjax.converter.v3.Converter<Object, Object> converter = cnv
+                    .newInstance();
+            value = converter.convertFrom(value);
+            cl = value.getClass();
+          }
+        }
+        String markup = mProperty.getName();
+        Markup m = mProperty.getAnnotation(Markup.class);
+        if (m != null) {
+          markup = m.name();
+        } else {
+          //using the property name.
+          Matcher mm = p.matcher(markup);
+          if (mm.find()) {
+            markup = mm.replaceAll("");
+          }
+          markup = markup.substring(0, 1).toLowerCase() + markup.substring(1);
+        }
+        if (mProperty.isAnnotationPresent(Attribute.class) || mProperty.isAnnotationPresent(Id.class)) {
+          attributes.put(markup, value.toString());
+          if (mProperty.isAnnotationPresent(Id.class)) {
+            //then use references.
+            REFERENCES.put(object, value.toString());
+          }
+        } else if (isPrimitiveOrPrimitiveWrapper(cl)) {
+          data += put(markup, value);
+        } else if (cl.equals(String.class)) {
+          data += put(markup, escapeEntityReference(value.toString()));
+        } else {
+          data += marshall((T) value, markup,
+                  mProperty.getDeclaredAnnotations());
+        }
+      } catch (Exception e) {
+        VJaxLogger.log(Level.SEVERE, data, e);
       }
     }
     if (markupName != null) {
@@ -310,7 +387,13 @@ public class Marshaller<T> {
     } else if (Map.class.isAssignableFrom(c)) {
       data = marshallMap(object, markupName, annotations);
     } else {
-      data = marshallFields(object, markupName, data, annotations);
+      //hceck access options
+      AccessOption ac = c.getAnnotation(AccessOption.class);
+      if (ac == null || ac.value() == AccessOption.AccessType.FIELD) {
+        data = marshallFields(object, markupName, data, annotations);
+      } else {
+        data = marshallMethods(object, markupName, data, annotations);
+      }
     }
     return data;
   }

@@ -19,6 +19,7 @@ import com.anosym.vjax.VXMLMemberNotFoundException;
 import com.anosym.vjax.annotations.Attribute;
 import com.anosym.vjax.annotations.Id;
 import com.anosym.vjax.annotations.Markup;
+import com.anosym.vjax.annotations.v3.AccessOption;
 import com.anosym.vjax.annotations.v3.ArrayComponentInitializer;
 import com.anosym.vjax.annotations.v3.ArrayParented;
 import com.anosym.vjax.annotations.v3.CollectionElementConverter;
@@ -145,7 +146,13 @@ public class Unmarshaller<T> {
         }
       }
       //We do need to check if the element has children. Most probably it has only attributes.
-      handleFields(element, clazz, instance);
+      AccessOption ao = (AccessOption) clazz.getAnnotation(AccessOption.class);
+      if (ao == null || ao.value() == AccessOption.AccessType.FIELD) {
+        handleFields(element, clazz, instance);
+      } else {
+//        handleMethods(element, clazz, instance);
+        throw new UnsupportedOperationException("Method property unmarshalling not supported yet");
+      }
       return instance;
     } catch (Exception ex) {
       throw new VXMLBindingException(ex);
@@ -347,6 +354,59 @@ public class Unmarshaller<T> {
   }
 
   private void handleFields(VElement element, Class clazz, T instance) throws Exception {
+    List<Field> fields = new ArrayList<Field>();
+    VObjectMarshaller.getFields(clazz, fields);
+    for (final Field f : fields) {
+      Marshallable marshallable = f.getAnnotation(Marshallable.class);
+      if (marshallable != null
+              && marshallable.value() != Marshallable.Option.BOTH
+              && marshallable.value() != Marshallable.Option.UNMARSHALL) {
+        continue;
+      }
+      Class<?> typeClass = f.getType();
+      Object propety = null;
+      List<VElement> elems = getFieldMapping(instance, f, element);
+      if (elems.isEmpty()) {
+        Attribute a = f.getAnnotation(Attribute.class);
+        Id id = f.getAnnotation(Id.class);
+        if (a != null || id != null) {
+          String name = f.getName();
+          Markup mm = f.getAnnotation(Markup.class);
+          if (mm != null) {
+            name = mm.name();
+          }
+          propety = unmarshallAttribute(element, name, f);
+          if (id != null) {
+            //add references to current object.
+            VAttribute at = element.getAttribute(name);
+            REFERENCES.put(at.getValue(), instance);
+          }
+        }
+      } else if (typeClass.isArray()) {
+        propety = unmarshallFieldArray(elems, f);
+      } else if (Collection.class.isAssignableFrom(typeClass)) {
+        propety = unmarshallFieldCollections(elems, f);
+      } else if (Map.class.isAssignableFrom(typeClass)) {
+        propety = unmarshallFieldMaps(elems, f);
+      } else {
+        propety = unmarshal(elems.get(0),
+                typeClass,
+                f.getAnnotations());
+      }
+      if (propety != null) {
+        f.setAccessible(true);
+        f.set(instance, propety);
+        Listener l = f.getAnnotation(Listener.class);
+        if (l != null) {
+          Class<? extends PropertyListener> plClass = l.value();
+          PropertyListener pl = plClass.newInstance();
+          pl.onSet(instance, propety);
+        }
+      }
+    }
+  }
+
+  private void handleMethods(VElement element, Class clazz, T instance) throws Exception {
     List<Field> fields = new ArrayList<Field>();
     VObjectMarshaller.getFields(clazz, fields);
     for (final Field f : fields) {

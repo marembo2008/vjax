@@ -189,8 +189,9 @@ public class IDReferenceTest {
     sidt.includeIDType = siidt;
     siidt.subclassIDType = sidt;
     VObjectMarshaller<SubclassIDType> vom = new VObjectMarshaller<IDReferenceTest.SubclassIDType>(SubclassIDType.class);
-    String expected = "<SubclassIDType id=\"78787878\"><sub>34</sub><includeIDType><data>999</data><subclassIDType ref-id=\"78787878\"/></includeIDType><data>data</data></SubclassIDType>";
+    String expected = "<SubclassIDType id=\"78787878\"><data>data</data><sub>34</sub><includeIDType><data>999</data><subclassIDType ref-id=\"78787878\"/></includeIDType></SubclassIDType>";
     String actual = vom.doMarshall(sidt);
+    System.out.println(VDocument.parseDocumentFromString(actual).toXmlString());
     Assert.assertEquals(expected, actual);
   }
 }

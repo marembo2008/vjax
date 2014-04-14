@@ -12,5 +12,5 @@ public enum DefaultOption {
 
   EMPTY,
   NULL,
-  NUMBER_FORMAT_EXCEPTIOB;
+  NUMBER_FORMAT_EXCEPTION;
 }
