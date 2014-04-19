@@ -45,6 +45,17 @@ public class CalendarConverter implements Converter<Calendar, String> {
     return null;
   }
 
+  public String convertFrom(Calendar value, String format) {
+    try {
+      VJaxLogger.info("Format: " + format);
+      SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+      return dateFormat.format(value.getTime());
+    } catch (Exception ex) {
+      Logger.getLogger(CalendarConverter.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return null;
+  }
+
   @Override
   public Calendar convertTo(String value) {
     if (value.trim().equalsIgnoreCase("NA")) {
