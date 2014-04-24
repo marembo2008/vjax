@@ -458,10 +458,10 @@ public class VElement implements Cloneable, Serializable, Iterable<VElement> {
     String escapeSequence = "";
     char[] ccs = this.markup.toCharArray();
     if (this.markup.length() > 0) {
-      char c = this.markup.charAt(0);
+      char c;
       for (int i = 0; i < ccs.length; i++) {
         c = this.markup.charAt(i);
-        if (!Character.isLetterOrDigit(c) && c != '_' && c != '-') {
+        if (!Character.isLetterOrDigit(c) && c != '_' && c != '-' && c != '.') {
           escapeSequence += (i + ":" + c + ";");
           ccs[i] = '%';
         }
