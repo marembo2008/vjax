@@ -3,19 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.anosym.vjax.v3.wrapper;
+package com.anosym.vjax.v3.wrapper.pojo;
 
-import com.anosym.vjax.annotations.Id;
 import com.anosym.vjax.annotations.v3.Wrapped;
+import java.math.BigDecimal;
 
 /**
  *
  * @author marembo
  */
 @Wrapped
-public class WithId {
+public class Extended {
 
-  @Id
-  private Long id;
-  private String value;
+  private BigDecimal score;
 }

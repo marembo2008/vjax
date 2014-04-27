@@ -181,6 +181,11 @@ public class VObjectWrapper {
     String name = f.getName();
     String fieldType;
     List<Annotation> copiedAnnotations = new ArrayList<Annotation>();
+    //by default, add @Id annotation to copied annotations if it is present.
+    //this is is used in generating uniqueness and also for equality purposes.
+    if (f.isAnnotationPresent(Id.class)) {
+      copiedAnnotations.add(f.getAnnotation(Id.class));
+    }
     if (f.isAnnotationPresent(CopyAnnotation.class)) {
       CopyAnnotation ca = f.getAnnotation(CopyAnnotation.class);
       //remove all excluded annotations.
