@@ -16,6 +16,7 @@ import com.anosym.vjax.annotations.v3.CollectionElementConverter;
 import com.anosym.vjax.annotations.v3.Converter;
 import com.anosym.vjax.annotations.v3.GenericMapType;
 import com.anosym.vjax.annotations.v3.Marshallable;
+import com.anosym.vjax.annotations.v3.Nullable;
 import com.anosym.vjax.annotations.v3.Transient;
 import com.anosym.vjax.converter.VBigDecimalConverter;
 import com.anosym.vjax.exceptions.VConverterBindingException;
@@ -141,9 +142,35 @@ public class Marshaller<T> {
         f.setAccessible(true);
         Object value;
         try {
+          String markup = f.getName();
+          Markup m = f.getAnnotation(Markup.class);
+          if (m != null) {
+            markup = m.name();
+          }
           value = f.get(object);
           if (value == null) {
-            continue;
+            if (f.isAnnotationPresent(Id.class)) {
+              throw new VXMLBindingException("Id field cannot be null");
+            }
+            if (f.isAnnotationPresent(Nullable.class)) {
+              if (f.isAnnotationPresent(Attribute.class)) {
+                attributes.put(markup, "");
+                continue;
+              } else {
+                //what if the instance is not a primitive type?
+                //we tacitly assume that the type of the field can be instantiated using default constructor.
+                if (isPrimitiveOrPrimitiveWrapper(cl) || String.class.isAssignableFrom(cl) || BigDecimal.class.isAssignableFrom(cl)) {
+                  data += put(markup, "");
+                  continue;
+                } else {
+                  value = (T) cl.newInstance();
+                  //the value may be requiring converters, so proceed with normal marshalling.
+                }
+              }
+            } else {
+              //we are not declared as nullable, we simply ignore the field and continue.
+              continue;
+            }
           }
           Converter cn = f.getAnnotation(Converter.class);
           if (cn != null) {
@@ -156,12 +183,6 @@ public class Marshaller<T> {
               cl = value.getClass();
             }
           }
-          String markup = f.getName();
-          Markup m = f.getAnnotation(Markup.class);
-          if (m != null) {
-            markup = m.name();
-          }
-
           if (f.isAnnotationPresent(Attribute.class) || f.isAnnotationPresent(Id.class)) {
             attributes.put(markup, value.toString());
             if (f.isAnnotationPresent(Id.class)) {
