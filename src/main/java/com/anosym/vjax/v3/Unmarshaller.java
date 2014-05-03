@@ -29,6 +29,7 @@ import com.anosym.vjax.annotations.v3.Define;
 import com.anosym.vjax.annotations.v3.GenericCollectionType;
 import com.anosym.vjax.annotations.v3.GenericCollectionType.Typer;
 import com.anosym.vjax.annotations.v3.GenericMapType;
+import com.anosym.vjax.annotations.v3.Implemented;
 import com.anosym.vjax.annotations.v3.Listener;
 import com.anosym.vjax.annotations.v3.Marshallable;
 import com.anosym.vjax.converter.VBigDecimalConverter;
@@ -106,6 +107,14 @@ public class Unmarshaller<T> {
         Class<com.anosym.vjax.v3.initializer.Initializer> definer = (Class<com.anosym.vjax.v3.initializer.Initializer>) define.value();
         com.anosym.vjax.v3.initializer.Initializer initializer = definer.newInstance();
         clazz = initializer.define(element);
+      }
+      //check if we define Implemented.
+      Implemented impl = VObjectMarshaller.getAnnotation(annots, Implemented.class);
+      if (impl == null && clazz.isAnnotationPresent(Implemented.class)) {
+        impl = (Implemented) clazz.getAnnotation(Implemented.class);
+      }
+      if (impl != null) {
+        clazz = impl.value();
       }
       if (clazz.isAssignableFrom(BigDecimal.class) && VObjectMarshaller.getAnnotation(annots, Converter.class) == null) {
         VBigDecimalConverter bdConverter = new VBigDecimalConverter();

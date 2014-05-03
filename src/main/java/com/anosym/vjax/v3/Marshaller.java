@@ -14,7 +14,9 @@ import com.anosym.vjax.annotations.v3.ArrayParented;
 import com.anosym.vjax.annotations.v3.CollectionElement;
 import com.anosym.vjax.annotations.v3.CollectionElementConverter;
 import com.anosym.vjax.annotations.v3.Converter;
+import com.anosym.vjax.annotations.v3.Define;
 import com.anosym.vjax.annotations.v3.GenericMapType;
+import com.anosym.vjax.annotations.v3.Implemented;
 import com.anosym.vjax.annotations.v3.Marshallable;
 import com.anosym.vjax.annotations.v3.Nullable;
 import com.anosym.vjax.annotations.v3.Transient;
@@ -163,6 +165,17 @@ public class Marshaller<T> {
                   data += put(markup, "");
                   continue;
                 } else {
+                  //probably the class is an interface
+                  //we cannot use the @Define annotation here as it is primarily used when xml element is to be unmarshalled.
+                  if (f.isAnnotationPresent(Implemented.class)) {
+                    Implemented impl = f.getAnnotation(Implemented.class);
+                    if (impl == null && cl.isAnnotationPresent(Implemented.class)) {
+                      impl = (Implemented) cl.getAnnotation(Implemented.class);
+                    }
+                    if (impl != null) {
+                      cl = impl.value();
+                    }
+                  }
                   value = (T) cl.newInstance();
                   //the value may be requiring converters, so proceed with normal marshalling.
                 }
