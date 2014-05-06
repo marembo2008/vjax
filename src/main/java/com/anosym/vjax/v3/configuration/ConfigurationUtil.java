@@ -6,8 +6,6 @@
 package com.anosym.vjax.v3.configuration;
 
 import com.anosym.vjax.VJaxLogger;
-import com.anosym.vjax.VXMLBindingException;
-import com.anosym.vjax.VXMLMemberNotFoundException;
 import com.anosym.vjax.util.VJaxUtils;
 import com.anosym.vjax.v3.VObjectMarshaller;
 import com.anosym.vjax.xml.VDocument;
