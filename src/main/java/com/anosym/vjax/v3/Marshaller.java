@@ -14,7 +14,6 @@ import com.anosym.vjax.annotations.v3.ArrayParented;
 import com.anosym.vjax.annotations.v3.CollectionElement;
 import com.anosym.vjax.annotations.v3.CollectionElementConverter;
 import com.anosym.vjax.annotations.v3.Converter;
-import com.anosym.vjax.annotations.v3.Define;
 import com.anosym.vjax.annotations.v3.GenericMapType;
 import com.anosym.vjax.annotations.v3.Implemented;
 import com.anosym.vjax.annotations.v3.Marshallable;
@@ -23,8 +22,10 @@ import com.anosym.vjax.annotations.v3.Transient;
 import com.anosym.vjax.converter.VBigDecimalConverter;
 import com.anosym.vjax.exceptions.VConverterBindingException;
 import com.anosym.vjax.util.VJaxUtils;
+
 import static com.anosym.vjax.v3.VObjectMarshaller.PRIMITIVE_WRAPPER_MAPPING;
 import static com.anosym.vjax.v3.VObjectMarshaller.getAnnotation;
+
 import com.anosym.vjax.xml.VDocument;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Array;
