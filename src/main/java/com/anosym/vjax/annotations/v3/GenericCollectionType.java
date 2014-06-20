@@ -22,10 +22,10 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD, ElementType.METHOD})
 public @interface GenericCollectionType {
 
-    public static interface Typer {
+  public static interface Typer<T> {
 
-        Class typer();
-    }
+    Class<T> typer();
+  }
 
     /**
      * If not specified, we determine the type of the generic type at runtime.
