@@ -40,7 +40,7 @@ public @interface Default {
    *
    * Note that the default type applies only to simple objects.
    *
-   * A list will use the created type as its element, rather than as the list definition itself.
+   * A collection will use the created type as its only element, rather than as the collection definition itself.
    *
    * @return
    */

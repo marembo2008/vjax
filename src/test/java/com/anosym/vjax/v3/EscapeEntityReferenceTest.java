@@ -16,34 +16,35 @@ import org.junit.Test;
  */
 public class EscapeEntityReferenceTest {
 
-  public static class ObjectWithEntityRef {
+    public static class ObjectWithEntityRef {
 
-    private String ref;
+        private String ref;
 
-    public ObjectWithEntityRef() {
+        public ObjectWithEntityRef() {
+        }
+
+        public ObjectWithEntityRef(String ref) {
+            this.ref = ref;
+        }
+
     }
 
-    public ObjectWithEntityRef(String ref) {
-      this.ref = ref;
+    @After
+    public void after() {
     }
 
-  }
+    @Before
+    public void brefore() {
+    }
 
-  @After
-  public void after() {
-  }
-
-  @Before
-  public void brefore() {
-  }
-
-  @Test
-  public void testEscape() {
-    String str = "This is a test for \"entity\" references escape &&& having > and < as xml data";
-    ObjectWithEntityRef ref = new ObjectWithEntityRef(str);
-    VObjectMarshaller<ObjectWithEntityRef> vom = new VObjectMarshaller<EscapeEntityReferenceTest.ObjectWithEntityRef>(ObjectWithEntityRef.class);
-    String actual = vom.doMarshall(ref);
-    String expected = "<ObjectWithEntityRef><ref>This is a test for &quot;entity&quot; references escape &amp;&amp;&amp; having &gt; and &lt; as xml data</ref></ObjectWithEntityRef>";
-    Assert.assertEquals(expected, actual);
-  }
+    @Test
+    public void testEscape() {
+        String str = "This is a test for \"entity\" references escape &&& having > and < as xml data";
+        ObjectWithEntityRef ref = new ObjectWithEntityRef(str);
+        VObjectMarshaller<ObjectWithEntityRef> vom = new VObjectMarshaller<EscapeEntityReferenceTest.ObjectWithEntityRef>(
+                ObjectWithEntityRef.class);
+        String actual = vom.marshall(ref).getRootElement().toContent();
+        String expected = "This is a test for &quot;entity&quot; references escape &amp;&amp;&amp; having &gt; and &lt; as xml data";
+        Assert.assertEquals(expected, actual);
+    }
 }

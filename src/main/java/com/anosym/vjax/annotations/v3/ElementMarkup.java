@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD, ElementType.METHOD})
-public @interface CollectionElement {
+public @interface ElementMarkup {
 
-  String elementMarkup();
+  String value();
 }

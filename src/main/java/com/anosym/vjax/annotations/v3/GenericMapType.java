@@ -11,21 +11,24 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * We no longer need to determine generic map type.
  *
+ * @See {@link KeyValueMarkup}
  * @author marembo
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD, ElementType.METHOD})
+@Deprecated
 public @interface GenericMapType {
 
-  Class key();
+    Class key();
 
-  Class value();
+    Class value();
 
-  String keyMarkup() default "key";
+    String keyMarkup() default "key";
 
-  String valueMarkup() default "value";
+    String valueMarkup() default "value";
 
-  String entryMarkup() default "entry";
+    String entryMarkup() default "entry";
 }

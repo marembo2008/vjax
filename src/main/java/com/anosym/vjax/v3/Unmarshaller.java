@@ -73,10 +73,10 @@ import java.util.regex.Pattern;
  * @author marembo
  * @param <T> the type to unmarshall to.
  */
-public class Unmarshaller<T> {
+class Unmarshaller<T> {
 
     private final Class<? extends T> instanceClass;
-    private Map<String, Object> REFERENCES = new HashMap<String, Object>();
+    private final Map<String, Object> REFERENCES = new HashMap<String, Object>();
 
     public Unmarshaller(Class<? extends T> instanceClass) {
         this.instanceClass = instanceClass;
@@ -110,7 +110,8 @@ public class Unmarshaller<T> {
             Define define = VObjectMarshaller.getAnnotation(annots, Define.class);
             if (define != null) {
                 //the class is defined using a different class, probably the current class represents and interface or abstract class.
-                Class<com.anosym.vjax.v3.initializer.Initializer> definer = (Class<com.anosym.vjax.v3.initializer.Initializer>) define.value();
+                Class<com.anosym.vjax.v3.initializer.Initializer> definer = (Class<com.anosym.vjax.v3.initializer.Initializer>) define
+                        .value();
                 com.anosym.vjax.v3.initializer.Initializer initializer = definer.newInstance();
                 clazz = initializer.define(element);
             }
@@ -143,7 +144,8 @@ public class Unmarshaller<T> {
             }
             if (instance == null) {
                 // check if we have a collection converter
-                CollectionElementConverter cec = VObjectMarshaller.getAnnotation(annots, CollectionElementConverter.class);
+                CollectionElementConverter cec = VObjectMarshaller.getAnnotation(annots,
+                                                                                 CollectionElementConverter.class);
                 Class cls = cec != null ? cec.value() : null;
                 if (cls != null) {
                     // find the converted to value
@@ -151,7 +153,7 @@ public class Unmarshaller<T> {
                             .newInstance();
                     // get the return type of a method
                     Method m = cls.getDeclaredMethod("convertFrom",
-                            new Class[]{clazz});
+                                                     new Class[]{clazz});
                     Class returnType = m.getReturnType();
                     // marshall against this class
                     Object convertedValue = unmarshal(element, returnType, null);
@@ -203,7 +205,8 @@ public class Unmarshaller<T> {
             for (ConverterParam p : params) {
                 converterParams.put(p.key(), p.value());
             }
-            Constructor<com.anosym.vjax.converter.v3.Converter<T, Object>> cns = cls.getConstructor(new Class[]{Map.class});
+            Constructor<com.anosym.vjax.converter.v3.Converter<T, Object>> cns = cls.getConstructor(new Class[]{
+                Map.class});
             cnvs = cns.newInstance(new Object[]{converterParams});
         } else {
             cnvs = (com.anosym.vjax.converter.v3.Converter<T, Object>) cls
@@ -211,7 +214,7 @@ public class Unmarshaller<T> {
         }
         // get the return type of a method
         Method m = cls.getDeclaredMethod("convertFrom",
-                new Class[]{clazz});
+                                         new Class[]{clazz});
         Class returnType = m.getReturnType();
         // marshall against this class
         Object convertedValue = unmarshal(element, returnType, null);
@@ -229,7 +232,8 @@ public class Unmarshaller<T> {
                     return instance.getMarkup().equals(name);
                 } else if (!mm.useRegex()) {
                     return instance.getMarkup().equals(mm.name())
-                            || (mm.optionalNames().length > 0 && Arrays.asList(mm.optionalNames()).contains(instance.getMarkup()));
+                            || (mm.optionalNames().length > 0 && Arrays.asList(mm.optionalNames()).contains(instance
+                                    .getMarkup()));
                 } else {
                     Pattern p = Pattern.compile(mm.regex());
                     Matcher m = p.matcher(instance.getMarkup());
@@ -289,11 +293,11 @@ public class Unmarshaller<T> {
                     Class cmpClass = initializer.define(c);
                     if (cmpClass != null) {
                         o = unmarshal(c, cmpClass,
-                                f.getAnnotations());
+                                      f.getAnnotations());
                     }
                 } else {
                     o = unmarshal(c, cmpType,
-                            f.getAnnotations());
+                                  f.getAnnotations());
                 }
                 Array.set(arr, i++, o);
             }
@@ -314,12 +318,12 @@ public class Unmarshaller<T> {
             VElement listElem = elems.get(0);
             Collection<T> l = (List.class
                     .isAssignableFrom(typeClass)) ? new ArrayList<T>()
-                            : (Set.class.isAssignableFrom(typeClass)) ? new HashSet<T>()
-                                    : (Queue.class
-                                    .isAssignableFrom(typeClass)) ? new LinkedList<T>()
-                                            : (SortedSet.class
-                                            .isAssignableFrom(typeClass)) ? new TreeSet<T>()
-                                                    : null;
+                    : (Set.class.isAssignableFrom(typeClass)) ? new HashSet<T>()
+                    : (Queue.class
+                    .isAssignableFrom(typeClass)) ? new LinkedList<T>()
+                    : (SortedSet.class
+                    .isAssignableFrom(typeClass)) ? new TreeSet<T>()
+                    : null;
             if (l == null) {
                 throw new VXMLBindingException(
                         "Could not map collection element to appropriate implementation");
@@ -346,7 +350,7 @@ public class Unmarshaller<T> {
             }
             for (VElement c : listElem.getChildren()) {
                 l.add(unmarshal(c, collectionElementType,
-                        f.getAnnotations()));
+                                f.getAnnotations()));
             }
             return l;
         }
@@ -367,9 +371,9 @@ public class Unmarshaller<T> {
                     VElement key = c.getChild(type.keyMarkup());
                     VElement value = c.getChild(type.valueMarkup());
                     Object key_ = unmarshal(key, type.key(),
-                            f.getAnnotations());
+                                            f.getAnnotations());
                     T value_ = unmarshal(value, type.value(),
-                            f.getAnnotations());
+                                         f.getAnnotations());
                     m.put(key_, value_);
                 }
             }
@@ -415,8 +419,8 @@ public class Unmarshaller<T> {
                 propety = unmarshallFieldMaps(elems, f);
             } else {
                 propety = unmarshal(elems.get(0),
-                        typeClass,
-                        f.getAnnotations());
+                                    typeClass,
+                                    f.getAnnotations());
             }
             if (propety != null) {
                 f.setAccessible(true);
@@ -468,8 +472,8 @@ public class Unmarshaller<T> {
                 propety = unmarshallFieldMaps(elems, f);
             } else {
                 propety = unmarshal(elems.get(0),
-                        typeClass,
-                        f.getAnnotations());
+                                    typeClass,
+                                    f.getAnnotations());
             }
             if (propety != null) {
                 f.setAccessible(true);
@@ -491,8 +495,8 @@ public class Unmarshaller<T> {
         return unmarshallPrimitive(value, clazz, annotations);
     }
 
-    @SuppressWarnings({"unchecked", "rawtypes"})
-    private T unmarshallPrimitive(String value, Class<?> clazz, Annotation[] annotations)
+    @SuppressWarnings({"unchecked", "rawtypes", "UnnecessaryBoxing"})
+    protected static <T> T unmarshallPrimitive(String value, Class<?> clazz, Annotation[] annotations)
             throws VXMLBindingException {
         if (value == null) {
             return null;
