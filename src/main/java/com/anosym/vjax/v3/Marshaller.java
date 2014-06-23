@@ -21,6 +21,7 @@ import com.anosym.vjax.annotations.v3.Marshallable;
 import com.anosym.vjax.annotations.v3.Nullable;
 import com.anosym.vjax.annotations.v3.Transient;
 import com.anosym.vjax.converter.VBigDecimalConverter;
+import com.anosym.vjax.converter.v3.impl.CalendarConverter;
 import com.anosym.vjax.exceptions.VConverterBindingException;
 import com.anosym.vjax.util.VJaxUtils;
 import static com.anosym.vjax.v3.VObjectMarshaller.PRIMITIVE_WRAPPER_MAPPING;
@@ -33,6 +34,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -406,13 +408,25 @@ public class Marshaller<T> {
     } else if (c.isEnum()) {
       markupName = markupName == null ? c.getSimpleName() : markupName;
       data += put(markupName, ((Enum) object).name());
-    } else if (c.isAssignableFrom(BigDecimal.class) && getAnnotation(annotations, Converter.class) == null) {
+    } else if (Number.class.isAssignableFrom(c) && getAnnotation(annotations, Converter.class) == null) {
+      //Default to Number conversion, when no converter has been specified.
+      //All numbers are converted as if bigdecimal.
+      BigDecimal value = new BigDecimal(((Number) object).doubleValue());
       VBigDecimalConverter converter = new VBigDecimalConverter();
-      markupName = markupName == null ? c.getSimpleName() : markupName;
       try {
-        data += put(markupName, converter.convert((BigDecimal) object));
+        markupName = markupName == null ? c.getSimpleName() : markupName;
+        data += put(markupName, converter.convert(value));
       } catch (VConverterBindingException ex) {
         Logger.getLogger(VObjectMarshaller.class.getName()).log(Level.SEVERE, null, ex);
+      }
+    } else if (Calendar.class.isAssignableFrom(c) && getAnnotation(annotations, Converter.class) == null) {
+      //if a calendar field, and a converter not specified, use the default converter.
+      CalendarConverter cc = new CalendarConverter();
+      try {
+        markupName = markupName == null ? c.getSimpleName() : markupName;
+        data += put(markupName, cc.convertFrom((Calendar) object));
+      } catch (Exception e) {
+        Logger.getLogger(VObjectMarshaller.class.getName()).log(Level.SEVERE, null, e);
       }
     } else if (c.isArray()) {
       data = marshallArray(object, markupName, data, annotations);
@@ -435,7 +449,7 @@ public class Marshaller<T> {
   private String getRegex(String value) {
     String regex = "";
     for (String repl : ENTITY_REFERENCES.values()) {
-      if (!regex.isEmpty()) {
+      if (!VJaxUtils.isNullOrEmpty(regex)) {
         regex += "|";
       }
       regex += "(" + value + "[!" + repl.substring(1) + "])";

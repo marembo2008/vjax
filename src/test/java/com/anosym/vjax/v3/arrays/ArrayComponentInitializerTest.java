@@ -119,10 +119,37 @@ public class ArrayComponentInitializerTest {
       }
     }
   }
-  @com.anosym.vjax.annotations.v3.ArrayComponentInitializer(InterfaceArrayComponentInitializer.class)
-  @Markup(name = "arrays")
-  @ArrayParented(componentMarkup = "interface")
-  private Interface[] array;
+
+  public static class ArrayComponentInitializerImplTest {
+
+    @com.anosym.vjax.annotations.v3.ArrayComponentInitializer(InterfaceArrayComponentInitializer.class)
+    @Markup(name = "arrays")
+    @ArrayParented(componentMarkup = "interface")
+    private Interface[] array;
+
+    public ArrayComponentInitializerImplTest() {
+    }
+
+    @Override
+    public int hashCode() {
+      int hash = 3;
+      hash = 73 * hash + Arrays.deepHashCode(this.array);
+      return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+      if (obj == null) {
+        return false;
+      }
+      if (getClass() != obj.getClass()) {
+        return false;
+      }
+      final ArrayComponentInitializerImplTest other = (ArrayComponentInitializerImplTest) obj;
+      return Arrays.deepEquals(this.array, other.array);
+    }
+
+  }
 
   public ArrayComponentInitializerTest() {
   }
@@ -142,11 +169,11 @@ public class ArrayComponentInitializerTest {
     Impl2 _2 = new Impl2();
     _2.setOrder(9393993);
     Interface[] arr = {_1, _2};
-    ArrayComponentInitializerTest acit = new ArrayComponentInitializerTest();
+    ArrayComponentInitializerImplTest acit = new ArrayComponentInitializerImplTest();
     acit.array = arr;
-    VObjectMarshaller<ArrayComponentInitializerTest> m = new VObjectMarshaller<ArrayComponentInitializerTest>(acit.getClass());
+    VObjectMarshaller<ArrayComponentInitializerImplTest> m = new VObjectMarshaller<ArrayComponentInitializerImplTest>(acit.getClass());
     String actual = m.doMarshall(acit);
-    String expected = "<ArrayComponentInitializerTest><arrays><interface><message>Implementation one</message></interface><interface><order>9393993</order></interface></arrays></ArrayComponentInitializerTest>";
+    String expected = "<ArrayComponentInitializerImplTest><arrays><interface><message>Implementation one</message></interface><interface><order>9393993</order></interface></arrays></ArrayComponentInitializerImplTest>";
     assertEquals(expected, actual);
   }
 
@@ -158,11 +185,12 @@ public class ArrayComponentInitializerTest {
       Impl2 _2 = new Impl2();
       _2.setOrder(9393993);
       Interface[] arr = {_1, _2};
-      ArrayComponentInitializerTest expected = new ArrayComponentInitializerTest();
+      ArrayComponentInitializerImplTest expected = new ArrayComponentInitializerImplTest();
       expected.array = arr;
-      VObjectMarshaller<ArrayComponentInitializerTest> m = new VObjectMarshaller<ArrayComponentInitializerTest>(ArrayComponentInitializerTest.class);
-      String xml = "<ArrayComponentInitializerTest><arrays><interface><message>Implementation one</message></interface><interface><order>9393993</order></interface></arrays></ArrayComponentInitializerTest>";
-      ArrayComponentInitializerTest actual = m.unmarshall(VDocument.parseDocumentFromString(xml));
+      VObjectMarshaller<ArrayComponentInitializerImplTest> m = new VObjectMarshaller<ArrayComponentInitializerImplTest>(
+              ArrayComponentInitializerImplTest.class);
+      String xml = "<ArrayComponentInitializerImplTest><arrays><interface><message>Implementation one</message></interface><interface><order>9393993</order></interface></arrays></ArrayComponentInitializerImplTest>";
+      ArrayComponentInitializerImplTest actual = m.unmarshall(VDocument.parseDocumentFromString(xml));
       assertEquals(expected, actual);
       Impl2 _22 = (Impl2) actual.array[1];
       assertEquals(_2.order, _22.order);
@@ -173,25 +201,4 @@ public class ArrayComponentInitializerTest {
     }
   }
 
-  @Override
-  public int hashCode() {
-    int hash = 3;
-    hash = 67 * hash + Arrays.deepHashCode(this.array);
-    return hash;
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    final ArrayComponentInitializerTest other = (ArrayComponentInitializerTest) obj;
-    if (!Arrays.deepEquals(this.array, other.array)) {
-      return false;
-    }
-    return true;
-  }
 }

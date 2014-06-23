@@ -7,6 +7,7 @@ package com.anosym.vjax.v3.wrapper;
 
 import com.anosym.vjax.annotations.v3.GenericCollectionType;
 import com.anosym.vjax.annotations.v3.GenericCollectionType.Typer;
+import com.anosym.vjax.util.VJaxUtils;
 import com.anosym.vjax.v3.VObjectMarshaller;
 import com.anosym.vjax.xml.VDocument;
 import java.util.Collection;
@@ -62,7 +63,7 @@ public final class VWrapper {
       ValueHolder<T> valueHolder = new ValueHolder<T>(value);
       return wrap(valueHolder, WrapperHolder.class).values;
     } catch (Exception ex) {
-      throw new VWrapperException(value.isEmpty() ? Void.class : value.iterator().next().getClass(), wrapperClass, ex);
+      throw new VWrapperException(VJaxUtils.isNullOrEmpty(value) ? Void.class : value.iterator().next().getClass(), wrapperClass, ex);
     }
   }
   private static ThreadLocal<Class> WRAPPER_CLASS = new ThreadLocal<Class>();
