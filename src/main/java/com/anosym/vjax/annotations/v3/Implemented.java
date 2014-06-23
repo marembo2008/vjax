@@ -12,9 +12,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Specifies which concrete class to be used as impementation of the field interface.
+ * Specifies which concrete class to be used as impementation of the field interface/abstract class.
  *
- * If specified on class level, the class must be an interface type.
+ * If specified on class level, the class must be an interface/abstract type.
  *
  * Can potentially replace the functionality of {@link Define} annotation in certain scenarios.
  *

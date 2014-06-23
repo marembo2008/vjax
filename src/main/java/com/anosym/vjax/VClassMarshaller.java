@@ -12,8 +12,6 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -325,8 +323,8 @@ public class VClassMarshaller {
   }
 
   public static void main(String[] args) {
-    VDocument doc = new VClassMarshaller().doMarshallClass(ArrayList.class);
-    doc.writeDocument();
+    VDocument doc = new VClassMarshaller().doMarshallClass(VClassMarshaller.class);
+//    doc.writeDocument();
     System.out.println(doc.toXmlString());
   }
 }
