@@ -20,7 +20,6 @@ import static org.junit.Assert.*;
  *
  * @author marembo
  */
-@Ignore(value = "test under thread.")
 public class VWrapperTest {
 
     public static class Normal {
@@ -126,6 +125,7 @@ public class VWrapperTest {
     }
 
     @Test
+    @Ignore("Not ready yet")
     public void testWrappedCollectionInMultipleThreads() {
         try {
             final List<Data> data = new ArrayList<Data>();
@@ -145,12 +145,9 @@ public class VWrapperTest {
                         d.complete = true;
                     }
                 }).start();
+                break;
             }
-            while (!complete(data)) {
-                synchronized (this) {
-                    this.wait(100);
-                }
-            }
+            Thread.currentThread().join();
             assertTrue(passed(data));
         } catch (InterruptedException ex) {
             Logger.getLogger(VWrapperTest.class.getName()).log(Level.SEVERE, null, ex);
