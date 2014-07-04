@@ -48,8 +48,6 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -67,6 +65,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.anosym.vjax.v3.VObjectMarshaller.findCollectionGenericType;
 
 /**
  *
@@ -304,12 +304,6 @@ class Unmarshaller<T> {
             return arr;
         }
         return null;
-    }
-
-    private Class findCollectionGenericType(Field f) {
-        Type genericType = f.getGenericType();
-        Type typeArg = ((ParameterizedType) genericType).getActualTypeArguments()[0];
-        return (Class) typeArg;
     }
 
     private Object unmarshallFieldCollections(List<VElement> elems, Field f) throws Exception {

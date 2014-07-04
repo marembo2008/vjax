@@ -25,7 +25,6 @@ import com.anosym.vjax.converter.VBigDecimalConverter;
 import com.anosym.vjax.exceptions.VConverterBindingException;
 import com.anosym.vjax.v3.defaulter.Defaulter;
 
-import static com.anosym.vjax.v3.VObjectMarshaller.PRIMITIVE_WRAPPER_MAPPING;
 import static com.anosym.vjax.v3.VObjectMarshaller.getAnnotation;
 
 import com.anosym.vjax.xml.VAttribute;
@@ -49,7 +48,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.regex.Pattern;
+
+import static com.anosym.vjax.v3.VObjectMarshaller.isPrimitiveOrPrimitiveWrapper;
 
 /**
  *
@@ -94,12 +94,6 @@ class Marshaller<T> {
 
     public String doMarshall(T object) throws VXMLBindingException {
         return marshall(object).toXmlString();
-    }
-
-    @SuppressWarnings("rawtypes")
-    private boolean isPrimitiveOrPrimitiveWrapper(Class cls) {
-        return PRIMITIVE_WRAPPER_MAPPING.containsKey(cls)
-                || PRIMITIVE_WRAPPER_MAPPING.containsValue(cls);
     }
 
     private VElement put(String id, VElement child) {
