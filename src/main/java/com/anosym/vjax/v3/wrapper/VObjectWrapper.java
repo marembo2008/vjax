@@ -10,6 +10,7 @@ import com.anosym.vjax.annotations.v3.Converter;
 import com.anosym.vjax.annotations.v3.CopyAnnotation;
 import com.anosym.vjax.annotations.v3.Transient;
 import com.anosym.vjax.annotations.v3.Wrapped;
+import com.anosym.vjax.util.VJaxUtils;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -309,7 +310,7 @@ public class VObjectWrapper {
           String arr = "";
           int len = Array.getLength(value);
           for (int i = 0; i < len; i++) {
-            if (!arr.isEmpty()) {
+            if (!VJaxUtils.isNullOrEmpty(arr)) {
               arr += ", ";
             }
             Object arrVal = Array.get(value, i);
@@ -323,7 +324,7 @@ public class VObjectWrapper {
           }
           vName += "{" + arr + "}";
         }
-        if (!params.isEmpty()) {
+        if (!VJaxUtils.isNullOrEmpty(params)) {
           params += ", ";
         }
         params += vName;

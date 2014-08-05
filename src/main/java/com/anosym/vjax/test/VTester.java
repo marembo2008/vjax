@@ -239,7 +239,6 @@ public class VTester {
   }
 
   public static void main(String[] args) throws Exception {
-    NoNamespace nn = getInterfaceAnnotation(Class0.class.getInterfaces(), NoNamespace.class);
-    System.out.println(nn);
+      System.out.println(System.currentTimeMillis()+System.currentTimeMillis());
   }
 }

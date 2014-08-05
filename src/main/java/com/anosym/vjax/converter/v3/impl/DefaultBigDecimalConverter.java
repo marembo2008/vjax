@@ -5,6 +5,7 @@
 package com.anosym.vjax.converter.v3.impl;
 
 import com.anosym.vjax.converter.v3.Converter;
+import com.anosym.vjax.util.VJaxUtils;
 import java.math.BigDecimal;
 
 /**
@@ -23,7 +24,7 @@ public class DefaultBigDecimalConverter implements Converter<BigDecimal, String>
 
   @Override
   public BigDecimal convertTo(String value) {
-    if (value == null || value.trim().isEmpty()) {
+    if (VJaxUtils.isNullOrEmpty(value)) {
       return null;
     }
     return new BigDecimal(value);

@@ -14,27 +14,28 @@ import java.lang.reflect.Field;
  */
 public class VJaxUtils {
 
-  public static boolean isNullOrEmpty(Object str) {
-    return str == null || str.toString().trim().length() == 0;
-  }
+    public static boolean isNullOrEmpty(Object str) {
+        //take care of kvm, String.isEmpty() is not defined.
+        return str == null || str.toString().trim().length() == 0;
+    }
 
-  /**
-   * Returns null if not field is annotated with the specified annotation.
-   *
-   * @param <A>
-   * @param c
-   * @param annot
-   * @return
-   */
-  public static <A extends Annotation> Field getFieldAnnotated(Class c, Class<A> annot) {
-    if (Object.class == c) {
-      return null;
+    /**
+     * Returns null if not field is annotated with the specified annotation.
+     *
+     * @param <A>
+     * @param c
+     * @param annot
+     * @return
+     */
+    public static <A extends Annotation> Field getFieldAnnotated(Class c, Class<A> annot) {
+        if (Object.class == c) {
+            return null;
+        }
+        for (Field f : c.getDeclaredFields()) {
+            if (f.isAnnotationPresent(annot)) {
+                return f;
+            }
+        }
+        return getFieldAnnotated(c.getSuperclass(), annot);
     }
-    for (Field f : c.getDeclaredFields()) {
-      if (f.isAnnotationPresent(annot)) {
-        return f;
-      }
-    }
-    return getFieldAnnotated(c.getSuperclass(), annot);
-  }
 }

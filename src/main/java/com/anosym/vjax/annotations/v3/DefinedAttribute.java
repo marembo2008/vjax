@@ -11,10 +11,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Signifies that the data is to be appended to the attribute of the annotated element. Mostly, this
- * is intended to be added to basic type, when the user does not need to necessarily created a class
- * to hold the object. It can also be important on rendering of the object for editing on an xml
- * based engine.
+ * Signifies that the data is to be appended to the attribute of the annotated element.
+ *
+ * Mostly, this is intended to be added to basic type, when the user does not need to necessarily created a class to
+ * hold the object. It can also be important on rendering of the object for editing on an xml based engine.
  *
  *
  * @author marembo
@@ -24,17 +24,28 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD, ElementType.METHOD, ElementType.TYPE})
 public @interface DefinedAttribute {
 
-  /**
-   * The name of the attribute.
-   *
-   * @return
-   */
-  String name();
+    /**
+     * The name of the attribute.
+     *
+     * @return
+     */
+    String name();
 
-  /**
-   * The value of the attribute
-   *
-   * @return
-   */
-  String value();
+    /**
+     * The value of the attribute
+     *
+     * @return
+     */
+    String value();
+
+    /**
+     * Wrapper for the attributes.
+     */
+    @Documented
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target({ElementType.FIELD, ElementType.METHOD, ElementType.TYPE})
+    public static @interface DefinedAttributes {
+
+        DefinedAttribute[] value();
+    }
 }
