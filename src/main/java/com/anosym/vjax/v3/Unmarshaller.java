@@ -40,15 +40,20 @@ import com.anosym.vjax.util.VConditional;
 
 import static com.anosym.vjax.v3.VObjectMarshaller.PRIMITIVE_WRAPPER_MAPPING;
 
+import com.anosym.vjax.annotations.v3.PostUnmarshall;
 import com.anosym.vjax.xml.VAttribute;
 import com.anosym.vjax.xml.VDocument;
 import com.anosym.vjax.xml.VElement;
+import com.google.common.base.Predicate;
+import com.google.common.base.Throwables;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -65,6 +70,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.reflections.ReflectionUtils;
 
 import static com.anosym.vjax.v3.VObjectMarshaller.findCollectionGenericType;
 
@@ -157,7 +163,7 @@ class Unmarshaller<T> {
                     Class returnType = m.getReturnType();
                     // marshall against this class
                     Object convertedValue = unmarshal(element, returnType, null);
-                    return cnvs.convertTo(convertedValue);
+                    return postUnmarshall(cnvs.convertTo(convertedValue));
                 } else {
                     instance = (T) clazz.newInstance();
                 }
@@ -170,10 +176,43 @@ class Unmarshaller<T> {
 //        handleMethods(element, clazz, instance);
                 throw new UnsupportedOperationException("Method property unmarshalling not supported yet");
             }
-            return instance;
+            return postUnmarshall(instance);
         } catch (Exception ex) {
+            Throwables.propagateIfInstanceOf(ex, VXMLBindingException.class);
             throw new VXMLBindingException(ex);
         }
+    }
+
+    private T postUnmarshall(final T instance) throws VXMLBindingException {
+        //Check if the object defines a postUnmarshall logic.
+        Class<?> type = instance.getClass();
+        Set<Method> methods = ReflectionUtils.getAllMethods(type, new Predicate<Method>() {
+
+            @Override
+            public boolean apply(Method input) {
+                return input.isAnnotationPresent(PostUnmarshall.class);
+            }
+        });
+        if (methods.size() > 1) {
+            throw new VXMLBindingException("More than one @PostUnmarshall callback has been defined for: " + type);
+        }
+        for (final Method postUnmarshall : methods) {
+            return AccessController.doPrivileged(new PrivilegedAction<T>() {
+
+                @Override
+                @SuppressWarnings({"UseSpecificCatch", "BroadCatchBlock", "TooBroadCatch"})
+                public T run() {
+                    postUnmarshall.setAccessible(true);
+                    try {
+                        postUnmarshall.invoke(instance, new Object[]{});
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    return instance;
+                }
+            });
+        }
+        return instance;
     }
 
     private T unmarshallArray(VElement element, Class clazz, Annotation[] annots) throws Exception {
@@ -218,11 +257,12 @@ class Unmarshaller<T> {
         Class returnType = m.getReturnType();
         // marshall against this class
         Object convertedValue = unmarshal(element, returnType, null);
-        return cnvs.convertTo(convertedValue);
+        return postUnmarshall(cnvs.convertTo(convertedValue));
     }
 
     private List<VElement> getFieldMapping(final T object, final Field f, VElement element) {
         return element.getChildren(new VConditional<VElement>() {
+
             final Markup mm = f.getAnnotation(Markup.class);
             final String name = f.getName();
 
