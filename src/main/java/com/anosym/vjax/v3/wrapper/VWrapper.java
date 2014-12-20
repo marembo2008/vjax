@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.anosym.vjax.v3.wrapper;
 
 import com.anosym.vjax.annotations.v3.GenericCollectionType;
@@ -22,9 +17,9 @@ public final class VWrapper {
     /**
      * Two way method. Can be called to find the wrapper or to find the object value from the wrapper.
      *
-     * @param <W> the object type to return as the wrapper
-     * @param <T> the object type to wrap
-     * @param value the actual value to wrap
+     * @param <W>          the object type to return as the wrapper
+     * @param <T>          the object type to wrap
+     * @param value        the actual value to wrap
      * @param wrapperClass the class of the wrapped object
      * @return
      * @throws com.anosym.vjax.v3.wrapper.VWrapperException
@@ -37,10 +32,10 @@ public final class VWrapper {
             throw new VWrapperException("Wrapper class must not be null");
         }
         try {
-            VObjectMarshaller<T> vom = new VObjectMarshaller<T>((Class<? extends T>) value.getClass());
-            VDocument doc = vom.marshall(value);
-            System.out.println(doc.toXmlString());
-            VObjectMarshaller<W> vom_ = new VObjectMarshaller<W>(wrapperClass);
+            final VObjectMarshaller<T> vom = new VObjectMarshaller<>((Class<? extends T>) value.getClass());
+            final VDocument doc = vom.marshall(value);
+            final VObjectMarshaller<W> vom_ = new VObjectMarshaller<>(wrapperClass);
+
             return vom_.unmarshall(doc);
         } catch (Exception ex) {
             throw new VWrapperException(value.getClass(), wrapperClass, ex);
@@ -50,9 +45,9 @@ public final class VWrapper {
     /**
      * Two way method. Can be called to find the wrapper or to find the object value from the wrapper.
      *
-     * @param <W> the object type to return as the wrapper
-     * @param <T> the object type to wrap
-     * @param value the actual value to wrap
+     * @param <W>          the object type to return as the wrapper
+     * @param <T>          the object type to wrap
+     * @param value        the actual value to wrap
      * @param wrapperClass the class of the wrapped object
      * @return
      * @throws com.anosym.vjax.v3.wrapper.VWrapperException
@@ -62,23 +57,22 @@ public final class VWrapper {
         try {
             //id does not matter whether it is the same thread or not, it may have changed the wrapper class, so set it afresh.
             WRAPPER_CLASS.set(wrapperClass);
-            System.out.println("value size: " + value.size());
-            ValueHolder<T> valueHolder = new ValueHolder<T>(value);
+
+            final ValueHolder<T> valueHolder = new ValueHolder<>(value);
+
             return wrap(valueHolder, WrapperHolder.class).values;
         } catch (Exception ex) {
             throw new VWrapperException(VJaxUtils.isNullOrEmpty(value) ? Void.class : value.iterator().next().getClass(),
                                         wrapperClass, ex);
         }
     }
-    private static ThreadLocal<Class> WRAPPER_CLASS = new ThreadLocal<Class>();
+    private static ThreadLocal<Class> WRAPPER_CLASS = new ThreadLocal<>();
 
     public static class WrapperTyper implements Typer {
 
         @Override
         public Class typer() {
-            Class type = WRAPPER_CLASS.get();
-            System.out.println("typeer: " + type);
-            return type;
+            return WRAPPER_CLASS.get();
         }
 
     }
