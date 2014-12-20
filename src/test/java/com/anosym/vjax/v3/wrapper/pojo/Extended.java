@@ -5,14 +5,14 @@
  */
 package com.anosym.vjax.v3.wrapper.pojo;
 
-import com.anosym.vjax.annotations.v3.Wrapped;
+import com.anosym.vjax.annotations.v3.GenerateWrapper;
 import java.math.BigDecimal;
 
 /**
  *
  * @author marembo
  */
-@Wrapped
+@GenerateWrapper
 public class Extended {
 
   private BigDecimal score;

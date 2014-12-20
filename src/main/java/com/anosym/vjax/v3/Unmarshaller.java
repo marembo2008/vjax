@@ -46,6 +46,9 @@ import com.anosym.vjax.xml.VDocument;
 import com.anosym.vjax.xml.VElement;
 import com.google.common.base.Predicate;
 import com.google.common.base.Throwables;
+import com.google.common.collect.Collections2;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Lists;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
@@ -70,9 +73,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.reflections.ReflectionUtils;
 
 import static com.anosym.vjax.v3.VObjectMarshaller.findCollectionGenericType;
+import static java.util.Arrays.asList;
 
 /**
  *
@@ -186,7 +189,7 @@ class Unmarshaller<T> {
     private T postUnmarshall(final T instance) throws VXMLBindingException {
         //Check if the object defines a postUnmarshall logic.
         Class<?> type = instance.getClass();
-        Set<Method> methods = ReflectionUtils.getAllMethods(type, new Predicate<Method>() {
+        Set<Method> methods = getAllMethods(type, new Predicate<Method>() {
 
             @Override
             public boolean apply(Method input) {
@@ -213,6 +216,22 @@ class Unmarshaller<T> {
             });
         }
         return instance;
+    }
+
+    private Set<Method> getAllMethods(final Class<?> type, final Predicate<Method> predicate) {
+        final List<Method> methodList = Lists.newArrayList();
+        getAllMethods(type, methodList);
+
+        return ImmutableSet.copyOf(Collections2.filter(methodList, predicate));
+    }
+
+    private void getAllMethods(final Class<?> type, final List<Method> methods) {
+        if (type == Object.class) {
+            return;
+        }
+
+        methods.addAll(asList(type.getDeclaredMethods()));
+        getAllMethods(type.getSuperclass(), methods);
     }
 
     private T unmarshallArray(VElement element, Class clazz, Annotation[] annots) throws Exception {

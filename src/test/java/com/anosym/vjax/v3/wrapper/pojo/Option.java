@@ -6,7 +6,7 @@
 package com.anosym.vjax.v3.wrapper.pojo;
 
 import com.anosym.vjax.annotations.v3.Converter;
-import com.anosym.vjax.annotations.v3.Wrapped;
+import com.anosym.vjax.annotations.v3.GenerateWrapper;
 import com.anosym.vjax.converter.v3.impl.CalendarConverter;
 import java.util.Calendar;
 
@@ -14,7 +14,7 @@ import java.util.Calendar;
  *
  * @author marembo
  */
-@Wrapped
+@GenerateWrapper
 public class Option {
 
   private int type;
