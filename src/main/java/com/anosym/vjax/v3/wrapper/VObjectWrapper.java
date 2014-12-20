@@ -5,6 +5,7 @@ import com.anosym.vjax.annotations.v3.Converter;
 import com.anosym.vjax.annotations.v3.CopyAnnotation;
 import com.anosym.vjax.annotations.v3.Transient;
 import com.anosym.vjax.annotations.v3.GenerateWrapper;
+import com.anosym.vjax.id.generation.IdGenerator;
 import com.anosym.vjax.util.VJaxUtils;
 import com.google.common.collect.Lists;
 import java.io.File;
@@ -135,7 +136,7 @@ public class VObjectWrapper {
         if (((GenerateWrapper) c.getAnnotation(GenerateWrapper.class)).serializable()) {
             wrapperClassDecl += " implements java.io.Serializable ";
         }
-        List<FieldInformation> fieldDecls = new ArrayList<FieldInformation>();
+        List<FieldInformation> fieldDecls = new ArrayList<>();
         //get the declared fields only.
         Field[] declFields = c.getDeclaredFields();
         for (Field f : declFields) {
@@ -313,6 +314,14 @@ public class VObjectWrapper {
         }
     }
 
+    private static long serialUUID(final String className) {
+        long value = System.nanoTime();
+        for (final char c : className.toCharArray()) {
+            value += c;
+        }
+        return value;
+    }
+
     private String generateSource(String className, String classComment, String packageDecl, String classDecl, List<FieldInformation> declFields) {
         StringBuilder hashcode = new StringBuilder();
         boolean addHashCodeAndEquals = false;
@@ -340,6 +349,11 @@ public class VObjectWrapper {
                 .append("\n\n");
         //add fields
         //all fields are private
+        //Add the serializable field
+        sb.append("\t")
+                .append("private static final long serialVersionUID = ")
+                .append(serialUUID(className))
+                .append("l;\n\n");
         for (FieldInformation p : declFields) {
             //annotations first.
             for (Annotation a : p.fieldAnnotations) {
