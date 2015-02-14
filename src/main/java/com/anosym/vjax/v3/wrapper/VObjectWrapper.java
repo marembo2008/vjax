@@ -5,7 +5,6 @@ import com.anosym.vjax.annotations.v3.Converter;
 import com.anosym.vjax.annotations.v3.CopyAnnotation;
 import com.anosym.vjax.annotations.v3.Transient;
 import com.anosym.vjax.annotations.v3.GenerateWrapper;
-import com.anosym.vjax.id.generation.IdGenerator;
 import com.anosym.vjax.util.VJaxUtils;
 import com.google.common.collect.Lists;
 import java.io.File;
@@ -89,17 +88,19 @@ public class VObjectWrapper {
         }
     }
 
-    private String getGeneratedPackageName(Class c) {
-        String simpleName = c.getSimpleName();
-        String fullname = c.getName();
+    private String getGeneratedPackageName(final Class<?> clazz) {
+        String simpleName = clazz.getSimpleName();
+        String fullname = clazz.getName();
         int ix = fullname.indexOf(simpleName);
-        String generatedPackageName = fullname.substring(0, ix) + "wrapper";
+        final GenerateWrapper wrapper = clazz.getAnnotation(GenerateWrapper.class);
+        String generatedPackageName = fullname.substring(0, ix) + (wrapper.appendPackageSuffix() ? "wrapper" : "");
         return generatedPackageName;
     }
 
-    private String getGeneratedSimpleName(Class c) {
-        String simpleName = c.getSimpleName();
-        String simpleWrapperName = "W" + simpleName;
+    private String getGeneratedSimpleName(final Class<?> clazz) {
+        String simpleName = clazz.getSimpleName();
+        final GenerateWrapper wrapper = clazz.getAnnotation(GenerateWrapper.class);
+        String simpleWrapperName = (wrapper.appendClassPrefix() ? "W" : "") + simpleName;
         return simpleWrapperName;
     }
 

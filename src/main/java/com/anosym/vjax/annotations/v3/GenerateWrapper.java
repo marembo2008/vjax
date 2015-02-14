@@ -22,12 +22,24 @@ import org.atteo.classindex.IndexAnnotated;
 public @interface GenerateWrapper {
 
     /**
+     * If class name is not provided, appends 'W' to the classname.
+     * @return
+     */
+    boolean appendClassPrefix() default true;
+
+    /**
      * The className of the wrapper class. Default pre-appends 'W' to the className of the original
      * class.
      *
      * @return
      */
     String className() default "";
+
+    /**
+     * If packagge is not provided, appends the suffix 'Wrapper' to the package name.
+     * @return
+     */
+    boolean appendPackageSuffix() default true;
 
     /**
      * The package name of the generated wrapper. Default appends .wrapper to current class package.

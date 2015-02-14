@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.anosym.vjax.annotations.v3;
 
 import java.lang.annotation.Documented;
@@ -12,7 +7,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- *
+ * markup for a map entry and its key-value.
  * @author marembo
  */
 @Documented
