@@ -93,7 +93,7 @@ public class VObjectWrapper {
         String fullname = clazz.getName();
         int ix = fullname.indexOf(simpleName);
         final GenerateWrapper wrapper = clazz.getAnnotation(GenerateWrapper.class);
-        String generatedPackageName = fullname.substring(0, ix) + (wrapper.appendPackageSuffix() ? "wrapper" : "");
+        String generatedPackageName = fullname.substring(0, ix - 1) + (wrapper.appendPackageSuffix() ? ".wrapper" : "");
         return generatedPackageName;
     }
 
