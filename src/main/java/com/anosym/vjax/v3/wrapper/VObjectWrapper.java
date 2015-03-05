@@ -3,8 +3,8 @@ package com.anosym.vjax.v3.wrapper;
 import com.anosym.vjax.annotations.Id;
 import com.anosym.vjax.annotations.v3.Converter;
 import com.anosym.vjax.annotations.v3.CopyAnnotation;
-import com.anosym.vjax.annotations.v3.Transient;
 import com.anosym.vjax.annotations.v3.GenerateWrapper;
+import com.anosym.vjax.annotations.v3.Transient;
 import com.anosym.vjax.util.VJaxUtils;
 import com.google.common.collect.Lists;
 import java.io.File;
@@ -18,6 +18,8 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.atteo.classindex.ClassIndex;
@@ -30,7 +32,8 @@ public class VObjectWrapper {
 
     private class FieldInformation {
 
-        String fieldTypeName;
+        String fieldType;
+        String simpleFieldType;
         String fieldName;
         List<Annotation> fieldAnnotations;
         boolean isEqualityField; //if it has the @Id annotation.
@@ -45,25 +48,25 @@ public class VObjectWrapper {
         }
 
         public FieldInformation(String first, String second) {
-            this.fieldTypeName = first;
+            this.simpleFieldType = first;
             this.fieldName = second;
         }
 
         public FieldInformation(String first, String second, List<Annotation> copiedAnnotations) {
-            this.fieldTypeName = first;
+            this.simpleFieldType = first;
             this.fieldName = second;
             this.fieldAnnotations = copiedAnnotations;
         }
 
         public FieldInformation(String first, String second, List<Annotation> copiedAnnotations, boolean equalityField) {
-            this.fieldTypeName = first;
+            this.simpleFieldType = first;
             this.fieldName = second;
             this.fieldAnnotations = copiedAnnotations;
             this.isEqualityField = equalityField;
         }
 
         public FieldInformation(String first, String second, List<Annotation> copiedAnnotations, boolean equalityField, boolean primitive) {
-            this.fieldTypeName = first;
+            this.simpleFieldType = first;
             this.fieldName = second;
             this.fieldAnnotations = copiedAnnotations;
             this.isEqualityField = equalityField;
@@ -157,10 +160,11 @@ public class VObjectWrapper {
 
     @SuppressWarnings({"BroadCatchBlock", "TooBroadCatch", "UseSpecificCatch"})
     private FieldInformation getField(Field f) {
-        Class type = f.getType();
-        String name = f.getName();
-        String fieldType;
-        List<Annotation> copiedAnnotations = new ArrayList<Annotation>();
+        final Class fieldType = f.getType();
+        String fieldTypeName = null;
+        final String fieldName = f.getName();
+        String simpleFieldTypeName;
+        final List<Annotation> copiedAnnotations = new ArrayList<>();
         //by default, add @Id annotation to copied annotations if it is present.
         //this is is used in generating uniqueness and also for equality purposes.
         if (f.isAnnotationPresent(Id.class)) {
@@ -178,44 +182,56 @@ public class VObjectWrapper {
                 }
             }
         }
-        if (type.isAnnotationPresent(GenerateWrapper.class)) {
+        if (fieldType.isAnnotationPresent(GenerateWrapper.class)) {
             //use the wrapped type
-            fieldType = getGeneratedFullName(type);
+            simpleFieldTypeName = getGeneratedSimpleName(fieldType);
+            fieldTypeName = getGeneratedFullName(fieldType);
         } else if (f.isAnnotationPresent(Converter.class)
                 && !copiedAnnotations.contains(f.getAnnotation(Converter.class))) {
             //if it is not copied
             try {
                 //get the converter class, and find its convertFrom return type.
                 Class convC = f.getAnnotation(Converter.class).value();
-                Method convFrom = convC.getMethod("convertFrom", new Class[]{type});
+                Method convFrom = convC.getMethod("convertFrom", new Class[]{fieldType});
                 Class returnType = convFrom.getReturnType();
                 if (returnType.isAnnotationPresent(GenerateWrapper.class)) {
                     generate(returnType);
-                    fieldType = getGeneratedFullName(returnType);
+                    simpleFieldTypeName = getGeneratedSimpleName(returnType);
+                    fieldTypeName = getGeneratedFullName(returnType);
                 } else {
-                    fieldType = isJavaLangPackage(returnType) ? returnType.getSimpleName() : returnType.getName();
+                    simpleFieldTypeName = returnType.getSimpleName();
+                    if (!isJavaLangPackage(returnType)) {
+                        fieldTypeName = returnType.getCanonicalName();
+                    }
                 }
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
         } else {
             //we need to check if it is a converter
-            fieldType = isJavaLangPackage(type) ? type.getSimpleName() : type.getName();
+            simpleFieldTypeName = fieldType.getSimpleName();
+            fieldTypeName = isJavaLangPackage(fieldType) ? null : fieldType.getCanonicalName();
             //take care of arrays.
-            Class arrType = type;
+            Class arrType = fieldType;
             String dimens = "";
             while (arrType.isArray()) {
                 arrType = arrType.getComponentType();
                 if (arrType.isAnnotationPresent(GenerateWrapper.class)) {
-                    fieldType = getGeneratedFullName(arrType);
+                    simpleFieldTypeName = getGeneratedSimpleName(arrType);
+                    fieldTypeName = getGeneratedFullName(arrType);
                 } else {
-                    fieldType = arrType.getName();
+                    simpleFieldTypeName = arrType.getSimpleName();
+                    fieldTypeName = arrType.getCanonicalName();
                 }
                 dimens += "[]";
             }
-            fieldType += dimens;
+            simpleFieldTypeName += dimens;
         }
-        FieldInformation fi = new FieldInformation(fieldType, name, copiedAnnotations, f.isAnnotationPresent(Id.class), f.getType().isPrimitive());
+        FieldInformation fi = new FieldInformation(simpleFieldTypeName, fieldName, copiedAnnotations, f.isAnnotationPresent(Id.class), f.getType()
+                                                   .isPrimitive());
+        if (!fi.isPrimitive) {
+            fi.fieldType = fieldTypeName;
+        }
         if (fi.isPrimitive) {
             Class fc = f.getType();
             if (fc == int.class
@@ -269,7 +285,7 @@ public class VObjectWrapper {
     @SuppressWarnings("UseSpecificCatch")
     private String generateAnnotation(Annotation annot) {
         try {
-            String name = "@" + annot.annotationType().getCanonicalName();
+            String name = "@" + annot.annotationType().getSimpleName();
             String params = "";
             //if annotation contains values.
             Method[] declMethods = annot.annotationType().getDeclaredMethods();
@@ -340,30 +356,31 @@ public class VObjectWrapper {
                 .append(className)
                 .append(")")
                 .append("obj;\n");
-        StringBuilder sb = new StringBuilder(classComment);
-        sb.append("\n")
-                .append("package ")
-                .append(packageDecl)
-                .append(";\n\n")
-                .append(classDecl)
-                .append("{") //start class body
-                .append("\n\n");
+        final StringBuilder fieldBuilder = new StringBuilder();
+        final StringBuilder propertyBuilder = new StringBuilder();
+        final Set<String> importSet = new TreeSet<>();
+
         //add fields
         //all fields are private
         //Add the serializable field
-        sb.append("\t")
+        fieldBuilder.append("\t")
                 .append("private static final long serialVersionUID = ")
                 .append(serialUUID(className))
                 .append("l;\n\n");
         for (FieldInformation p : declFields) {
             //annotations first.
             for (Annotation a : p.fieldAnnotations) {
-                sb.append("\t")
+                importSet.add(a.annotationType().getCanonicalName());
+                fieldBuilder.append("\t")
                         .append(generateAnnotation(a))
                         .append("\n");
             }
-            sb.append("\tprivate ")
-                    .append(p.fieldTypeName)
+
+            if (p.fieldType != null) {
+                importSet.add(p.fieldType);
+            }
+            fieldBuilder.append("\tprivate ")
+                    .append(p.simpleFieldType)
                     .append(" ")
                     .append(p.fieldName)
                     .append(";")
@@ -445,12 +462,11 @@ public class VObjectWrapper {
                 }
             }
         }
-        sb.append("\n");
         //add getters and setters
         for (FieldInformation p : declFields) {
             //getter
-            sb.append("\tpublic ")
-                    .append(p.fieldTypeName)
+            propertyBuilder.append("\tpublic ")
+                    .append(p.simpleFieldType)
                     .append(" get")
                     .append(p.fieldName.substring(0, 1).toUpperCase())
                     .append(p.fieldName.substring(1))
@@ -461,12 +477,12 @@ public class VObjectWrapper {
                     .append(";\n")
                     .append("\t}\n\n");
             //setters
-            sb.append("\tpublic void ")
+            propertyBuilder.append("\tpublic void ")
                     .append(" set")
                     .append(p.fieldName.substring(0, 1).toUpperCase())
                     .append(p.fieldName.substring(1))
                     .append("(")
-                    .append(p.fieldTypeName)
+                    .append(p.simpleFieldType)
                     .append(" ")
                     .append(p.fieldName)
                     .append(")")
@@ -484,11 +500,29 @@ public class VObjectWrapper {
                     .append("\t}\n\n");
             equals.append("\t\treturn true;\n")
                     .append("\t}\n\n");
-            sb.append(hashcode)
+            propertyBuilder.append(hashcode)
                     .append(equals);
         }
+
+        final StringBuilder importBuilder = new StringBuilder();
+        for (final String importType : importSet) {
+            importBuilder.append("import ").append(importType).append("; \n\n");
+        }
+
+        final StringBuilder sourceBuilder = new StringBuilder(classComment);
+        sourceBuilder.append("\n")
+                .append("package ")
+                .append(packageDecl)
+                .append(";\n\n")
+                .append(importBuilder.toString())
+                .append(classDecl)
+                .append("{") //start class body
+                .append("\n\n")
+                .append(fieldBuilder)
+                .append("\n\n")
+                .append(propertyBuilder);
         //close body.
-        sb.append("}");
-        return sb.toString();
+        sourceBuilder.append("}");
+        return sourceBuilder.toString();
     }
 }
